@@ -14,7 +14,7 @@
 
 @interface MainViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *mainCollectionView;
-@property (nonatomic, strong) NSArray *array;///<<#注释#>
+@property (nonatomic, strong) NSArray *array;///<记录
 @end
 
 @implementation MainViewController
