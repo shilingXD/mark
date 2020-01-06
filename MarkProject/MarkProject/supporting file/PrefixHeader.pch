@@ -1,0 +1,45 @@
+//
+//  PrefixHeader.pch
+//  MarkProject
+//
+//  Created by 孙冬 on 2019/11/29.
+//  Copyright © 2019 mac. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+#pragma mark  - ------  头文件  ------
+#import "CommonMethods.h"
+#import "Instance.h"
+#import <Masonry.h>
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#pragma mark  - ------  常量  ------
+/*设备*/
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define StatusBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height)//状态栏
+// 判断是否为iPhone X 系列  这样写消除了在Xcode10上的警告。
+#define iPhoneX \
+({BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
+}\
+(isPhoneX);})
+#define NavigationBar_Height (iPhoneX ?  88 : 64)//导航栏
+#define TabbarSafeBottomMargin (iPhoneX ? 34.f : 0.f)
+#define TabBar_Height (iPhoneX ? 83 : 49)
+/*颜色*/
+#define UIColorFromHex(s) [UIColor colorWithRed:(((s & 0xFF0000) >> 16 )) / 255.0 green:((( s & 0xFF00 ) >> 8 )) / 255.0 blue:(( s & 0xFF )) / 255.0 alpha:1.0]
+#define rgba(R,G,B,_alpha_) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:_alpha_]
+#define Random(X) arc4random_uniform(X)/255.0
+#define RandomColor [UIColor colorWithRed:Random(255) green:Random(255) blue:Random(255) alpha:1.0]
+#define TintColor rgba(57, 55, 60, 1)
+
+
+#define WeakBlock(Ori, NewName) __weak __block __typeof__(Ori) NewName = Ori
+#define Safe(string) string?string:@""
+
+
+#endif /* PrefixHeader_pch */
+
