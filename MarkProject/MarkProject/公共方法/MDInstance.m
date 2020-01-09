@@ -6,11 +6,11 @@
 //  Copyright © 2019 mac. All rights reserved.
 //
 
-#import "Instance.h"
+#import "MDInstance.h"
 
-@implementation Instance
-+(Instance *)sharedInstance{
-    static Instance *_sharedInstance = nil;
+@implementation MDInstance
++(MDInstance *)sharedInstance{
+    static MDInstance *_sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sharedInstance =[[self alloc]init];

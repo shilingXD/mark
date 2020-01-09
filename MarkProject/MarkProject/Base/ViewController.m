@@ -34,6 +34,7 @@
 {
     MainViewController *vc = [[MainViewController alloc] init];
     BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
+    nav.modalPresentationStyle = UIModalPresentationFullScreen;
     nav.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentViewController:nav animated:YES completion:nil];
     
@@ -42,6 +43,9 @@
     } completion:^(BOOL finished) {
         [self.launchView removeFromSuperview];
     }];
+}
+- (UIModalPresentationStyle)modalPresentationStyle {
+    return UIModalPresentationFullScreen;
 }
 - (UIView *)launchView
 {

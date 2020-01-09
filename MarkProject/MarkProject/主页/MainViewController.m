@@ -11,10 +11,11 @@
 #import "MainViewController.h"
 #import "MainCollectionViewCell.h"
 #import "NextViewController.h"
+#import "SecretListViewController.h"
 
 @interface MainViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *mainCollectionView;
-@property (nonatomic, strong) NSArray *array;///<记录
+@property (nonatomic, strong) NSArray *array;///<<#注释#>
 @end
 
 @implementation MainViewController
@@ -35,7 +36,7 @@
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] init];
     backBtn.title = @"返回";
     self.navigationItem.backBarButtonItem = backBtn;
-    _array = @[@"账单",@"备忘录",@"计划",@"随想",@"密码本",@"设置"];
+    _array = @[@"账单",@"备忘录",@"计划",@"随想",@"密码本",@"设置"];//收藏夹（网页链接、微信文章等--支持本地打开和跳转浏览器）
 }
 -(void)createContentView
 {
@@ -68,8 +69,13 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NextViewController *vc = [[NextViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (indexPath.row == 4) {
+         SecretListViewController *vc = [[SecretListViewController alloc] init];
+           [self.navigationController pushViewController:vc animated:YES];
+    } else {
+         NextViewController *vc = [[NextViewController alloc] init];
+           [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {

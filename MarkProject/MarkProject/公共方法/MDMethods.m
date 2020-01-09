@@ -6,10 +6,10 @@
 //  Copyright © 2019 mac. All rights reserved.
 //
 
-#import "CommonMethods.h"
+#import "MDMethods.h"
 #import <sys/utsname.h>
 
-@implementation CommonMethods
+@implementation MDMethods
 //+(CommonMethods *)sharedInstance{
 //    static CommonMethods *_sharedInstance = nil;
 //    static dispatch_once_t onceToken;

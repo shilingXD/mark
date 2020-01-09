@@ -10,8 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Instance : NSObject
-+(Instance *)sharedInstance;
+@interface MDInstance : NSObject
++(MDInstance *)sharedInstance;
 @end
 
 NS_ASSUME_NONNULL_END
