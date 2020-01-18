@@ -14,6 +14,7 @@
 		04230FB32391020E00031B27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04230FB12391020E00031B27 /* LaunchScreen.storyboard */; };
 		04230FB62391020E00031B27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04230FB52391020E00031B27 /* main.m */; };
 		0454440523D1A59F00808EEC /* XYString.m in Sources */ = {isa = PBXBuildFile; fileRef = 0454440423D1A59F00808EEC /* XYString.m */; };
+		0454440723D1B44900808EEC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0454440623D1B44900808EEC /* libsqlite3.tbd */; };
 		0459757D23BA134200221DF3 /* SecretListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0459757C23BA134200221DF3 /* SecretListViewController.m */; };
 		04689ECC23CC4B9100D2A786 /* SecretListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04689ECB23CC4B9100D2A786 /* SecretListTableViewCell.m */; };
 		046AC14A2394EF0600111DA2 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046AC1492394EF0600111DA2 /* MainViewController.m */; };
@@ -39,6 +40,7 @@
 		04230FBC2391024600031B27 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		0454440323D1A59F00808EEC /* XYString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYString.h; sourceTree = "<group>"; };
 		0454440423D1A59F00808EEC /* XYString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYString.m; sourceTree = "<group>"; };
+		0454440623D1B44900808EEC /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		0459757B23BA134200221DF3 /* SecretListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecretListViewController.h; sourceTree = "<group>"; };
 		0459757C23BA134200221DF3 /* SecretListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecretListViewController.m; sourceTree = "<group>"; };
 		04689ECA23CC4B9100D2A786 /* SecretListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SecretListTableViewCell.h; path = "MarkProject/密码本/SecretListTableViewCell.h"; sourceTree = SOURCE_ROOT; };
@@ -65,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0454440723D1B44900808EEC /* libsqlite3.tbd in Frameworks */,
 				6E22E597AC3D753637744453 /* libPods-MarkProject.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,6 +195,7 @@
 		73ACE74CF294E50703FC5A68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0454440623D1B44900808EEC /* libsqlite3.tbd */,
 				E6F41FCEB9C3C4D50F296F00 /* libPods-MarkProject.a */,
 			);
 			name = Frameworks;
