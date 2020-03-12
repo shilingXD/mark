@@ -13,6 +13,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+//        CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+//        gradientLayer.colors = @[(__bridge id)RandomColor.CGColor, (__bridge id)RandomColor.CGColor];
+//        gradientLayer.locations = @[@0.0, @0.5];
+//        gradientLayer.startPoint = CGPointMake(0, 0);
+//        gradientLayer.endPoint = CGPointMake(1.0, 0);
+//        gradientLayer.frame = self.frame;
+//        [self.layer addSublayer:gradientLayer];
         self.backgroundColor = RandomColor;
         self.layer.cornerRadius = 10;
         _titleLabel = [[UILabel alloc] init];
