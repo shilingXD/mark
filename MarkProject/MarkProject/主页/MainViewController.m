@@ -37,9 +37,28 @@
     [image mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(leftView);
     }];
+    WeakBlock(self, weakSelf);
     [self.navigationView addLeftView:leftView callback:^(UIView *view) {
-        
+        [weakSelf Menu];
     }];
+}
+-(void)Menu{
+    UIView *redView = [UIView new];
+    redView.backgroundColor = TintColor;
+    redView.gk_size = CGSizeMake(SCREEN_WIDTH*0.8, KScreenH);
+    
+    [GKCover coverFrom:[UIApplication sharedApplication].keyWindow
+           contentView:redView
+                 style:GKCoverStyleBlur
+             showStyle:GKCoverShowStyleLeft
+         showAnimStyle:GKCoverShowAnimStyleLeft
+         hideAnimStyle:GKCoverHideAnimStyleLeft
+              notClick:NO];
+//    [GKCover coverFrom:[UIApplication sharedApplication].keyWindow contentView:redView style:GKCoverStyleBlur showStyle:GKCoverShowStyleLeft showAnimStyle:GKCoverShowAnimStyleLeft hideAnimStyle:GKCoverHideAnimStyleLeft notClick:NO showBlock:^{
+//
+//    } hideBlock:^{
+//
+//    }];
 }
 -(void)createContentView
 {
