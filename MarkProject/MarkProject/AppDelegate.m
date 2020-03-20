@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MainViewController.h"
 
 @interface AppDelegate ()
 
@@ -18,11 +19,22 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    _window.tintColor = TintColor;
+    EasyNavigationOptions *options = [EasyNavigationOptions shareInstance];
+    options.titleColor = [UIColor whiteColor];
+    options.buttonTitleFont = [UIFont fontWithName:@"Helvetica-Bold" size:18];
+    options.navigationBackButtonImageName = @"back_btn";
+    options.buttonTitleColor = [UIColor whiteColor];
+    
+    
+    
+    // 设置系统返回按钮为样式
+    options.btnTitleType = FBackBtnTitleType_Default;
+    
+    EasyNavigationController *navVC = [[EasyNavigationController alloc]initWithRootViewController:[MainViewController new]];
+    self.window.rootViewController  = navVC ;
+    
     return YES;
 }
-
-
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

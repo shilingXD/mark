@@ -20,7 +20,14 @@
     self.navigationItem.title = @"测试";
 
 }
-
+- (UIBarButtonItem *)rt_customBackItemWithTarget:(id)target
+                                          action:(SEL)action
+{
+    return [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", nil)
+                                            style:UIBarButtonItemStylePlain
+                                           target:target
+                                           action:action];
+}
 /*
 #pragma mark - Navigation
 

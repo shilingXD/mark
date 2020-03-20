@@ -19,24 +19,27 @@
 @end
 
 @implementation MainViewController
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-//    [self.navigationController setNavigationBarHidden:YES];
-//}
-//- (void)viewWillDisappear:(BOOL)animated
-//{
-//    [super viewWillDisappear:animated];
-//    [self.navigationController setNavigationBarHidden:NO];
-//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view setBackgroundColor:TintColor];
     [self createContentView];
-    UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] init];
-    backBtn.title = @"返回";
-    self.navigationItem.backBarButtonItem = backBtn;
     _array = @[@"账单",@"备忘录",@"计划",@"随想",@"密码本",@"设置"];//收藏夹（网页链接、微信文章等--支持本地打开和跳转浏览器）
+    [self.navigationView setTitle:@"首页"];
+    
+    self.navigationView.backgroundView.image = nil ;
+    self.navigationView.backgroundView.backgroundColor = TintColor;
+    self.navigationView.lineView.backgroundColor = TintColor;
+    
+    UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"菜单"]];
+    [leftView addSubview:image];
+    [image mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(leftView);
+    }];
+    [self.navigationView addLeftView:leftView callback:^(UIView *view) {
+        
+    }];
 }
 -(void)createContentView
 {
