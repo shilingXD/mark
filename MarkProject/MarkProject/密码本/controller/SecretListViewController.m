@@ -146,6 +146,7 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.indexView scrollViewDidScroll:scrollView];
+    NSLog(@"%f",scrollView.contentOffset.y);
 }
 
 #pragma mark - IndexView
@@ -180,11 +181,11 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
 #pragma mark - getter
 - (UITableView *)TableView {
     if (!_TableView) {
-        _TableView = [[UITableView alloc] initWithFrame:CGRectMake(0, NavigationBar_Height, SCREEN_WIDTH, SCREEN_HEIGHT) style:(UITableViewStylePlain)];
+        _TableView = [[UITableView alloc] initWithFrame:CGRectMake(0, NavigationBar_Height, SCREEN_WIDTH, SCREEN_HEIGHT-NavigationBar_Height) style:(UITableViewStylePlain)];
         _TableView.delegate = self;
         _TableView.dataSource = self;
         _TableView.showsVerticalScrollIndicator = NO;
-        _TableView.rowHeight = 100;
+        _TableView.rowHeight = 50;
 //        _TableView.estimatedRowHeight = 500;
         
         [_TableView registerClass:[TableViewHeaderView class] forHeaderFooterViewReuseIdentifier:TableViewHeaderViewIdentifier];

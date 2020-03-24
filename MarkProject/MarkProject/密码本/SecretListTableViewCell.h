@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SecretListTableViewCell : UITableViewCell
-@property (nonatomic, strong) UIView *myContentView;///<<#注释#>
+@property (nonatomic, strong) UIImageView *IconView;///<密码图标
+
 
 + (id)cellForTableview:(UITableView *)tableView;
 @end

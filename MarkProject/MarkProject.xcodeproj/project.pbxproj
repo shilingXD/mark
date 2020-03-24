@@ -25,7 +25,6 @@
 		0478A52F24233F6800C6B5C7 /* SectionIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A52B24233F6800C6B5C7 /* SectionIndicatorView.m */; };
 		0478A532242343C300C6B5C7 /* TableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A531242343C300C6B5C7 /* TableViewHeaderView.m */; };
 		0478A5352423491E00C6B5C7 /* TableViewSearchHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A5332423491E00C6B5C7 /* TableViewSearchHeaderView.m */; };
-		0478A5382423493000C6B5C7 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A5362423493000C6B5C7 /* TableViewCell.m */; };
 		0478A55E24235A9E00C6B5C7 /* EasyNavigationView+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A53A24235A9E00C6B5C7 /* EasyNavigationView+Add.m */; };
 		0478A55F24235A9E00C6B5C7 /* EasyNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A53B24235A9E00C6B5C7 /* EasyNavigationController.m */; };
 		0478A56024235A9E00C6B5C7 /* EasyNavigationOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A53D24235A9E00C6B5C7 /* EasyNavigationOptions.m */; };
@@ -86,8 +85,6 @@
 		0478A531242343C300C6B5C7 /* TableViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewHeaderView.m; sourceTree = "<group>"; };
 		0478A5332423491E00C6B5C7 /* TableViewSearchHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewSearchHeaderView.m; sourceTree = "<group>"; };
 		0478A5342423491E00C6B5C7 /* TableViewSearchHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewSearchHeaderView.h; sourceTree = "<group>"; };
-		0478A5362423493000C6B5C7 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
-		0478A5372423493000C6B5C7 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		0478A53A24235A9E00C6B5C7 /* EasyNavigationView+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EasyNavigationView+Add.m"; sourceTree = "<group>"; };
 		0478A53B24235A9E00C6B5C7 /* EasyNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyNavigationController.m; sourceTree = "<group>"; };
 		0478A53C24235A9E00C6B5C7 /* EasyNavigationButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyNavigationButton.h; sourceTree = "<group>"; };
@@ -214,8 +211,6 @@
 		0459757F23BA137000221DF3 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				0478A5372423493000C6B5C7 /* TableViewCell.h */,
-				0478A5362423493000C6B5C7 /* TableViewCell.m */,
 				0478A5342423491E00C6B5C7 /* TableViewSearchHeaderView.h */,
 				0478A5332423491E00C6B5C7 /* TableViewSearchHeaderView.m */,
 				0478A530242343C300C6B5C7 /* TableViewHeaderView.h */,
@@ -516,7 +511,6 @@
 				0478A56824235A9E00C6B5C7 /* UIViewController+EasyNavigationExt.m in Sources */,
 				0478A4FA2422061400C6B5C7 /* XYString.m in Sources */,
 				0478A56924235A9E00C6B5C7 /* EasyNavigationUtils.m in Sources */,
-				0478A5382423493000C6B5C7 /* TableViewCell.m in Sources */,
 				04230FB62391020E00031B27 /* main.m in Sources */,
 				0478A55E24235A9E00C6B5C7 /* EasyNavigationView+Add.m in Sources */,
 				0478A56B24235A9E00C6B5C7 /* EasyNavigationView+RightButton.m in Sources */,

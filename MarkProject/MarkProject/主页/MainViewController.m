@@ -16,6 +16,8 @@
 @interface MainViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *mainCollectionView;
 @property (nonatomic, strong) NSArray *array;///<<#注释#>
+@property (nonatomic, strong) UIView *MenuView;///<菜单
+@property (nonatomic, assign) BOOL MenuOpen;///<菜单是否打开
 @end
 
 @implementation MainViewController
@@ -41,24 +43,21 @@
     [self.navigationView addLeftView:leftView callback:^(UIView *view) {
         [weakSelf Menu];
     }];
+[self.view addSubview:self.MenuView];
 }
 -(void)Menu{
-    UIView *redView = [UIView new];
-    redView.backgroundColor = TintColor;
-    redView.gk_size = CGSizeMake(SCREEN_WIDTH*0.8, KScreenH);
-    
-    [GKCover coverFrom:[UIApplication sharedApplication].keyWindow
-           contentView:redView
-                 style:GKCoverStyleBlur
-             showStyle:GKCoverShowStyleLeft
-         showAnimStyle:GKCoverShowAnimStyleLeft
-         hideAnimStyle:GKCoverHideAnimStyleLeft
-              notClick:NO];
-//    [GKCover coverFrom:[UIApplication sharedApplication].keyWindow contentView:redView style:GKCoverStyleBlur showStyle:GKCoverShowStyleLeft showAnimStyle:GKCoverShowAnimStyleLeft hideAnimStyle:GKCoverHideAnimStyleLeft notClick:NO showBlock:^{
-//
-//    } hideBlock:^{
-//
-//    }];
+    if (!_MenuOpen) {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.view.frame = CGRectMake(SCREEN_WIDTH*0.8, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//            self.MenuView.frame = CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT);
+        }];
+    } else {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//            self.MenuView.frame = CGRectMake(-SCREEN_WIDTH*0.8, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT);
+        }];
+    }
+    _MenuOpen = !_MenuOpen;
 }
 -(void)createContentView
 {
@@ -108,4 +107,14 @@
     return 6;
 }
 
+#pragma mark  - ------  setter  ------
+- (UIView *)MenuView
+{
+    if (!_MenuView) {
+        _MenuView = [[UIView alloc] initWithFrame:CGRectMake(-SCREEN_WIDTH*0.8, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT)];
+        _MenuView.backgroundColor = [UIColor whiteColor];
+        
+    }
+    return _MenuView;
+}
 @end
