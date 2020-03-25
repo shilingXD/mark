@@ -13,6 +13,9 @@
 #import "TableViewHeaderView.h"
 #import "TableViewSearchHeaderView.h"
 #import "SecretListTableViewCell.h"
+#import "SecretModel.h"
+#import "WMDragView.h"
+#import "NextViewController.h"
 
 #define NAV_HEIGHT 64
 
@@ -57,6 +60,7 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     //默认设置第一组
     [self.indexView setSelectionIndex:0];
     [self createBar];
+    [self AddButton];
 }
 - (UIBarButtonItem *)rt_customBackItemWithTarget:(id)target
                                           action:(SEL)action
@@ -73,6 +77,34 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     self.navigationView.backgroundView.image = nil ;
     self.navigationView.backgroundView.backgroundColor = TintColor;
     self.navigationView.lineView.backgroundColor = TintColor;
+}
+-(void)AddButton
+{
+    WMDragView *dragView = [[WMDragView alloc] init];
+    dragView.backgroundColor = [UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1.f];
+    dragView.layer.masksToBounds = YES;
+    dragView.layer.cornerRadius = 25;
+    dragView.clickDragViewBlock = ^(WMDragView *dragView) {
+        NextViewController *vc = [[NextViewController alloc] init];
+        vc.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:vc animated:YES completion:^{
+            
+        }];
+    };
+    [self.view addSubview:dragView];
+    [dragView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(50, 50));
+        make.right.mas_equalTo(self.view).offset(-25);
+        make.bottom.mas_equalTo(self.view).offset(-25);
+    }];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"增加"]];
+    [dragView addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(dragView);
+    }];
+    
+    
 }
 - (void)reloadButtonAction:(UIButton *)sender {
     self.dataSourceArray = @[@"百年灵", @"宝齐莱", @"瑞宝", @"沛纳海", @"宇舶", @"真力时", @"万国", @"欧米茄", @"劳力士", @"朗格"];
@@ -108,7 +140,7 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     //搜索头视图
-    if (section == 0 && self.isSearchMode) {
+    if (section == 0) {
         return 40;
     }
     return 30;
@@ -116,7 +148,7 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     //搜索头视图
-    if (section == 0 && self.isSearchMode) {
+    if (section == 0) {
         TableViewSearchHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:TableViewSearchHeaderViewIdentifier];
         return headerView;
     }
@@ -128,11 +160,20 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SecretListTableViewCell *cell = [SecretListTableViewCell cellForTableview:tableView];
-//    NSDictionary *dict = self.brandArray[indexPath.section];
-//    NSMutableArray *array = dict[@"content"];
-//    //品牌
-//    NSString *brandInfo = array[indexPath.row];
-//    cell.title = brandInfo;
+    NSDictionary *dict = self.brandArray[indexPath.section];
+    NSMutableArray *array = dict[@"content"];
+    //品牌
+    NSString *brandInfo = array[indexPath.row];
+    SecretModel *model = [[SecretModel alloc] init];
+    model.Name = brandInfo;
+    model.Account = brandInfo;
+    cell.model = model;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if (indexPath.row == array.count - 1) {
+        cell.lineView.hidden = YES;
+    } else {
+        cell.lineView.hidden = NO;
+    }
     return cell;
 }
 
@@ -186,8 +227,6 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
         _TableView.dataSource = self;
         _TableView.showsVerticalScrollIndicator = NO;
         _TableView.rowHeight = 50;
-//        _TableView.estimatedRowHeight = 500;
-        
         [_TableView registerClass:[TableViewHeaderView class] forHeaderFooterViewReuseIdentifier:TableViewHeaderViewIdentifier];
         [_TableView registerClass:[TableViewSearchHeaderView class] forHeaderFooterViewReuseIdentifier:TableViewSearchHeaderViewIdentifier];
     }
@@ -205,7 +244,7 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
 
 - (NSArray *)dataSourceArray {
     if (!_dataSourceArray) {
-        _dataSourceArray = @[@"卡地亚", @"法兰克穆勒", @"尊皇", @"蒂芙尼", @"艾米龙", @"NOMOS", @"依波路", @"波尔", @"帝舵", @"名士", @"芝柏", @"积家", @"尼芙尔", @"泰格豪雅", @"艾美", @"拉芙兰瑞", @"宝格丽", @"古驰", @"香奈儿", @"迪奥", @"雷达", @"豪利时", @"路易.威登", @"蕾蒙威", @"康斯登", @"爱马仕", @"昆仑", @"斯沃琪", @"WEMPE", @"万宝龙", @"浪琴", @"柏莱士", @"雅克德罗", @"雅典", @"帕玛强尼", @"格拉苏蒂原创", @"伯爵", @"百达翡丽", @"爱彼", @"宝玑", @"江诗丹顿", @"宝珀", @"理查德·米勒", @"梵克雅宝", @"罗杰杜彼", @"萧邦", @"百年灵", @"宝齐莱", @"瑞宝", @"沛纳海", @"宇舶", @"真力时", @"万国", @"欧米茄", @"劳力士", @"朗格"];
+        _dataSourceArray = @[@"卡地亚", @"法兰克穆勒", @"尊皇", @"蒂芙尼", @"艾米龙", @"NOMOS", @"依波路", @"波尔", @"帝舵", @"名士", @"芝柏", @"积家", @"尼芙尔", @"泰格豪雅", @"艾美", @"拉芙兰瑞", @"宝格丽", @"古驰", @"香奈儿", @"迪奥", @"雷达", @"豪利时", @"路易.威登", @"蕾蒙威", @"康斯登", @"爱马仕", @"昆仑", @"斯沃琪", @"WEMPE", @"万宝龙", @"浪琴", @"柏莱士", @"雅克德罗", @"雅典", @"帕玛强尼", @"格拉苏蒂原创", @"伯爵", @"百达翡丽", @"爱彼", @"宝玑", @"江诗丹顿", @"宝珀", @"理查德·米勒", @"梵克雅宝", @"罗杰杜彼", @"萧邦", @"百年灵", @"宝齐莱", @"瑞宝", @"沛纳海", @"宇舶", @"真力时", @"万国", @"欧米茄", @"劳力士", @"朗格",@"dsf",@"是",@"11"];
     }
     return _dataSourceArray;
 }

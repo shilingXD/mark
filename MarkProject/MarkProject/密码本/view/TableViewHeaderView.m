@@ -8,8 +8,6 @@
 
 #import "TableViewHeaderView.h"
 
-#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
-
 @interface TableViewHeaderView ()
 
 @property (nonatomic, strong) UILabel *firstLetterLabel;
@@ -21,7 +19,16 @@
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         [self.contentView addSubview:self.firstLetterLabel];
-        self.contentView.backgroundColor = [[UIColor colorWithRed:222/255.0 green:222/255.0 blue:222/255.0 alpha:1.f] colorWithAlphaComponent:0.7];
+        UIView *lineView = [[UIView alloc] init];
+        lineView.backgroundColor = [UIColor lightGrayColor];
+        lineView.alpha = 0.5;
+        [self.contentView addSubview:lineView];
+        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.contentView.mas_top);
+            make.left.right.mas_equalTo(self.contentView);
+            make.height.mas_equalTo(0.5);
+        }];
+        self.contentView.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }

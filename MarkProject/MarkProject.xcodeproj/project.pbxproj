@@ -12,6 +12,8 @@
 		04230FB02391020E00031B27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04230FAF2391020E00031B27 /* Assets.xcassets */; };
 		04230FB32391020E00031B27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04230FB12391020E00031B27 /* LaunchScreen.storyboard */; };
 		04230FB62391020E00031B27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04230FB52391020E00031B27 /* main.m */; };
+		044001E2242B2E59000AE57B /* SecretModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 044001E1242B2E59000AE57B /* SecretModel.m */; };
+		044001E6242B49AB000AE57B /* WMDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 044001E4242B49AB000AE57B /* WMDragView.m */; };
 		0454440723D1B44900808EEC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0454440623D1B44900808EEC /* libsqlite3.tbd */; };
 		0459757D23BA134200221DF3 /* SecretListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0459757C23BA134200221DF3 /* SecretListViewController.m */; };
 		04689ECC23CC4B9100D2A786 /* SecretListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04689ECB23CC4B9100D2A786 /* SecretListTableViewCell.m */; };
@@ -60,6 +62,10 @@
 		04230FB42391020E00031B27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04230FB52391020E00031B27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04230FBC2391024600031B27 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		044001E0242B2E59000AE57B /* SecretModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SecretModel.h; path = "MarkProject/密码本/SecretModel.h"; sourceTree = SOURCE_ROOT; };
+		044001E1242B2E59000AE57B /* SecretModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SecretModel.m; path = "MarkProject/密码本/SecretModel.m"; sourceTree = SOURCE_ROOT; };
+		044001E4242B49AB000AE57B /* WMDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDragView.m; sourceTree = "<group>"; };
+		044001E5242B49AB000AE57B /* WMDragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDragView.h; sourceTree = "<group>"; };
 		0454440623D1B44900808EEC /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		0459757B23BA134200221DF3 /* SecretListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecretListViewController.h; sourceTree = "<group>"; };
 		0459757C23BA134200221DF3 /* SecretListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecretListViewController.m; sourceTree = "<group>"; };
@@ -186,6 +192,15 @@
 			path = MarkProject;
 			sourceTree = "<group>";
 		};
+		044001E3242B49AB000AE57B /* WMDragView */ = {
+			isa = PBXGroup;
+			children = (
+				044001E4242B49AB000AE57B /* WMDragView.m */,
+				044001E5242B49AB000AE57B /* WMDragView.h */,
+			);
+			path = WMDragView;
+			sourceTree = "<group>";
+		};
 		0454440B23D43F8600808EEC /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +243,8 @@
 		0459758023BA138500221DF3 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				044001E0242B2E59000AE57B /* SecretModel.h */,
+				044001E1242B2E59000AE57B /* SecretModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -254,6 +271,7 @@
 		0478A4E12422034300C6B5C7 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				044001E3242B49AB000AE57B /* WMDragView */,
 				04E100412424614800C8081B /* GKCover */,
 				0478A53924235A9E00C6B5C7 /* EasyNavigation */,
 				04E924A92394A746006683D7 /* 公共方法 */,
@@ -490,6 +508,7 @@
 				0478A56724235A9E00C6B5C7 /* UIScrollView+EasyNavigationExt.m in Sources */,
 				0478A5352423491E00C6B5C7 /* TableViewSearchHeaderView.m in Sources */,
 				0478A52924233F3900C6B5C7 /* NSString+PinYin.m in Sources */,
+				044001E6242B49AB000AE57B /* WMDragView.m in Sources */,
 				0478A56E24235A9E00C6B5C7 /* EasyNavigationView+Scroll.m in Sources */,
 				046AC1582396479B00111DA2 /* NextViewController.m in Sources */,
 				0478A56624235A9E00C6B5C7 /* UIView+EasyNavigationExt.m in Sources */,
@@ -517,6 +536,7 @@
 				04230FA82391020B00031B27 /* AppDelegate.m in Sources */,
 				0459757D23BA134200221DF3 /* SecretListViewController.m in Sources */,
 				046AC1552395124E00111DA2 /* MainCollectionViewCell.m in Sources */,
+				044001E2242B2E59000AE57B /* SecretModel.m in Sources */,
 				0478A55F24235A9E00C6B5C7 /* EasyNavigationController.m in Sources */,
 				04E100492424614800C8081B /* GKCover.m in Sources */,
 				0478A56424235A9E00C6B5C7 /* NSObject+EasyKVO.m in Sources */,

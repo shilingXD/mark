@@ -27,10 +27,30 @@
     self.contentView.backgroundColor = rgba(252, 252, 255, 1);
     if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         _IconView = [[UIImageView alloc] init];
-        _IconView.image = [self getImage:@"万物"];
+        _IconView.image = [UIImage imageNamed:[NSString stringWithFormat:@"密码iocn-%d",[self getRandomNumber:1 to:3]]];
+        NSLog(@"%@",[NSString stringWithFormat:@"密码iocn-%d",[self getRandomNumber:1 to:3]]);
         [self addSubview:_IconView];
         
-      
+        _iconText = [[UILabel alloc] init];
+//        _iconText.text = @"密码";
+        _iconText.font = [UIFont systemFontOfSize:12];
+        _iconText.textColor = [UIColor whiteColor];
+        [self.IconView addSubview:_iconText];
+        
+        _Title = [[UILabel alloc] init];
+        _Title.font = [UIFont fontWithName:@"PingFang SC" size: 13];
+//        _Title.textColor = rgba(97, 109, 128, 1);
+        [self addSubview:_Title];
+        
+        _Account = [[UILabel alloc] init];
+        _Account.font = [UIFont fontWithName:@"PingFang SC" size: 12];
+        _Account.textColor = rgba(97, 109, 128, 1);
+        [self addSubview:_Account];
+        
+        _lineView = [[UIView alloc] init];
+        _lineView.backgroundColor = [UIColor grayColor];
+        _lineView.alpha = 0.5;
+        [self addSubview:_lineView];
     }
     [self layoutIfNeeded];
     return self;
@@ -40,64 +60,44 @@
     [super layoutSubviews];
     [self.IconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.mas_left).offset(15);
-//        make.right.mas_equalTo(self.mas_right).offset(-15);
-        make.size.mas_equalTo(CGSizeMake(40, 40));
+        make.size.mas_equalTo(CGSizeMake(35, 35));
         make.centerY.mas_equalTo(self);
     }];
+    [self.iconText mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(self.IconView);
+    }];
+    [self.Title mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.IconView.mas_right).offset(15);
+        make.right.mas_equalTo(self.mas_right).offset(-15);
+        make.top.mas_equalTo(self.IconView.mas_top);
+    }];
+    [self.Account mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.IconView.mas_right).offset(15);
+        make.right.mas_equalTo(self.mas_right).offset(-15);
+        make.bottom.mas_equalTo(self.IconView.mas_bottom);
+    }];
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.Title.mas_left);
+        make.right.mas_equalTo(self.mas_right).offset(-25);
+        make.height.mas_equalTo(0.5);
+        make.bottom.mas_equalTo(self.mas_bottom);
+    }];
+}
+//获取一个随机整数，范围在[from,to），包括from，不包括to
+-(int)getRandomNumber:(int)from to:(int)to
+
+{
+    
+    return (int)(from + (arc4random() % (to - from + 1))); //+1,result is [from to]; else is [from, to)!!!!!!!
     
 }
 
-- (UIImage *)getImage:(NSString *)name
+- (void)setModel:(SecretModel *)model
 {
-    UIColor *color = [self randomColor];  //获取随机颜色
-    CGRect rect = CGRectMake(0.0f, 0.0f, 128, 128);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    _model = model;
     
-    NSString *headerName = nil;
-    if (name.length < 3) {
-        headerName = name;
-    }else{
-        headerName = [name substringFromIndex:name.length-2];
-    }
-    UIImage *headerimg = [self imageToAddText:img withText:headerName];
-    return headerimg;
+    _Title.text = model.Name;
+    _iconText.text = model.Name.length >= 2?[model.Name substringToIndex:2]:model.Name;
+    _Account.text = model.Account;
 }
-
-//随机颜色
-- (UIColor *)randomColor
-{
-    CGFloat hue = ( arc4random() % 256 / 256.0 ); //0.0 to 1.0
-    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0,away from white
-    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;
-    return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
-}
-
-//把文字绘制到图片上
-- (UIImage *)imageToAddText:(UIImage *)img withText:(NSString *)text
-{
-    //1.获取上下文
-    UIGraphicsBeginImageContext(img.size);
-    //2.绘制图片
-    [img drawInRect:CGRectMake(0, 0, img.size.width, img.size.height)];
-    //3.绘制文字
-    CGRect rect = CGRectMake(0,(img.size.height-45)/2, img.size.width, 25);
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
-    style.alignment = NSTextAlignmentCenter;
-    //文字的属性
-    NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:30],NSParagraphStyleAttributeName:style,NSForegroundColorAttributeName:[UIColor whiteColor]};
-    //将文字绘制上去
-    [text drawInRect:rect withAttributes:dic];
-    //4.获取绘制到得图片
-    UIImage *watermarkImg = UIGraphicsGetImageFromCurrentImageContext();
-    //5.结束图片的绘制
-    UIGraphicsEndImageContext();
-    
-    return watermarkImg;
-}
-
 @end
