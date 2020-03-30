@@ -49,6 +49,15 @@
 		04E100492424614800C8081B /* GKCover.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E100472424614800C8081B /* GKCover.m */; };
 		04E924AF2394A7D3006683D7 /* MDInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E924AE2394A7D3006683D7 /* MDInstance.m */; };
 		04E924B32394AC5E006683D7 /* MDMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E924B22394AC5E006683D7 /* MDMethods.m */; };
+		04F638B0242DF333005207B0 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F638A2242DF333005207B0 /* Roboto-Light.ttf */; };
+		04F638B1242DF333005207B0 /* PreWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F638A3242DF333005207B0 /* PreWebVC.m */; };
+		04F638B2242DF333005207B0 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F638A4242DF333005207B0 /* Roboto-Regular.ttf */; };
+		04F638B3242DF333005207B0 /* markdown.html in Resources */ = {isa = PBXBuildFile; fileRef = 04F638A5242DF333005207B0 /* markdown.html */; };
+		04F638B4242DF333005207B0 /* marked.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 04F638A6242DF333005207B0 /* marked.min.js */; };
+		04F638B5242DF333005207B0 /* GNEditShortcutKeyBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F638AA242DF333005207B0 /* GNEditShortcutKeyBar.m */; };
+		04F638B6242DF333005207B0 /* HFButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F638AB242DF333005207B0 /* HFButton.m */; };
+		04F638B7242DF333005207B0 /* FIREditPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F638AD242DF333005207B0 /* FIREditPageVC.m */; };
+		04F638B8242DF333005207B0 /* sample1.md in Resources */ = {isa = PBXBuildFile; fileRef = 04F638AE242DF333005207B0 /* sample1.md */; };
 		6E22E597AC3D753637744453 /* libPods-MarkProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6F41FCEB9C3C4D50F296F00 /* libPods-MarkProject.a */; };
 /* End PBXBuildFile section */
 
@@ -136,6 +145,19 @@
 		04E924AE2394A7D3006683D7 /* MDInstance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDInstance.m; sourceTree = "<group>"; };
 		04E924B12394AC5E006683D7 /* MDMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDMethods.h; sourceTree = "<group>"; };
 		04E924B22394AC5E006683D7 /* MDMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDMethods.m; sourceTree = "<group>"; };
+		04F638A2242DF333005207B0 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		04F638A3242DF333005207B0 /* PreWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreWebVC.m; sourceTree = "<group>"; };
+		04F638A4242DF333005207B0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		04F638A5242DF333005207B0 /* markdown.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = markdown.html; sourceTree = "<group>"; };
+		04F638A6242DF333005207B0 /* marked.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = marked.min.js; sourceTree = "<group>"; };
+		04F638A7242DF333005207B0 /* PreWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreWebVC.h; sourceTree = "<group>"; };
+		04F638A9242DF333005207B0 /* FIREditPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREditPageVC.h; sourceTree = "<group>"; };
+		04F638AA242DF333005207B0 /* GNEditShortcutKeyBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNEditShortcutKeyBar.m; sourceTree = "<group>"; };
+		04F638AB242DF333005207B0 /* HFButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFButton.m; sourceTree = "<group>"; };
+		04F638AC242DF333005207B0 /* GNEditShortcutKeyBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNEditShortcutKeyBar.h; sourceTree = "<group>"; };
+		04F638AD242DF333005207B0 /* FIREditPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREditPageVC.m; sourceTree = "<group>"; };
+		04F638AE242DF333005207B0 /* sample1.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sample1.md; sourceTree = "<group>"; };
+		04F638AF242DF333005207B0 /* HFButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFButton.h; sourceTree = "<group>"; };
 		49168B48E25A5FEB4F7A6A6B /* Pods-MarkProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarkProject.release.xcconfig"; path = "Target Support Files/Pods-MarkProject/Pods-MarkProject.release.xcconfig"; sourceTree = "<group>"; };
 		958297A7EEDFB92B5FA0BD5D /* Pods-MarkProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarkProject.debug.xcconfig"; path = "Target Support Files/Pods-MarkProject/Pods-MarkProject.debug.xcconfig"; sourceTree = "<group>"; };
 		E6F41FCEB9C3C4D50F296F00 /* libPods-MarkProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MarkProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +197,8 @@
 		04230FA52391020B00031B27 /* MarkProject */ = {
 			isa = PBXGroup;
 			children = (
+				044A7DC2242CA4F700C9D9F7 /* 随想 */,
+				044A7DC1242CA4E800C9D9F7 /* 账单 */,
 				0478A4E12422034300C6B5C7 /* Tools */,
 				0454440B23D43F8600808EEC /* Category */,
 				0459757E23BA134700221DF3 /* 密码本 */,
@@ -199,6 +223,20 @@
 				044001E5242B49AB000AE57B /* WMDragView.h */,
 			);
 			path = WMDragView;
+			sourceTree = "<group>";
+		};
+		044A7DC1242CA4E800C9D9F7 /* 账单 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "账单";
+			sourceTree = "<group>";
+		};
+		044A7DC2242CA4F700C9D9F7 /* 随想 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "随想";
 			sourceTree = "<group>";
 		};
 		0454440B23D43F8600808EEC /* Category */ = {
@@ -271,6 +309,8 @@
 		0478A4E12422034300C6B5C7 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				04F638A8242DF333005207B0 /* FIREditPage */,
+				04F638A1242DF333005207B0 /* FIRPreWebview */,
 				044001E3242B49AB000AE57B /* WMDragView */,
 				04E100412424614800C8081B /* GKCover */,
 				0478A53924235A9E00C6B5C7 /* EasyNavigation */,
@@ -389,6 +429,33 @@
 			path = "supporting file";
 			sourceTree = "<group>";
 		};
+		04F638A1242DF333005207B0 /* FIRPreWebview */ = {
+			isa = PBXGroup;
+			children = (
+				04F638A2242DF333005207B0 /* Roboto-Light.ttf */,
+				04F638A3242DF333005207B0 /* PreWebVC.m */,
+				04F638A4242DF333005207B0 /* Roboto-Regular.ttf */,
+				04F638A5242DF333005207B0 /* markdown.html */,
+				04F638A6242DF333005207B0 /* marked.min.js */,
+				04F638A7242DF333005207B0 /* PreWebVC.h */,
+			);
+			path = FIRPreWebview;
+			sourceTree = "<group>";
+		};
+		04F638A8242DF333005207B0 /* FIREditPage */ = {
+			isa = PBXGroup;
+			children = (
+				04F638A9242DF333005207B0 /* FIREditPageVC.h */,
+				04F638AD242DF333005207B0 /* FIREditPageVC.m */,
+				04F638AA242DF333005207B0 /* GNEditShortcutKeyBar.m */,
+				04F638AC242DF333005207B0 /* GNEditShortcutKeyBar.h */,
+				04F638AF242DF333005207B0 /* HFButton.h */,
+				04F638AB242DF333005207B0 /* HFButton.m */,
+				04F638AE242DF333005207B0 /* sample1.md */,
+			);
+			path = FIREditPage;
+			sourceTree = "<group>";
+		};
 		73ACE74CF294E50703FC5A68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -465,9 +532,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04F638B2242DF333005207B0 /* Roboto-Regular.ttf in Resources */,
 				04230FB32391020E00031B27 /* LaunchScreen.storyboard in Resources */,
 				04230FB02391020E00031B27 /* Assets.xcassets in Resources */,
+				04F638B0242DF333005207B0 /* Roboto-Light.ttf in Resources */,
+				04F638B3242DF333005207B0 /* markdown.html in Resources */,
 				04230FAE2391020B00031B27 /* Main.storyboard in Resources */,
+				04F638B4242DF333005207B0 /* marked.min.js in Resources */,
+				04F638B8242DF333005207B0 /* sample1.md in Resources */,
 				0478A56C24235A9E00C6B5C7 /* EasyNavButton.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,6 +581,7 @@
 				0478A5352423491E00C6B5C7 /* TableViewSearchHeaderView.m in Sources */,
 				0478A52924233F3900C6B5C7 /* NSString+PinYin.m in Sources */,
 				044001E6242B49AB000AE57B /* WMDragView.m in Sources */,
+				04F638B1242DF333005207B0 /* PreWebVC.m in Sources */,
 				0478A56E24235A9E00C6B5C7 /* EasyNavigationView+Scroll.m in Sources */,
 				046AC1582396479B00111DA2 /* NextViewController.m in Sources */,
 				0478A56624235A9E00C6B5C7 /* UIView+EasyNavigationExt.m in Sources */,
@@ -518,6 +591,7 @@
 				0478A56324235A9E00C6B5C7 /* UITableViewController+EasyNavigationExt.m in Sources */,
 				04E924B32394AC5E006683D7 /* MDMethods.m in Sources */,
 				04689ECC23CC4B9100D2A786 /* SecretListTableViewCell.m in Sources */,
+				04F638B6242DF333005207B0 /* HFButton.m in Sources */,
 				0478A5712423615200C6B5C7 /* UIImage+Util.m in Sources */,
 				0478A56224235A9E00C6B5C7 /* EasyNavigationView.m in Sources */,
 				0478A532242343C300C6B5C7 /* TableViewHeaderView.m in Sources */,
@@ -527,6 +601,7 @@
 				0478A56A24235A9E00C6B5C7 /* EasyNavigationView+LeftButton.m in Sources */,
 				0478A56124235A9E00C6B5C7 /* EasyNavigationScroll.m in Sources */,
 				0478A4F92422061400C6B5C7 /* UICollectionViewLeftAlignedLayout.m in Sources */,
+				04F638B7242DF333005207B0 /* FIREditPageVC.m in Sources */,
 				0478A56824235A9E00C6B5C7 /* UIViewController+EasyNavigationExt.m in Sources */,
 				0478A4FA2422061400C6B5C7 /* XYString.m in Sources */,
 				0478A56924235A9E00C6B5C7 /* EasyNavigationUtils.m in Sources */,
@@ -541,6 +616,7 @@
 				04E100492424614800C8081B /* GKCover.m in Sources */,
 				0478A56424235A9E00C6B5C7 /* NSObject+EasyKVO.m in Sources */,
 				04E100482424614800C8081B /* UIView+GKExtension.m in Sources */,
+				04F638B5242DF333005207B0 /* GNEditShortcutKeyBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

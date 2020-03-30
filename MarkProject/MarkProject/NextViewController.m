@@ -7,6 +7,7 @@
 //
 
 #import "NextViewController.h"
+#import "FIREditPageVC.h"
 
 @interface NextViewController ()
 
@@ -16,26 +17,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = RandomColor;
-    self.navigationItem.title = @"测试";
-
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
+    btn.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+    btn.center = self.view.center;
+    [btn setTitle:@"点击进入markdown 编辑模式" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(toEditPageAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
 }
-- (UIBarButtonItem *)rt_customBackItemWithTarget:(id)target
-                                          action:(SEL)action
+
+- (void)toEditPageAction:(id)sender
 {
-    return [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", nil)
-                                            style:UIBarButtonItemStylePlain
-                                           target:target
-                                           action:action];
+    [UIApplication sharedApplication].statusBarStyle = UIBarStyleDefault;
+    FIREditPageVC *vc = [[FIREditPageVC alloc]init];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

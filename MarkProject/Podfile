@@ -8,6 +8,8 @@ pod 'Masonry'
 pod 'AFNetworking', '~> 3.0'
 pod 'FMDB'
 pod 'SDWebImage', '~> 5.0'
+pod 'YYText'
+pod 'YYCategories'
   # Pods for MarkProject
 
 end

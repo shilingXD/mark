@@ -62,14 +62,6 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     [self createBar];
     [self AddButton];
 }
-- (UIBarButtonItem *)rt_customBackItemWithTarget:(id)target
-                                          action:(SEL)action
-{
-    return [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", nil)
-                                            style:UIBarButtonItemStylePlain
-                                           target:target
-                                           action:action];
-}
 -(void)createBar
 {
     [self.navigationView setTitle:@"密码本"];
