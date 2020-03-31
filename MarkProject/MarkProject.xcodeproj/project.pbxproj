@@ -16,6 +16,8 @@
 		044001E6242B49AB000AE57B /* WMDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 044001E4242B49AB000AE57B /* WMDragView.m */; };
 		0454440723D1B44900808EEC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0454440623D1B44900808EEC /* libsqlite3.tbd */; };
 		0459757D23BA134200221DF3 /* SecretListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0459757C23BA134200221DF3 /* SecretListViewController.m */; };
+		045AA91A2432D9F500357617 /* SuiXiangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045AA9192432D9F500357617 /* SuiXiangViewController.m */; };
+		045AA91E2432E04100357617 /* SuiXiangCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 045AA91D2432E04100357617 /* SuiXiangCollectionViewCell.m */; };
 		04689ECC23CC4B9100D2A786 /* SecretListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04689ECB23CC4B9100D2A786 /* SecretListTableViewCell.m */; };
 		046AC14A2394EF0600111DA2 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046AC1492394EF0600111DA2 /* MainViewController.m */; };
 		046AC1552395124E00111DA2 /* MainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046AC1542395124E00111DA2 /* MainCollectionViewCell.m */; };
@@ -78,6 +80,10 @@
 		0454440623D1B44900808EEC /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		0459757B23BA134200221DF3 /* SecretListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecretListViewController.h; sourceTree = "<group>"; };
 		0459757C23BA134200221DF3 /* SecretListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecretListViewController.m; sourceTree = "<group>"; };
+		045AA9182432D9F500357617 /* SuiXiangViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuiXiangViewController.h; sourceTree = "<group>"; };
+		045AA9192432D9F500357617 /* SuiXiangViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuiXiangViewController.m; sourceTree = "<group>"; };
+		045AA91C2432E04100357617 /* SuiXiangCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuiXiangCollectionViewCell.h; sourceTree = "<group>"; };
+		045AA91D2432E04100357617 /* SuiXiangCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuiXiangCollectionViewCell.m; sourceTree = "<group>"; };
 		04689ECA23CC4B9100D2A786 /* SecretListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SecretListTableViewCell.h; path = "MarkProject/密码本/SecretListTableViewCell.h"; sourceTree = SOURCE_ROOT; };
 		04689ECB23CC4B9100D2A786 /* SecretListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SecretListTableViewCell.m; path = "MarkProject/密码本/SecretListTableViewCell.m"; sourceTree = SOURCE_ROOT; };
 		046AC1482394EF0600111DA2 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -86,8 +92,8 @@
 		046AC1542395124E00111DA2 /* MainCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainCollectionViewCell.m; sourceTree = "<group>"; };
 		046AC1562396479B00111DA2 /* NextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NextViewController.h; sourceTree = "<group>"; };
 		046AC1572396479B00111DA2 /* NextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NextViewController.m; sourceTree = "<group>"; };
-		0478A4F52422061200C6B5C7 /* UICollectionViewLeftAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICollectionViewLeftAlignedLayout.m; path = "MarkProject/Tools/公共方法/UICollectionViewLeftAlignedLayout.m"; sourceTree = SOURCE_ROOT; };
-		0478A4F62422061200C6B5C7 /* UICollectionViewLeftAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICollectionViewLeftAlignedLayout.h; path = "MarkProject/Tools/公共方法/UICollectionViewLeftAlignedLayout.h"; sourceTree = SOURCE_ROOT; };
+		0478A4F52422061200C6B5C7 /* UICollectionViewLeftAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICollectionViewLeftAlignedLayout.m; path = "MarkProject/公共方法/Category/UICollectionViewLeftAlignedLayout.m"; sourceTree = SOURCE_ROOT; };
+		0478A4F62422061200C6B5C7 /* UICollectionViewLeftAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICollectionViewLeftAlignedLayout.h; path = "MarkProject/公共方法/Category/UICollectionViewLeftAlignedLayout.h"; sourceTree = SOURCE_ROOT; };
 		0478A4F72422061300C6B5C7 /* XYString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XYString.h; path = "MarkProject/Tools/公共方法/XYString.h"; sourceTree = SOURCE_ROOT; };
 		0478A4F82422061300C6B5C7 /* XYString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XYString.m; path = "MarkProject/Tools/公共方法/XYString.m"; sourceTree = SOURCE_ROOT; };
 		0478A52724233F3900C6B5C7 /* NSString+PinYin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PinYin.h"; sourceTree = "<group>"; };
@@ -235,6 +241,9 @@
 		044A7DC2242CA4F700C9D9F7 /* 随想 */ = {
 			isa = PBXGroup;
 			children = (
+				045AA91B2432E02500357617 /* view */,
+				045AA9182432D9F500357617 /* SuiXiangViewController.h */,
+				045AA9192432D9F500357617 /* SuiXiangViewController.m */,
 			);
 			path = "随想";
 			sourceTree = "<group>";
@@ -242,6 +251,8 @@
 		0454440B23D43F8600808EEC /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				0478A4F62422061200C6B5C7 /* UICollectionViewLeftAlignedLayout.h */,
+				0478A4F52422061200C6B5C7 /* UICollectionViewLeftAlignedLayout.m */,
 				0478A5702423615200C6B5C7 /* UIImage+Util.h */,
 				0478A56F2423615200C6B5C7 /* UIImage+Util.m */,
 				0478A52724233F3900C6B5C7 /* NSString+PinYin.h */,
@@ -304,6 +315,15 @@
 				046AC1492394EF0600111DA2 /* MainViewController.m */,
 			);
 			path = "主页";
+			sourceTree = "<group>";
+		};
+		045AA91B2432E02500357617 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				045AA91C2432E04100357617 /* SuiXiangCollectionViewCell.h */,
+				045AA91D2432E04100357617 /* SuiXiangCollectionViewCell.m */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		0478A4E12422034300C6B5C7 /* Tools */ = {
@@ -414,8 +434,6 @@
 				04E924AE2394A7D3006683D7 /* MDInstance.m */,
 				04E924B12394AC5E006683D7 /* MDMethods.h */,
 				04E924B22394AC5E006683D7 /* MDMethods.m */,
-				0478A4F62422061200C6B5C7 /* UICollectionViewLeftAlignedLayout.h */,
-				0478A4F52422061200C6B5C7 /* UICollectionViewLeftAlignedLayout.m */,
 			);
 			path = "公共方法";
 			sourceTree = "<group>";
@@ -586,6 +604,7 @@
 				046AC1582396479B00111DA2 /* NextViewController.m in Sources */,
 				0478A56624235A9E00C6B5C7 /* UIView+EasyNavigationExt.m in Sources */,
 				0478A52F24233F6800C6B5C7 /* SectionIndicatorView.m in Sources */,
+				045AA91E2432E04100357617 /* SuiXiangCollectionViewCell.m in Sources */,
 				0478A52E24233F6800C6B5C7 /* IndexView.m in Sources */,
 				0478A56D24235A9E00C6B5C7 /* EasyNavigationButton.m in Sources */,
 				0478A56324235A9E00C6B5C7 /* UITableViewController+EasyNavigationExt.m in Sources */,
@@ -616,6 +635,7 @@
 				04E100492424614800C8081B /* GKCover.m in Sources */,
 				0478A56424235A9E00C6B5C7 /* NSObject+EasyKVO.m in Sources */,
 				04E100482424614800C8081B /* UIView+GKExtension.m in Sources */,
+				045AA91A2432D9F500357617 /* SuiXiangViewController.m in Sources */,
 				04F638B5242DF333005207B0 /* GNEditShortcutKeyBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

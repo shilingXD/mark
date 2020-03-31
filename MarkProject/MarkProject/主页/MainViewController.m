@@ -12,6 +12,7 @@
 #import "MainCollectionViewCell.h"
 #import "NextViewController.h"
 #import "SecretListViewController.h"
+#import "SuiXiangViewController.h"
 
 @interface MainViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *mainCollectionView;
@@ -93,9 +94,12 @@
     if (indexPath.row == 4) {
          SecretListViewController *vc = [[SecretListViewController alloc] init];
            [self.navigationController pushViewController:vc animated:YES];
-    } else {
-         NextViewController *vc = [[NextViewController alloc] init];
+    } else if(indexPath.row == 3){
+         SuiXiangViewController *vc = [[SuiXiangViewController alloc] init];
            [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        NextViewController *vc = [[NextViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView

@@ -73,7 +73,7 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
 -(void)AddButton
 {
     WMDragView *dragView = [[WMDragView alloc] init];
-    dragView.backgroundColor = [UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1.f];
+    dragView.backgroundColor = rgba(85, 85, 85, 1);
     dragView.layer.masksToBounds = YES;
     dragView.layer.cornerRadius = 25;
     dragView.clickDragViewBlock = ^(WMDragView *dragView) {
