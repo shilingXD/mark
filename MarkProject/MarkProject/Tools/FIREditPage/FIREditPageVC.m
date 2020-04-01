@@ -29,7 +29,7 @@
 @property (nonatomic, strong) GNEditShortcutKeyBar *shortcutKeyView;
 @property (nonatomic, assign) BOOL isShowPreview;
 @property (nonatomic, strong) PreWebVC *previewVC;
-@property (nonatomic, strong) UIBarButtonItem *previewButtonItem;
+@property (nonatomic, strong) UIButton *previewButtonItem;
 @end
 
 @implementation FIREditPageVC
@@ -44,7 +44,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.textView becomeFirstResponder];
+//    [self.textView becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -72,7 +72,8 @@
 {
     self.previewVC.view.hidden = self.isShowPreview;
     self.isShowPreview = self.isShowPreview ? NO : YES;
-    self.previewButtonItem.title = self.isShowPreview ? @"编辑":@"预览";
+    [self.previewButtonItem setTitle:self.isShowPreview ? @"编辑":@"预览" forState:UIControlStateNormal];
+//    self.previewButtonItem.title = self.isShowPreview ? @"编辑":@"预览";
     if (self.isShowPreview) {
         [self.previewVC refreshMarkdown:self.textView.text];
         [self.textView resignFirstResponder];
@@ -148,7 +149,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.textView];
     [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view);
+        make.top.equalTo(self.view.mas_top).offset(NavigationBar_Height);
         make.left.equalTo(self.view).offset(16);
         make.right.equalTo(self.view).offset(- 16);
         make.bottom.equalTo(self.view).offset(- 0 - tabbarBottomPadding);
@@ -163,17 +164,34 @@
     self.shortcutKeyView.hidden = YES;
     [self.view addSubview:self.shortcutKeyView];
     //预填充 可选
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"sample1" ofType:@"md"];
-    NSString *markdown = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
-    self.textView.text = markdown;
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"sample1" ofType:@"md"];
+//    NSString *markdown = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
+//    self.textView.text = markdown;
 }
 
 - (void)initNavBar
 {
     
-    UIBarButtonItem *previewBtnItem = [[UIBarButtonItem alloc]initWithTitle:@"预览" style:UIBarButtonItemStyleDone target:self action:@selector(clickPreviewAcation)];
-    self.navigationItem.rightBarButtonItem = previewBtnItem;
-    self.previewButtonItem = previewBtnItem;
+    self.navigationView.backgroundView.image = nil ;
+    self.navigationView.backgroundView.backgroundColor = TintColor;
+    self.navigationView.lineView.backgroundColor = TintColor;
+    UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    _previewButtonItem = [[UIButton alloc] init];
+    _previewButtonItem.userInteractionEnabled = NO;
+    [_previewButtonItem setTitle:@"预览" forState:UIControlStateNormal];
+    [_previewButtonItem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [rightView addSubview:_previewButtonItem];
+    [_previewButtonItem mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(rightView);
+    }];
+    WeakBlock(self, weakSelf);
+    [self.navigationView addRightView:rightView callback:^(UIView *view) {
+        [weakSelf clickPreviewAcation];
+    }];
+   
+//    UIBarButtonItem *previewBtnItem = [[UIBarButtonItem alloc]initWithTitle:@"预览" style:UIBarButtonItemStyleDone target:self action:@selector(clickPreviewAcation)];
+//    self.navigationItem.rightBarButtonItem = previewBtnItem;
+//    self.previewButtonItem = previewBtnItem;
 }
 
 - (void)addAnimationShow
@@ -190,6 +208,7 @@
 {
     if (!_textView) {
         _textView = [[YYTextView alloc]init];
+        _textView.showsVerticalScrollIndicator = NO;
         _textView.placeholderText = @"请输入内容...";
         _textView.placeholderFont = [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];
         _textView.font = [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];

@@ -18,6 +18,7 @@
 		0459757D23BA134200221DF3 /* SecretListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0459757C23BA134200221DF3 /* SecretListViewController.m */; };
 		045AA91A2432D9F500357617 /* SuiXiangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045AA9192432D9F500357617 /* SuiXiangViewController.m */; };
 		045AA91E2432E04100357617 /* SuiXiangCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 045AA91D2432E04100357617 /* SuiXiangCollectionViewCell.m */; };
+		045AA92124343AB000357617 /* MDEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045AA92024343AB000357617 /* MDEditViewController.m */; };
 		04689ECC23CC4B9100D2A786 /* SecretListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04689ECB23CC4B9100D2A786 /* SecretListTableViewCell.m */; };
 		046AC14A2394EF0600111DA2 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046AC1492394EF0600111DA2 /* MainViewController.m */; };
 		046AC1552395124E00111DA2 /* MainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046AC1542395124E00111DA2 /* MainCollectionViewCell.m */; };
@@ -84,6 +85,8 @@
 		045AA9192432D9F500357617 /* SuiXiangViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuiXiangViewController.m; sourceTree = "<group>"; };
 		045AA91C2432E04100357617 /* SuiXiangCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuiXiangCollectionViewCell.h; sourceTree = "<group>"; };
 		045AA91D2432E04100357617 /* SuiXiangCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuiXiangCollectionViewCell.m; sourceTree = "<group>"; };
+		045AA91F24343AB000357617 /* MDEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDEditViewController.h; sourceTree = "<group>"; };
+		045AA92024343AB000357617 /* MDEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDEditViewController.m; sourceTree = "<group>"; };
 		04689ECA23CC4B9100D2A786 /* SecretListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SecretListTableViewCell.h; path = "MarkProject/密码本/SecretListTableViewCell.h"; sourceTree = SOURCE_ROOT; };
 		04689ECB23CC4B9100D2A786 /* SecretListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SecretListTableViewCell.m; path = "MarkProject/密码本/SecretListTableViewCell.m"; sourceTree = SOURCE_ROOT; };
 		046AC1482394EF0600111DA2 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -244,6 +247,8 @@
 				045AA91B2432E02500357617 /* view */,
 				045AA9182432D9F500357617 /* SuiXiangViewController.h */,
 				045AA9192432D9F500357617 /* SuiXiangViewController.m */,
+				045AA91F24343AB000357617 /* MDEditViewController.h */,
+				045AA92024343AB000357617 /* MDEditViewController.m */,
 			);
 			path = "随想";
 			sourceTree = "<group>";
@@ -601,6 +606,7 @@
 				044001E6242B49AB000AE57B /* WMDragView.m in Sources */,
 				04F638B1242DF333005207B0 /* PreWebVC.m in Sources */,
 				0478A56E24235A9E00C6B5C7 /* EasyNavigationView+Scroll.m in Sources */,
+				045AA92124343AB000357617 /* MDEditViewController.m in Sources */,
 				046AC1582396479B00111DA2 /* NextViewController.m in Sources */,
 				0478A56624235A9E00C6B5C7 /* UIView+EasyNavigationExt.m in Sources */,
 				0478A52F24233F6800C6B5C7 /* SectionIndicatorView.m in Sources */,
