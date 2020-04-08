@@ -18,6 +18,8 @@ PODS:
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
   - Masonry (1.1.0)
+  - SDCycleScrollView (1.80):
+    - SDWebImage (>= 5.0.0)
   - SDWebImage (5.1.0):
     - SDWebImage/Core (= 5.1.0)
   - SDWebImage/Core (5.1.0)
@@ -30,6 +32,7 @@ DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - FMDB
   - Masonry
+  - SDCycleScrollView (>= 1.80)
   - SDWebImage (~> 5.0)
   - YYCategories
   - YYText
@@ -39,6 +42,7 @@ SPEC REPOS:
     - AFNetworking
     - FMDB
     - Masonry
+    - SDCycleScrollView
     - SDWebImage
     - YYCategories
     - YYText
@@ -47,10 +51,11 @@ SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SDCycleScrollView: b3c9a5ed840c771c4938978174c7c9d9feefeb96
   SDWebImage: fb387001955223213dde14bc08c8b73f371f8d8f
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: d10580d8056eb9c8cea22e948ccce311b7aa1bd1
+PODFILE CHECKSUM: 98f27c216f9ba46058520fefca7df592d3e939ba
 
 COCOAPODS: 1.6.1

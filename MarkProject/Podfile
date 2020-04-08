@@ -10,6 +10,7 @@ pod 'FMDB'
 pod 'SDWebImage', '~> 5.0'
 pod 'YYText'
 pod 'YYCategories'
+pod 'SDCycleScrollView','>= 1.80'
   # Pods for MarkProject
 
 end
