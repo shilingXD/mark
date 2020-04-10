@@ -12,8 +12,12 @@
 #import "MainCollectionViewCell.h"
 #import "NextViewController.h"
 #import "SecretListViewController.h"
-#import "SuiXiangViewController.h"
+#import "DiaryViewController.h"
 #import "SDCycleScrollView.h"
+#import "SettingViewController.h"
+#import "PlanViewController.h"
+#import "BillViewController.h"
+#import "MemoViewController.h"
 
 @interface MainViewController ()<SDCycleScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *mainCollectionView;
@@ -63,6 +67,7 @@
 -(void)setupBanner
 {
     NSArray *imagesURLStrings = [NSArray array];
+    imagesURLStrings = @[@"https://s1.ax1x.com/2020/04/08/GfCGWQ.png",@"https://s1.ax1x.com/2020/04/08/GfPxD1.png"];
     UIView *BannerView = [[UIView alloc] init];
     _BannerView = BannerView;
     BannerView.backgroundColor = rgba(255, 255, 255, 0.1);
@@ -80,7 +85,7 @@
     SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero shouldInfiniteLoop:YES imageNamesGroup:imagesURLStrings];
     cycleScrollView.delegate = self;
     cycleScrollView.placeholderImage = [UIImage imageWithColor:TintColor];
-    cycleScrollView.autoScroll = (imagesURLStrings.count >= 1)?YES:NO;
+    cycleScrollView.autoScroll = (imagesURLStrings.count > 1);
     cycleScrollView.layer.masksToBounds = YES;
     cycleScrollView.layer.cornerRadius = 3;
     cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
@@ -110,12 +115,12 @@
      注册 登录 个人管理 备忘录 账单 密码本 计划 日记（markdown）
      */
     
-    UIView *view1 = [self setViewWtihTitle:@"账单" SubTitle:@"当日支出:100 当日收入:200" Tag:1001 BackColor:rgba(82, 154, 248, 1)];
-    UIView *view2 = [self setViewWtihTitle:@"密码本" SubTitle:@"" Tag:1002 BackColor:rgba(117, 121, 143, 1)];
-    UIView *view3 = [self setViewWtihTitle:@"日记" SubTitle:@"" Tag:1003 BackColor:rgba(11, 1, 1, 1)];
-    UIView *view4 = [self setViewWtihTitle:@"备忘录" SubTitle:@"明天8:00上班" Tag:1004 BackColor:rgba(11, 1, 1, 1)];
-    UIView *view5 = [self setViewWtihTitle:@"计划" SubTitle:@"" Tag:1005 BackColor:rgba(11, 1, 1, 1)];
-    UIView *view6 = [self setViewWtihTitle:@"设置" SubTitle:@"" Tag:1006 BackColor:rgba(11, 1, 1, 1)];
+    UIView *view1 = [self setViewWtihTitle:@"账单" SubTitle:@"当日支出:100 当日收入:200" Tag:1001 BackColor:rgba(82, 154, 248, 1) Type:1];
+    UIView *view2 = [self setViewWtihTitle:@"密码本" SubTitle:@"" Tag:1002 BackColor:rgba(117, 121, 143, 1) Type:2];
+    UIView *view3 = [self setViewWtihTitle:@"日记" SubTitle:@"" Tag:1003 BackColor:rgba(95, 147, 132, 1) Type:2];
+    UIView *view4 = [self setViewWtihTitle:@"备忘录" SubTitle:@"明天8:00上班" Tag:1004 BackColor:rgba(68, 107, 255, 1) Type:1];
+    UIView *view5 = [self setViewWtihTitle:@"计划" SubTitle:@"" Tag:1005 BackColor:rgba(211, 163, 105, 1) Type:1];
+    UIView *view6 = [self setViewWtihTitle:@"设置" SubTitle:@"" Tag:1006 BackColor:rgba(44, 44, 46, 1) Type:2];
     [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(contetView.mas_left);
         make.size.mas_equalTo(CGSizeMake(width*2, height));
@@ -217,13 +222,57 @@
     }
     _MenuOpen = !_MenuOpen;
 }
--(UIView *)setViewWtihTitle:(NSString *)title SubTitle:(NSString *)subtitle Tag:(int)tag BackColor:(UIColor *)color
+-(void)functionTap:(UITapGestureRecognizer *)tap
+{
+    BillViewController *vc1 = [[BillViewController alloc] init];
+    SecretListViewController *vc2 = [[SecretListViewController alloc] init];
+    DiaryViewController *vc3 = [[DiaryViewController alloc] init];
+    MemoViewController *vc4 = [[MemoViewController alloc] init];
+    PlanViewController *vc5 = [[PlanViewController alloc] init];
+    SettingViewController *vc6 = [[SettingViewController alloc] init];
+    switch (tap.view.tag) {
+        case 1001://账单
+            [self.navigationController pushViewController:vc1 animated:YES];
+            break;
+        case 1002://密码本
+            [self.navigationController pushViewController:vc2 animated:YES];
+            break;
+        case 1003://日记
+            [self.navigationController pushViewController:vc3 animated:YES];
+            break;
+        case 1004://备忘录
+            [self.navigationController pushViewController:vc4 animated:YES];
+            break;
+        case 1005://计划
+            [self.navigationController pushViewController:vc5 animated:YES];
+            break;
+        case 1006://设置
+            [self.navigationController pushViewController:vc6 animated:YES];
+            break;
+            
+        default:
+            break;
+    }
+}
+#pragma mark  - ------  公共方法  ------
+// 读取本地JSON文件
+- (NSArray *)readLocalFileWithName:(NSString *)name {
+    // 获取文件路径
+    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@"json"];
+    // 将文件数据化
+    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+    // 对数据进行JSON格式化并返回字典形式
+    return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+}
+-(UIView *)setViewWtihTitle:(NSString *)title SubTitle:(NSString *)subtitle Tag:(int)tag BackColor:(UIColor *)color Type:(int)type
 {
     UIView *view = [[UIView alloc] init];
     view.backgroundColor = color;
+    view.tag = tag;
     view.layer.cornerRadius = 3;
     view.layer.masksToBounds = YES;
     [self.view addSubview:view];
+    [view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(functionTap:)]];
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.text = title;
     titleLabel.font = [UIFont systemFontOfSize:20];
@@ -237,6 +286,21 @@
             make.center.mas_equalTo(view);
         }
     }];
+    UIImageView *iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:title]];
+    iconView.alpha = 0.5;
+    [view addSubview:iconView];
+    [iconView mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (type == 1) {
+            make.left.mas_equalTo(view.mas_left).offset(10);
+            make.top.mas_equalTo(view.mas_top).offset(10);
+            make.size.mas_equalTo(((SCREEN_WIDTH-40-10)/3)*0.3);
+        } else {
+            make.right.mas_equalTo(view.mas_right).offset(((SCREEN_WIDTH-40-10)/3)*0.2);
+            make.bottom.mas_equalTo(view.mas_bottom).offset(0);
+            make.size.mas_equalTo(((SCREEN_WIDTH-40-10)/3)*0.7);
+        }
+    }];
+    
     UILabel *subtitleLabel = [[UILabel alloc] init];
     subtitleLabel.text = subtitle;
     subtitleLabel.font = [UIFont systemFontOfSize:12];
@@ -248,17 +312,6 @@
     }];
     return view;
 }
-#pragma mark  - ------  公共方法  ------
-// 读取本地JSON文件
-- (NSArray *)readLocalFileWithName:(NSString *)name {
-    // 获取文件路径
-    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@"json"];
-    // 将文件数据化
-    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-    // 对数据进行JSON格式化并返回字典形式
-    return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-}
-
 #pragma mark  - ------  setter  ------
 - (UIView *)MenuView
 {

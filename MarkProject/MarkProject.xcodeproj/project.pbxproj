@@ -16,10 +16,14 @@
 		044001E6242B49AB000AE57B /* WMDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 044001E4242B49AB000AE57B /* WMDragView.m */; };
 		0454440723D1B44900808EEC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0454440623D1B44900808EEC /* libsqlite3.tbd */; };
 		0459757D23BA134200221DF3 /* SecretListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0459757C23BA134200221DF3 /* SecretListViewController.m */; };
-		045AA91A2432D9F500357617 /* SuiXiangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045AA9192432D9F500357617 /* SuiXiangViewController.m */; };
+		045AA91A2432D9F500357617 /* DiaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045AA9192432D9F500357617 /* DiaryViewController.m */; };
 		045AA91E2432E04100357617 /* SuiXiangCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 045AA91D2432E04100357617 /* SuiXiangCollectionViewCell.m */; };
 		045AA92124343AB000357617 /* MDEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045AA92024343AB000357617 /* MDEditViewController.m */; };
 		0464C7B9243D7B3E0061902F /* soul.json in Resources */ = {isa = PBXBuildFile; fileRef = 0464C7B8243D7B3E0061902F /* soul.json */; };
+		0464C7C1243EC8390061902F /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0464C7C0243EC8390061902F /* SettingViewController.m */; };
+		0464C7C4243EC9340061902F /* PlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0464C7C3243EC9340061902F /* PlanViewController.m */; };
+		0464C7C7243EC9AA0061902F /* BillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0464C7C6243EC9AA0061902F /* BillViewController.m */; };
+		0464C7CA243ECA0D0061902F /* MemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0464C7C9243ECA0D0061902F /* MemoViewController.m */; };
 		04689ECC23CC4B9100D2A786 /* SecretListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04689ECB23CC4B9100D2A786 /* SecretListTableViewCell.m */; };
 		046AC14A2394EF0600111DA2 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046AC1492394EF0600111DA2 /* MainViewController.m */; };
 		046AC1552395124E00111DA2 /* MainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046AC1542395124E00111DA2 /* MainCollectionViewCell.m */; };
@@ -82,13 +86,21 @@
 		0454440623D1B44900808EEC /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		0459757B23BA134200221DF3 /* SecretListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecretListViewController.h; sourceTree = "<group>"; };
 		0459757C23BA134200221DF3 /* SecretListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecretListViewController.m; sourceTree = "<group>"; };
-		045AA9182432D9F500357617 /* SuiXiangViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuiXiangViewController.h; sourceTree = "<group>"; };
-		045AA9192432D9F500357617 /* SuiXiangViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuiXiangViewController.m; sourceTree = "<group>"; };
+		045AA9182432D9F500357617 /* DiaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiaryViewController.h; sourceTree = "<group>"; };
+		045AA9192432D9F500357617 /* DiaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiaryViewController.m; sourceTree = "<group>"; };
 		045AA91C2432E04100357617 /* SuiXiangCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuiXiangCollectionViewCell.h; sourceTree = "<group>"; };
 		045AA91D2432E04100357617 /* SuiXiangCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuiXiangCollectionViewCell.m; sourceTree = "<group>"; };
 		045AA91F24343AB000357617 /* MDEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDEditViewController.h; sourceTree = "<group>"; };
 		045AA92024343AB000357617 /* MDEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDEditViewController.m; sourceTree = "<group>"; };
 		0464C7B8243D7B3E0061902F /* soul.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = soul.json; sourceTree = "<group>"; };
+		0464C7BF243EC8390061902F /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		0464C7C0243EC8390061902F /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		0464C7C2243EC9340061902F /* PlanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlanViewController.h; sourceTree = "<group>"; };
+		0464C7C3243EC9340061902F /* PlanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlanViewController.m; sourceTree = "<group>"; };
+		0464C7C5243EC9AA0061902F /* BillViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BillViewController.h; sourceTree = "<group>"; };
+		0464C7C6243EC9AA0061902F /* BillViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BillViewController.m; sourceTree = "<group>"; };
+		0464C7C8243ECA0D0061902F /* MemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoViewController.h; sourceTree = "<group>"; };
+		0464C7C9243ECA0D0061902F /* MemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemoViewController.m; sourceTree = "<group>"; };
 		04689ECA23CC4B9100D2A786 /* SecretListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SecretListTableViewCell.h; path = "MarkProject/密码本/SecretListTableViewCell.h"; sourceTree = SOURCE_ROOT; };
 		04689ECB23CC4B9100D2A786 /* SecretListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SecretListTableViewCell.m; path = "MarkProject/密码本/SecretListTableViewCell.m"; sourceTree = SOURCE_ROOT; };
 		046AC1482394EF0600111DA2 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -208,10 +220,14 @@
 		04230FA52391020B00031B27 /* MarkProject */ = {
 			isa = PBXGroup;
 			children = (
-				044A7DC2242CA4F700C9D9F7 /* 随想 */,
-				044A7DC1242CA4E800C9D9F7 /* 账单 */,
-				0478A4E12422034300C6B5C7 /* Tools */,
+				04E924B02394AAF4006683D7 /* supporting file */,
 				0454440B23D43F8600808EEC /* Category */,
+				0478A4E12422034300C6B5C7 /* Tools */,
+				0464C7BE243EC1D70061902F /* 计划 */,
+				0464C7BD243EC1C60061902F /* 备忘录 */,
+				0464C7BC243EC1B30061902F /* 设置 */,
+				044A7DC2242CA4F700C9D9F7 /* 日记 */,
+				044A7DC1242CA4E800C9D9F7 /* 账单 */,
 				0459757E23BA134700221DF3 /* 密码本 */,
 				0459758223BA156200221DF3 /* 主页 */,
 				04230FA62391020B00031B27 /* AppDelegate.h */,
@@ -222,7 +238,6 @@
 				04230FAC2391020B00031B27 /* Main.storyboard */,
 				046AC1562396479B00111DA2 /* NextViewController.h */,
 				046AC1572396479B00111DA2 /* NextViewController.m */,
-				04E924B02394AAF4006683D7 /* supporting file */,
 			);
 			path = MarkProject;
 			sourceTree = "<group>";
@@ -239,20 +254,22 @@
 		044A7DC1242CA4E800C9D9F7 /* 账单 */ = {
 			isa = PBXGroup;
 			children = (
+				0464C7C5243EC9AA0061902F /* BillViewController.h */,
+				0464C7C6243EC9AA0061902F /* BillViewController.m */,
 			);
 			path = "账单";
 			sourceTree = "<group>";
 		};
-		044A7DC2242CA4F700C9D9F7 /* 随想 */ = {
+		044A7DC2242CA4F700C9D9F7 /* 日记 */ = {
 			isa = PBXGroup;
 			children = (
 				045AA91B2432E02500357617 /* view */,
-				045AA9182432D9F500357617 /* SuiXiangViewController.h */,
-				045AA9192432D9F500357617 /* SuiXiangViewController.m */,
+				045AA9182432D9F500357617 /* DiaryViewController.h */,
+				045AA9192432D9F500357617 /* DiaryViewController.m */,
 				045AA91F24343AB000357617 /* MDEditViewController.h */,
 				045AA92024343AB000357617 /* MDEditViewController.m */,
 			);
-			path = "随想";
+			path = "日记";
 			sourceTree = "<group>";
 		};
 		0454440B23D43F8600808EEC /* Category */ = {
@@ -331,6 +348,33 @@
 				045AA91D2432E04100357617 /* SuiXiangCollectionViewCell.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		0464C7BC243EC1B30061902F /* 设置 */ = {
+			isa = PBXGroup;
+			children = (
+				0464C7BF243EC8390061902F /* SettingViewController.h */,
+				0464C7C0243EC8390061902F /* SettingViewController.m */,
+			);
+			path = "设置";
+			sourceTree = "<group>";
+		};
+		0464C7BD243EC1C60061902F /* 备忘录 */ = {
+			isa = PBXGroup;
+			children = (
+				0464C7C8243ECA0D0061902F /* MemoViewController.h */,
+				0464C7C9243ECA0D0061902F /* MemoViewController.m */,
+			);
+			path = "备忘录";
+			sourceTree = "<group>";
+		};
+		0464C7BE243EC1D70061902F /* 计划 */ = {
+			isa = PBXGroup;
+			children = (
+				0464C7C2243EC9340061902F /* PlanViewController.h */,
+				0464C7C3243EC9340061902F /* PlanViewController.m */,
+			);
+			path = "计划";
 			sourceTree = "<group>";
 		};
 		0478A4E12422034300C6B5C7 /* Tools */ = {
@@ -606,6 +650,7 @@
 				0478A56024235A9E00C6B5C7 /* EasyNavigationOptions.m in Sources */,
 				0478A56724235A9E00C6B5C7 /* UIScrollView+EasyNavigationExt.m in Sources */,
 				0478A5352423491E00C6B5C7 /* TableViewSearchHeaderView.m in Sources */,
+				0464C7C7243EC9AA0061902F /* BillViewController.m in Sources */,
 				0478A52924233F3900C6B5C7 /* NSString+PinYin.m in Sources */,
 				044001E6242B49AB000AE57B /* WMDragView.m in Sources */,
 				04F638B1242DF333005207B0 /* PreWebVC.m in Sources */,
@@ -617,6 +662,7 @@
 				045AA91E2432E04100357617 /* SuiXiangCollectionViewCell.m in Sources */,
 				0478A52E24233F6800C6B5C7 /* IndexView.m in Sources */,
 				0478A56D24235A9E00C6B5C7 /* EasyNavigationButton.m in Sources */,
+				0464C7C1243EC8390061902F /* SettingViewController.m in Sources */,
 				0478A56324235A9E00C6B5C7 /* UITableViewController+EasyNavigationExt.m in Sources */,
 				04E924B32394AC5E006683D7 /* MDMethods.m in Sources */,
 				04689ECC23CC4B9100D2A786 /* SecretListTableViewCell.m in Sources */,
@@ -629,6 +675,7 @@
 				04E924AF2394A7D3006683D7 /* MDInstance.m in Sources */,
 				0478A56A24235A9E00C6B5C7 /* EasyNavigationView+LeftButton.m in Sources */,
 				0478A56124235A9E00C6B5C7 /* EasyNavigationScroll.m in Sources */,
+				0464C7C4243EC9340061902F /* PlanViewController.m in Sources */,
 				0478A4F92422061400C6B5C7 /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				04F638B7242DF333005207B0 /* FIREditPageVC.m in Sources */,
 				0478A56824235A9E00C6B5C7 /* UIViewController+EasyNavigationExt.m in Sources */,
@@ -644,8 +691,9 @@
 				0478A55F24235A9E00C6B5C7 /* EasyNavigationController.m in Sources */,
 				04E100492424614800C8081B /* GKCover.m in Sources */,
 				0478A56424235A9E00C6B5C7 /* NSObject+EasyKVO.m in Sources */,
+				0464C7CA243ECA0D0061902F /* MemoViewController.m in Sources */,
 				04E100482424614800C8081B /* UIView+GKExtension.m in Sources */,
-				045AA91A2432D9F500357617 /* SuiXiangViewController.m in Sources */,
+				045AA91A2432D9F500357617 /* DiaryViewController.m in Sources */,
 				04F638B5242DF333005207B0 /* GNEditShortcutKeyBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

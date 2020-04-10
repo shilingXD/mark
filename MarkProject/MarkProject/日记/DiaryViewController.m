@@ -6,18 +6,18 @@
 //  Copyright © 2020 mac. All rights reserved.
 //
 
-#import "SuiXiangViewController.h"
+#import "DiaryViewController.h"
 #import "UICollectionViewLeftAlignedLayout.h"
 #import "SuiXiangCollectionViewCell.h"
 #import "WMDragView.h"
 #import "NextViewController.h"
 #import "FIREditPageVC.h"
 
-@interface SuiXiangViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface DiaryViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;///<<#注释#>
 @end
 
-@implementation SuiXiangViewController
+@implementation DiaryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,7 +28,7 @@
 }
 -(void)setupNav
 {
-    [self.navigationView setTitle:@"随想"];
+    [self.navigationView setTitle:@"日记"];
     self.navigationView.backgroundView.image = nil ;
     self.navigationView.backgroundView.backgroundColor = TintColor;
     self.navigationView.lineView.backgroundColor = TintColor;

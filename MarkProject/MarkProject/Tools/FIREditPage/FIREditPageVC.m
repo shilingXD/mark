@@ -207,20 +207,25 @@
 - (YYTextView *)textView
 {
     if (!_textView) {
-        _textView = [[YYTextView alloc]init];
-        _textView.showsVerticalScrollIndicator = NO;
-        _textView.placeholderText = @"请输入内容...";
-        _textView.placeholderFont = [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];
-        _textView.font = [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];
-        _textView.delegate = self;
+        YYTextSimpleMarkdownParser *parser = [YYTextSimpleMarkdownParser new];
+        [parser setColorWithDarkTheme];
         
-        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-        paragraphStyle.lineSpacing = 6;
-        NSDictionary *attributes = @{
-                                     NSFontAttributeName:_textView.font,
-                                     NSParagraphStyleAttributeName:paragraphStyle
-                                     };
-        _textView.typingAttributes = attributes;
+        YYTextView *textView = [YYTextView new];
+//        textView.text = text;
+        textView.font = [UIFont systemFontOfSize:14];
+        textView.textParser = parser;
+        textView.size = self.view.size;
+        textView.textContainerInset = UIEdgeInsetsMake(10, 10, 10, 10);
+        textView.delegate = self;
+        if (kiOS7Later) {
+            textView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
+        }
+        textView.backgroundColor = [UIColor colorWithWhite:0.134 alpha:1.000];
+        textView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+        textView.scrollIndicatorInsets = textView.contentInset;
+//        textView.selectedRange = NSMakeRange(text.length, 0);
+        [self.view addSubview:textView];
+        self.textView = textView;
     }
     return _textView;
 }
