@@ -17,6 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNav];
+    
+    CALayer *vo = [CALayer layer];
+    vo.frame = CGRectMake(20, 20, 201, 20);
+    vo.backgroundColor = [UIColor redColor].CGColor;
+    
 }
 -(void)setNav
 {

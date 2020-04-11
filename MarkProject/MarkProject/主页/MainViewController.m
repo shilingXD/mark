@@ -19,6 +19,7 @@
 #import "BillViewController.h"
 #import "MemoViewController.h"
 
+
 @interface MainViewController ()<SDCycleScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *mainCollectionView;
 @property (nonatomic, strong) NSArray *array;///<<#注释#>
@@ -40,6 +41,8 @@
     [self setupContentView];
     [self setupBanner];
     [self soulView];
+    
+    
 }
 #pragma mark  - ------  Nav  ------
 -(void)setNav

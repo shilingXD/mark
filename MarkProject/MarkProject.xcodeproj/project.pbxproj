@@ -24,6 +24,7 @@
 		0464C7C4243EC9340061902F /* PlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0464C7C3243EC9340061902F /* PlanViewController.m */; };
 		0464C7C7243EC9AA0061902F /* BillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0464C7C6243EC9AA0061902F /* BillViewController.m */; };
 		0464C7CA243ECA0D0061902F /* MemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0464C7C9243ECA0D0061902F /* MemoViewController.m */; };
+		0464C8CA24401EA80061902F /* MMMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0464C8C924401EA80061902F /* MMMarkdown.framework */; };
 		04689ECC23CC4B9100D2A786 /* SecretListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04689ECB23CC4B9100D2A786 /* SecretListTableViewCell.m */; };
 		046AC14A2394EF0600111DA2 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046AC1492394EF0600111DA2 /* MainViewController.m */; };
 		046AC1552395124E00111DA2 /* MainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046AC1542395124E00111DA2 /* MainCollectionViewCell.m */; };
@@ -101,6 +102,7 @@
 		0464C7C6243EC9AA0061902F /* BillViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BillViewController.m; sourceTree = "<group>"; };
 		0464C7C8243ECA0D0061902F /* MemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoViewController.h; sourceTree = "<group>"; };
 		0464C7C9243ECA0D0061902F /* MemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemoViewController.m; sourceTree = "<group>"; };
+		0464C8C924401EA80061902F /* MMMarkdown.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMMarkdown.framework; path = Carthage/Build/iOS/MMMarkdown.framework; sourceTree = "<group>"; };
 		04689ECA23CC4B9100D2A786 /* SecretListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SecretListTableViewCell.h; path = "MarkProject/密码本/SecretListTableViewCell.h"; sourceTree = SOURCE_ROOT; };
 		04689ECB23CC4B9100D2A786 /* SecretListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SecretListTableViewCell.m; path = "MarkProject/密码本/SecretListTableViewCell.m"; sourceTree = SOURCE_ROOT; };
 		046AC1482394EF0600111DA2 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			files = (
 				0454440723D1B44900808EEC /* libsqlite3.tbd in Frameworks */,
 				6E22E597AC3D753637744453 /* libPods-MarkProject.a in Frameworks */,
+				0464C8CA24401EA80061902F /* MMMarkdown.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +223,7 @@
 		04230FA52391020B00031B27 /* MarkProject */ = {
 			isa = PBXGroup;
 			children = (
+				0464C8C824401E620061902F /* Category */,
 				04E924B02394AAF4006683D7 /* supporting file */,
 				0454440B23D43F8600808EEC /* Category */,
 				0478A4E12422034300C6B5C7 /* Tools */,
@@ -377,6 +381,13 @@
 			path = "计划";
 			sourceTree = "<group>";
 		};
+		0464C8C824401E620061902F /* Category */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		0478A4E12422034300C6B5C7 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +540,7 @@
 		73ACE74CF294E50703FC5A68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0464C8C924401EA80061902F /* MMMarkdown.framework */,
 				0454440623D1B44900808EEC /* libsqlite3.tbd */,
 				E6F41FCEB9C3C4D50F296F00 /* libPods-MarkProject.a */,
 			);
@@ -555,6 +567,7 @@
 				04230F9F2391020B00031B27 /* Sources */,
 				04230FA02391020B00031B27 /* Frameworks */,
 				04230FA12391020B00031B27 /* Resources */,
+				0464C8CB24401EF60061902F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -618,6 +631,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0464C8CB24401EF60061902F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/MMMarkdown.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/Carthage copy-frameworks\n";
+		};
 		47376696759AB709FE75C4CD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -839,6 +870,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7QT63XRD5R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MarkProject/supporting file/PrefixHeader.pch";
 				INFOPLIST_FILE = MarkProject/Info.plist;
@@ -859,6 +894,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7QT63XRD5R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MarkProject/supporting file/PrefixHeader.pch";
 				INFOPLIST_FILE = MarkProject/Info.plist;

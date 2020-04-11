@@ -8,6 +8,7 @@
 
 #import "PreWebVC.h"
 #import "Masonry.h"
+#import <MMMarkdown/MMMarkdown.h>
 
 @interface PreWebVC () <UIWebViewDelegate>
 
@@ -90,9 +91,13 @@
         //
     if (self.needShowMarkdown) return;
         //
-    NSString *content = [self getMarkdownContentWithMarkdowString:markdown];
-    NSString *js = [NSString stringWithFormat:@"javascript:parseMarkdown(\"%@\",true)",content];
-    [self.webView stringByEvaluatingJavaScriptFromString:js];
+    
+    NSString *str   = @"# Example\nWhat a library!";
+    NSString *htmlString = [MMMarkdown HTMLStringWithMarkdown:markdown extensions:MMMarkdownExtensionsGitHubFlavored error:NULL];
+//    NSString *content = [self getMarkdownContentWithMarkdowString:markdown];
+//    NSString *js = [NSString stringWithFormat:@"javascript:parseMarkdown(\"%@\",true)",content];
+//    [self.webView stringByEvaluatingJavaScriptFromString:js];
+//    [self.webView loadHTMLString:htmlString baseURL:nil];
     self.isTransferFinished = YES;
 }
 

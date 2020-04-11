@@ -212,6 +212,9 @@
         
         YYTextView *textView = [YYTextView new];
 //        textView.text = text;
+        YYTextLinePositionSimpleModifier *modifier = [YYTextLinePositionSimpleModifier new];
+        modifier.fixedLineHeight = 24;
+        textView.linePositionModifier = modifier;
         textView.font = [UIFont systemFontOfSize:14];
         textView.textParser = parser;
         textView.size = self.view.size;

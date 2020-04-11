@@ -1,0 +1,27 @@
+{
+  "Mac" : [
+    {
+      "name" : "MMMarkdown",
+      "hash" : "5d0ff53c12154cb8402d6053281d33cc77c4613410e66a7b5475e46ac670052a"
+    }
+  ],
+  "watchOS" : [
+    {
+      "name" : "MMMarkdown",
+      "hash" : "a6530ae2ef7c5bc803cfbfbf2d6ab9ebf12a7ee2a7c126b20deba17bcd7c0bfe"
+    }
+  ],
+  "tvOS" : [
+    {
+      "name" : "MMMarkdown",
+      "hash" : "21f1e83a11861d1361877c3c7068c063cd29b804a8ed82ae6ad93220a7fdde25"
+    }
+  ],
+  "commitish" : "0.5.5",
+  "iOS" : [
+    {
+      "name" : "MMMarkdown",
+      "hash" : "34af376487bd965d85c807dcc5f243cb382e87eebbd2b17d8008da9f1d98a67a"
+    }
+  ]
+}
