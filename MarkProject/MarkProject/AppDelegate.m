@@ -28,7 +28,7 @@
     
     
     // 设置系统返回按钮为样式
-    options.btnTitleType = FBackBtnTitleType_System;
+    options.btnTitleType = FBackBtnTitleType_Default;
     
     EasyNavigationController *navVC = [[EasyNavigationController alloc]initWithRootViewController:[MainViewController new]];
     self.window.rootViewController  = navVC ;

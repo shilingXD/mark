@@ -133,7 +133,7 @@
     if (!_collectionView) {
         UICollectionViewLeftAlignedLayout *leftLayout = [[UICollectionViewLeftAlignedLayout alloc] init];
         CGFloat width = (SCREEN_WIDTH-45)/2;
-        leftLayout.estimatedItemSize = CGSizeMake(width, width*1.26);
+        leftLayout.itemSize = CGSizeMake(width, width*1.26);
         leftLayout.minimumLineSpacing = 15;
         leftLayout.minimumInteritemSpacing = 15;
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(15,NavigationBar_Height, SCREEN_WIDTH-30, SCREEN_HEIGHT- NavigationBar_Height) collectionViewLayout:leftLayout];
@@ -159,7 +159,7 @@
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 12;
+    return 11;
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
