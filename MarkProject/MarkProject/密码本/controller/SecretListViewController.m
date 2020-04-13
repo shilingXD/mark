@@ -16,8 +16,7 @@
 #import "SecretModel.h"
 #import "WMDragView.h"
 #import "AddSecretViewController.h"
-
-#define NAV_HEIGHT 64
+#import "ListDetailViewController.h"
 
 
 static NSString *TableViewHeaderViewIdentifier = @"TableViewHeaderViewIdentifier";
@@ -29,28 +28,32 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
 @property (nonatomic, strong) UITableView *TableView;
 @property (nonatomic, strong) IndexView *indexView;
 
-@property (nonatomic, copy) NSArray *dataSourceArray;                           /**< 数据源数组 */
-@property (nonatomic, strong) NSMutableArray *brandArray;                       /**< 品牌名数组 */
+@property (nonatomic, copy) NSArray *TempArray;///<说明使用数组
+@property (nonatomic, strong) NSMutableArray *SectionArray;
 @property (nonatomic, strong) NSMutableArray<SecretModel *> *dataArray;
 @property (nonatomic, assign) BOOL isSearchMode;                                /**< 是否有搜索栏  */
 @property (nonatomic, assign) FMDatabase *db;
 @end
 
 @implementation SecretListViewController
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self openDataBase];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self openDataBase];
     [self createBar];
+    //添加视图
+    [self.view addSubview:self.TableView];
+    [self.view addSubview:self.indexView];
+    [self reloadData];
+    [self AddButton];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+//    [_db close];
 }
 - (void)dealloc
 {
-    [_db close];
+    NSLog(@"SecretListViewController    移除");
 }
 
 -(void)createBar
@@ -67,10 +70,14 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     dragView.backgroundColor = rgba(85, 85, 85, 1);
     dragView.layer.masksToBounds = YES;
     dragView.layer.cornerRadius = 25;
+    WeakBlock(self, weak_self);
     dragView.clickDragViewBlock = ^(WMDragView *dragView) {
         AddSecretViewController *vc = [[AddSecretViewController alloc] init];
-        vc.modalPresentationStyle = UIModalPresentationFormSheet;
-        [self presentViewController:vc animated:YES completion:^{
+        
+        vc.dismissBlock = ^{
+            [weak_self reloadData];
+        };
+        [weak_self presentViewController:vc animated:YES completion:^{
             
         }];
     };
@@ -89,22 +96,23 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     
     
 }
-- (void)reloadButtonAction:(UIButton *)sender {
-    self.dataSourceArray = @[@"百年灵", @"宝齐莱", @"瑞宝", @"沛纳海", @"宇舶", @"真力时", @"万国", @"欧米茄", @"劳力士", @"朗格"];
+/// 引导数据
+- (void)setupTempData{
+    self.TempArray = @[@"百年灵", @"宝齐莱", @"瑞宝", @"沛纳海", @"宇舶", @"真力时", @"万国", @"欧米茄", @"劳力士", @"朗格"];
     //解析数据
     NSMutableArray *tempBrandArray = [NSMutableArray array];
-    for (NSString *brandName in self.dataSourceArray) {
+    for (NSString *brandName in self.TempArray) {
         [tempBrandArray addObject:brandName];
     }
     //获取拼音首字母
     NSArray *indexArray= [tempBrandArray arrayWithPinYinFirstLetterFormat];
-    self.brandArray = [NSMutableArray arrayWithArray:indexArray];
+    self.SectionArray = [NSMutableArray arrayWithArray:indexArray];
     
     //添加搜索视图
     self.isSearchMode = YES;
     NSMutableDictionary *searchDic = [NSMutableDictionary dictionary];
     [searchDic setObject:[NSMutableArray array] forKey:@"content"];
-    [self.brandArray insertObject:searchDic atIndex:0];
+    [self.SectionArray insertObject:searchDic atIndex:0];
     
     [self.TableView reloadData];
     [self.indexView reload];
@@ -112,11 +120,11 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
 
 #pragma mark - 代理方法
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.brandArray count];
+    return [self.SectionArray count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSDictionary *dict = self.brandArray[section];
+    NSDictionary *dict = self.SectionArray[section];
     NSMutableArray *array = dict[@"content"];
     return [array count];
 }
@@ -137,13 +145,13 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     }
     
     TableViewHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:TableViewHeaderViewIdentifier];
-    headerView.letter = self.brandArray[section][@"firstLetter"];
+    headerView.letter = self.SectionArray[section][@"firstLetter"];
     return headerView;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SecretListTableViewCell *cell = [SecretListTableViewCell cellForTableview:tableView];
-    NSDictionary *dict = self.brandArray[indexPath.section];
+    NSDictionary *dict = self.SectionArray[indexPath.section];
     NSMutableArray *array = dict[@"content"];
     //品牌
     NSString *brandInfo = array[indexPath.row];
@@ -160,13 +168,50 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     }
     return cell;
 }
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SecretListTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    ListDetailViewController *vc = [[ListDetailViewController alloc] init];
+    vc.model = cell.model;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     [self.indexView tableView:tableView willDisplayHeaderView:view forSection:section];
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section {
     [self.indexView tableView:tableView didEndDisplayingHeaderView:view forSection:section];
+}
+#pragma mark - 左滑删除
+
+//tableView自带的左滑删除
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+// 定义编辑样式
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+// 进入编辑模式，按下出现的编辑按钮后,进行删除操作
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSDictionary *dict = self.SectionArray[indexPath.section];
+           NSMutableArray *array = dict[@"content"];
+           //品牌
+           NSString *brandInfo = array[indexPath.row];
+           for (SecretModel *model in self.dataArray) {
+               if ([model.Name isEqualToString:brandInfo]) {
+                   [self delete:@[model]];
+               }
+           }
+        
+    }
+}
+// 修改编辑按钮文字
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"删除";
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -178,7 +223,7 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
 - (NSArray<NSString *> *)sectionIndexTitles {
     //搜索符号  [NSMutableArray arrayWithObject:UITableViewIndexSearch]; [NSMutableArray array];
     NSMutableArray *resultArray = [NSMutableArray arrayWithObject:UITableViewIndexSearch];
-    for (NSDictionary *dict in self.brandArray) {
+    for (NSDictionary *dict in self.SectionArray) {
         NSString *title = dict[@"firstLetter"];
         if (title) {
             [resultArray addObject:title];
@@ -210,6 +255,7 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
         _TableView.delegate = self;
         _TableView.dataSource = self;
         _TableView.showsVerticalScrollIndicator = NO;
+        _TableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _TableView.rowHeight = 50;
         [_TableView registerClass:[TableViewHeaderView class] forHeaderFooterViewReuseIdentifier:TableViewHeaderViewIdentifier];
         [_TableView registerClass:[TableViewSearchHeaderView class] forHeaderFooterViewReuseIdentifier:TableViewSearchHeaderViewIdentifier];
@@ -226,12 +272,6 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     return _indexView;
 }
 
-- (NSArray *)dataSourceArray {
-    if (!_dataSourceArray) {
-        _dataSourceArray = @[@"卡地亚", @"法兰克穆勒", @"尊皇", @"蒂芙尼", @"艾米龙", @"NOMOS", @"依波路", @"波尔", @"帝舵", @"名士", @"芝柏", @"积家", @"尼芙尔", @"泰格豪雅", @"艾美", @"拉芙兰瑞", @"宝格丽", @"古驰", @"香奈儿", @"迪奥", @"雷达", @"豪利时", @"路易.威登", @"蕾蒙威", @"康斯登", @"爱马仕", @"昆仑", @"斯沃琪", @"WEMPE", @"万宝龙", @"浪琴", @"柏莱士", @"雅克德罗", @"雅典", @"帕玛强尼", @"格拉苏蒂原创", @"伯爵", @"百达翡丽", @"爱彼", @"宝玑", @"江诗丹顿", @"宝珀", @"理查德·米勒", @"梵克雅宝", @"罗杰杜彼", @"萧邦", @"百年灵", @"宝齐莱", @"瑞宝", @"沛纳海", @"宇舶", @"真力时", @"万国", @"欧米茄", @"劳力士", @"朗格",@"dsf",@"是",@"11"];
-    }
-    return _dataSourceArray;
-}
 
 - (NSMutableArray<SecretModel *> *)dataArray
 {
@@ -255,13 +295,25 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     }];
     NSString *createTableSqlString = @"CREATE TABLE IF NOT EXISTS SecretList (id integer PRIMARY KEY AUTOINCREMENT, Name text NOT NULL, NameURL text, Account text NOT NULL, PassWord text NOT NULL, Note text, CreateTime text NOT NULL, UpdateTime text NOT NULL, CurrentTime integer NOT NULL)";
     [db executeUpdate:createTableSqlString];
-    self.db = db;
+    [db close];
     
-    NSString *sql = @"select Name,NameURL,Account,PassWord,Note,CreateTime,UpdateTime,currentTime FROM SecretList";
+    
+    
+    
+}
+-(void)reloadData
+{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"SecretList.sqlite" Success:^{
+        
+    } Fail:^{
+        return ;
+    }];
+    NSString *sql = @"select  id,Name,NameURL,Account,PassWord,Note,CreateTime,UpdateTime,currentTime FROM SecretList";
     FMResultSet *rs = [db executeQuery:sql];
     [self.dataArray removeAllObjects];
     while ([rs next]) {
         SecretModel *model = [[SecretModel alloc] init];
+        model.secretID = [rs intForColumn:@"id"];
         model.Name = [rs stringForColumn:@"Name"];
         model.NameURL = [rs stringForColumn:@"NameURL"];
         model.Account = [rs stringForColumn:@"Account"];
@@ -272,8 +324,7 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
         model.currentTime = [rs stringForColumn:@"currentTime"];
         [self.dataArray addObject:model];
     }
-    
-    [self.brandArray removeAllObjects];
+    [self.SectionArray removeAllObjects];
     //解析数据
     NSMutableArray *tempBrandArray = [NSMutableArray array];
     for (SecretModel *model in self.dataArray) {
@@ -281,23 +332,58 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     }
     //获取拼音首字母
     NSArray *indexArray= [tempBrandArray arrayWithPinYinFirstLetterFormat];
-    self.brandArray = [NSMutableArray arrayWithArray:indexArray];
+    self.SectionArray = [NSMutableArray arrayWithArray:indexArray];
     
     //添加搜索视图
     self.isSearchMode = YES;
     NSMutableDictionary *searchDic = [NSMutableDictionary dictionary];
     [searchDic setObject:[NSMutableArray array] forKey:@"content"];
-    [self.brandArray insertObject:searchDic atIndex:0];
+    [self.SectionArray insertObject:searchDic atIndex:0];
     
-    //添加视图
-    [self.view addSubview:self.TableView];
-    [self.view addSubview:self.indexView];
+    
     //默认设置第一组
     [self.indexView setSelectionIndex:0];
     [self.TableView reloadData];
     [self.indexView reload];
-    [self AddButton];
+    [db close];
+}
+- (void)delete:(NSArray *)delStudents {
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"SecretList.sqlite" Success:^{
+        
+    } Fail:^{
+        return ;
+    }];
+    NSString *sql = @"delete from SecretList where id = ?";
+    SecretModel *model = delStudents[0];
+    BOOL result = [db executeUpdate:sql, @(model.secretID)];
+    if (!result) {
+//        self.resultLbe.text = @"删除数据失败";
+         //只显示文字
+
+               
+        return;
+    }
+    [self showTextMessage:@"删除成功"];
+ 
+    NSArray *newDelStudents = delStudents.copy;
+    // 将已经在数据库中被删除的对象从内存中移除
+    [newDelStudents enumerateObjectsUsingBlock:^(SecretModel *obj, NSUInteger idx, BOOL *stop) {
+        [self.dataArray removeObject:obj];
+    }];
+    [db close];
+    [self reloadData];
 }
 
+- (void)showTextMessage:(NSString *)message
+{
+    UIView *view =[UIApplication sharedApplication].keyWindow;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    hud.label.text = message;
+    hud.mode = MBProgressHUDModeText;
+    hud.backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    hud.bezelView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.9];
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hideAnimated:YES afterDelay:0.7];
+}
 @end
 

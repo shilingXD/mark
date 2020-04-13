@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AddSecretViewController : UIViewController
-
+@property (nonatomic, copy) void (^dismissBlock)(void);
 @end
 
 NS_ASSUME_NONNULL_END

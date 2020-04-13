@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SecretModel : NSObject
+@property (nonatomic, assign) int secretID;///<<#注释#>
 @property (nonatomic, copy) NSString *Name;///<账号所属应用或网站
 @property (nonatomic, copy) NSString *NameURL;///<网站地址
 @property (nonatomic, copy) NSString *Account;///<账号

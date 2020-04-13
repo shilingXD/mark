@@ -192,15 +192,15 @@
         make.right.mas_equalTo(soulView.mas_right).offset(-5);
         make.bottom.mas_equalTo(soulView.mas_bottom).offset(-10);
     }];
-    for(NSString *fontfamilyname in [UIFont familyNames])
-    {
-        NSLog(@"family:'%@'",fontfamilyname);
-        for(NSString *fontName in [UIFont fontNamesForFamilyName:fontfamilyname])
-        {
-            NSLog(@"\tfont:'%@'",fontName);
-        }
-        NSLog(@"-------------");
-    }
+//    for(NSString *fontfamilyname in [UIFont familyNames])
+//    {
+//        NSLog(@"family:'%@'",fontfamilyname);
+//        for(NSString *fontName in [UIFont fontNamesForFamilyName:fontfamilyname])
+//        {
+//            NSLog(@"\tfont:'%@'",fontName);
+//        }
+//        NSLog(@"-------------");
+//    }
 }
 
 #pragma mark  - ------  事件响应  ------
