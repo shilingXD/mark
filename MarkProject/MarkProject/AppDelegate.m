@@ -24,14 +24,12 @@
     options.buttonTitleFont = [UIFont fontWithName:@"Helvetica-Bold" size:18];
     options.navigationBackButtonImageName = @"back_btn";
     options.buttonTitleColor = [UIColor whiteColor];
-    
-    
-    
-    // 设置系统返回按钮为样式
     options.btnTitleType = FBackBtnTitleType_Default;
     
     EasyNavigationController *navVC = [[EasyNavigationController alloc]initWithRootViewController:[MainViewController new]];
     self.window.rootViewController  = navVC ;
+    
+    [MDInstance sharedInstance].UserID = [MDMethods getUUIDByKeyChain];
     
     return YES;
 }

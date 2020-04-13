@@ -15,7 +15,7 @@
 #import "SecretListTableViewCell.h"
 #import "SecretModel.h"
 #import "WMDragView.h"
-#import "NextViewController.h"
+#import "AddSecretViewController.h"
 
 #define NAV_HEIGHT 64
 
@@ -31,37 +31,28 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
 
 @property (nonatomic, copy) NSArray *dataSourceArray;                           /**< 数据源数组 */
 @property (nonatomic, strong) NSMutableArray *brandArray;                       /**< 品牌名数组 */
+@property (nonatomic, strong) NSMutableArray<SecretModel *> *dataArray;
 @property (nonatomic, assign) BOOL isSearchMode;                                /**< 是否有搜索栏  */
-
+@property (nonatomic, assign) FMDatabase *db;
 @end
 
 @implementation SecretListViewController
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self openDataBase];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //解析数据
-    NSMutableArray *tempBrandArray = [NSMutableArray array];
-    for (NSString *brandName in self.dataSourceArray) {
-        [tempBrandArray addObject:brandName];
-    }
-    //获取拼音首字母
-    NSArray *indexArray= [tempBrandArray arrayWithPinYinFirstLetterFormat];
-    self.brandArray = [NSMutableArray arrayWithArray:indexArray];
     
-    //添加搜索视图
-    self.isSearchMode = YES;
-    NSMutableDictionary *searchDic = [NSMutableDictionary dictionary];
-    [searchDic setObject:[NSMutableArray array] forKey:@"content"];
-    [self.brandArray insertObject:searchDic atIndex:0];
-    
-    //添加视图
-    [self.view addSubview:self.TableView];
-    [self.view addSubview:self.indexView];
-    //默认设置第一组
-    [self.indexView setSelectionIndex:0];
     [self createBar];
-    [self AddButton];
 }
+- (void)dealloc
+{
+    [_db close];
+}
+
 -(void)createBar
 {
     [self.navigationView setTitle:@"密码本"];
@@ -77,7 +68,7 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     dragView.layer.masksToBounds = YES;
     dragView.layer.cornerRadius = 25;
     dragView.clickDragViewBlock = ^(WMDragView *dragView) {
-        NextViewController *vc = [[NextViewController alloc] init];
+        AddSecretViewController *vc = [[AddSecretViewController alloc] init];
         vc.modalPresentationStyle = UIModalPresentationFormSheet;
         [self presentViewController:vc animated:YES completion:^{
             
@@ -156,10 +147,11 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     NSMutableArray *array = dict[@"content"];
     //品牌
     NSString *brandInfo = array[indexPath.row];
-    SecretModel *model = [[SecretModel alloc] init];
-    model.Name = brandInfo;
-    model.Account = brandInfo;
-    cell.model = model;
+    for (SecretModel *model in self.dataArray) {
+        if ([model.Name isEqualToString:brandInfo]) {
+            cell.model = model;
+        }
+    }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     if (indexPath.row == array.count - 1) {
         cell.lineView.hidden = YES;
@@ -241,11 +233,71 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     return _dataSourceArray;
 }
 
+- (NSMutableArray<SecretModel *> *)dataArray
+{
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark  - ------  FMDB操作  ------
+-(void)openDataBase
+{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"SecretList.sqlite" Success:^{
+        
+    } Fail:^{
+        return ;
+    }];
+    NSString *createTableSqlString = @"CREATE TABLE IF NOT EXISTS SecretList (id integer PRIMARY KEY AUTOINCREMENT, Name text NOT NULL, NameURL text, Account text NOT NULL, PassWord text NOT NULL, Note text, CreateTime text NOT NULL, UpdateTime text NOT NULL, CurrentTime integer NOT NULL)";
+    [db executeUpdate:createTableSqlString];
+    self.db = db;
+    
+    NSString *sql = @"select Name,NameURL,Account,PassWord,Note,CreateTime,UpdateTime,currentTime FROM SecretList";
+    FMResultSet *rs = [db executeQuery:sql];
+    [self.dataArray removeAllObjects];
+    while ([rs next]) {
+        SecretModel *model = [[SecretModel alloc] init];
+        model.Name = [rs stringForColumn:@"Name"];
+        model.NameURL = [rs stringForColumn:@"NameURL"];
+        model.Account = [rs stringForColumn:@"Account"];
+        model.PassWord = [rs stringForColumn:@"PassWord"];
+        model.Note = [rs stringForColumn:@"Note"];
+        model.CreateTime = [rs stringForColumn:@"CreateTime"];
+        model.UpdateTime = [rs stringForColumn:@"UpdateTime"];
+        model.currentTime = [rs stringForColumn:@"currentTime"];
+        [self.dataArray addObject:model];
+    }
+    
+    [self.brandArray removeAllObjects];
+    //解析数据
+    NSMutableArray *tempBrandArray = [NSMutableArray array];
+    for (SecretModel *model in self.dataArray) {
+        [tempBrandArray addObject:model.Name];
+    }
+    //获取拼音首字母
+    NSArray *indexArray= [tempBrandArray arrayWithPinYinFirstLetterFormat];
+    self.brandArray = [NSMutableArray arrayWithArray:indexArray];
+    
+    //添加搜索视图
+    self.isSearchMode = YES;
+    NSMutableDictionary *searchDic = [NSMutableDictionary dictionary];
+    [searchDic setObject:[NSMutableArray array] forKey:@"content"];
+    [self.brandArray insertObject:searchDic atIndex:0];
+    
+    //添加视图
+    [self.view addSubview:self.TableView];
+    [self.view addSubview:self.indexView];
+    //默认设置第一组
+    [self.indexView setSelectionIndex:0];
+    [self.TableView reloadData];
+    [self.indexView reload];
+    [self AddButton];
+}
 
 @end
+

@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <ImageIO/ImageIO.h>
+#import <FMDB.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MDMethods : NSObject
@@ -21,6 +22,13 @@ NS_ASSUME_NONNULL_BEGIN
  @return 获取设备os版本
  */
 +(NSString *)getDeviceOSType;
+
+/**
+ 获取UUID
+
+ @return 返回UUID
+ */
++ (NSString *)getUUIDByKeyChain;
 /**
  获取app版本
 
@@ -60,13 +68,6 @@ NS_ASSUME_NONNULL_BEGIN
  @return 已修改字符串
  */
 +(NSMutableAttributedString *)ChangeNSMutabelAttributedString:(NSString *)string WithTargetValue:(id)value AndTargetString:(NSString *)targetString;
-/**
- 判断字符串是否为空
-
- @param string target string
- @return 为空返回“”n不为空返回原字符串
- */
-+(NSString *)JudgeNULL:(id)string;
 /**
  字符串转日期格式
 
@@ -320,6 +321,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)dealWithTotalTime:(NSString *)totalTime;
 
++(FMDatabase *)openOrCreateDBWithDBName:(NSString *)Name Success:(void(^)(void))success Fail:(void(^)(void))fail;
+
+//获取当前时间
++ (NSString *)currentDateStr;
+//获取当前时间戳
++ (NSString *)currentTimeStr;
+// 时间戳转时间,时间戳为13位是精确到毫秒的，10位精确到秒
++ (NSString *)getDateStringWithTimeStr:(NSString *)str;
+//字符串转时间戳 如：2017-4-10 17:15:10
++ (NSString *)getTimeStrWithString:(NSString *)str;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -11,6 +11,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MDInstance : NSObject
+
+@property (nonatomic, assign) BOOL isLogin;///<是否登陆账号
+@property (nonatomic, copy) NSString *UserID;///<用户ID
+@property (nonatomic, copy) NSString *UserName;///<用户名称
+@property (nonatomic, copy) NSString *UserPassWord;///<用户密码
+
+
 +(MDInstance *)sharedInstance;
 @end
 

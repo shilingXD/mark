@@ -8,6 +8,8 @@
 
 #import "MDMethods.h"
 #import <sys/utsname.h>
+#import "KeyChainStore.h"
+#import <AdSupport/AdSupport.h>
 
 @implementation MDMethods
 //+(CommonMethods *)sharedInstance{
@@ -35,7 +37,29 @@
     return [infoDic objectForKey:@"CFBundleShortVersionString"];
     
 }
-
+/**  获取UUID*/
++ (NSString *)getUUIDByKeyChain{
+    // 这个key的前缀最好是你的BundleID
+    NSString*strUUID = (NSString*)[KeyChainStore load:@"com.shilingXD.MarkProject.UUID"];
+    //首次执行该方法时，uuid为空
+    if([strUUID isEqualToString:@""]|| !strUUID)
+    {
+        // 获取UUID 这个是要引入<AdSupport/AdSupport.h>的
+        strUUID = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+        
+        if(strUUID.length ==0 || [strUUID isEqualToString:@"00000000-0000-0000-0000-000000000000"])
+        {
+            //生成一个uuid的方法
+            CFUUIDRef uuidRef= CFUUIDCreate(kCFAllocatorDefault);
+            strUUID = (NSString*)CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault,uuidRef));
+            CFRelease(uuidRef);
+        }
+        
+        //将该uuid保存到keychain
+        [KeyChainStore save:@"com.shilingXD.MarkProject.UUID" data:strUUID];
+    }
+    return strUUID;
+}
 +(NSString *)getBundelID
 {
     return [[NSBundle mainBundle]objectForInfoDictionaryKey:@"CFBundleName"];
@@ -77,24 +101,8 @@
     [str addAttribute:NSFontAttributeName value: font range:range1];
     return str;
 }
-+(NSString *)JudgeNULL:(id)string
-{
-    if ([string isEqual:@"NULL"] ||
-        [string isKindOfClass:[NSNull class]] ||
-        [string isEqual:[NSNull null]] ||
-        [string isEqual:NULL] ||
-        [[string class] isSubclassOfClass:[NSNull class]] ||
-        string == nil ||
-        string == NULL ||
-        [string isKindOfClass:[NSNull class]] ||
-        [[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]==0 ||
-        [string isEqualToString:@"<null>"] ||
-        [string isEqualToString:@"(null)"]) {
-        return @"";
-    } else {
-        return string;
-    }
-}
+
+
 + (NSDate*)getNSDateByString:(NSString*)string formate:(NSString*)formate
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -987,6 +995,55 @@
     return totalStr;
     
 }
-
-
++ (FMDatabase *)openOrCreateDBWithDBName:(NSString *)Name Success:(void (^)(void))success Fail:(void (^)(void))fail
+{
+    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *path = [docPath stringByAppendingPathComponent:Name];
+    NSLog(@"path = %@",path);
+    // 1..创建数据库对象
+    FMDatabase *db = [FMDatabase databaseWithPath:path];
+    // 2.打开数据库
+    if ([db open]) {
+        // do something
+        success();
+        NSLog(@"Open database Success");
+    } else {
+        fail();
+        NSLog(@"fail to open database");
+    }
+    return db;
+}
+//获取当前时间
++ (NSString *)currentDateStr{
+    NSDate *currentDate = [NSDate date];//获取当前时间，日期
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];// 创建一个时间格式化对象
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];//设定时间格式,这里可以设置成自己需要的格式
+    NSString *dateString = [dateFormatter stringFromDate:currentDate];//将时间转化成字符串
+    return dateString;
+}
+//获取当前时间戳
++ (NSString *)currentTimeStr{
+    NSDate* date = [NSDate dateWithTimeIntervalSinceNow:0];//获取当前时间0秒后的时间
+    NSTimeInterval time=[date timeIntervalSince1970]*1000;// *1000 是精确到毫秒，不乘就是精确到秒
+    NSString *timeString = [NSString stringWithFormat:@"%.0f", time];
+    return timeString;
+}
+// 时间戳转时间,时间戳为13位是精确到毫秒的，10位精确到秒
++ (NSString *)getDateStringWithTimeStr:(NSString *)str{
+    NSTimeInterval time=[str doubleValue]/1000;//传入的时间戳str如果是精确到毫秒的记得要/1000
+    NSDate *detailDate=[NSDate dateWithTimeIntervalSince1970:time];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; //实例化一个NSDateFormatter对象
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *currentDateStr = [dateFormatter stringFromDate: detailDate];
+    return currentDateStr;
+}
+//字符串转时间戳 如：2017-4-10 17:15:10
++ (NSString *)getTimeStrWithString:(NSString *)str{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];// 创建一个时间格式化对象
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"]; //设定时间的格式
+    NSDate *tempDate = [dateFormatter dateFromString:str];//将字符串转换为时间对象
+    NSString *timeStr = [NSString stringWithFormat:@"%ld", (long)[tempDate timeIntervalSince1970]*1000];//字符串转成时间戳,精确到毫秒*1000
+    return timeStr;
+}
 @end

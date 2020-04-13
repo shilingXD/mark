@@ -15,6 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *NameURL;///<网站地址
 @property (nonatomic, copy) NSString *Account;///<账号
 @property (nonatomic, copy) NSString *PassWord;///<密码
+@property (nonatomic, copy) NSString *Note;///<备注
+@property (nonatomic, copy) NSString *CreateTime;///<创建时间
+@property (nonatomic, copy) NSString *UpdateTime;///<修改时间
+@property (nonatomic, copy) NSString *currentTime;///<时间戳
 @end
 
 NS_ASSUME_NONNULL_END
