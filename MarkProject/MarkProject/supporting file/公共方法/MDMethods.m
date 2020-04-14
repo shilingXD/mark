@@ -1054,13 +1054,13 @@
         //获取后台穿过来的事件
         NSDate * dateTime = [MDMethods getNSDateByString:getTime formate:@"yyyy-MM-dd HH:mm:ss"];
         if(dateTime==nil){
-            dateTime = [MDMethods getNSDateByString:getTime formate:@"yyyy-MM-dd HH:mm"];
+            dateTime = [MDMethods getNSDateByString:getTime formate:@"yyyy年MM月dd日 HH:mm"];
         }
         
         if (dateTime.isThisYear) {
-            return [MDMethods getDateStringByFormateString:@"MM-dd HH:mm" date:dateTime] ;
+            return [MDMethods getDateStringByFormateString:@"MM月dd日 HH:mm" date:dateTime] ;
         } else { // 非今年
-            return  [MDMethods getDateStringByFormateString:@"yyyy-MM-dd HH:mm" date:dateTime] ;
+            return  [MDMethods getDateStringByFormateString:@"yyyy年MM月dd日 HH:mm" date:dateTime] ;
         }
     }else{
         return @"" ;
@@ -1080,26 +1080,25 @@
 {
     UIView *messageView = [[UIView alloc] init];
     messageView.backgroundColor = [UIColor clearColor];
-    messageView.gk_size = CGSizeMake(SCREEN_WIDTH,NavigationBar_Height +20);
+    messageView.gk_size = CGSizeMake(SCREEN_WIDTH,NavigationBar_Height + 30);
+    CGFloat width1=[message boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-30, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Regular" size:15]} context:nil].size.width;
     UILabel *msglabel = [[UILabel alloc] init];
     msglabel.text = message;
-//    msglabel.font = <#Font#>;
-    msglabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    msglabel.textAlignment = NSTextAlignmentCenter;
+    msglabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
+    msglabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
     msglabel.layer.cornerRadius = 3;
     msglabel.layer.masksToBounds = YES;
     msglabel.textColor = [UIColor whiteColor];
+    
     [messageView addSubview:msglabel];
     [msglabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(messageView.mas_bottom);
         make.centerX.mas_equalTo(messageView);
-//        make.width.
+        make.height.mas_equalTo(30);
+        make.width.mas_equalTo(width1 + 20);
     }];
-    [msglabel layoutIfNeeded];
-    CGRect frame = msglabel.frame;
-    frame.size.height += 100;
-    frame.size.width += 100;
-    msglabel.frame = frame;
     [GKCover coverFrom:[UIApplication sharedApplication].keyWindow contentView:messageView style:GKCoverStyleTransparent showStyle:GKCoverShowStyleTop showAnimStyle:GKCoverShowAnimStyleTop hideAnimStyle:GKCoverHideAnimStyleTop notClick:YES];
-    [GKCover hideCoverAfterDelay:0.7];
+    [GKCover hideCoverAfterDelay:1];
 }
 @end

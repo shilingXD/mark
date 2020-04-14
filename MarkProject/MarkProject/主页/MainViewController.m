@@ -183,7 +183,7 @@
     soul.text = [NSString stringWithFormat:@"       %@ — 毒鸡汤",soulDic[@"content"]];
     soul.numberOfLines = 0;
     soul.lineBreakMode = NSLineBreakByCharWrapping;
-    soul.font = [UIFont fontWithName:@"AppleSDGothicNeo-Thin" size:16];
+    soul.font = [UIFont fontWithName:@"PingFangSC-Thin" size:14];
     soul.textColor = [UIColor whiteColor];
     [soulView addSubview:soul];
     [soul mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -7,6 +7,7 @@
 //
 
 #import "AddSecretViewController.h"
+#import "NSString+Util.h"
 
 @interface AddSecretViewController ()<UITextFieldDelegate>
 @property (nonatomic, strong) UILabel *IconLabel;
@@ -15,6 +16,7 @@
 @property (nonatomic, strong) UITextField *Pwdfield;///<密码
 @property (nonatomic, strong) UITextField *Urlfield;///<网址
 @property (nonatomic, strong) UITextField *Notefield;///<备注
+@property(nonatomic ,strong) UITextField * firstResponderTextF;//记录将要编辑的输入框
 @end
 
 @implementation AddSecretViewController
@@ -25,9 +27,13 @@
     [self.view setBackgroundColor:GrayWhiteColor];
     [self setbar];
     [self setupContentView];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self.view endEditing:YES]; //实现该方法是需要注意view需要是继承UIControl而来的
+- (void)dealloc{
+    //移除键盘通知监听者
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 -(void)setbar
 {
@@ -36,7 +42,7 @@
     [self.view addSubview:barView];
     [barView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(self.view);
-        make.height.mas_equalTo(50);
+        make.height.mas_equalTo(40);
     }];
     UIButton *cancelBtn = [[UIButton alloc] init];
     [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
@@ -71,8 +77,8 @@
     [self.view addSubview:iconView];
     [iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
-        make.top.mas_equalTo(self.view.mas_top).mas_offset(80);
-        make.size.mas_equalTo(CGSizeMake(80, 80));
+        make.top.mas_equalTo(self.view.mas_top).mas_offset(70);
+        make.size.mas_equalTo(CGSizeMake(70, 70));
     }];
     
     UILabel *nameLabel = [[UILabel alloc] init];
@@ -89,6 +95,7 @@
     nameField.borderStyle = UITextBorderStyleNone;
     nameField.placeholder = @"名称";
     nameField.delegate = self;
+    nameField.returnKeyType = UIReturnKeyNext;
     nameField.font = [UIFont systemFontOfSize:17];
     [nameField becomeFirstResponder];
     [self.view addSubview:nameField];
@@ -107,7 +114,7 @@
     }];
     
     UILabel *AccontLabel = [[UILabel alloc] init];
-    AccontLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:@"*请输入您的用户名" WithTargetValue:[UIColor redColor] AndTargetString:@"*"];
+    AccontLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:@"*请输入您的帐户名" WithTargetValue:[UIColor redColor] AndTargetString:@"*"];
     AccontLabel.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:AccontLabel];
     [AccontLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -120,6 +127,8 @@
     AccountField.borderStyle = UITextBorderStyleNone;
     AccountField.font = [UIFont systemFontOfSize:17];
     AccountField.placeholder = @"用户名";
+    AccountField.delegate = self;
+    AccountField.returnKeyType = UIReturnKeyNext;
     [self.view addSubview:AccountField];
     [AccountField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(AccontLabel.mas_bottom).offset(5);
@@ -146,6 +155,8 @@
     UITextField *PwdField = [[UITextField alloc] init];
     self.Pwdfield = PwdField;
     PwdField.borderStyle = UITextBorderStyleNone;
+    PwdField.delegate = self;
+    PwdField.returnKeyType = UIReturnKeyNext;
     PwdField.placeholder = @"密码";
     PwdField.font = [UIFont systemFontOfSize:17];
     [self.view addSubview:PwdField];
@@ -177,6 +188,8 @@
     self.Urlfield = urlField;
     urlField.borderStyle = UITextBorderStyleNone;
     urlField.placeholder = @"网址（选填）";
+    urlField.delegate = self;
+    urlField.returnKeyType = UIReturnKeyNext;
     urlField.font = [UIFont systemFontOfSize:17];
     [self.view addSubview:urlField];
     [urlField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -207,6 +220,8 @@
     self.Notefield = NoteField;
     NoteField.borderStyle = UITextBorderStyleNone;
     NoteField.placeholder = @"备注（选填）";
+    NoteField.delegate = self;
+    NoteField.returnKeyType = UIReturnKeyDone;
     NoteField.font = [UIFont systemFontOfSize:17];
     [self.view addSubview:NoteField];
     [NoteField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -232,26 +247,30 @@
 }
 -(void)sure:(UIButton *)sender
 {
-    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"SecretList.sqlite" Success:^{
-        
-    } Fail:^{
-        return ;
-    }];
-    //1.executeUpdate:不确定的参数用？来占位（后面参数必须是oc对象，；代表语句结束）
-//    BOOL result = [db executeUpdate:@"INSERT INTO SecretList (name, age, sex) VALUES (?,?,?)",name,@(age),sex];
-    //2.executeUpdateWithForamat：不确定的参数用%@，%d等来占位 （参数为原始数据类型，执行语句不区分大小写）
-        BOOL result = [db executeUpdateWithFormat:@"insert into SecretList (Name,NameURL,Account,PassWord,Note,CreateTime,UpdateTime,currentTime) values (%@,%@,%@,%@,%@,%@,%@,%@)",self.namefield.text,self.Urlfield.text,self.Accountfield.text,self.Pwdfield.text,self.Notefield.text,[MDMethods currentDateStr],[MDMethods currentDateStr],[MDMethods currentTimeStr]];
-    //3.参数是数组的使用方式
-    //    BOOL result = [_db executeUpdate:@"INSERT INTO t_student(name,age,sex) VALUES  (?,?,?);" withArgumentsInArray:@[name,@(age),sex]];
-    if (result) {
-        NSLog(@"插入成功");
-        self.dismissBlock();
+    if ([NSString isEmptyOfString:self.namefield.text]) {
+        [MDMethods showTextMessage:@"名称不能为空"];
+    } else if ([NSString isEmptyOfString:self.Accountfield.text]) {
+        [MDMethods showTextMessage:@"帐户名不能为空"];
+    } else if ([NSString isEmptyOfString:self.Pwdfield.text]) {
+        [MDMethods showTextMessage:@"密码不能为空"];
     } else {
-        NSLog(@"插入失败");
-        return;
+        FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"SecretList.sqlite" Success:^{
+            
+        } Fail:^{
+            return ;
+        }];
+        BOOL result = [db executeUpdateWithFormat:@"insert into SecretList (Name,NameURL,Account,PassWord,Note,CreateTime,UpdateTime,currentTime) values (%@,%@,%@,%@,%@,%@,%@,%@)",self.namefield.text,self.Urlfield.text,self.Accountfield.text,self.Pwdfield.text,self.Notefield.text,[MDMethods currentDateStr],[MDMethods currentDateStr],[MDMethods currentTimeStr]];
+        
+        if (result) {
+            NSLog(@"插入成功");
+            self.dismissBlock();
+        } else {
+            NSLog(@"插入失败");
+            return;
+        }
+        
+        [self dismissViewControllerAnimated:YES completion:^{}];
     }
-    
-    [self dismissViewControllerAnimated:YES completion:^{}];
     
 }
 
@@ -259,7 +278,67 @@
 {
     self.IconLabel.text = textField.text.length >= 2?[textField.text substringToIndex:2]:textField.text;
 }
-
+#pragma mark  - ------  fieldDelegate  ------
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == self.namefield)
+    {
+        [self.Accountfield becomeFirstResponder];
+    }else if (textField == self.Accountfield){
+        [self.Pwdfield becomeFirstResponder];
+    }
+    else if (textField == self.Pwdfield){
+        [self.Urlfield becomeFirstResponder];
+    }
+    else if (textField == self.Urlfield){
+        [self.Notefield becomeFirstResponder];
+    }
+    else if (textField == self.Notefield){
+        [self.view endEditing:YES];
+    }
+    
+    return YES;
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    if ([self.firstResponderTextF isFirstResponder])[self.firstResponderTextF resignFirstResponder];
+}
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//    [self.view endEditing:YES]; //实现该方法是需要注意view需要是继承UIControl而来的
+//}
+#pragma maek UITextFieldDelegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    self.firstResponderTextF = textField;//当将要开始编辑的时候，获取当前的textField
+    return YES;
+}
+#pragma mark : UIKeyboardWillShowNotification/UIKeyboardWillHideNotification
+- (void)keyboardWillShow:(NSNotification *)notification{
+    CGRect rect = [self.firstResponderTextF.superview convertRect:self.firstResponderTextF.frame toView:self.view];//获取相对于self.view的位置
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];//获取弹出键盘的fame的value值
+    CGRect keyboardRect = [aValue CGRectValue];
+    keyboardRect = [self.view convertRect:keyboardRect fromView:self.view.window];//获取键盘相对于self.view的frame ，传window和传nil是一样的
+    CGFloat keyboardTop = keyboardRect.origin.y;
+    NSNumber * animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];//获取键盘弹出动画时间值
+    NSTimeInterval animationDuration = [animationDurationValue doubleValue];
+    if (keyboardTop < CGRectGetMaxY(rect)) {//如果键盘盖住了输入框
+        CGFloat gap = keyboardTop - CGRectGetMaxY(rect) - 10;//计算需要网上移动的偏移量（输入框底部离键盘顶部为10的间距）
+        __weak typeof(self)weakSelf = self;
+        [UIView animateWithDuration:animationDuration animations:^{
+            weakSelf.view.frame = CGRectMake(weakSelf.view.frame.origin.x, gap, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
+        }];
+    }
+}
+- (void)keyboardWillHide:(NSNotification *)notification{
+    NSDictionary *userInfo = [notification userInfo];
+    NSNumber * animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];//获取键盘隐藏动画时间值
+    NSTimeInterval animationDuration = [animationDurationValue doubleValue];
+    if (self.view.frame.origin.y < 0) {//如果有偏移，当影藏键盘的时候就复原
+        __weak typeof(self)weakSelf = self;
+        [UIView animateWithDuration:animationDuration animations:^{
+            weakSelf.view.frame = CGRectMake(weakSelf.view.frame.origin.x, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
+        }];
+    }
+}
 - (UILabel *)IconLabel
 {
     if (!_IconLabel) {
