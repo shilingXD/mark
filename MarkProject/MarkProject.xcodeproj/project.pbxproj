@@ -59,6 +59,7 @@
 		0478A5712423615200C6B5C7 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A56F2423615200C6B5C7 /* UIImage+Util.m */; };
 		04D52654244558A50025CD4B /* NSDate+gyh.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52652244558A50025CD4B /* NSDate+gyh.m */; };
 		04D52657244558FE0025CD4B /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52656244558FE0025CD4B /* NSString+Util.m */; };
+		04D526592445BA750025CD4B /* ListDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D526582445BA750025CD4B /* ListDetailViewController.xib */; };
 		04E100482424614800C8081B /* UIView+GKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E100442424614800C8081B /* UIView+GKExtension.m */; };
 		04E100492424614800C8081B /* GKCover.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E100472424614800C8081B /* GKCover.m */; };
 		04E924AF2394A7D3006683D7 /* MDInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E924AE2394A7D3006683D7 /* MDInstance.m */; };
@@ -177,6 +178,7 @@
 		04D52653244558A50025CD4B /* NSDate+gyh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+gyh.h"; sourceTree = "<group>"; };
 		04D52655244558FE0025CD4B /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
 		04D52656244558FE0025CD4B /* NSString+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Util.m"; sourceTree = "<group>"; };
+		04D526582445BA750025CD4B /* ListDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListDetailViewController.xib; sourceTree = "<group>"; };
 		04E100422424614800C8081B /* GKCover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCover.h; sourceTree = "<group>"; };
 		04E100442424614800C8081B /* UIView+GKExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GKExtension.m"; sourceTree = "<group>"; };
 		04E100452424614800C8081B /* UIView+GKExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GKExtension.h"; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				0464295424445591008F600C /* AddSecretViewController.m */,
 				045C8EEA24449CA2007EAB6C /* ListDetailViewController.h */,
 				045C8EEB24449CA2007EAB6C /* ListDetailViewController.m */,
+				04D526582445BA750025CD4B /* ListDetailViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -643,6 +646,7 @@
 				0464C7B9243D7B3E0061902F /* soul.json in Resources */,
 				04F638B2242DF333005207B0 /* Roboto-Regular.ttf in Resources */,
 				04230FB32391020E00031B27 /* LaunchScreen.storyboard in Resources */,
+				04D526592445BA750025CD4B /* ListDetailViewController.xib in Resources */,
 				04230FB02391020E00031B27 /* Assets.xcassets in Resources */,
 				04F638B0242DF333005207B0 /* Roboto-Light.ttf in Resources */,
 				04F638B3242DF333005207B0 /* markdown.html in Resources */,

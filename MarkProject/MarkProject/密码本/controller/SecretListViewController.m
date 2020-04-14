@@ -252,38 +252,7 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     [self.view addSubview:view];
 }
 
-#pragma mark - getter
-- (UITableView *)TableView {
-    if (!_TableView) {
-        _TableView = [[UITableView alloc] initWithFrame:CGRectMake(0, NavigationBar_Height, SCREEN_WIDTH, SCREEN_HEIGHT-NavigationBar_Height) style:(UITableViewStylePlain)];
-        _TableView.delegate = self;
-        _TableView.dataSource = self;
-        _TableView.showsVerticalScrollIndicator = NO;
-        _TableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _TableView.rowHeight = 50;
-        [_TableView registerClass:[TableViewHeaderView class] forHeaderFooterViewReuseIdentifier:TableViewHeaderViewIdentifier];
-        [_TableView registerClass:[TableViewSearchHeaderView class] forHeaderFooterViewReuseIdentifier:TableViewSearchHeaderViewIdentifier];
-    }
-    return _TableView;
-}
 
-- (IndexView *)indexView {
-    if (!_indexView) {
-        _indexView = [[IndexView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 30, 0, 30, SCREEN_HEIGHT)];
-        _indexView.delegate = self;
-        _indexView.dataSource = self;
-    }
-    return _indexView;
-}
-
-
-- (NSMutableArray<SecretModel *> *)dataArray
-{
-    if (!_dataArray) {
-        _dataArray = [NSMutableArray array];
-    }
-    return _dataArray;
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -300,16 +269,10 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     NSString *createTableSqlString = @"CREATE TABLE IF NOT EXISTS SecretList (id integer PRIMARY KEY AUTOINCREMENT, Name text NOT NULL, NameURL text, Account text NOT NULL, PassWord text NOT NULL, Note text, CreateTime text NOT NULL, UpdateTime text NOT NULL, CurrentTime integer NOT NULL)";
     [db executeUpdate:createTableSqlString];
     [db close];
-    
-    
-    
-    
 }
 -(void)reloadData
 {
-    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"SecretList.sqlite" Success:^{
-        
-    } Fail:^{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"SecretList.sqlite" Success:^{} Fail:^{
         return ;
     }];
     NSString *sql = @"select  id,Name,NameURL,Account,PassWord,Note,CreateTime,UpdateTime,currentTime FROM SecretList";
@@ -352,42 +315,51 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     [db close];
 }
 - (void)delete:(NSArray *)delStudents {
-    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"SecretList.sqlite" Success:^{
-        
-    } Fail:^{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"SecretList.sqlite" Success:^{} Fail:^{
         return ;
     }];
     NSString *sql = @"delete from SecretList where id = ?";
     SecretModel *model = delStudents[0];
     BOOL result = [db executeUpdate:sql, @(model.secretID)];
     if (!result) {
-//        self.resultLbe.text = @"删除数据失败";
-         //只显示文字
-
-               
+        [MDMethods showTextMessage:@"删除失败"];
         return;
     }
-    [self showTextMessage:@"删除成功"];
- 
-    NSArray *newDelStudents = delStudents.copy;
-    // 将已经在数据库中被删除的对象从内存中移除
-    [newDelStudents enumerateObjectsUsingBlock:^(SecretModel *obj, NSUInteger idx, BOOL *stop) {
-        [self.dataArray removeObject:obj];
-    }];
     [db close];
     [self reloadData];
 }
 
-- (void)showTextMessage:(NSString *)message
+#pragma mark  - ------  懒加载  ------
+- (UITableView *)TableView {
+    if (!_TableView) {
+        _TableView = [[UITableView alloc] initWithFrame:CGRectMake(0, NavigationBar_Height, SCREEN_WIDTH, SCREEN_HEIGHT-NavigationBar_Height) style:(UITableViewStylePlain)];
+        _TableView.delegate = self;
+        _TableView.dataSource = self;
+        _TableView.showsVerticalScrollIndicator = NO;
+        _TableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _TableView.rowHeight = 50;
+        [_TableView registerClass:[TableViewHeaderView class] forHeaderFooterViewReuseIdentifier:TableViewHeaderViewIdentifier];
+        [_TableView registerClass:[TableViewSearchHeaderView class] forHeaderFooterViewReuseIdentifier:TableViewSearchHeaderViewIdentifier];
+    }
+    return _TableView;
+}
+
+- (IndexView *)indexView {
+    if (!_indexView) {
+        _indexView = [[IndexView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 30, 0, 30, SCREEN_HEIGHT)];
+        _indexView.delegate = self;
+        _indexView.dataSource = self;
+    }
+    return _indexView;
+}
+
+
+- (NSMutableArray<SecretModel *> *)dataArray
 {
-    UIView *view =[UIApplication sharedApplication].keyWindow;
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    hud.label.text = message;
-    hud.mode = MBProgressHUDModeText;
-    hud.backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    hud.bezelView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.9];
-    hud.removeFromSuperViewOnHide = YES;
-    [hud hideAnimated:YES afterDelay:0.7];
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
 }
 @end
 

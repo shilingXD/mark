@@ -333,6 +333,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getTimeStrWithString:(NSString *)str;
 +(NSString *)changeTimeDate:(NSString *)getTime;
 + (NSString*)getDateStringByFormateString:(NSString*)formateString date:(NSDate*)date;
+
++ (void)showTextMessage:(NSString *)message;
 @end
 
 NS_ASSUME_NONNULL_END

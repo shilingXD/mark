@@ -15,12 +15,3 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-/*
- family:'PingFang SC'
-     font:'PingFangSC-Medium'
-     font:'PingFangSC-Semibold'
-     font:'PingFangSC-Light'
-     font:'PingFangSC-Ultralight'
-     font:'PingFangSC-Regular'
-     font:'PingFangSC-Thin'
- */

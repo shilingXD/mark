@@ -1074,4 +1074,32 @@
     NSString *strDate = [formatter stringFromDate:date];
     return strDate;
 }
+
+#pragma mark  - ------  Toast相关  ------
++ (void)showTextMessage:(NSString *)message
+{
+    UIView *messageView = [[UIView alloc] init];
+    messageView.backgroundColor = [UIColor clearColor];
+    messageView.gk_size = CGSizeMake(SCREEN_WIDTH,NavigationBar_Height +20);
+    UILabel *msglabel = [[UILabel alloc] init];
+    msglabel.text = message;
+//    msglabel.font = <#Font#>;
+    msglabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    msglabel.layer.cornerRadius = 3;
+    msglabel.layer.masksToBounds = YES;
+    msglabel.textColor = [UIColor whiteColor];
+    [messageView addSubview:msglabel];
+    [msglabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(messageView.mas_bottom);
+        make.centerX.mas_equalTo(messageView);
+//        make.width.
+    }];
+    [msglabel layoutIfNeeded];
+    CGRect frame = msglabel.frame;
+    frame.size.height += 100;
+    frame.size.width += 100;
+    msglabel.frame = frame;
+    [GKCover coverFrom:[UIApplication sharedApplication].keyWindow contentView:messageView style:GKCoverStyleTransparent showStyle:GKCoverShowStyleTop showAnimStyle:GKCoverShowAnimStyleTop hideAnimStyle:GKCoverHideAnimStyleTop notClick:YES];
+    [GKCover hideCoverAfterDelay:0.7];
+}
 @end

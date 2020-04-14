@@ -286,6 +286,7 @@ typedef void(^hideBlock)(void);
  */
 + (void)hideCover;
 
++ (void)hideCoverAfterDelay:(NSTimeInterval)delay;
 /**
  重新布局
  */

@@ -16,3 +16,12 @@
 @end
 
 
+/*
+ family:'PingFang SC'
+ font:'PingFangSC-Medium'
+ font:'PingFangSC-Semibold'
+ font:'PingFangSC-Light'
+ font:'PingFangSC-Ultralight'
+ font:'PingFangSC-Regular'
+ font:'PingFangSC-Thin'
+ */

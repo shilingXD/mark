@@ -80,11 +80,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkProject/&#x5bc6;&#x7801;&#x672c;/controller/SecretListViewController.m"
-            timestampString = "608536495.469367"
+            timestampString = "608550577.536049"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "362"
-            endingLineNumber = "362"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
             landmarkName = "-delete:"
             landmarkType = "7">
          </BreakpointContent>
@@ -92,17 +92,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "408FD258-87E3-4EF6-9259-0342C925C06F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkProject/&#x5bc6;&#x7801;&#x672c;/controller/ListDetailViewController.m"
+            timestampString = "608549287.9419219"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "353"
+            endingLineNumber = "353"
+            landmarkName = "-setupFooter"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkProject/&#x5bc6;&#x7801;&#x672c;/controller/SecretListViewController.m"
-            timestampString = "608536495.469432"
+            timestampString = "608550577.5361609"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
+            landmarkName = "-reloadData"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -112,61 +127,45 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MarkProject/&#x5bc6;&#x7801;&#x672c;/controller/ListDetailViewController.m"
-            timestampString = "608536495.46948"
+            filePath = "MarkProject/&#x5bc6;&#x7801;&#x672c;/controller/SecretListViewController.m"
+            timestampString = "608550577.5362149"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "-editList"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
+            landmarkName = "-reloadData"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkProject/&#x5bc6;&#x7801;&#x672c;/controller/ListDetailViewController.m"
-            timestampString = "608536495.469974"
+            timestampString = "608549287.942409"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "-editList"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarkProject/&#x5bc6;&#x7801;&#x672c;/controller/ListDetailViewController.m"
-            timestampString = "608536495.4702621"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "-editList"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MarkProject/&#x5bc6;&#x7801;&#x672c;/controller/ListDetailViewController.m"
-            timestampString = "608536495.470542"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "290"
-            endingLineNumber = "290"
+            startingLineNumber = "362"
+            endingLineNumber = "362"
             landmarkName = "-Tap:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkProject/supporting file/&#x516c;&#x5171;&#x65b9;&#x6cd5;/MDMethods.m"
+            timestampString = "608550587.127633"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1097"
+            endingLineNumber = "1097"
+            landmarkName = "+showTextMessage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

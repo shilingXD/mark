@@ -882,7 +882,10 @@ static UIColor          *_bgColor;         // 背景色
             break;
     }
 }
-
++ (void)hideCoverAfterDelay:(NSTimeInterval)delay
+{
+    [self performSelector:@selector(hideCover) withObject:nil afterDelay:delay];
+}
 + (void)hideCover {
     // 这里为了防止动画未完成导致的不能及时判断cover是否存在，实际上cover再这里并没有销毁
     _hasCover = NO;
