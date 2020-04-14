@@ -331,6 +331,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getDateStringWithTimeStr:(NSString *)str;
 //字符串转时间戳 如：2017-4-10 17:15:10
 + (NSString *)getTimeStrWithString:(NSString *)str;
++(NSString *)changeTimeDate:(NSString *)getTime;
++ (NSString*)getDateStringByFormateString:(NSString*)formateString date:(NSDate*)date;
 @end
 
 NS_ASSUME_NONNULL_END

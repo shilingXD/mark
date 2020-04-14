@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ListDetailViewController : UIViewController
 @property (nonatomic, strong) SecretModel *model;///<<#注释#>
+@property (nonatomic, copy) void (^dismissBlock)(void);
 @end
 
 NS_ASSUME_NONNULL_END

@@ -26,7 +26,9 @@
     [self setbar];
     [self setupContentView];
 }
-
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES]; //实现该方法是需要注意view需要是继承UIControl而来的
+}
 -(void)setbar
 {
     UIView *barView = [[UIView alloc] init];

@@ -172,6 +172,10 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
 {
     SecretListTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     ListDetailViewController *vc = [[ListDetailViewController alloc] init];
+    WeakBlock(self, weak_self);
+    vc.dismissBlock = ^{
+        [weak_self reloadData];
+    };
     vc.model = cell.model;
     [self.navigationController pushViewController:vc animated:YES];
 }

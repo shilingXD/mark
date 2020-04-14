@@ -57,6 +57,8 @@
 		0478A56D24235A9E00C6B5C7 /* EasyNavigationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A55824235A9E00C6B5C7 /* EasyNavigationButton.m */; };
 		0478A56E24235A9E00C6B5C7 /* EasyNavigationView+Scroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A55B24235A9E00C6B5C7 /* EasyNavigationView+Scroll.m */; };
 		0478A5712423615200C6B5C7 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A56F2423615200C6B5C7 /* UIImage+Util.m */; };
+		04D52654244558A50025CD4B /* NSDate+gyh.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52652244558A50025CD4B /* NSDate+gyh.m */; };
+		04D52657244558FE0025CD4B /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52656244558FE0025CD4B /* NSString+Util.m */; };
 		04E100482424614800C8081B /* UIView+GKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E100442424614800C8081B /* UIView+GKExtension.m */; };
 		04E100492424614800C8081B /* GKCover.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E100472424614800C8081B /* GKCover.m */; };
 		04E924AF2394A7D3006683D7 /* MDInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E924AE2394A7D3006683D7 /* MDInstance.m */; };
@@ -171,6 +173,10 @@
 		0478A55D24235A9E00C6B5C7 /* EasyNavigationUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyNavigationUtils.h; sourceTree = "<group>"; };
 		0478A56F2423615200C6B5C7 /* UIImage+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Util.m"; sourceTree = "<group>"; };
 		0478A5702423615200C6B5C7 /* UIImage+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Util.h"; sourceTree = "<group>"; };
+		04D52652244558A50025CD4B /* NSDate+gyh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+gyh.m"; sourceTree = "<group>"; };
+		04D52653244558A50025CD4B /* NSDate+gyh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+gyh.h"; sourceTree = "<group>"; };
+		04D52655244558FE0025CD4B /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
+		04D52656244558FE0025CD4B /* NSString+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Util.m"; sourceTree = "<group>"; };
 		04E100422424614800C8081B /* GKCover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCover.h; sourceTree = "<group>"; };
 		04E100442424614800C8081B /* UIView+GKExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GKExtension.m"; sourceTree = "<group>"; };
 		04E100452424614800C8081B /* UIView+GKExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GKExtension.h"; sourceTree = "<group>"; };
@@ -290,6 +296,10 @@
 		0454440B23D43F8600808EEC /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				04D52655244558FE0025CD4B /* NSString+Util.h */,
+				04D52656244558FE0025CD4B /* NSString+Util.m */,
+				04D52653244558A50025CD4B /* NSDate+gyh.h */,
+				04D52652244558A50025CD4B /* NSDate+gyh.m */,
 				0478A4F62422061200C6B5C7 /* UICollectionViewLeftAlignedLayout.h */,
 				0478A4F52422061200C6B5C7 /* UICollectionViewLeftAlignedLayout.m */,
 				0478A5702423615200C6B5C7 /* UIImage+Util.h */,
@@ -714,6 +724,7 @@
 				04E924B32394AC5E006683D7 /* MDMethods.m in Sources */,
 				04689ECC23CC4B9100D2A786 /* SecretListTableViewCell.m in Sources */,
 				04F638B6242DF333005207B0 /* HFButton.m in Sources */,
+				04D52654244558A50025CD4B /* NSDate+gyh.m in Sources */,
 				0464295524445591008F600C /* AddSecretViewController.m in Sources */,
 				0478A5712423615200C6B5C7 /* UIImage+Util.m in Sources */,
 				0478A56224235A9E00C6B5C7 /* EasyNavigationView.m in Sources */,
@@ -735,6 +746,7 @@
 				04230FA82391020B00031B27 /* AppDelegate.m in Sources */,
 				0459757D23BA134200221DF3 /* SecretListViewController.m in Sources */,
 				046AC1552395124E00111DA2 /* MainCollectionViewCell.m in Sources */,
+				04D52657244558FE0025CD4B /* NSString+Util.m in Sources */,
 				044001E2242B2E59000AE57B /* SecretModel.m in Sources */,
 				0478A55F24235A9E00C6B5C7 /* EasyNavigationController.m in Sources */,
 				04E100492424614800C8081B /* GKCover.m in Sources */,

@@ -10,6 +10,8 @@
 #import <sys/utsname.h>
 #import "KeyChainStore.h"
 #import <AdSupport/AdSupport.h>
+#import "NSDate+gyh.h"
+#import "NSString+Util.h"
 
 @implementation MDMethods
 //+(CommonMethods *)sharedInstance{
@@ -1045,5 +1047,31 @@
     NSDate *tempDate = [dateFormatter dateFromString:str];//将字符串转换为时间对象
     NSString *timeStr = [NSString stringWithFormat:@"%ld", (long)[tempDate timeIntervalSince1970]*1000];//字符串转成时间戳,精确到毫秒*1000
     return timeStr;
+}
++(NSString *)changeTimeDate:(NSString *)getTime {
+    
+    if(![NSString isEmptyOfString:getTime]){
+        //获取后台穿过来的事件
+        NSDate * dateTime = [MDMethods getNSDateByString:getTime formate:@"yyyy-MM-dd HH:mm:ss"];
+        if(dateTime==nil){
+            dateTime = [MDMethods getNSDateByString:getTime formate:@"yyyy-MM-dd HH:mm"];
+        }
+        
+        if (dateTime.isThisYear) {
+            return [MDMethods getDateStringByFormateString:@"MM-dd HH:mm" date:dateTime] ;
+        } else { // 非今年
+            return  [MDMethods getDateStringByFormateString:@"yyyy-MM-dd HH:mm" date:dateTime] ;
+        }
+    }else{
+        return @"" ;
+    }
+}
+
++ (NSString*)getDateStringByFormateString:(NSString*)formateString date:(NSDate*)date{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:formateString];
+    NSString *strDate = [formatter stringFromDate:date];
+    return strDate;
 }
 @end
