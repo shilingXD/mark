@@ -12,11 +12,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkProject/&#x4e3b;&#x9875;/MainViewController.m"
-            timestampString = "608461521.7047729"
+            timestampString = "608636224.392695"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "-soulView"
             landmarkType = "7">
          </BreakpointContent>
@@ -29,11 +29,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkProject/&#x4e3b;&#x9875;/MainViewController.m"
-            timestampString = "608461521.705164"
+            timestampString = "608636224.39621"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "-soulView"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,11 +46,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkProject/&#x4e3b;&#x9875;/MainViewController.m"
-            timestampString = "608461521.705407"
+            timestampString = "608636224.396359"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "-soulView"
             landmarkType = "7">
          </BreakpointContent>
@@ -97,7 +97,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkProject/&#x5bc6;&#x7801;&#x672c;/controller/ListDetailViewController.m"
-            timestampString = "608549287.9419219"
+            timestampString = "608636224.396709"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "363"

@@ -52,18 +52,6 @@
     self.navigationView.backgroundView.image = nil ;
     self.navigationView.backgroundView.backgroundColor = TintColor;
     self.navigationView.lineView.backgroundColor = TintColor;
-    
-//    UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-//    UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"菜单"]];
-//    [leftView addSubview:image];
-//    [image mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.center.mas_equalTo(leftView);
-//    }];
-//    WeakBlock(self, weakSelf);
-//    [self.navigationView addLeftView:leftView callback:^(UIView *view) {
-//        [weakSelf Menu];
-//    }];
-//    [self.view addSubview:self.MenuView];
 }
 
 #pragma mark  - ------  头部-Banner  ------

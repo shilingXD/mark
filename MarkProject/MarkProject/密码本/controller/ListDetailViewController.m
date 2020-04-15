@@ -423,9 +423,17 @@
         self.editLabel.text = @"完成";
         
     } else {
-        [self.view endEditing:YES];
-        self.editLabel.text = @"编辑";
-        [self updateDB];
+        if ([NSString isEmptyOfString:self.namefield.text]) {
+            [MDMethods showTextMessage:@"名称不能为空"];
+        } else if ([NSString isEmptyOfString:self.Accountfield.text]) {
+            [MDMethods showTextMessage:@"帐户名不能为空"];
+        } else if ([NSString isEmptyOfString:self.Pwdfield.text]) {
+            [MDMethods showTextMessage:@"密码不能为空"];
+        } else {
+            [self.view endEditing:YES];
+            self.editLabel.text = @"编辑";
+            [self updateDB];
+        }
     }
     
 }
@@ -448,6 +456,10 @@
 }
 
 #pragma mark  - ------  fieldDelegate  ------
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.IconLabel.text = self.namefield.text.length >= 2?[_namefield.text substringToIndex:2]:_namefield.text;
+}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (textField == self.namefield)

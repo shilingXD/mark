@@ -59,6 +59,10 @@
 		0478A5712423615200C6B5C7 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A56F2423615200C6B5C7 /* UIImage+Util.m */; };
 		04D52654244558A50025CD4B /* NSDate+gyh.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52652244558A50025CD4B /* NSDate+gyh.m */; };
 		04D52657244558FE0025CD4B /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52656244558FE0025CD4B /* NSString+Util.m */; };
+		04D5265D2446E2800025CD4B /* PlanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D5265C2446E2800025CD4B /* PlanTableViewCell.m */; };
+		04D526612447047C0025CD4B /* PlanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D526602447047C0025CD4B /* PlanModel.m */; };
+		04D52665244710630025CD4B /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52663244710630025CD4B /* BaseView.m */; };
+		04D52669244711E90025CD4B /* AddPlanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52668244711E90025CD4B /* AddPlanView.m */; };
 		04E100482424614800C8081B /* UIView+GKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E100442424614800C8081B /* UIView+GKExtension.m */; };
 		04E100492424614800C8081B /* GKCover.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E100472424614800C8081B /* GKCover.m */; };
 		04E924AF2394A7D3006683D7 /* MDInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E924AE2394A7D3006683D7 /* MDInstance.m */; };
@@ -177,6 +181,15 @@
 		04D52653244558A50025CD4B /* NSDate+gyh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+gyh.h"; sourceTree = "<group>"; };
 		04D52655244558FE0025CD4B /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
 		04D52656244558FE0025CD4B /* NSString+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Util.m"; sourceTree = "<group>"; };
+		04D5265B2446E2800025CD4B /* PlanTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlanTableViewCell.h; sourceTree = "<group>"; };
+		04D5265C2446E2800025CD4B /* PlanTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlanTableViewCell.m; sourceTree = "<group>"; };
+		04D5265F2447047C0025CD4B /* PlanModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlanModel.h; sourceTree = "<group>"; };
+		04D526602447047C0025CD4B /* PlanModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlanModel.m; sourceTree = "<group>"; };
+		04D52663244710630025CD4B /* BaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseView.m; sourceTree = "<group>"; };
+		04D52664244710630025CD4B /* BaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseView.h; sourceTree = "<group>"; };
+		04D52666244711030025CD4B /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		04D52667244711E90025CD4B /* AddPlanView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddPlanView.h; sourceTree = "<group>"; };
+		04D52668244711E90025CD4B /* AddPlanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddPlanView.m; sourceTree = "<group>"; };
 		04E100422424614800C8081B /* GKCover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCover.h; sourceTree = "<group>"; };
 		04E100442424614800C8081B /* UIView+GKExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GKExtension.m"; sourceTree = "<group>"; };
 		04E100452424614800C8081B /* UIView+GKExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GKExtension.h"; sourceTree = "<group>"; };
@@ -239,7 +252,10 @@
 		04230FA52391020B00031B27 /* MarkProject */ = {
 			isa = PBXGroup;
 			children = (
+				04D52666244711030025CD4B /* Common.h */,
+				04230FBC2391024600031B27 /* PrefixHeader.pch */,
 				0464294B24440BC1008F600C /* MarkProject.entitlements */,
+				04D52662244710170025CD4B /* Base */,
 				04E924A92394A746006683D7 /* 公共方法 */,
 				04E924B02394AAF4006683D7 /* supporting file */,
 				0454440B23D43F8600808EEC /* Category */,
@@ -400,6 +416,8 @@
 		0464C7BE243EC1D70061902F /* 计划 */ = {
 			isa = PBXGroup;
 			children = (
+				04D5265E244704650025CD4B /* model */,
+				04D5265A2446E2530025CD4B /* view */,
 				0464C7C2243EC9340061902F /* PlanViewController.h */,
 				0464C7C3243EC9340061902F /* PlanViewController.m */,
 			);
@@ -484,6 +502,35 @@
 			path = EasyNavButton;
 			sourceTree = "<group>";
 		};
+		04D5265A2446E2530025CD4B /* view */ = {
+			isa = PBXGroup;
+			children = (
+				04D5265B2446E2800025CD4B /* PlanTableViewCell.h */,
+				04D5265C2446E2800025CD4B /* PlanTableViewCell.m */,
+				04D52667244711E90025CD4B /* AddPlanView.h */,
+				04D52668244711E90025CD4B /* AddPlanView.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		04D5265E244704650025CD4B /* model */ = {
+			isa = PBXGroup;
+			children = (
+				04D5265F2447047C0025CD4B /* PlanModel.h */,
+				04D526602447047C0025CD4B /* PlanModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		04D52662244710170025CD4B /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				04D52664244710630025CD4B /* BaseView.h */,
+				04D52663244710630025CD4B /* BaseView.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		04E100412424614800C8081B /* GKCover */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,7 +572,6 @@
 			children = (
 				0464C7B8243D7B3E0061902F /* soul.json */,
 				04230FAF2391020E00031B27 /* Assets.xcassets */,
-				04230FBC2391024600031B27 /* PrefixHeader.pch */,
 			);
 			path = "supporting file";
 			sourceTree = "<group>";
@@ -711,6 +757,7 @@
 				044001E6242B49AB000AE57B /* WMDragView.m in Sources */,
 				04F638B1242DF333005207B0 /* PreWebVC.m in Sources */,
 				0478A56E24235A9E00C6B5C7 /* EasyNavigationView+Scroll.m in Sources */,
+				04D52669244711E90025CD4B /* AddPlanView.m in Sources */,
 				045AA92124343AB000357617 /* MDEditViewController.m in Sources */,
 				046AC1582396479B00111DA2 /* NextViewController.m in Sources */,
 				0478A56624235A9E00C6B5C7 /* UIView+EasyNavigationExt.m in Sources */,
@@ -751,7 +798,10 @@
 				0478A55F24235A9E00C6B5C7 /* EasyNavigationController.m in Sources */,
 				04E100492424614800C8081B /* GKCover.m in Sources */,
 				0478A56424235A9E00C6B5C7 /* NSObject+EasyKVO.m in Sources */,
+				04D5265D2446E2800025CD4B /* PlanTableViewCell.m in Sources */,
 				0464C7CA243ECA0D0061902F /* MemoViewController.m in Sources */,
+				04D526612447047C0025CD4B /* PlanModel.m in Sources */,
+				04D52665244710630025CD4B /* BaseView.m in Sources */,
 				04E100482424614800C8081B /* UIView+GKExtension.m in Sources */,
 				0464294A244409B8008F600C /* XYString.m in Sources */,
 				045AA91A2432D9F500357617 /* DiaryViewController.m in Sources */,
@@ -906,7 +956,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/MarkProject/supporting file/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/MarkProject/PrefixHeader.pch";
 				INFOPLIST_FILE = MarkProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -931,7 +981,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/MarkProject/supporting file/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/MarkProject/PrefixHeader.pch";
 				INFOPLIST_FILE = MarkProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

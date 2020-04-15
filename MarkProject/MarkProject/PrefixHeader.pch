@@ -47,5 +47,6 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define Safe(string) string?string:@""
 
 
+#import "Common.h"
 #endif /* PrefixHeader_pch */
 
