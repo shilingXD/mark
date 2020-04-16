@@ -14,6 +14,23 @@
 		04230FB62391020E00031B27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04230FB52391020E00031B27 /* main.m */; };
 		044001E2242B2E59000AE57B /* SecretModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 044001E1242B2E59000AE57B /* SecretModel.m */; };
 		044001E6242B49AB000AE57B /* WMDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 044001E4242B49AB000AE57B /* WMDragView.m */; };
+		04491C1D244854A80029530E /* LXCalendarWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04491C0C244854A80029530E /* LXCalendarWeekView.m */; };
+		04491C1E244854A80029530E /* LXCalendarHearder.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04491C0E244854A80029530E /* LXCalendarHearder.xib */; };
+		04491C1F244854A80029530E /* LXCalendarHearder.m in Sources */ = {isa = PBXBuildFile; fileRef = 04491C10244854A80029530E /* LXCalendarHearder.m */; };
+		04491C20244854A80029530E /* LXCalenderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04491C11244854A80029530E /* LXCalenderCell.xib */; };
+		04491C21244854A80029530E /* LXCalendarDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04491C13244854A80029530E /* LXCalendarDayModel.m */; };
+		04491C22244854A80029530E /* NSString+NCDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04491C14244854A80029530E /* NSString+NCDate.m */; };
+		04491C23244854A80029530E /* LXCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04491C16244854A80029530E /* LXCalendarView.m */; };
+		04491C24244854A80029530E /* NSDate+GFCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04491C18244854A80029530E /* NSDate+GFCalendar.m */; };
+		04491C25244854A80029530E /* LXCalendarMonthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04491C1A244854A80029530E /* LXCalendarMonthModel.m */; };
+		04491C26244854A80029530E /* LXCalenderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04491C1C244854A80029530E /* LXCalenderCell.m */; };
+		04491C292448553C0029530E /* UIView+FTCornerdious.m in Sources */ = {isa = PBXBuildFile; fileRef = 04491C272448553C0029530E /* UIView+FTCornerdious.m */; };
+		04491C2C2448556F0029530E /* UIView+LX_Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 04491C2B2448556F0029530E /* UIView+LX_Frame.m */; };
+		04491C2F244855E50029530E /* UILabel+LXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04491C2E244855E50029530E /* UILabel+LXLabel.m */; };
+		04491C32244856050029530E /* UIColor+Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 04491C31244856050029530E /* UIColor+Expanded.m */; };
+		04491C35244856260029530E /* LxButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04491C34244856260029530E /* LxButton.m */; };
+		04491C392448649E0029530E /* AddPlanNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04491C382448649E0029530E /* AddPlanNameView.m */; };
+		04491C3B244864B40029530E /* AddPlanNameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04491C3A244864B40029530E /* AddPlanNameView.xib */; };
 		0454440723D1B44900808EEC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0454440623D1B44900808EEC /* libsqlite3.tbd */; };
 		0459757D23BA134200221DF3 /* SecretListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0459757C23BA134200221DF3 /* SecretListViewController.m */; };
 		045AA91A2432D9F500357617 /* DiaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045AA9192432D9F500357617 /* DiaryViewController.m */; };
@@ -67,6 +84,9 @@
 		04E100492424614800C8081B /* GKCover.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E100472424614800C8081B /* GKCover.m */; };
 		04E924AF2394A7D3006683D7 /* MDInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E924AE2394A7D3006683D7 /* MDInstance.m */; };
 		04E924B32394AC5E006683D7 /* MDMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E924B22394AC5E006683D7 /* MDMethods.m */; };
+		04F323342447F13F00F16923 /* AddPlanView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F323332447F13F00F16923 /* AddPlanView.xib */; };
+		04F32339244830A500F16923 /* DoubleSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F32337244830A400F16923 /* DoubleSliderView.m */; };
+		04F3233A244830A500F16923 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F32338244830A400F16923 /* UIView+Extension.m */; };
 		04F638B0242DF333005207B0 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F638A2242DF333005207B0 /* Roboto-Light.ttf */; };
 		04F638B1242DF333005207B0 /* PreWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F638A3242DF333005207B0 /* PreWebVC.m */; };
 		04F638B2242DF333005207B0 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F638A4242DF333005207B0 /* Roboto-Regular.ttf */; };
@@ -93,6 +113,38 @@
 		044001E1242B2E59000AE57B /* SecretModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SecretModel.m; path = "MarkProject/密码本/model/SecretModel.m"; sourceTree = SOURCE_ROOT; };
 		044001E4242B49AB000AE57B /* WMDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDragView.m; sourceTree = "<group>"; };
 		044001E5242B49AB000AE57B /* WMDragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDragView.h; sourceTree = "<group>"; };
+		04491C0A244854A80029530E /* NSString+NCDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NCDate.h"; sourceTree = "<group>"; };
+		04491C0B244854A80029530E /* NSDate+GFCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+GFCalendar.h"; sourceTree = "<group>"; };
+		04491C0C244854A80029530E /* LXCalendarWeekView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCalendarWeekView.m; sourceTree = "<group>"; };
+		04491C0D244854A80029530E /* LXCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCalendarView.h; sourceTree = "<group>"; };
+		04491C0E244854A80029530E /* LXCalendarHearder.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXCalendarHearder.xib; sourceTree = "<group>"; };
+		04491C0F244854A80029530E /* LXCalendarMonthModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCalendarMonthModel.h; sourceTree = "<group>"; };
+		04491C10244854A80029530E /* LXCalendarHearder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCalendarHearder.m; sourceTree = "<group>"; };
+		04491C11244854A80029530E /* LXCalenderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXCalenderCell.xib; sourceTree = "<group>"; };
+		04491C12244854A80029530E /* LXCalenderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCalenderCell.h; sourceTree = "<group>"; };
+		04491C13244854A80029530E /* LXCalendarDayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCalendarDayModel.m; sourceTree = "<group>"; };
+		04491C14244854A80029530E /* NSString+NCDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NCDate.m"; sourceTree = "<group>"; };
+		04491C15244854A80029530E /* LXCalender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCalender.h; sourceTree = "<group>"; };
+		04491C16244854A80029530E /* LXCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCalendarView.m; sourceTree = "<group>"; };
+		04491C17244854A80029530E /* LXCalendarWeekView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCalendarWeekView.h; sourceTree = "<group>"; };
+		04491C18244854A80029530E /* NSDate+GFCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+GFCalendar.m"; sourceTree = "<group>"; };
+		04491C19244854A80029530E /* LXCalendarHearder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCalendarHearder.h; sourceTree = "<group>"; };
+		04491C1A244854A80029530E /* LXCalendarMonthModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCalendarMonthModel.m; sourceTree = "<group>"; };
+		04491C1B244854A80029530E /* LXCalendarDayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCalendarDayModel.h; sourceTree = "<group>"; };
+		04491C1C244854A80029530E /* LXCalenderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCalenderCell.m; sourceTree = "<group>"; };
+		04491C272448553C0029530E /* UIView+FTCornerdious.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FTCornerdious.m"; sourceTree = "<group>"; };
+		04491C282448553C0029530E /* UIView+FTCornerdious.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FTCornerdious.h"; sourceTree = "<group>"; };
+		04491C2A2448556F0029530E /* UIView+LX_Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LX_Frame.h"; sourceTree = "<group>"; };
+		04491C2B2448556F0029530E /* UIView+LX_Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LX_Frame.m"; sourceTree = "<group>"; };
+		04491C2D244855E40029530E /* UILabel+LXLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+LXLabel.h"; sourceTree = "<group>"; };
+		04491C2E244855E50029530E /* UILabel+LXLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+LXLabel.m"; sourceTree = "<group>"; };
+		04491C30244856050029530E /* UIColor+Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Expanded.h"; sourceTree = "<group>"; };
+		04491C31244856050029530E /* UIColor+Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Expanded.m"; sourceTree = "<group>"; };
+		04491C33244856260029530E /* LxButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxButton.h; sourceTree = "<group>"; };
+		04491C34244856260029530E /* LxButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LxButton.m; sourceTree = "<group>"; };
+		04491C372448649E0029530E /* AddPlanNameView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddPlanNameView.h; sourceTree = "<group>"; };
+		04491C382448649E0029530E /* AddPlanNameView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddPlanNameView.m; sourceTree = "<group>"; };
+		04491C3A244864B40029530E /* AddPlanNameView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddPlanNameView.xib; sourceTree = "<group>"; };
 		0454440623D1B44900808EEC /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		0459757B23BA134200221DF3 /* SecretListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecretListViewController.h; sourceTree = "<group>"; };
 		0459757C23BA134200221DF3 /* SecretListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecretListViewController.m; sourceTree = "<group>"; };
@@ -199,6 +251,11 @@
 		04E924AE2394A7D3006683D7 /* MDInstance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDInstance.m; sourceTree = "<group>"; };
 		04E924B12394AC5E006683D7 /* MDMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDMethods.h; sourceTree = "<group>"; };
 		04E924B22394AC5E006683D7 /* MDMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDMethods.m; sourceTree = "<group>"; };
+		04F323332447F13F00F16923 /* AddPlanView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddPlanView.xib; sourceTree = "<group>"; };
+		04F32335244830A400F16923 /* DoubleSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleSliderView.h; sourceTree = "<group>"; };
+		04F32336244830A400F16923 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Extension.h"; path = "../../计划/view/UIView+Extension.h"; sourceTree = "<group>"; };
+		04F32337244830A400F16923 /* DoubleSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleSliderView.m; sourceTree = "<group>"; };
+		04F32338244830A400F16923 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Extension.m"; path = "../../计划/view/UIView+Extension.m"; sourceTree = "<group>"; };
 		04F638A2242DF333005207B0 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		04F638A3242DF333005207B0 /* PreWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreWebVC.m; sourceTree = "<group>"; };
 		04F638A4242DF333005207B0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -288,6 +345,42 @@
 			path = WMDragView;
 			sourceTree = "<group>";
 		};
+		04491C09244854A80029530E /* LXCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				04491C33244856260029530E /* LxButton.h */,
+				04491C34244856260029530E /* LxButton.m */,
+				04491C30244856050029530E /* UIColor+Expanded.h */,
+				04491C31244856050029530E /* UIColor+Expanded.m */,
+				04491C2D244855E40029530E /* UILabel+LXLabel.h */,
+				04491C2E244855E50029530E /* UILabel+LXLabel.m */,
+				04491C2A2448556F0029530E /* UIView+LX_Frame.h */,
+				04491C2B2448556F0029530E /* UIView+LX_Frame.m */,
+				04491C282448553C0029530E /* UIView+FTCornerdious.h */,
+				04491C272448553C0029530E /* UIView+FTCornerdious.m */,
+				04491C0A244854A80029530E /* NSString+NCDate.h */,
+				04491C0B244854A80029530E /* NSDate+GFCalendar.h */,
+				04491C0C244854A80029530E /* LXCalendarWeekView.m */,
+				04491C0D244854A80029530E /* LXCalendarView.h */,
+				04491C0E244854A80029530E /* LXCalendarHearder.xib */,
+				04491C0F244854A80029530E /* LXCalendarMonthModel.h */,
+				04491C10244854A80029530E /* LXCalendarHearder.m */,
+				04491C11244854A80029530E /* LXCalenderCell.xib */,
+				04491C12244854A80029530E /* LXCalenderCell.h */,
+				04491C13244854A80029530E /* LXCalendarDayModel.m */,
+				04491C14244854A80029530E /* NSString+NCDate.m */,
+				04491C15244854A80029530E /* LXCalender.h */,
+				04491C16244854A80029530E /* LXCalendarView.m */,
+				04491C17244854A80029530E /* LXCalendarWeekView.h */,
+				04491C18244854A80029530E /* NSDate+GFCalendar.m */,
+				04491C19244854A80029530E /* LXCalendarHearder.h */,
+				04491C1A244854A80029530E /* LXCalendarMonthModel.m */,
+				04491C1B244854A80029530E /* LXCalendarDayModel.h */,
+				04491C1C244854A80029530E /* LXCalenderCell.m */,
+			);
+			path = LXCalendar;
+			sourceTree = "<group>";
+		};
 		044A7DC1242CA4E800C9D9F7 /* 账单 */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,6 +415,8 @@
 				0478A56F2423615200C6B5C7 /* UIImage+Util.m */,
 				0478A52724233F3900C6B5C7 /* NSString+PinYin.h */,
 				0478A52824233F3900C6B5C7 /* NSString+PinYin.m */,
+				04F32336244830A400F16923 /* UIView+Extension.h */,
+				04F32338244830A400F16923 /* UIView+Extension.m */,
 			);
 			name = Category;
 			path = "公共方法/Category";
@@ -427,6 +522,7 @@
 		0478A4E12422034300C6B5C7 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				04491C09244854A80029530E /* LXCalendar */,
 				04F638A8242DF333005207B0 /* FIREditPage */,
 				04F638A1242DF333005207B0 /* FIRPreWebview */,
 				044001E3242B49AB000AE57B /* WMDragView */,
@@ -505,10 +601,16 @@
 		04D5265A2446E2530025CD4B /* view */ = {
 			isa = PBXGroup;
 			children = (
+				04F32335244830A400F16923 /* DoubleSliderView.h */,
+				04F32337244830A400F16923 /* DoubleSliderView.m */,
 				04D5265B2446E2800025CD4B /* PlanTableViewCell.h */,
 				04D5265C2446E2800025CD4B /* PlanTableViewCell.m */,
 				04D52667244711E90025CD4B /* AddPlanView.h */,
 				04D52668244711E90025CD4B /* AddPlanView.m */,
+				04F323332447F13F00F16923 /* AddPlanView.xib */,
+				04491C372448649E0029530E /* AddPlanNameView.h */,
+				04491C382448649E0029530E /* AddPlanNameView.m */,
+				04491C3A244864B40029530E /* AddPlanNameView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -691,7 +793,11 @@
 				04230FB32391020E00031B27 /* LaunchScreen.storyboard in Resources */,
 				04230FB02391020E00031B27 /* Assets.xcassets in Resources */,
 				04F638B0242DF333005207B0 /* Roboto-Light.ttf in Resources */,
+				04F323342447F13F00F16923 /* AddPlanView.xib in Resources */,
+				04491C3B244864B40029530E /* AddPlanNameView.xib in Resources */,
 				04F638B3242DF333005207B0 /* markdown.html in Resources */,
+				04491C20244854A80029530E /* LXCalenderCell.xib in Resources */,
+				04491C1E244854A80029530E /* LXCalendarHearder.xib in Resources */,
 				04230FAE2391020B00031B27 /* Main.storyboard in Resources */,
 				04F638B4242DF333005207B0 /* marked.min.js in Resources */,
 				04F638B8242DF333005207B0 /* sample1.md in Resources */,
@@ -752,23 +858,31 @@
 				0478A56024235A9E00C6B5C7 /* EasyNavigationOptions.m in Sources */,
 				0478A56724235A9E00C6B5C7 /* UIScrollView+EasyNavigationExt.m in Sources */,
 				0478A5352423491E00C6B5C7 /* TableViewSearchHeaderView.m in Sources */,
+				04491C26244854A80029530E /* LXCalenderCell.m in Sources */,
 				0464C7C7243EC9AA0061902F /* BillViewController.m in Sources */,
+				04491C23244854A80029530E /* LXCalendarView.m in Sources */,
 				0478A52924233F3900C6B5C7 /* NSString+PinYin.m in Sources */,
 				044001E6242B49AB000AE57B /* WMDragView.m in Sources */,
+				04F32339244830A500F16923 /* DoubleSliderView.m in Sources */,
 				04F638B1242DF333005207B0 /* PreWebVC.m in Sources */,
 				0478A56E24235A9E00C6B5C7 /* EasyNavigationView+Scroll.m in Sources */,
 				04D52669244711E90025CD4B /* AddPlanView.m in Sources */,
 				045AA92124343AB000357617 /* MDEditViewController.m in Sources */,
 				046AC1582396479B00111DA2 /* NextViewController.m in Sources */,
 				0478A56624235A9E00C6B5C7 /* UIView+EasyNavigationExt.m in Sources */,
+				04491C25244854A80029530E /* LXCalendarMonthModel.m in Sources */,
 				0478A52F24233F6800C6B5C7 /* SectionIndicatorView.m in Sources */,
 				045AA91E2432E04100357617 /* SuiXiangCollectionViewCell.m in Sources */,
 				0478A52E24233F6800C6B5C7 /* IndexView.m in Sources */,
+				04491C1D244854A80029530E /* LXCalendarWeekView.m in Sources */,
 				0478A56D24235A9E00C6B5C7 /* EasyNavigationButton.m in Sources */,
+				04491C32244856050029530E /* UIColor+Expanded.m in Sources */,
 				0464C7C1243EC8390061902F /* SettingViewController.m in Sources */,
 				045C8EEC24449CA2007EAB6C /* ListDetailViewController.m in Sources */,
 				0478A56324235A9E00C6B5C7 /* UITableViewController+EasyNavigationExt.m in Sources */,
 				04E924B32394AC5E006683D7 /* MDMethods.m in Sources */,
+				04491C2F244855E50029530E /* UILabel+LXLabel.m in Sources */,
+				04491C392448649E0029530E /* AddPlanNameView.m in Sources */,
 				04689ECC23CC4B9100D2A786 /* SecretListTableViewCell.m in Sources */,
 				04F638B6242DF333005207B0 /* HFButton.m in Sources */,
 				04D52654244558A50025CD4B /* NSDate+gyh.m in Sources */,
@@ -785,6 +899,7 @@
 				0478A4F92422061400C6B5C7 /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				04F638B7242DF333005207B0 /* FIREditPageVC.m in Sources */,
 				0478A56824235A9E00C6B5C7 /* UIViewController+EasyNavigationExt.m in Sources */,
+				04491C22244854A80029530E /* NSString+NCDate.m in Sources */,
 				0478A56924235A9E00C6B5C7 /* EasyNavigationUtils.m in Sources */,
 				04230FB62391020E00031B27 /* main.m in Sources */,
 				0464294E24440C23008F600C /* KeyChainStore.m in Sources */,
@@ -798,11 +913,18 @@
 				0478A55F24235A9E00C6B5C7 /* EasyNavigationController.m in Sources */,
 				04E100492424614800C8081B /* GKCover.m in Sources */,
 				0478A56424235A9E00C6B5C7 /* NSObject+EasyKVO.m in Sources */,
+				04F3233A244830A500F16923 /* UIView+Extension.m in Sources */,
 				04D5265D2446E2800025CD4B /* PlanTableViewCell.m in Sources */,
+				04491C2C2448556F0029530E /* UIView+LX_Frame.m in Sources */,
+				04491C1F244854A80029530E /* LXCalendarHearder.m in Sources */,
+				04491C35244856260029530E /* LxButton.m in Sources */,
 				0464C7CA243ECA0D0061902F /* MemoViewController.m in Sources */,
 				04D526612447047C0025CD4B /* PlanModel.m in Sources */,
+				04491C21244854A80029530E /* LXCalendarDayModel.m in Sources */,
 				04D52665244710630025CD4B /* BaseView.m in Sources */,
 				04E100482424614800C8081B /* UIView+GKExtension.m in Sources */,
+				04491C24244854A80029530E /* NSDate+GFCalendar.m in Sources */,
+				04491C292448553C0029530E /* UIView+FTCornerdious.m in Sources */,
 				0464294A244409B8008F600C /* XYString.m in Sources */,
 				045AA91A2432D9F500357617 /* DiaryViewController.m in Sources */,
 				04F638B5242DF333005207B0 /* GNEditShortcutKeyBar.m in Sources */,

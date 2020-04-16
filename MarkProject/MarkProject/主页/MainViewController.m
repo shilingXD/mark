@@ -23,8 +23,6 @@
 @interface MainViewController ()<SDCycleScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *mainCollectionView;
 @property (nonatomic, strong) NSArray *array;///<<#注释#>
-@property (nonatomic, strong) UIView *MenuView;///<菜单
-@property (nonatomic, assign) BOOL MenuOpen;///<菜单是否打开
 @property (nonatomic, strong) NSArray *soulArray;///<毒鸡汤数组
 @property (nonatomic, strong) UIView *BannerView;///<
 @property (nonatomic, strong) UIView *ContentView;///<
@@ -199,20 +197,7 @@
     NSDictionary *soulDic = _soulArray[num];
     soul.text = [NSString stringWithFormat:@"       %@ — 毒鸡汤",soulDic[@"content"]];
 }
--(void)Menu{
-    if (!_MenuOpen) {
-        [UIView animateWithDuration:0.25 animations:^{
-            self.view.frame = CGRectMake(SCREEN_WIDTH*0.8, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-            //            self.MenuView.frame = CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT);
-        }];
-    } else {
-        [UIView animateWithDuration:0.25 animations:^{
-            self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-            //            self.MenuView.frame = CGRectMake(-SCREEN_WIDTH*0.8, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT);
-        }];
-    }
-    _MenuOpen = !_MenuOpen;
-}
+
 -(void)functionTap:(UITapGestureRecognizer *)tap
 {
     BillViewController *vc1 = [[BillViewController alloc] init];
@@ -302,16 +287,6 @@
         make.bottom.mas_equalTo(view.mas_bottom).offset(-15);
     }];
     return view;
-}
-#pragma mark  - ------  setter  ------
-- (UIView *)MenuView
-{
-    if (!_MenuView) {
-        _MenuView = [[UIView alloc] initWithFrame:CGRectMake(-SCREEN_WIDTH*0.8, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT)];
-        _MenuView.backgroundColor = [UIColor whiteColor];
-        
-    }
-    return _MenuView;
 }
 
 #pragma mark  - ------  SDCycleScrollViewDelegate  ------

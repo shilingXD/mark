@@ -11,10 +11,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PlanModel : NSObject
-@property (nonatomic, copy) NSString *TimeStr;///<日程时间
+@property (nonatomic, assign) int PlanID;///<计划编号
+@property (nonatomic, copy) NSString *PlanDayDate;///<当日日程的时间 yyyy-mm-dd
+@property (nonatomic, copy) NSString *PlanTitle;///<计划标题
 @property (nonatomic, strong) NSMutableArray *array;///<该日的计划
-@property (nonatomic, copy) NSString *beginTime;///<计划开始时间
-@property (nonatomic, copy) NSString *endTime;///<结束时间
+@property (nonatomic, copy) NSString *PlanItemBeginDate;///<计划开始时间 hh:mm
+@property (nonatomic, copy) NSString *PlanItemEndDate;///<结束时间
+@property (nonatomic, copy) NSString *currentTime;///<时间戳
 
 @end
 

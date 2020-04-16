@@ -254,7 +254,7 @@
     } else if ([NSString isEmptyOfString:self.Pwdfield.text]) {
         [MDMethods showTextMessage:@"密码不能为空"];
     } else {
-        FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"SecretList.sqlite" Success:^{
+        FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"MarkProject.sqlite" Success:^{
             
         } Fail:^{
             return ;

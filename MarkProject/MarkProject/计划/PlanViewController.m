@@ -8,7 +8,8 @@
 
 #import "PlanViewController.h"
 #import "PlanTableViewCell.h"
-
+#import "AddPlanView.h"
+#import "WMDragView.h"
 @interface PlanViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableview;
 @end
@@ -22,7 +23,7 @@
         make.top.mas_equalTo(self.navigationView.mas_bottom);
         make.left.right.bottom.mas_equalTo(self.view);
     }];
-    
+    [self AddButton];
 }
 -(void)setNav
 {
@@ -31,6 +32,34 @@
     self.navigationView.backgroundView.image = nil ;
     self.navigationView.backgroundView.backgroundColor = TintColor;
     self.navigationView.lineView.backgroundColor = TintColor;
+    
+    
+}
+-(void)AddButton
+{
+    WMDragView *dragView = [[WMDragView alloc] init];
+    dragView.backgroundColor = rgba(85, 85, 85, 1);
+    dragView.layer.masksToBounds = YES;
+    dragView.layer.cornerRadius = 25;
+    WeakBlock(self, weak_self);
+    dragView.clickDragViewBlock = ^(WMDragView *dragView) {
+        AddPlanView *view = [AddPlanView init];
+        [GKCover coverFrom:self.view contentView:view style:GKCoverStyleTranslucent showStyle:GKCoverShowStyleCenter showAnimStyle:GKCoverShowAnimStyleCenter hideAnimStyle:GKCoverHideAnimStyleCenter notClick:YES];
+    };
+    [self.view addSubview:dragView];
+    [dragView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(50, 50));
+        make.right.mas_equalTo(self.view).offset(-25);
+        make.bottom.mas_equalTo(self.view).offset(-25);
+    }];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"增加"]];
+    [dragView addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(dragView);
+    }];
+    
+    
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
