@@ -8,6 +8,7 @@
 
 #import "BaseView.h"
 #import "DoubleSliderView.h"
+#import "PlanModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger curMaxMinutes;
 @property (nonatomic, strong) DoubleSliderView *doubleSliderView;
 @property (nonatomic, strong) LXCalendarView *calenderView;
+@property (nonatomic, strong) PlanModel *model;///<<#注释#>
 
 + (instancetype)init;
 @end

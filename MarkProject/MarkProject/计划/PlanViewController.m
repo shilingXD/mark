@@ -8,10 +8,14 @@
 
 #import "PlanViewController.h"
 #import "PlanTableViewCell.h"
-#import "AddPlanView.h"
+#import "AddPlanNameView.h"
 #import "WMDragView.h"
+#import "PlanModel.h"
 @interface PlanViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableview;
+@property (nonatomic, strong) NSMutableArray<PlanModel *> *dataArray;///<<#注释#>
+@property (nonatomic, strong) NSMutableArray *DayArray;///<日数组
+@property (nonatomic, strong) NSMutableArray *MonthArray;///<月数组
 @end
 
 @implementation PlanViewController
@@ -43,8 +47,8 @@
     dragView.layer.cornerRadius = 25;
     WeakBlock(self, weak_self);
     dragView.clickDragViewBlock = ^(WMDragView *dragView) {
-        AddPlanView *view = [AddPlanView init];
-        [GKCover coverFrom:self.view contentView:view style:GKCoverStyleTranslucent showStyle:GKCoverShowStyleCenter showAnimStyle:GKCoverShowAnimStyleCenter hideAnimStyle:GKCoverHideAnimStyleCenter notClick:YES];
+        AddPlanNameView *view = [AddPlanNameView init];
+        [GKCover coverFrom:weak_self.view contentView:view style:GKCoverStyleTranslucent showStyle:GKCoverShowStyleCenter showAnimStyle:GKCoverShowAnimStyleCenter hideAnimStyle:GKCoverHideAnimStyleCenter notClick:YES];
     };
     [self.view addSubview:dragView];
     [dragView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -159,5 +163,46 @@
     }
     return _tableview;
 }
-
+-(void)getPlanList
+{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"MarkProject.sqlite" Success:^{} Fail:^{
+        return ;
+    }];
+    NSString *sql = @"select  PlanID,PlanTitle,PlanDayDate,PlanItemBeginDate,priority,PlanItemEndDate,currentTime FROM SecretList";
+    FMResultSet *rs = [db executeQuery:sql];
+    [self.dataArray removeAllObjects];
+    while ([rs next]) {
+        PlanModel *model = [[PlanModel alloc] init];
+        model.PlanID = [rs intForColumn:@"PlanID"];
+        model.priority = [rs intForColumn:@"priority"];
+        model.PlanTitle = [rs stringForColumn:@"PlanTitle"];
+        model.PlanDayDate = [rs stringForColumn:@"PlanDayDate"];
+        model.PlanItemBeginDate = [rs intForColumn:@"PlanItemBeginDate"];
+        model.PlanItemEndDate = [rs intForColumn:@"PlanItemEndDate"];
+        model.currentTime = [rs stringForColumn:@"currentTime"];
+        [self.dataArray addObject:model];
+    }
+    
+}
+- (NSMutableArray<PlanModel *> *)dataArray
+{
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
+}
+- (NSMutableArray *)DayArray
+{
+    if (!_DayArray) {
+        _DayArray = [NSMutableArray array];
+    }
+    return _DayArray;
+}
+- (NSMutableArray *)MonthArray
+{
+    if (!_MonthArray) {
+        _MonthArray = [NSMutableArray array];
+    }
+    return _MonthArray;
+}
 @end

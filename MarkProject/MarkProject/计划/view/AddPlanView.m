@@ -11,7 +11,6 @@
 @implementation AddPlanView
 + (instancetype)init {
     AddPlanView *view = [AddPlanView loadFirstNib:CGRectMake(0, 0, SCREEN_WIDTH-50, 470)];
-//    [view setHidden:YES];
     [view initUI];
     return view;
 }
@@ -20,6 +19,7 @@
     self.backgroundColor = [UIColor whiteColor];
     self.layer.cornerRadius = 5;
     self.layer.masksToBounds = YES;
+    
     
     self.calenderView =[[LXCalendarView alloc] initWithFrame:CGRectMake(10, 0, self.width - 20, 0)];
     
@@ -47,9 +47,10 @@
     [self addSubview:self.calenderView];
     
     
-    
+    WeakBlock(self, weak_self);
     self.calenderView.selectBlock = ^(NSInteger year, NSInteger month, NSInteger day) {
         NSLog(@"%ld年 - %ld月 - %ld日",year,month,day);
+        weak_self.model.PlanDayDate = [NSString stringWithFormat:@"%ld-%ld-%ld",year,month,day];
     };
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -89,6 +90,14 @@
         make.left.mas_equalTo(self.mas_left).offset(10);
         make.size.mas_equalTo(CGSizeMake(self.width-20, 55));
     }];
+    
+    NSDate *currentDate = [NSDate date];//获取当前时间，日期
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];// 创建一个时间格式化对象
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];//设定时间格式,这里可以设置成自己需要的格式
+     self.model.PlanDayDate = [dateFormatter stringFromDate:currentDate];//将时间转化成字符串
+    self.model.PlanItemBeginDate = 0;
+    self.model.PlanItemEndDate = 288 * 5;
+    
 }
 - (IBAction)cancelClick:(id)sender {
     [GKCover hideCover];
@@ -96,11 +105,20 @@
 - (IBAction)sureClick:(id)sender {
     
     FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"MarkProject.sqlite" Success:^{} Fail:^{return;}];
-    NSString *createTableSqlString = @"CREATE TABLE IF NOT EXISTS PlanList (id integer PRIMARY KEY AUTOINCREMENT, Name text NOT NULL, NameURL text, Account text NOT NULL, PassWord text NOT NULL, Note text, CreateTime text NOT NULL, UpdateTime text NOT NULL, CurrentTime integer NOT NULL)";
+    NSString *createTableSqlString = @"CREATE TABLE IF NOT EXISTS PlanList (PlanID integer PRIMARY KEY AUTOINCREMENT, PlanTitle text NOT NULL, PlanDayDate text NOT NULL, priority integer NOT NULL, PlanItemBeginDate integer NOT NULL, PlanItemEndDate integer NOT NULL, CurrentTime integer NOT NULL)";
     [db executeUpdate:createTableSqlString];
+    
+    BOOL result = [db executeUpdateWithFormat:@"insert into PlanList (PlanTitle,PlanDayDate,priority,PlanItemBeginDate,PlanItemEndDate,currentTime) values (%@,%@,%d,%d,%d,%@)",self.model.PlanTitle,self.model.PlanDayDate,self.model.priority,self.model.PlanItemBeginDate,self.model.PlanItemEndDate,[MDMethods currentTimeStr]];
+    
+    if (result) {
+        NSLog(@"插入成功");
+    } else {
+        NSLog(@"插入失败");
+        return;
+    }
     [db close];
+    [GKCover hideCover];
 }
-
 #pragma mark - action
 //根据值获取整数
 
@@ -142,14 +160,13 @@
 - (void)changeAgeTipsText {
     NSString *from = [self dealWithTotalTime:self.curMinMinutes];
     NSString *to = [self dealWithTotalTime:self.curMaxMinutes];
+    self.model.PlanItemBeginDate = (int)self.curMinMinutes * 5;
+    self.model.PlanItemEndDate = (int)self.curMaxMinutes * 5;
     if ((self.curMaxMinutes - self.curMinMinutes) == 288) {
         self.timeLabel.text = @"时间段: 全天";
     }else {
         self.timeLabel.text = [NSString stringWithFormat:@"时间段: %@ ~ %@", from, to];
     }
-//    [self.ageTipsLabel sizeToFit];
-//    self.ageTipsLabel.centerY = self.ageLabel.centerY;
-//    self.ageTipsLabel.x = self.ageLabel.right + 7;
 }
 
 - (DoubleSliderView *)doubleSliderView {
@@ -167,6 +184,13 @@
         [self addSubview:_doubleSliderView];
     }
     return _doubleSliderView;
+}
+- (PlanModel *)model
+{
+    if (!_model) {
+        _model = [[PlanModel alloc] init];
+    }
+    return _model;
 }
 //转换为00：00
 - (NSString *)dealWithTotalTime:(NSInteger)totalTime {

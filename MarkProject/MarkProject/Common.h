@@ -15,6 +15,7 @@
 #pragma mark  - ------  Category  ------
 #import "UIView+Extension.h"
 #import "UIImage+Util.h"
+#import "NSString+Util.h"
 
 #pragma mark  - ------  Tool  ------
 #import "LXCalender.h"
