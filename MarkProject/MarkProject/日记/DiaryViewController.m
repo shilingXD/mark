@@ -12,6 +12,7 @@
 #import "WMDragView.h"
 #import "NextViewController.h"
 #import "FIREditPageVC.h"
+#import "NewfileView.h"
 
 @interface DiaryViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;///<<#注释#>
@@ -81,7 +82,7 @@
         make.size.mas_equalTo(CGSizeMake(70, 70));
     }];
     UILabel *label1 = [[UILabel alloc] init];
-    label1.text = @"新建文档";
+    label1.text = @"新建文件";
     label1.textColor =TintColor;
     label1.font =[UIFont systemFontOfSize:12];
     [popView addSubview:label1];
@@ -92,7 +93,7 @@
     
     UIButton *createMDFileBtn = [[UIButton alloc] init];
     createMDFileBtn.tag = 200;
-    [createMDFileBtn  setImage:[[UIImage imageNamed:@"MD文件"] changeColor:TintColor] forState:UIControlStateNormal];
+    [createMDFileBtn  setImage:[[UIImage imageNamed:@"文件夹"] changeColor:TintColor] forState:UIControlStateNormal];
     [createMDFileBtn addTarget:self action:@selector(createClick:) forControlEvents:UIControlEventTouchUpInside];
     [popView addSubview:createMDFileBtn];
     [createMDFileBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -101,7 +102,7 @@
         make.size.mas_equalTo(CGSizeMake(70, 70));
     }];
     UILabel *label2 = [[UILabel alloc] init];
-    label2.text = @"新建MD文档";
+    label2.text = @"新建文件夹";
     label2.textColor =TintColor;
     label2.font =[UIFont systemFontOfSize:12];
     [popView addSubview:label2];
@@ -119,13 +120,14 @@
 }
 -(void)createClick:(UIButton *)btn
 {
+    [GKCover hide];
+    NewfileView *view = [NewfileView init];
     if (btn.tag == 100) {
-        
+        view.TitleLbal.text = @"新建文件";
     } else {
-        FIREditPageVC *vc = [[FIREditPageVC alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-        [GKCover hideCover];
+        view.TitleLbal.text = @"新建文件夹";
     }
+    [GKCover coverFrom:self.view contentView:view style:GKCoverStyleTranslucent showStyle:GKCoverShowStyleCenter showAnimStyle:GKCoverShowAnimStyleCenter hideAnimStyle:GKCoverHideAnimStyleCenter notClick:NO];
 }
 #pragma mark  - ------  getter  ------
 - (UICollectionView *)collectionView
@@ -133,7 +135,7 @@
     if (!_collectionView) {
         UICollectionViewLeftAlignedLayout *leftLayout = [[UICollectionViewLeftAlignedLayout alloc] init];
         CGFloat width = (SCREEN_WIDTH-45)/2;
-        leftLayout.itemSize = CGSizeMake(width, width*1.26);
+        leftLayout.itemSize = CGSizeMake(width, width*1.2);
         leftLayout.minimumLineSpacing = 15;
         leftLayout.minimumInteritemSpacing = 15;
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(15,NavigationBar_Height, SCREEN_WIDTH-30, SCREEN_HEIGHT- NavigationBar_Height) collectionViewLayout:leftLayout];
@@ -151,6 +153,7 @@
     }
     return _collectionView;
 }
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     SuiXiangCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SuiXiangCollectionViewCell" forIndexPath:indexPath];

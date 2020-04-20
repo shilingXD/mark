@@ -1,0 +1,77 @@
+//
+//  NewfileView.m
+//  MarkProject
+//
+//  Created by 孙冬 on 2020/4/20.
+//  Copyright © 2020 mac. All rights reserved.
+//
+
+#import "NewfileView.h"
+#import "MDEditViewController.h"
+
+@implementation NewfileView
+
++ (instancetype)init {
+    NewfileView *view = [NewfileView loadFirstNib:CGRectMake(0, 0, 300, 165)];
+    [view initUI];
+    view.layer.cornerRadius = 5;
+    return view;
+}
+- (void)initUI
+{
+//    self.backgroundColor = [UIColor orangeColor];
+    [self.TitleLbal mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self);
+        make.top.mas_equalTo(self.mas_top).offset(25);
+    }];
+    
+    [self.Inputfield becomeFirstResponder];
+    self.Inputfield.delegate = self;
+    self.Inputfield.font = [UIFont fontWithName:@"PingFang SC" size:15];
+    [self.Inputfield addTarget:self action:@selector(changeText:) forControlEvents:UIControlEventEditingChanged];
+    [self.Inputfield mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self);
+        make.top.mas_equalTo(self.TitleLbal.mas_bottom).offset(20);
+        make.width.mas_equalTo(self.width-30);
+        make.height.mas_equalTo(30);
+    }];
+    
+    [self.cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.bottom.mas_equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(self.width/2, 50));
+    }];
+    self.FieldLine.alpha = 0.5;
+    self.FieldLine.centerX = self.centerX;
+    self.FieldLine.size = CGSizeMake(5, 1);
+    self.FieldLine.y = 95;
+    
+    self.lineview.layer.cornerRadius = 0.5;
+    self.lineview.layer.masksToBounds = YES;
+    [self.lineview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(1, 30));
+        make.bottom.mas_equalTo(self.bottom).offset(-10);
+    }];
+    
+    [self.SureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.bottom.mas_equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(self.width/2, 50));
+    }];
+}
+- (IBAction)cancelClick:(id)sender {
+    [GKCover hideCover];
+}
+- (IBAction)sureClick:(id)sender {
+    [GKCover hideCover];
+    MDEditViewController *vc = [[MDEditViewController alloc] init];
+    vc.title = self.Inputfield.text;
+    [[MDMethods getCurrentViewController].navigationController pushViewController:vc animated:YES];
+}
+-(void)changeText:(UITextField *)sender
+{
+    CGRect rect = [sender.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 30) options:NSStringDrawingTruncatesLastVisibleLine|   NSStringDrawingUsesFontLeading |NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFang SC" size:15]} context:nil];
+    self.FieldLine.hidden = NO;
+    self.FieldLine.centerX = self.Inputfield.centerX;
+    self.FieldLine.width = rect.size.width+5;
+}
+@end

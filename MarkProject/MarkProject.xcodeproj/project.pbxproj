@@ -74,6 +74,8 @@
 		0478A56D24235A9E00C6B5C7 /* EasyNavigationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A55824235A9E00C6B5C7 /* EasyNavigationButton.m */; };
 		0478A56E24235A9E00C6B5C7 /* EasyNavigationView+Scroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A55B24235A9E00C6B5C7 /* EasyNavigationView+Scroll.m */; };
 		0478A5712423615200C6B5C7 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A56F2423615200C6B5C7 /* UIImage+Util.m */; };
+		047C5170244D982700879A54 /* NewfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047C516F244D982700879A54 /* NewfileView.xib */; };
+		047C5173244D988B00879A54 /* NewfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C5172244D988B00879A54 /* NewfileView.m */; };
 		04D52654244558A50025CD4B /* NSDate+gyh.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52652244558A50025CD4B /* NSDate+gyh.m */; };
 		04D52657244558FE0025CD4B /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52656244558FE0025CD4B /* NSString+Util.m */; };
 		04D5265D2446E2800025CD4B /* PlanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D5265C2446E2800025CD4B /* PlanTableViewCell.m */; };
@@ -229,6 +231,9 @@
 		0478A55D24235A9E00C6B5C7 /* EasyNavigationUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyNavigationUtils.h; sourceTree = "<group>"; };
 		0478A56F2423615200C6B5C7 /* UIImage+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Util.m"; sourceTree = "<group>"; };
 		0478A5702423615200C6B5C7 /* UIImage+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Util.h"; sourceTree = "<group>"; };
+		047C516F244D982700879A54 /* NewfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewfileView.xib; sourceTree = "<group>"; };
+		047C5171244D988B00879A54 /* NewfileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewfileView.h; sourceTree = "<group>"; };
+		047C5172244D988B00879A54 /* NewfileView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewfileView.m; sourceTree = "<group>"; };
 		04D52652244558A50025CD4B /* NSDate+gyh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+gyh.m"; sourceTree = "<group>"; };
 		04D52653244558A50025CD4B /* NSDate+gyh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+gyh.h"; sourceTree = "<group>"; };
 		04D52655244558FE0025CD4B /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
@@ -477,6 +482,9 @@
 			children = (
 				045AA91C2432E04100357617 /* SuiXiangCollectionViewCell.h */,
 				045AA91D2432E04100357617 /* SuiXiangCollectionViewCell.m */,
+				047C516F244D982700879A54 /* NewfileView.xib */,
+				047C5171244D988B00879A54 /* NewfileView.h */,
+				047C5172244D988B00879A54 /* NewfileView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -795,6 +803,7 @@
 				04F638B0242DF333005207B0 /* Roboto-Light.ttf in Resources */,
 				04F323342447F13F00F16923 /* AddPlanView.xib in Resources */,
 				04491C3B244864B40029530E /* AddPlanNameView.xib in Resources */,
+				047C5170244D982700879A54 /* NewfileView.xib in Resources */,
 				04F638B3242DF333005207B0 /* markdown.html in Resources */,
 				04491C20244854A80029530E /* LXCalenderCell.xib in Resources */,
 				04491C1E244854A80029530E /* LXCalendarHearder.xib in Resources */,
@@ -880,6 +889,7 @@
 				0464C7C1243EC8390061902F /* SettingViewController.m in Sources */,
 				045C8EEC24449CA2007EAB6C /* ListDetailViewController.m in Sources */,
 				0478A56324235A9E00C6B5C7 /* UITableViewController+EasyNavigationExt.m in Sources */,
+				047C5173244D988B00879A54 /* NewfileView.m in Sources */,
 				04E924B32394AC5E006683D7 /* MDMethods.m in Sources */,
 				04491C2F244855E50029530E /* UILabel+LXLabel.m in Sources */,
 				04491C392448649E0029530E /* AddPlanNameView.m in Sources */,
