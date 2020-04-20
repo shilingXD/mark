@@ -50,30 +50,33 @@
         make.left.mas_equalTo(self.daylabel.mas_right);
         make.top.mas_equalTo(self.mas_top);
         make.bottom.mas_equalTo(self.mas_bottom);
-        make.height.mas_equalTo(200);
+        make.height.mas_equalTo(150);
     }];
 
 }
 
-- (void)setModel:(PlanModel *)model
+//- (void)setPlanTimeArray:(NSArray *)planTimeArray
+//{
+//////    NSOrderedSet *orderSet = [NSOrderedSet orderedSetWithArray:planTimeArray];
+//////    self.planTimeArray = [orderSet array];
+////    self.planTimeArray = planTimeArray;
+////    if (planTimeArray.count>0) {
+////        [self.calendarView mas_updateConstraints:^(MASConstraintMaker *make) {
+////            make.height.mas_equalTo(50 * (self.planTimeArray.count - 1) + 50);
+////        }];
+////        for (int i = 0; i<self.planTimeArray.count; i++) {
+////            NSArray *array = self.planTimeArray[i];
+////            UIView * view = [[UIView alloc] initWithFrame:CGRectMake([self getpointWithTime:array[0]], 0, [self getpointWithTime:array[1]]-[self getpointWithTime:array[0]], 50)];
+////            view.layer.cornerRadius  = 7;
+////            view.backgroundColor = RandomColor;
+////            [self addSubview:view];
+////        }
+////    }
+//}
+-(CGFloat)getpointWithTime:(id)time
 {
-    CGFloat hourwidth = (SCREEN_WIDTH-60)/24;//小时宽度
-    CGFloat minwidth = hourwidth/60;//分钟宽度
+     CGFloat minutesWidth = (SCREEN_WIDTH-60)/1440;
     
-    for (int i = 0; i<model.array.count; i++) {
-        NSArray *array = model.array[i];
-        
-        int begin ;
-        int end;
-        UIView *task = [[UIView alloc] init];
-    }
-}
-//字符串转时间戳 如：2017-4-10 17:15:10
-- (NSString *)getTimeStrWithString:(NSString *)str{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];// 创建一个时间格式化对象
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"]; //设定时间的格式
-    NSDate *tempDate = [dateFormatter dateFromString:str];//将字符串转换为时间对象
-    NSString *timeStr = [NSString stringWithFormat:@"%ld", (long)[tempDate timeIntervalSince1970]*100];//字符串转成时间戳,精确到毫秒*1000
-    return timeStr;
+    return minutesWidth * [time floatValue];
 }
 @end

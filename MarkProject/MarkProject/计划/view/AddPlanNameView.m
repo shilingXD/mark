@@ -150,12 +150,20 @@
         [self.Noticelabel setTitle:@"名称不能为空!" forState:UIControlStateNormal];
     }else{
         self.model.PlanTitle = self.TitleField.text;
+        
+        NSDate *currentDate = [NSDate date];//获取当前时间，日期
+           NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];// 创建一个时间格式化对象
+           [dateFormatter setDateFormat:@"yyyy-MM-dd"];//设定时间格式,这里可以设置成自己需要的格式
+            self.model.PlanDayDate = [dateFormatter stringFromDate:currentDate];//将时间转化成字符串
+           self.model.PlanItemBeginDate = 0;
+           self.model.PlanItemEndDate = 288 * 5;
         [GKCover hideCover];
         AddPlanView *view = [AddPlanView init];
         view.model = self.model;
         [GKCover coverFrom:[UIApplication sharedApplication].keyWindow contentView:view style:GKCoverStyleTranslucent showStyle:GKCoverShowStyleCenter showAnimStyle:GKCoverShowAnimStyleCenter hideAnimStyle:GKCoverHideAnimStyleCenter notClick:YES];
     }
 }
+
 - (PlanModel *)model
 {
     if (!_model) {

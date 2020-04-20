@@ -11,11 +11,15 @@
 #import "AddPlanNameView.h"
 #import "WMDragView.h"
 #import "PlanModel.h"
+#import "PlanSortModel.h"
 @interface PlanViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableview;
 @property (nonatomic, strong) NSMutableArray<PlanModel *> *dataArray;///<<#注释#>
-@property (nonatomic, strong) NSMutableArray *DayArray;///<日数组
+@property (nonatomic, strong) NSMutableArray<PlanSortModel *> *sortArray;///<<#注释#>
 @property (nonatomic, strong) NSMutableArray *MonthArray;///<月数组
+@property (nonatomic, strong) NSMutableArray *MonthIndexArray;///<月索引数组
+@property (nonatomic, strong) NSMutableDictionary *DayDic;///<日数组
+@property (nonatomic, strong) NSMutableArray *DayIndexArray;///<日索引数组
 @end
 
 @implementation PlanViewController
@@ -28,6 +32,7 @@
         make.left.right.bottom.mas_equalTo(self.view);
     }];
     [self AddButton];
+    [self getPlanList];
 }
 -(void)setNav
 {
@@ -76,7 +81,8 @@
 //    view.layer.mask = fieldLayer;
     
     UILabel *timeLabel = [[UILabel alloc] init];
-    timeLabel.text = @"2020年\n4月";
+    NSString *monthstr = self.MonthIndexArray[section];
+    timeLabel.text = [NSString stringWithFormat:@"%@年\n%@月",[monthstr substringToIndex:4],[monthstr substringWithRange:NSMakeRange(5,2)]];
     timeLabel.numberOfLines = 2;
     timeLabel.textAlignment = NSTextAlignmentCenter;
     timeLabel.font = [UIFont fontWithName:@"PingFangSC-Thin" size: 14];
@@ -134,18 +140,39 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    CGFloat minutesWidth = (SCREEN_WIDTH-60)/1440;
     PlanTableViewCell *cell = [PlanTableViewCell cellForTableview:tableView];
+    NSMutableArray *array = self.DayIndexArray[indexPath.section];
+    NSString *dayStr = [NSString stringWithFormat:@"%@",array[indexPath.row]];
+    cell.daylabel.text = [NSString stringWithFormat:@"%@日",[dayStr substringWithRange:NSMakeRange(8, 2)]];
+//    cell.planTimeArray = self.DayDic[[NSString stringWithFormat:@"%ld-%ld",indexPath.section,indexPath.row]];
+    NSArray *planTimeArray = self.DayDic[[NSString stringWithFormat:@"%ld-%ld",indexPath.section,indexPath.row]];
+      NSOrderedSet *orderSet = [NSOrderedSet orderedSetWithArray:planTimeArray];
+        planTimeArray = [orderSet array];
+        if (planTimeArray.count>0) {
+            [cell.calendarView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(50 * planTimeArray.count );
+            }];
+            for (int i = 0; i<planTimeArray.count; i++) {
+                NSArray *array = planTimeArray[i];
+                UIView * view = [[UIView alloc] initWithFrame:CGRectMake(60+(SCREEN_WIDTH-60)/48 + minutesWidth*[array[0] floatValue], (50*i), minutesWidth*[array[1] floatValue]-minutesWidth*[array[0] floatValue], 50)];
+                view.layer.cornerRadius  = 7;
+                view.backgroundColor = RandomColor;
+                [cell addSubview:view];
+            }
+        }
     cell.backgroundColor = RandomColor;
-    cell.model.array = [NSMutableArray arrayWithArray:@[@[@"12:32",@"13:33"],@[@"8:00",@"9:30"],@[@"17:30",@"18:33"]]];
+    
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return self.MonthIndexArray.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    NSMutableArray *array = self.DayIndexArray[section];
+    return array.count;
 }
 - (UITableView *)tableview
 {
@@ -168,7 +195,7 @@
     FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"MarkProject.sqlite" Success:^{} Fail:^{
         return ;
     }];
-    NSString *sql = @"select  PlanID,PlanTitle,PlanDayDate,PlanItemBeginDate,priority,PlanItemEndDate,currentTime FROM SecretList";
+    NSString *sql = @"select  PlanID,PlanTitle,PlanDayDate,PlanItemBeginDate,priority,PlanItemEndDate,currentTime FROM PlanList";
     FMResultSet *rs = [db executeQuery:sql];
     [self.dataArray removeAllObjects];
     while ([rs next]) {
@@ -182,7 +209,25 @@
         model.currentTime = [rs stringForColumn:@"currentTime"];
         [self.dataArray addObject:model];
     }
-    
+    self.MonthIndexArray = [self gatMonthArray:self.dataArray];
+    for (int i = 0; i<self.MonthIndexArray.count; i++) {
+        NSMutableArray *array = [NSMutableArray array];
+        NSMutableArray *indexarray = [NSMutableArray array];
+        for (int j = 0; j<self.dataArray.count; j++) {
+            PlanModel *model = self.dataArray[j];
+            if ([model.PlanDayDate containsString:self.MonthIndexArray[i]]) {
+                [array addObject:model];
+                [indexarray addObject:model.PlanDayDate];
+            }
+        }
+        [self.MonthArray addObject:array];
+        NSOrderedSet *orderSet = [NSOrderedSet orderedSetWithArray:indexarray];
+               NSArray *newindexarray = [orderSet array];
+        [self.DayIndexArray addObject:[NSMutableArray arrayWithArray:newindexarray]];
+    }
+    self.DayDic  = [self setDayDicWithArray:self.DayIndexArray];
+    [self.tableview reloadData];
+    NSLog(@"sda");
 }
 - (NSMutableArray<PlanModel *> *)dataArray
 {
@@ -191,12 +236,12 @@
     }
     return _dataArray;
 }
-- (NSMutableArray *)DayArray
+- (NSMutableArray<PlanSortModel *> *)sortArray
 {
-    if (!_DayArray) {
-        _DayArray = [NSMutableArray array];
+    if (!_sortArray) {
+        _sortArray = [NSMutableArray array];
     }
-    return _DayArray;
+    return _sortArray;
 }
 - (NSMutableArray *)MonthArray
 {
@@ -205,4 +250,62 @@
     }
     return _MonthArray;
 }
+- (NSMutableArray *)MonthIndexArray
+{
+    if (!_MonthIndexArray) {
+        _MonthIndexArray = [NSMutableArray array];
+    }
+    return _MonthIndexArray;
+}
+- (NSMutableArray *)DayIndexArray
+{
+    if (!_DayIndexArray) {
+        _DayIndexArray = [NSMutableArray array];
+    }
+    return _DayIndexArray;
+}
+- (NSMutableDictionary *)DayDic
+{
+    if (!_DayDic) {
+        _DayDic = [NSMutableDictionary dictionary];
+    }
+    return _DayDic;
+}
+//获取有序不重复月索引数组
+- (NSMutableArray *)gatMonthArray:(NSMutableArray<PlanModel *> *)dataArr{
+    NSMutableArray *array = [NSMutableArray array];
+    for (int i = 0; i<dataArr.count; i++) {
+        PlanModel *model = dataArr[i];
+        [array addObject:[model.PlanDayDate substringToIndex:7]];
+        
+    }
+    NSOrderedSet *orderSet = [NSOrderedSet orderedSetWithArray:array];
+        NSArray *newArray = [orderSet array];
+        NSLog(@"%@", newArray);
+
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"self"
+                                                               ascending:YES];
+    NSArray *descriptors = [NSArray arrayWithObject:descriptor];
+    NSArray *reverseOrder = [newArray sortedArrayUsingDescriptors:descriptors];
+    
+  return [NSMutableArray arrayWithArray:reverseOrder];
+}
+//获取有序不重复日索引数组
+- (NSMutableDictionary *)setDayDicWithArray:(NSMutableArray *)dataArr{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+   for (int i = 0; i<dataArr.count; i++) {
+       NSArray *array = dataArr[i];
+       for (int j = 0; j<array.count; j++) {
+           NSMutableArray *mutaArray = [NSMutableArray array];
+           for (int x = 0; x<self.dataArray.count; x++) {
+               if ([array[j] isEqual:[self.dataArray[x] PlanDayDate]]) {
+                   [mutaArray addObject:@[@([self.dataArray[x] PlanItemBeginDate]),@([self.dataArray[x] PlanItemEndDate])]];
+               }
+           }
+           [dic setValue:mutaArray forKey:[NSString stringWithFormat:@"%d-%d",i,j]];
+       }
+   }
+    return dic;
+}
+
 @end

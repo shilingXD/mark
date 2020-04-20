@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) LXCalendarView *calenderView;
 @property (nonatomic, strong) PlanModel *model;///<<#注释#>
 
+
 + (instancetype)init;
 @end
 

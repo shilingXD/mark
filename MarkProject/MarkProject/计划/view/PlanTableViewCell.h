@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *daylabel;///<日期
 @property (nonatomic, strong) UIView *calendarView;///<日程表表格
 @property (nonatomic, strong) PlanModel *model;
+@property (nonatomic, strong) NSArray *planTimeArray;///<<#注释#>
 
 + (id)cellForTableview:(UITableView *)tableView;
 @end

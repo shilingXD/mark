@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PlanViewController : UIViewController
-
+-(void)getPlanList;
 @end
 
 NS_ASSUME_NONNULL_END

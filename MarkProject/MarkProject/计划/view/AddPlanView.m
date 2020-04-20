@@ -7,6 +7,7 @@
 //
 
 #import "AddPlanView.h"
+#import "PlanViewController.h"
 
 @implementation AddPlanView
 + (instancetype)init {
@@ -49,8 +50,8 @@
     
     WeakBlock(self, weak_self);
     self.calenderView.selectBlock = ^(NSInteger year, NSInteger month, NSInteger day) {
-        NSLog(@"%ld年 - %ld月 - %ld日",year,month,day);
-        weak_self.model.PlanDayDate = [NSString stringWithFormat:@"%ld-%ld-%ld",year,month,day];
+        NSLog(@"%ld年 - %.2ld月 - %.2ld日",year,month,day);
+        weak_self.model.PlanDayDate = [NSString stringWithFormat:@"%ld-%.2ld-%.2ld",year,month,day];
     };
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -91,12 +92,7 @@
         make.size.mas_equalTo(CGSizeMake(self.width-20, 55));
     }];
     
-    NSDate *currentDate = [NSDate date];//获取当前时间，日期
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];// 创建一个时间格式化对象
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];//设定时间格式,这里可以设置成自己需要的格式
-     self.model.PlanDayDate = [dateFormatter stringFromDate:currentDate];//将时间转化成字符串
-    self.model.PlanItemBeginDate = 0;
-    self.model.PlanItemEndDate = 288 * 5;
+
     
 }
 - (IBAction)cancelClick:(id)sender {
@@ -112,6 +108,8 @@
     
     if (result) {
         NSLog(@"插入成功");
+        PlanViewController *vc = (PlanViewController *)[MDMethods getCurrentViewController];
+        [vc getPlanList];
     } else {
         NSLog(@"插入失败");
         return;
@@ -173,10 +171,10 @@
     if (!_doubleSliderView) {
         _doubleSliderView = [[DoubleSliderView alloc] initWithFrame:CGRectMake(0, 0, self.width - 20, 35 + 20)];
         _doubleSliderView.needAnimation = true;
-//                CGFloat offset = self.maxAge - self.minAge;
-//                if (offset > 4.0) {
-//                    _doubleSliderView.minInterval = 4.0/(offset);
-//                }
+                CGFloat offset = self.maxMinutes - self.minMinutes;
+                if (offset > 1.0) {
+                    _doubleSliderView.minInterval = 1.0/(offset);
+                }
         __weak typeof(self) weakSelf = self;
         _doubleSliderView.sliderBtnLocationChangeBlock = ^(BOOL isLeft, BOOL finish) {
             [weakSelf sliderValueChangeActionIsLeft:isLeft finish:finish];

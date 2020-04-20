@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *line;
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 
+
 @property (nonatomic, strong) PlanModel *model;///<<#注释#>
 
 + (instancetype)init;

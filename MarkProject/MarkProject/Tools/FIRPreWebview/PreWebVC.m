@@ -79,17 +79,17 @@
         make.edges.equalTo(self.view);
     }];
     self.needShowMarkdown = YES;
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"markdown" ofType:@"html"];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    NSURLRequest *requset = [NSURLRequest requestWithURL:url];
-    [self.webView loadRequest:requset];
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"markdown" ofType:@"html"];
+//    NSURL *url = [NSURL fileURLWithPath:path];
+//    NSURLRequest *requset = [NSURLRequest requestWithURL:url];
+//    [self.webView loadRequest:requset];
 }
 
 - (void)refreshMarkdown:(NSString *)markdown
 {
     self.markdown = markdown;
         //
-    if (self.needShowMarkdown) return;
+//    if (self.needShowMarkdown) return;
         //
     
     NSString *str   = @"# Example\nWhat a library!";
@@ -97,7 +97,7 @@
 //    NSString *content = [self getMarkdownContentWithMarkdowString:markdown];
 //    NSString *js = [NSString stringWithFormat:@"javascript:parseMarkdown(\"%@\",true)",content];
 //    [self.webView stringByEvaluatingJavaScriptFromString:js];
-//    [self.webView loadHTMLString:htmlString baseURL:nil];
+    [self.webView loadHTMLString:htmlString baseURL:nil];
     self.isTransferFinished = YES;
 }
 

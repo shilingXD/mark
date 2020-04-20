@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) int PlanItemBeginDate;///<计划开始时间 分钟数
 @property (nonatomic, assign) int PlanItemEndDate;///<结束时间 分钟数
 @property (nonatomic, copy) NSString *currentTime;///<时间戳
-@property (nonatomic, strong) NSMutableArray *array;///<该日的计划
 
 @end
 

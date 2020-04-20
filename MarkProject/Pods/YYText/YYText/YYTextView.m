@@ -2027,6 +2027,38 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     self.isAccessibilityElement = YES;
 }
 
+- (void)addSubview:(UIView *)view {
+    [super addSubview:view];
+    if(view &&
+       ([view isKindOfClass:NSClassFromString(@"UITextSelectionView")] || [view isKindOfClass:NSClassFromString(@"UISelectionGrabberDot")])) {
+        view.hidden = YES;
+    }
+    
+    //解决蓝点问题
+    Class Cls_selectionGrabberDot = NSClassFromString(@"UISelectionGrabberDot");
+    if (view && [view isKindOfClass:[Cls_selectionGrabberDot class]]) {
+        view.backgroundColor = [UIColor clearColor];
+        if (@available(iOS 7.0, *)) {
+            view.tintColor = [UIColor clearColor];
+        } else {
+            // Fallback on earlier versions
+        }
+        view.bounds = CGRectZero;
+    }
+    
+    //获取UITextSelectionView
+    //解决双光标问题
+    Class Cls_selectionView = NSClassFromString(@"UITextSelectionView");
+    if (view && [view isKindOfClass:[Cls_selectionView class]]) {
+        view.backgroundColor = [UIColor clearColor];
+        if (@available(iOS 7.0, *)) {
+            view.tintColor = [UIColor clearColor];
+        } else {
+            // Fallback on earlier versions
+        }
+        view.hidden = YES;
+    }
+}
 #pragma mark - Public
 
 - (instancetype)initWithFrame:(CGRect)frame {

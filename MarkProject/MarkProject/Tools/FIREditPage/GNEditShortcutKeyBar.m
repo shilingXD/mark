@@ -89,7 +89,7 @@
     [self addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self);
-        make.height.equalTo(@(1));
+        make.height.equalTo(@(0));
         make.left.right.equalTo(self);
     }];
 }
