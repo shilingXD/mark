@@ -140,28 +140,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat minutesWidth = (SCREEN_WIDTH-60)/1440;
     PlanTableViewCell *cell = [PlanTableViewCell cellForTableview:tableView];
     NSMutableArray *array = self.DayIndexArray[indexPath.section];
     NSString *dayStr = [NSString stringWithFormat:@"%@",array[indexPath.row]];
     cell.daylabel.text = [NSString stringWithFormat:@"%@日",[dayStr substringWithRange:NSMakeRange(8, 2)]];
 //    cell.planTimeArray = self.DayDic[[NSString stringWithFormat:@"%ld-%ld",indexPath.section,indexPath.row]];
-    NSArray *planTimeArray = self.DayDic[[NSString stringWithFormat:@"%ld-%ld",indexPath.section,indexPath.row]];
-      NSOrderedSet *orderSet = [NSOrderedSet orderedSetWithArray:planTimeArray];
-        planTimeArray = [orderSet array];
-        if (planTimeArray.count>0) {
-            [cell.calendarView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.height.mas_equalTo(50 * planTimeArray.count );
-            }];
-            for (int i = 0; i<planTimeArray.count; i++) {
-                NSArray *array = planTimeArray[i];
-                UIView * view = [[UIView alloc] initWithFrame:CGRectMake(60+(SCREEN_WIDTH-60)/48 + minutesWidth*[array[0] floatValue], (50*i), minutesWidth*[array[1] floatValue]-minutesWidth*[array[0] floatValue], 50)];
-                view.layer.cornerRadius  = 7;
-                view.backgroundColor = RandomColor;
-                [cell addSubview:view];
-            }
-        }
-    cell.backgroundColor = RandomColor;
+    [cell getArray:self.DayDic[[NSString stringWithFormat:@"%ld-%ld",indexPath.section,indexPath.row]]];
+      
+    if (indexPath.row%2 == 0) {
+        cell.backgroundColor = [UIColor hexStringToColor:@"617FDE" andAlpha:1];
+    } else {
+        cell.backgroundColor = [UIColor hexStringToColor:@"617FDE" andAlpha:0.5];
+    }
     
     return cell;
 }
@@ -197,7 +187,12 @@
     }];
     NSString *sql = @"select  PlanID,PlanTitle,PlanDayDate,PlanItemBeginDate,priority,PlanItemEndDate,currentTime FROM PlanList";
     FMResultSet *rs = [db executeQuery:sql];
-    [self.dataArray removeAllObjects];
+    _dataArray = [NSMutableArray array];
+    _sortArray = [NSMutableArray array];
+    _MonthArray = [NSMutableArray array];
+    _MonthIndexArray = [NSMutableArray array];
+    _DayIndexArray = [NSMutableArray array];
+    _DayDic = [NSMutableDictionary dictionary];
     while ([rs next]) {
         PlanModel *model = [[PlanModel alloc] init];
         model.PlanID = [rs intForColumn:@"PlanID"];
@@ -299,7 +294,7 @@
            NSMutableArray *mutaArray = [NSMutableArray array];
            for (int x = 0; x<self.dataArray.count; x++) {
                if ([array[j] isEqual:[self.dataArray[x] PlanDayDate]]) {
-                   [mutaArray addObject:@[@([self.dataArray[x] PlanItemBeginDate]),@([self.dataArray[x] PlanItemEndDate])]];
+                   [mutaArray addObject:self.dataArray[x]];
                }
            }
            [dic setValue:mutaArray forKey:[NSString stringWithFormat:@"%d-%d",i,j]];

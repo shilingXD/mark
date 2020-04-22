@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) PlanModel *model;
 @property (nonatomic, strong) NSArray *planTimeArray;///<<#注释#>
 
+-(void)getArray:(NSArray *)array;
 + (id)cellForTableview:(UITableView *)tableView;
 @end
 
