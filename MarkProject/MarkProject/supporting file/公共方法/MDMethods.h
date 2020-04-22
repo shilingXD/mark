@@ -335,6 +335,21 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString*)getDateStringByFormateString:(NSString*)formateString date:(NSDate*)date;
 
 + (void)showTextMessage:(NSString *)message;
+
+/**
+ base64转图片
+
+ @param str <#str description#>
+ @return <#return value description#>
+ */
++ (UIImage *)stringToImage:(NSString *)str;
+/**
+ 图片转base64
+
+ @param image <#image description#>
+ @return <#return value description#>
+ */
++ (NSString *)imageToString:(UIImage *)image;
 @end
 
 NS_ASSUME_NONNULL_END

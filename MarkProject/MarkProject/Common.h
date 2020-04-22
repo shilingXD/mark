@@ -19,4 +19,5 @@
 
 #pragma mark  - ------  Tool  ------
 #import "LXCalender.h"
+#import "TZImagePickerController.h"
 #endif /* Common_h */

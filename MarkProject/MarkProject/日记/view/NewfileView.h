@@ -17,7 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
 @property (weak, nonatomic) IBOutlet UIView *lineview;
 @property (weak, nonatomic) IBOutlet UIButton *SureBtn;
-
+@property (nonatomic, copy) NSString *Type;///<1文件2文件夹
+@property (nonatomic, copy) NSString *FilePath;///<所属文件夹 如果没有所属文件夹首页展示
+@property (nonatomic, copy) void (^reloadBlock) (void);///<<#注释#>
 + (instancetype)init;
 @end
 

@@ -13,9 +13,12 @@
 #import "NextViewController.h"
 #import "FIREditPageVC.h"
 #import "NewfileView.h"
+#import "MDModel.h"
 
 @interface DiaryViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;///<<#注释#>
+@property (nonatomic, strong) NSMutableArray *dataArray;///<<#注释#>
+@property (nonatomic, strong) UIImageView *emptyView;///<无数据暂未图
 @end
 
 @implementation DiaryViewController
@@ -26,6 +29,7 @@
     [self setupNav];
     [self setupView];
     [self AddButton];
+    [self getMDList];
 }
 -(void)setupNav
 {
@@ -124,9 +128,17 @@
     NewfileView *view = [NewfileView init];
     if (btn.tag == 100) {
         view.TitleLbal.text = @"新建文件";
+        view.Type = @"1";
+        
     } else {
         view.TitleLbal.text = @"新建文件夹";
+        view.Type = @"2";
     }
+    view.FilePath = @"";
+    WeakBlock(self, weak_self);
+    view.reloadBlock = ^{
+        [weak_self getMDList];
+    };
     [GKCover coverFrom:self.view contentView:view style:GKCoverStyleTranslucent showStyle:GKCoverShowStyleCenter showAnimStyle:GKCoverShowAnimStyleCenter hideAnimStyle:GKCoverHideAnimStyleCenter notClick:NO];
 }
 #pragma mark  - ------  getter  ------
@@ -157,31 +169,21 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     SuiXiangCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SuiXiangCollectionViewCell" forIndexPath:indexPath];
+    cell.model = self.dataArray[indexPath.row];
     
     return cell;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 11;
+    return self.dataArray.count;
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    UICollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"forIndexPath:indexPath];;
+    UICollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"forIndexPath:indexPath];
     header.backgroundColor = rgba(240, 240, 240, 1);
-//    if (indexPath.section ==0) {
-//        labelOne.text =@"热门检查";
-//        labelOne.font = [UIFontsystemFontOfSize:14.0f];
-//        labelOne.textColor =MainRGB;
-//        [header addSubview:labelOne];
-//    }else{
-//        labelTwo.text =@"疾病信息";
-//        labelTwo.font = [UIFontsystemFontOfSize:14.0f];
-//        labelTwo.textColor =MainRGB;
-//        [header addSubview:labelTwo];
-//    }
     return header;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
@@ -190,5 +192,41 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
     return CGSizeMake(SCREEN_WIDTH, 15);
+}
+-(void)getMDList
+{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"MarkProject.sqlite" Success:^{} Fail:^{
+        return ;
+    }];
+    NSString *createTableSqlString = @"CREATE TABLE IF NOT EXISTS MDList (MDID integer PRIMARY KEY AUTOINCREMENT, Title text NOT NULL, Type text NOT NULL, FilePath text, StoragePath text, CreateTime text NOT NULL, UpdateTime text NOT NULL, CurrentTime integer NOT NULL)";
+    [db executeUpdate:createTableSqlString];
+    NSString *sql = @"select  PlanID,PlanTitle,PlanDayDate,PlanItemBeginDate,priority,PlanItemEndDate,currentTime FROM MDList";
+    FMResultSet *rs = [db executeQuery:sql];
+    _dataArray = [NSMutableArray array];
+    while ([rs next]) {
+        MDModel *model = [[MDModel alloc] init];
+        model.MDID = [rs intForColumn:@"MDID"];
+        model.Title = [rs stringForColumn:@"Title"];
+        model.FilePath = [rs stringForColumn:@"FilePath"];
+        model.StoragePath = [rs stringForColumn:@"StoragePath"];
+        model.CreateTime = [rs stringForColumn:@"CreateTime"];
+        model.UpdateTime = [rs stringForColumn:@"UpdateTime"];
+        model.currentTime = [rs stringForColumn:@"currentTime"];
+        [self.dataArray addObject:model];
+    }
+    [self.collectionView reloadData];
+    self.emptyView.hidden = NO;
+}
+- (UIImageView *)emptyView
+{
+    if (!_emptyView) {
+        _emptyView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"暂无数据"]];
+        [self.collectionView addSubview:_emptyView];
+        [_emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.mas_equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH*0.3, SCREEN_WIDTH*0.3));
+        }];
+    }
+    return _emptyView;
 }
 @end

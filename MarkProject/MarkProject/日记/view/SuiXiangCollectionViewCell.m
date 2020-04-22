@@ -61,6 +61,12 @@
         make.size.mas_equalTo(CGSizeMake(55, 50));
     }];
 }
-
+- (void)setModel:(MDModel *)model
+{
+    _model = model;
+    _imageView.image = [model.Type isEqualToString:@"1"]?[UIImage imageNamed:@"文件"]:[UIImage imageNamed:@"文件夹"];
+    _Titlelabel.text = model.Title;
+    _Datelabel.text = [MDMethods changeTimeDate:model.CreateTime];
+}
 
 @end

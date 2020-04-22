@@ -1101,4 +1101,27 @@
     [GKCover coverFrom:[UIApplication sharedApplication].keyWindow contentView:messageView style:GKCoverStyleTransparent showStyle:GKCoverShowStyleTop showAnimStyle:GKCoverShowAnimStyleTop hideAnimStyle:GKCoverHideAnimStyleTop notClick:YES];
     [GKCover hideCoverAfterDelay:1];
 }
+// 64base字符串转图片
+
++ (UIImage *)stringToImage:(NSString *)str {
+    
+    NSData * imageData =[[NSData alloc] initWithBase64EncodedString:str options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    
+    UIImage *photo = [UIImage imageWithData:imageData ];
+    
+    return photo;
+    
+}
+
+// 图片转64base字符串
+
++ (NSString *)imageToString:(UIImage *)image {
+    
+    NSData *imagedata = UIImagePNGRepresentation(image);
+    
+    NSString *image64 = [imagedata base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    
+    return image64;
+    
+}
 @end

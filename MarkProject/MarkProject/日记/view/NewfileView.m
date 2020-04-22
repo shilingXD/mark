@@ -63,9 +63,7 @@
 }
 - (IBAction)sureClick:(id)sender {
     [GKCover hideCover];
-    MDEditViewController *vc = [[MDEditViewController alloc] init];
-    vc.title = self.Inputfield.text;
-    [[MDMethods getCurrentViewController].navigationController pushViewController:vc animated:YES];
+    [self newFile];
 }
 -(void)changeText:(UITextField *)sender
 {
@@ -74,4 +72,32 @@
     self.FieldLine.centerX = self.Inputfield.centerX;
     self.FieldLine.width = rect.size.width+5;
 }
+-(void)newFile
+{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"MarkProject.sqlite" Success:^{} Fail:^{return ;}];
+    BOOL result = [db executeUpdateWithFormat:@"insert into MDList (Title,Type,FilePath,StoragePath,CreateTime,UpdateTime,currentTime) values (%@,%@,%@,%@,%@,%@,%@)",self.Inputfield.text,self.Type,self.FilePath,self.Inputfield.text,[MDMethods currentDateStr],[MDMethods currentDateStr],[MDMethods currentTimeStr]];
+    
+    if (result) {
+        NSLog(@"插入成功");
+        self.reloadBlock();
+        if ([self.Type isEqualToString:@"1"]) {
+            MDEditViewController *vc = [[MDEditViewController alloc] init];
+            vc.title = self.Inputfield.text;
+            [[MDMethods getCurrentViewController].navigationController pushViewController:vc animated:YES];
+        }
+    } else {
+        NSLog(@"插入失败");
+        return;
+    }
+}
+/*
+ @property (nonatomic, assign) int MDID;///<随笔ID
+ @property (nonatomic, copy) NSString *Title;///<标题
+ @property (nonatomic, copy) NSString *Type;///<1文件2文件夹
+ @property (nonatomic, copy) NSString *FilePath;///<所属文件夹 如果没有所属文件夹首页展示
+ @property (nonatomic, copy) NSString *StoragePath;///<存储路径
+ @property (nonatomic, copy) NSString *CreateTime;///<创建时间
+ @property (nonatomic, copy) NSString *UpdateTime;///<修改时间
+ @property (nonatomic, copy) NSString *currentTime;///<时间戳
+ */
 @end

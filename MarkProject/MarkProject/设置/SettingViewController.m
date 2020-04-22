@@ -34,6 +34,7 @@
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.rowHeight = 50;
+    _tableView.bounces = NO;
     _tableView.backgroundColor = rgba(240, 240, 240, 1);
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.showsVerticalScrollIndicator = NO;
