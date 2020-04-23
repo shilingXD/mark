@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import <UserNotifications/UserNotifications.h>
 
 @interface AppDelegate ()
 
@@ -29,8 +30,9 @@
     EasyNavigationController *navVC = [[EasyNavigationController alloc]initWithRootViewController:[MainViewController new]];
     self.window.rootViewController  = navVC ;
     
-    [MDInstance sharedInstance].UserID = [MDMethods getUUIDByKeyChain];
-    
+    [MDInstance sharedInstance].DeviceID = [MDMethods getUUIDByKeyChain];
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    [[UNUserNotificationCenter currentNotificationCenter] removeAllPendingNotificationRequests];
     return YES;
 }
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -350,6 +350,8 @@ NS_ASSUME_NONNULL_BEGIN
  @return <#return value description#>
  */
 + (NSString *)imageToString:(UIImage *)image;
+
++ (NSString *)setStringByKeyChainWithString:(NSString *)str;
 @end
 
 NS_ASSUME_NONNULL_END

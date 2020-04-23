@@ -8,8 +8,9 @@
 
 #import "SettingViewController.h"
 
-@interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,TZImagePickerControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;///<<#注释#>
+@property (nonatomic, strong) UIImageView *headImageView;
 @end
 
 @implementation SettingViewController
@@ -62,11 +63,15 @@
     headView.layer.mask= maskLayer;
     
     UIImageView *headImageView = [[UIImageView alloc] init];
+    self.headImageView = headImageView;
     headImageView.backgroundColor = TintColor;
     headImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     headImageView.layer.borderWidth = 2;
+    headImageView.image = [MDMethods stringToImage:[MDInstance sharedInstance].UserheadimageBase64];
     headImageView.layer.masksToBounds = YES;
     headImageView.layer.cornerRadius = 75/2;
+    [headImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
+    headImageView.userInteractionEnabled = YES;
     [headView addSubview:headImageView];
     [headImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(75, 75));
@@ -108,4 +113,50 @@
 {
     return 5;
 }
+-(void)headClick
+{
+    [self openImagePick];
+}
+-(void)openImagePick
+{         
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:4 delegate:self pushPhotoPickerVc:YES];
+    imagePickerVc.isSelectOriginalPhoto = YES;
+    [imagePickerVc setUiImagePickerControllerSettingBlock:^(UIImagePickerController *imagePickerController) {
+        imagePickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
+    }];
+    imagePickerVc.iconThemeColor = [UIColor colorWithRed:31 / 255.0 green:185 / 255.0 blue:34 / 255.0 alpha:1.0];
+    imagePickerVc.showPhotoCannotSelectLayer = YES;
+    imagePickerVc.cannotSelectLayerColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+    imagePickerVc.allowPickingImage = YES;
+    imagePickerVc.allowPickingGif = NO;
+    imagePickerVc.allowPickingVideo = NO;
+    imagePickerVc.allowCameraLocation = YES;
+    imagePickerVc.allowPickingOriginalPhoto = YES;
+    imagePickerVc.sortAscendingByModificationDate = YES;
+    imagePickerVc.allowTakePicture = YES;
+    imagePickerVc.statusBarStyle = UIStatusBarStyleLightContent;
+    imagePickerVc.showSelectedIndex = NO;
+    imagePickerVc.showSelectBtn = NO;
+    imagePickerVc.allowCrop = YES;
+    imagePickerVc.needCircleCrop = YES;
+    // 设置竖屏下的裁剪尺寸
+    NSInteger left = 5;
+    NSInteger widthHeight = self.view.width - 2 * left;
+    NSInteger top = (self.view.height - widthHeight) / 2;
+    imagePickerVc.cropRect = CGRectMake(left, top, widthHeight, widthHeight);
+    imagePickerVc.scaleAspectFillCrop = YES;
+    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+        self.headImageView.image = photos[0];
+      [MDInstance sharedInstance].UserheadimageBase64 = [MDMethods imageToString:photos[0]];
+//        NSMutableString *base64 = [NSMutableString string];
+//        NSData *imageData = UIImageJPEGRepresentation(photos[0], 1);
+//        
+//        [base64 appendString:[imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]] ;
+        
+//        [self ReplyImageWithbase64:base64] ;
+    }];
+//    imagePickerVc.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:imagePickerVc animated:YES completion:nil];
+}
+
 @end
