@@ -24,7 +24,7 @@
 }
 - (void)refreshMarkdown:(NSString *)markdown
 {
-    NSString *css = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"han" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
+    NSString *css = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"vue" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil];
     NSString *headHtmlStr = [NSString stringWithFormat:@"<head><style>%@</style><style>img{max-width:%fpx !important;}</style></head><meta name='viewport' content='width=device-width, initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0, user-scalable=no' />",css,SCREEN_WIDTH*0.8-40];
     NSString *htmlString = [MMMarkdown HTMLStringWithMarkdown:markdown extensions:MMMarkdownExtensionsGitHubFlavored error:NULL];
     htmlString = [headHtmlStr stringByAppendingString:htmlString];

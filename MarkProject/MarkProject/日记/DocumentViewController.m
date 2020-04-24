@@ -1,41 +1,37 @@
 //
-//  SuiXiangViewController.m
+//  DocumentViewController.m
 //  MarkProject
 //
-//  Created by 孙冬 on 2020/3/31.
+//  Created by 孙冬 on 2020/4/24.
 //  Copyright © 2020 mac. All rights reserved.
 //
 
-#import "DiaryViewController.h"
+#import "DocumentViewController.h"
 #import "UICollectionViewLeftAlignedLayout.h"
 #import "SuiXiangCollectionViewCell.h"
-#import "WMDragView.h"
-#import "NextViewController.h"
-#import "FIREditPageVC.h"
-#import "NewfileView.h"
 #import "MDModel.h"
 #import "MDEditViewController.h"
-#import "DocumentViewController.h"
 
-@interface DiaryViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface DocumentViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;///<<#注释#>
 @property (nonatomic, strong) NSMutableArray *dataArray;///<<#注释#>
 @property (nonatomic, strong) UIImageView *emptyView;///<无数据暂未图
+
 @end
 
-@implementation DiaryViewController
+@implementation DocumentViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = rgba(240, 240, 240, 1);
     [self setupNav];
     [self setupView];
-    [self AddButton];
     [self getMDList];
 }
+
 -(void)setupNav
 {
-    [self.navigationView setTitle:@"日记"];
+    [self.navigationView setTitle:_DocumentTitle];
     self.navigationView.backgroundView.image = nil ;
     self.navigationView.backgroundView.backgroundColor = TintColor;
     self.navigationView.lineView.backgroundColor = TintColor;
@@ -48,100 +44,6 @@
         make.bottom.mas_equalTo(self.view.mas_bottom);
         make.top.mas_equalTo(self.navigationView.mas_bottom);
     }];
-}
--(void)AddButton
-{
-    WMDragView *dragView = [[WMDragView alloc] init];
-    dragView.backgroundColor = rgba(85, 85, 85, 1);
-    dragView.layer.masksToBounds = YES;
-    dragView.layer.cornerRadius = 25;
-    dragView.clickDragViewBlock = ^(WMDragView *dragView) {
-        [self popSelectedView];
-    };
-    [self.view addSubview:dragView];
-    [dragView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(50, 50));
-        make.right.mas_equalTo(self.view).offset(-25);
-        make.bottom.mas_equalTo(self.view).offset(-25);
-    }];
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"增加"]];
-    [dragView addSubview:imageView];
-    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.mas_equalTo(dragView);
-    }];
-    
-    
-}
--(void)popSelectedView
-{
-    UIView *popView = [[UIView alloc] init];
-    popView.backgroundColor = [UIColor whiteColor];
-    UIButton *createFileBtn = [[UIButton alloc] init];
-    createFileBtn.tag = 100;
-    [createFileBtn  setImage:[[UIImage imageNamed:@"文件"] changeColor:TintColor] forState:UIControlStateNormal];
-    [createFileBtn addTarget:self action:@selector(createClick:) forControlEvents:UIControlEventTouchUpInside];
-    [popView addSubview:createFileBtn];
-    [createFileBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(popView);
-        make.left.mas_equalTo(popView.mas_left).offset((SCREEN_WIDTH/2-70)/2);
-        make.size.mas_equalTo(CGSizeMake(70, 70));
-    }];
-    UILabel *label1 = [[UILabel alloc] init];
-    label1.text = @"新建文件";
-    label1.textColor =TintColor;
-    label1.font =[UIFont systemFontOfSize:12];
-    [popView addSubview:label1];
-    [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(createFileBtn);
-        make.top.mas_equalTo(createFileBtn.mas_bottom).mas_offset(5);
-    }];
-    
-    UIButton *createMDFileBtn = [[UIButton alloc] init];
-    createMDFileBtn.tag = 200;
-    [createMDFileBtn  setImage:[[UIImage imageNamed:@"文件夹"] changeColor:TintColor] forState:UIControlStateNormal];
-    [createMDFileBtn addTarget:self action:@selector(createClick:) forControlEvents:UIControlEventTouchUpInside];
-    [popView addSubview:createMDFileBtn];
-    [createMDFileBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(popView);
-        make.right.mas_equalTo(popView.mas_right).offset(-((SCREEN_WIDTH/2-70)/2));
-        make.size.mas_equalTo(CGSizeMake(70, 70));
-    }];
-    UILabel *label2 = [[UILabel alloc] init];
-    label2.text = @"新建文件夹";
-    label2.textColor =TintColor;
-    label2.font =[UIFont systemFontOfSize:12];
-    [popView addSubview:label2];
-    [label2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(createMDFileBtn);
-        make.top.mas_equalTo(createMDFileBtn.mas_bottom).mas_offset(5);
-    }];
-    
-    popView.gk_size = CGSizeMake(SCREEN_WIDTH, 200);
-    [GKCover coverFrom:self.view contentView:popView style:GKCoverStyleTranslucent showStyle:GKCoverShowStyleBottom showAnimStyle:GKCoverShowAnimStyleBottom hideAnimStyle:GKCoverHideAnimStyleBottom notClick:NO showBlock:^{
-        
-    } hideBlock:^{
-        
-    }];
-}
--(void)createClick:(UIButton *)btn
-{
-    [GKCover hide];
-    NewfileView *view = [NewfileView init];
-    if (btn.tag == 100) {
-        view.TitleLbal.text = @"新建文件";
-        view.Type = @"1";
-        
-    } else {
-        view.TitleLbal.text = @"新建文件夹";
-        view.Type = @"2";
-    }
-    view.FilePath = @"";
-    WeakBlock(self, weak_self);
-    view.reloadBlock = ^{
-        [weak_self getMDList];
-    };
-    [GKCover coverFrom:self.view contentView:view style:GKCoverStyleTranslucent showStyle:GKCoverShowStyleCenter showAnimStyle:GKCoverShowAnimStyleCenter hideAnimStyle:GKCoverHideAnimStyleCenter notClick:NO];
 }
 #pragma mark  - ------  getter  ------
 - (UICollectionView *)collectionView
@@ -191,9 +93,7 @@
         vc.titlestr = model.Title;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
-        DocumentViewController *vc = [[DocumentViewController alloc] init];
-        vc.DocumentTitle = model.Title;
-        [self.navigationController pushViewController:vc animated:YES];
+        
     }
     
 }
@@ -214,9 +114,7 @@
     FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"MarkProject.sqlite" Success:^{} Fail:^{
         return ;
     }];
-    NSString *createTableSqlString = @"CREATE TABLE IF NOT EXISTS MDList (MDID integer PRIMARY KEY AUTOINCREMENT, Title text NOT NULL, Type text NOT NULL, FilePath text, StoragePath text, CreateTime text NOT NULL, UpdateTime text NOT NULL, CurrentTime integer NOT NULL)";
-    [db executeUpdate:createTableSqlString];
-    NSString *sql = @"select  MDID,Title,Type,FilePath,StoragePath,CreateTime,UpdateTime,currentTime FROM MDList Where FilePath == ''";
+    NSString *sql = [NSString stringWithFormat:@"select  MDID,Title,Type,FilePath,StoragePath,CreateTime,UpdateTime,currentTime FROM MDList Where FilePath == %@",self.DocumentTitle];
     FMResultSet *rs = [db executeQuery:sql];
     _dataArray = [NSMutableArray array];
     while ([rs next]) {

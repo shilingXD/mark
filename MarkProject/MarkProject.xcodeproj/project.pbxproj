@@ -12,6 +12,11 @@
 		04230FB02391020E00031B27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04230FAF2391020E00031B27 /* Assets.xcassets */; };
 		04230FB32391020E00031B27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04230FB12391020E00031B27 /* LaunchScreen.storyboard */; };
 		04230FB62391020E00031B27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04230FB52391020E00031B27 /* main.m */; };
+		043384112452BC1C00E42271 /* vue-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 0433840F2452BC1B00E42271 /* vue-dark.css */; };
+		043384122452BC1C00E42271 /* vue.css in Resources */ = {isa = PBXBuildFile; fileRef = 043384102452BC1C00E42271 /* vue.css */; };
+		043384152452C05F00E42271 /* DocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043384142452C05F00E42271 /* DocumentViewController.m */; };
+		043384182452CC7200E42271 /* MoreActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043384172452CC7200E42271 /* MoreActionView.m */; };
+		0433841A2452CC9200E42271 /* MoreActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043384192452CC9200E42271 /* MoreActionView.xib */; };
 		044001E2242B2E59000AE57B /* SecretModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 044001E1242B2E59000AE57B /* SecretModel.m */; };
 		044001E6242B49AB000AE57B /* WMDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 044001E4242B49AB000AE57B /* WMDragView.m */; };
 		0446831E244DCE940033892A /* PreWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0446831D244DCE940033892A /* PreWebViewController.m */; };
@@ -133,6 +138,13 @@
 		04230FB42391020E00031B27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04230FB52391020E00031B27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04230FBC2391024600031B27 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		0433840F2452BC1B00E42271 /* vue-dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "vue-dark.css"; sourceTree = "<group>"; };
+		043384102452BC1C00E42271 /* vue.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = vue.css; sourceTree = "<group>"; };
+		043384132452C05F00E42271 /* DocumentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentViewController.h; sourceTree = "<group>"; };
+		043384142452C05F00E42271 /* DocumentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DocumentViewController.m; sourceTree = "<group>"; };
+		043384162452CC7200E42271 /* MoreActionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoreActionView.h; sourceTree = "<group>"; };
+		043384172452CC7200E42271 /* MoreActionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoreActionView.m; sourceTree = "<group>"; };
+		043384192452CC9200E42271 /* MoreActionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreActionView.xib; sourceTree = "<group>"; };
 		044001E0242B2E59000AE57B /* SecretModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SecretModel.h; path = "MarkProject/密码本/model/SecretModel.h"; sourceTree = SOURCE_ROOT; };
 		044001E1242B2E59000AE57B /* SecretModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SecretModel.m; path = "MarkProject/密码本/model/SecretModel.m"; sourceTree = SOURCE_ROOT; };
 		044001E4242B49AB000AE57B /* WMDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDragView.m; sourceTree = "<group>"; };
@@ -477,6 +489,8 @@
 				045AA92024343AB000357617 /* MDEditViewController.m */,
 				0446831C244DCE940033892A /* PreWebViewController.h */,
 				0446831D244DCE940033892A /* PreWebViewController.m */,
+				043384132452C05F00E42271 /* DocumentViewController.h */,
+				043384142452C05F00E42271 /* DocumentViewController.m */,
 			);
 			path = "日记";
 			sourceTree = "<group>";
@@ -559,6 +573,9 @@
 				047C516F244D982700879A54 /* NewfileView.xib */,
 				047C5171244D988B00879A54 /* NewfileView.h */,
 				047C5172244D988B00879A54 /* NewfileView.m */,
+				043384162452CC7200E42271 /* MoreActionView.h */,
+				043384172452CC7200E42271 /* MoreActionView.m */,
+				043384192452CC9200E42271 /* MoreActionView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -798,6 +815,8 @@
 				04468324244DD67F0033892A /* techo.css */,
 				04468326244DD7B10033892A /* han.css */,
 				04468320244DD52D0033892A /* markdown.css */,
+				0433840F2452BC1B00E42271 /* vue-dark.css */,
+				043384102452BC1C00E42271 /* vue.css */,
 				0464C7B8243D7B3E0061902F /* soul.json */,
 				04230FAF2391020E00031B27 /* Assets.xcassets */,
 			);
@@ -923,15 +942,18 @@
 				04F323342447F13F00F16923 /* AddPlanView.xib in Resources */,
 				04468321244DD52D0033892A /* markdown.css in Resources */,
 				04491C3B244864B40029530E /* AddPlanNameView.xib in Resources */,
+				043384122452BC1C00E42271 /* vue.css in Resources */,
 				047C5170244D982700879A54 /* NewfileView.xib in Resources */,
 				04F638B3242DF333005207B0 /* markdown.html in Resources */,
 				04491C20244854A80029530E /* LXCalenderCell.xib in Resources */,
 				04491C1E244854A80029530E /* LXCalendarHearder.xib in Resources */,
 				0491A3A2245043F0003FA693 /* TZImagePickerController.bundle in Resources */,
+				0433841A2452CC9200E42271 /* MoreActionView.xib in Resources */,
 				04230FAE2391020B00031B27 /* Main.storyboard in Resources */,
 				04F638B4242DF333005207B0 /* marked.min.js in Resources */,
 				04468327244DD7B10033892A /* han.css in Resources */,
 				04F638B8242DF333005207B0 /* sample1.md in Resources */,
+				043384112452BC1C00E42271 /* vue-dark.css in Resources */,
 				0478A56C24235A9E00C6B5C7 /* EasyNavButton.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1025,6 +1047,7 @@
 				0446831E244DCE940033892A /* PreWebViewController.m in Sources */,
 				04D52654244558A50025CD4B /* NSDate+gyh.m in Sources */,
 				0464295524445591008F600C /* AddSecretViewController.m in Sources */,
+				043384182452CC7200E42271 /* MoreActionView.m in Sources */,
 				0478A5712423615200C6B5C7 /* UIImage+Util.m in Sources */,
 				0478A56224235A9E00C6B5C7 /* EasyNavigationView.m in Sources */,
 				0478A532242343C300C6B5C7 /* TableViewHeaderView.m in Sources */,
@@ -1038,6 +1061,7 @@
 				0478A56A24235A9E00C6B5C7 /* EasyNavigationView+LeftButton.m in Sources */,
 				0478A56124235A9E00C6B5C7 /* EasyNavigationScroll.m in Sources */,
 				0464C7C4243EC9340061902F /* PlanViewController.m in Sources */,
+				043384152452C05F00E42271 /* DocumentViewController.m in Sources */,
 				0478A4F92422061400C6B5C7 /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				04F638B7242DF333005207B0 /* FIREditPageVC.m in Sources */,
 				0491A3A9245043F0003FA693 /* TZGifPhotoPreviewController.m in Sources */,

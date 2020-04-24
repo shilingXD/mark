@@ -11,14 +11,19 @@
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,TZImagePickerControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;///<<#注释#>
 @property (nonatomic, strong) UIImageView *headImageView;
+
+@property (nonatomic, strong) NSArray *SectionArray;
+@property (nonatomic, strong) NSArray *ItemsArray;
 @end
 
 @implementation SettingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _SectionArray = @[@"主要",@"账单",@"密码本",@"日记",@"备忘录",@"计划"];
     [self setNav];
     [self setupTableView];
+    
 }
 -(void)setNav
 {
@@ -35,10 +40,12 @@
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.rowHeight = 50;
+    _tableView.sectionHeaderHeight = 25;
     _tableView.bounces = NO;
     _tableView.backgroundColor = rgba(240, 240, 240, 1);
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.showsVerticalScrollIndicator = NO;
+//    _ItemsArray = @[@"主题"];
     [self.view addSubview:_tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(self.view);
@@ -101,12 +108,26 @@
         cell.backgroundColor = rgba(240, 240, 240, 1);
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = @"选项";
+    cell.textLabel.text = @"   选项";
     return cell;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *sectionView = [[UIView alloc] init];
+    UILabel *title = [[UILabel alloc] init];
+    title.text = _SectionArray[section];
+    title.font = [UIFont fontWithName:@"PingFang SC" size:15];
+    title.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+    [sectionView addSubview:title];
+    [title mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(sectionView.mas_left).offset(20);
+        make.centerY.mas_equalTo(sectionView);
+    }];
+    return sectionView;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return _SectionArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

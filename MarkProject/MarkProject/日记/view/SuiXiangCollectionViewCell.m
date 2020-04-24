@@ -7,6 +7,7 @@
 //
 
 #import "SuiXiangCollectionViewCell.h"
+#import "MoreActionView.h"
 
 @implementation SuiXiangCollectionViewCell
 - (instancetype)initWithFrame:(CGRect)frame
@@ -68,5 +69,9 @@
     _Titlelabel.text = model.Title;
     _Datelabel.text = [MDMethods changeTimeDate:model.CreateTime];
 }
-
+-(void)moreBtnClick:(UIButton *)sender
+{
+    MoreActionView *view = [MoreActionView init];
+    [GKCover coverFrom:[UIApplication sharedApplication].keyWindow contentView:view style:GKCoverStyleTranslucent showStyle:GKCoverShowStyleBottom showAnimStyle:GKCoverShowAnimStyleBottom hideAnimStyle:GKCoverHideAnimStyleBottom notClick:NO];
+}
 @end

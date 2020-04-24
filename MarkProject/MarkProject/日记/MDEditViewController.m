@@ -25,6 +25,17 @@
 
 @implementation MDEditViewController
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    NSData *data = [self.editView.text dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *filePath = [documentPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.md", self.titlestr]];
+    //写入文件
+    [data writeToFile:filePath atomically:YES];
+    NSLog(@"md成功保存，地址%@", filePath);
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNav];
@@ -136,6 +147,10 @@
         //        textView.selectedRange = NSMakeRange(text.length, 0);
         [self.view addSubview:textView];
         self.editView = textView;
+        NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+        NSString *filePath = [documentPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.md", self.titlestr]];
+        NSString *markdown = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
+        self.editView.text = markdown;
     }
     return _editView;
 }

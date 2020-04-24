@@ -1,8 +1,8 @@
 //
-//  SettingViewController.h
+//  MoreActionView.h
 //  MarkProject
 //
-//  Created by 孙冬 on 2020/4/9.
+//  Created by 孙冬 on 2020/4/24.
 //  Copyright © 2020 mac. All rights reserved.
 //
 
@@ -10,11 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SettingViewController : UIViewController
+@interface MoreActionView : BaseView
 
++ (instancetype)init ;
 @end
 
 NS_ASSUME_NONNULL_END
-/*
- 
- */
