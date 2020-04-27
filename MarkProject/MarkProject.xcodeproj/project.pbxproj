@@ -12,6 +12,8 @@
 		04230FB02391020E00031B27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04230FAF2391020E00031B27 /* Assets.xcassets */; };
 		04230FB32391020E00031B27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04230FB12391020E00031B27 /* LaunchScreen.storyboard */; };
 		04230FB62391020E00031B27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04230FB52391020E00031B27 /* main.m */; };
+		042ACD662455242F00DE7A19 /* TipTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042ACD642455242F00DE7A19 /* TipTableViewCell.m */; };
+		042ACD672455242F00DE7A19 /* TipTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042ACD652455242F00DE7A19 /* TipTableViewCell.xib */; };
 		043384112452BC1C00E42271 /* vue-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 0433840F2452BC1B00E42271 /* vue-dark.css */; };
 		043384122452BC1C00E42271 /* vue.css in Resources */ = {isa = PBXBuildFile; fileRef = 043384102452BC1C00E42271 /* vue.css */; };
 		043384152452C05F00E42271 /* DocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043384142452C05F00E42271 /* DocumentViewController.m */; };
@@ -103,6 +105,8 @@
 		0491A3A8245043F0003FA693 /* TZLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491A397245043F0003FA693 /* TZLocationManager.m */; };
 		0491A3A9245043F0003FA693 /* TZGifPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491A398245043F0003FA693 /* TZGifPhotoPreviewController.m */; };
 		0491A3AA245043F0003FA693 /* TZImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491A399245043F0003FA693 /* TZImageRequestOperation.m */; };
+		04A83C3A2456D48C00D49338 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A83C382456D48C00D49338 /* SettingTableViewCell.m */; };
+		04A83C3B2456D48C00D49338 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A83C392456D48C00D49338 /* SettingTableViewCell.xib */; };
 		04D52654244558A50025CD4B /* NSDate+gyh.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52652244558A50025CD4B /* NSDate+gyh.m */; };
 		04D52657244558FE0025CD4B /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52656244558FE0025CD4B /* NSString+Util.m */; };
 		04D5265D2446E2800025CD4B /* PlanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D5265C2446E2800025CD4B /* PlanTableViewCell.m */; };
@@ -138,6 +142,9 @@
 		04230FB42391020E00031B27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04230FB52391020E00031B27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04230FBC2391024600031B27 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		042ACD632455242F00DE7A19 /* TipTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TipTableViewCell.h; sourceTree = "<group>"; };
+		042ACD642455242F00DE7A19 /* TipTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TipTableViewCell.m; sourceTree = "<group>"; };
+		042ACD652455242F00DE7A19 /* TipTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TipTableViewCell.xib; sourceTree = "<group>"; };
 		0433840F2452BC1B00E42271 /* vue-dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "vue-dark.css"; sourceTree = "<group>"; };
 		043384102452BC1C00E42271 /* vue.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = vue.css; sourceTree = "<group>"; };
 		043384132452C05F00E42271 /* DocumentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentViewController.h; sourceTree = "<group>"; };
@@ -308,6 +315,9 @@
 		0491A398245043F0003FA693 /* TZGifPhotoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZGifPhotoPreviewController.m; sourceTree = "<group>"; };
 		0491A399245043F0003FA693 /* TZImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImageRequestOperation.m; sourceTree = "<group>"; };
 		0491A39A245043F0003FA693 /* TZProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZProgressView.h; sourceTree = "<group>"; };
+		04A83C372456D48C00D49338 /* SettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingTableViewCell.h; sourceTree = "<group>"; };
+		04A83C382456D48C00D49338 /* SettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewCell.m; sourceTree = "<group>"; };
+		04A83C392456D48C00D49338 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		04D52652244558A50025CD4B /* NSDate+gyh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+gyh.m"; sourceTree = "<group>"; };
 		04D52653244558A50025CD4B /* NSDate+gyh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+gyh.h"; sourceTree = "<group>"; };
 		04D52655244558FE0025CD4B /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
@@ -397,7 +407,7 @@
 				0454440B23D43F8600808EEC /* Category */,
 				0478A4E12422034300C6B5C7 /* Tools */,
 				0464C7BE243EC1D70061902F /* 计划 */,
-				0464C7BD243EC1C60061902F /* 备忘录 */,
+				0464C7BD243EC1C60061902F /* 便签 */,
 				0464C7BC243EC1B30061902F /* 设置 */,
 				044A7DC2242CA4F700C9D9F7 /* 日记 */,
 				044A7DC1242CA4E800C9D9F7 /* 账单 */,
@@ -413,6 +423,16 @@
 				046AC1572396479B00111DA2 /* NextViewController.m */,
 			);
 			path = MarkProject;
+			sourceTree = "<group>";
+		};
+		042ACD622455240A00DE7A19 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				042ACD632455242F00DE7A19 /* TipTableViewCell.h */,
+				042ACD642455242F00DE7A19 /* TipTableViewCell.m */,
+				042ACD652455242F00DE7A19 /* TipTableViewCell.xib */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		044001E3242B49AB000AE57B /* WMDragView */ = {
@@ -592,19 +612,21 @@
 		0464C7BC243EC1B30061902F /* 设置 */ = {
 			isa = PBXGroup;
 			children = (
+				04A83C362456D46900D49338 /* view */,
 				0464C7BF243EC8390061902F /* SettingViewController.h */,
 				0464C7C0243EC8390061902F /* SettingViewController.m */,
 			);
 			path = "设置";
 			sourceTree = "<group>";
 		};
-		0464C7BD243EC1C60061902F /* 备忘录 */ = {
+		0464C7BD243EC1C60061902F /* 便签 */ = {
 			isa = PBXGroup;
 			children = (
+				042ACD622455240A00DE7A19 /* view */,
 				0464C7C8243ECA0D0061902F /* MemoViewController.h */,
 				0464C7C9243ECA0D0061902F /* MemoViewController.m */,
 			);
-			path = "备忘录";
+			path = "便签";
 			sourceTree = "<group>";
 		};
 		0464C7BE243EC1D70061902F /* 计划 */ = {
@@ -734,6 +756,16 @@
 				0491A39A245043F0003FA693 /* TZProgressView.h */,
 			);
 			path = TZImagePickerController;
+			sourceTree = "<group>";
+		};
+		04A83C362456D46900D49338 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				04A83C372456D48C00D49338 /* SettingTableViewCell.h */,
+				04A83C382456D48C00D49338 /* SettingTableViewCell.m */,
+				04A83C392456D48C00D49338 /* SettingTableViewCell.xib */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		04D5265A2446E2530025CD4B /* view */ = {
@@ -935,6 +967,7 @@
 			files = (
 				0464C7B9243D7B3E0061902F /* soul.json in Resources */,
 				04F638B2242DF333005207B0 /* Roboto-Regular.ttf in Resources */,
+				04A83C3B2456D48C00D49338 /* SettingTableViewCell.xib in Resources */,
 				04468325244DD67F0033892A /* techo.css in Resources */,
 				04230FB32391020E00031B27 /* LaunchScreen.storyboard in Resources */,
 				04230FB02391020E00031B27 /* Assets.xcassets in Resources */,
@@ -946,6 +979,7 @@
 				047C5170244D982700879A54 /* NewfileView.xib in Resources */,
 				04F638B3242DF333005207B0 /* markdown.html in Resources */,
 				04491C20244854A80029530E /* LXCalenderCell.xib in Resources */,
+				042ACD672455242F00DE7A19 /* TipTableViewCell.xib in Resources */,
 				04491C1E244854A80029530E /* LXCalendarHearder.xib in Resources */,
 				0491A3A2245043F0003FA693 /* TZImagePickerController.bundle in Resources */,
 				0433841A2452CC9200E42271 /* MoreActionView.xib in Resources */,
@@ -1058,6 +1092,7 @@
 				0491A3A5245043F0003FA693 /* TZPhotoPickerController.m in Sources */,
 				0446832E244DFED70033892A /* PlanSortModel.m in Sources */,
 				04E924AF2394A7D3006683D7 /* MDInstance.m in Sources */,
+				04A83C3A2456D48C00D49338 /* SettingTableViewCell.m in Sources */,
 				0478A56A24235A9E00C6B5C7 /* EasyNavigationView+LeftButton.m in Sources */,
 				0478A56124235A9E00C6B5C7 /* EasyNavigationScroll.m in Sources */,
 				0464C7C4243EC9340061902F /* PlanViewController.m in Sources */,
@@ -1088,6 +1123,7 @@
 				04D5265D2446E2800025CD4B /* PlanTableViewCell.m in Sources */,
 				0491A39F245043F0003FA693 /* NSBundle+TZImagePicker.m in Sources */,
 				04491C2C2448556F0029530E /* UIView+LX_Frame.m in Sources */,
+				042ACD662455242F00DE7A19 /* TipTableViewCell.m in Sources */,
 				04491C1F244854A80029530E /* LXCalendarHearder.m in Sources */,
 				04491C35244856260029530E /* LxButton.m in Sources */,
 				0491A39E245043F0003FA693 /* TZAssetModel.m in Sources */,

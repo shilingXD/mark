@@ -106,8 +106,8 @@
     
     UIView *view1 = [self setViewWtihTitle:@"账单" SubTitle:@"当日支出:100 当日收入:200" Tag:1001 BackColor:rgba(82, 154, 248, 1) Type:1];
     UIView *view2 = [self setViewWtihTitle:@"密码本" SubTitle:@"" Tag:1002 BackColor:rgba(117, 121, 143, 1) Type:2];
-    UIView *view3 = [self setViewWtihTitle:@"日记" SubTitle:@"" Tag:1003 BackColor:rgba(95, 147, 132, 1) Type:2];
-    UIView *view4 = [self setViewWtihTitle:@"备忘录" SubTitle:@"明天8:00上班" Tag:1004 BackColor:rgba(68, 107, 255, 1) Type:1];
+    UIView *view3 = [self setViewWtihTitle:@"随笔" SubTitle:@"" Tag:1003 BackColor:rgba(95, 147, 132, 1) Type:2];
+    UIView *view4 = [self setViewWtihTitle:@"便签" SubTitle:@"明天8:00上班" Tag:1004 BackColor:rgba(68, 107, 255, 1) Type:1];
     UIView *view5 = [self setViewWtihTitle:@"计划" SubTitle:@"" Tag:1005 BackColor:rgba(211, 163, 105, 1) Type:1];
     UIView *view6 = [self setViewWtihTitle:@"设置" SubTitle:@"" Tag:1006 BackColor:rgba(44, 44, 46, 1) Type:2];
     [view1 mas_makeConstraints:^(MASConstraintMaker *make) {

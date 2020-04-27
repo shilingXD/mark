@@ -7,12 +7,12 @@
 //
 
 #import "SettingViewController.h"
+#import "SettingTableViewCell.h"
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,TZImagePickerControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;///<<#注释#>
 @property (nonatomic, strong) UIImageView *headImageView;
 
-@property (nonatomic, strong) NSArray *SectionArray;
 @property (nonatomic, strong) NSArray *ItemsArray;
 @end
 
@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _SectionArray = @[@"主要",@"账单",@"密码本",@"日记",@"备忘录",@"计划"];
+    _ItemsArray = @[@[@"主题",@"主题"],@[@"毒鸡汤",@"毒鸡汤"],@[@"账单",@"账单"],@[@"密码本",@"密码本"],@[@"日记",@"日记"],@[@"备忘录",@"备忘录"],@[@"计划",@"计划"]];
     [self setNav];
     [self setupTableView];
     
@@ -40,23 +40,23 @@
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.rowHeight = 50;
-    _tableView.sectionHeaderHeight = 25;
     _tableView.bounces = NO;
     _tableView.backgroundColor = rgba(240, 240, 240, 1);
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [_tableView registerNib:[UINib nibWithNibName:@"SettingTableViewCell" bundle:nil] forCellReuseIdentifier:@"SettingTableViewCell"];
     _tableView.showsVerticalScrollIndicator = NO;
-//    _ItemsArray = @[@"主题"];
     [self.view addSubview:_tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(self.view);
         make.top.mas_equalTo(self.navigationView.mas_bottom);
     }];
     [self setupHeadView];
+    [self setupFootView];
 }
 
 -(void)setupHeadView
 {
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180)];
     headView.backgroundColor = TintColor;
     [self.view addSubview:headView];
     UIBezierPath *path = [UIBezierPath bezierPath];
@@ -95,44 +95,57 @@
         make.top.mas_equalTo(headImageView.mas_top).offset(2);
         make.left.mas_equalTo(headImageView.mas_right).offset(15);
     }];
+    UILabel *emailLabel = [[UILabel alloc] init];
+    emailLabel.text = @"邮箱：ling_shi_dong@163.com";
+    emailLabel.font = [UIFont fontWithName:@"PingFang SC" size:13];
+    emailLabel.textColor = GrayWhiteColor;
+    [headView addSubview:emailLabel];
+    [emailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(headImageView.mas_bottom).offset(-2);
+        make.left.mas_equalTo(headImageView.mas_right).offset(15);
+    }];
     
     
     self.tableView.tableHeaderView = headView;
 }
+-(void)setupFootView
+{
+    UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
+    footView.backgroundColor = [UIColor clearColor];
+    UIButton *LoginOutBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 50)];
+    [LoginOutBtn setTitle:@"退出登陆" forState:UIControlStateNormal];
+    LoginOutBtn.backgroundColor = [UIColor whiteColor];
+    LoginOutBtn.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:17];
+    [LoginOutBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [LoginOutBtn addTarget:self action:@selector(LoginOutBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [footView addSubview:LoginOutBtn];
+    [self.view addSubview:footView];
+    self.tableView.tableFooterView = footView;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = rgba(240, 240, 240, 1);
+    SettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SettingTableViewCell"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = rgba(240, 240, 240, 1);
+    cell.titleLabel.text = [NSString stringWithFormat:@"   %@",_ItemsArray[indexPath.row][0]];
+    cell.iconImage.image = [[UIImage imageNamed:_ItemsArray[indexPath.row][1]] changeColor:rgba(12, 14, 40, 1)];
+    if ([_ItemsArray[indexPath.row][0] isEqualToString:@"毒鸡汤"]) {
+        cell.stateSwitch.hidden = NO;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    } else {
+        cell.stateSwitch.hidden = YES;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = @"   选项";
     return cell;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *sectionView = [[UIView alloc] init];
-    UILabel *title = [[UILabel alloc] init];
-    title.text = _SectionArray[section];
-    title.font = [UIFont fontWithName:@"PingFang SC" size:15];
-    title.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
-    [sectionView addSubview:title];
-    [title mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(sectionView.mas_left).offset(20);
-        make.centerY.mas_equalTo(sectionView);
-    }];
-    return sectionView;
-}
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return _SectionArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return _ItemsArray.count;
+}
+-(void)LoginOutBtn:(UIButton *)sender
+{
+    
 }
 -(void)headClick
 {

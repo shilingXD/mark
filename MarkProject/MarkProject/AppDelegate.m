@@ -48,6 +48,7 @@
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];//进入前台取消应用消息图标
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
 }
 
