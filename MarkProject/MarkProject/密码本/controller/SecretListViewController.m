@@ -61,8 +61,8 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     [self.navigationView setTitle:@"密码本"];
     
     self.navigationView.backgroundView.image = nil ;
-    self.navigationView.backgroundView.backgroundColor = TintColor;
-    self.navigationView.lineView.backgroundColor = TintColor;
+    self.navigationView.backgroundView.backgroundColor = [MDInstance sharedInstance].themeColor;
+    self.navigationView.lineView.backgroundColor = [MDInstance sharedInstance].themeColor;
 }
 -(void)AddButton
 {

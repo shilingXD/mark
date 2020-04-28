@@ -33,14 +33,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view setBackgroundColor:TintColor];
+    [self.view setBackgroundColor:[MDInstance sharedInstance].themeColor];
     _array = @[@"账单",@"备忘录",@"计划",@"随想",@"密码本",@"设置"];//收藏夹（网页链接、微信文章等--支持本地打开和跳转浏览器）
     [self setNav];
     [self setupContentView];
     [self setupBanner];
     [self soulView];
-    
-    
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.view setBackgroundColor:[MDInstance sharedInstance].themeColor];
+    [self.SoulView setHidden:![MDInstance sharedInstance].isOpenSoul];
 }
 #pragma mark  - ------  Nav  ------
 -(void)setNav
@@ -48,8 +52,8 @@
     [self.navigationView setTitle:@"主页"];
     
     self.navigationView.backgroundView.image = nil ;
-    self.navigationView.backgroundView.backgroundColor = TintColor;
-    self.navigationView.lineView.backgroundColor = TintColor;
+    self.navigationView.backgroundView.backgroundColor = [MDInstance sharedInstance].themeColor;
+    self.navigationView.lineView.backgroundColor = [MDInstance sharedInstance].themeColor;
 }
 
 #pragma mark  - ------  头部-Banner  ------

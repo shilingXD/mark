@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.iconImage.layer.masksToBounds = YES;
     [self.iconImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self);
         make.left.mas_equalTo(self.mas_left).offset(10);
@@ -26,6 +27,9 @@
         make.right.mas_equalTo(self.right).offset(-10);
         make.centerY.mas_equalTo(self);
     }];
+}
+- (IBAction)StateSwitch:(UISwitch *)sender {
+    self.SwitchBlock(sender.isOn);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

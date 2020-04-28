@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DiaryViewController : UIViewController
+@interface DiaryViewController : BaseViewController
 
 @end
 

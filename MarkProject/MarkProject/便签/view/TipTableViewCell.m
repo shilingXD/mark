@@ -34,18 +34,22 @@
         make.bottom.mas_equalTo(self.mas_bottom);
         make.width.mas_equalTo(1);
     }];
+    self.titleView.layer.cornerRadius = 5;
     [self.titleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.mas_right).offset(-10);
         make.bottom.mas_equalTo(self.mas_bottom).offset(-10);
         make.top.mas_equalTo(self.mas_top).offset(10);
-        make.width.mas_equalTo(SCREEN_WIDTH*0.5);
+        make.left.mas_equalTo(self.tipimageView.mas_right).offset(50);
     }];
-    UILabel *title = [[UILabel alloc] init];
-    title.center = self.titleView.center;
-    title.text = @"笔记本";
-    title.font = [UIFont fontWithName:@"PingFang SC" size:20];
-    title.textColor = [UIColor blackColor];
-    [self.titleView addSubview:title];
+    self.titleLabel.text = @"笔记本";
+    self.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:18];
+    self.titleLabel.textColor = [UIColor whiteColor];
+    self.titleLabel.numberOfLines = 2;
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.titleView.mas_left).offset(15);
+        make.right.mas_equalTo(self.titleView.mas_right).offset(-15);
+        make.centerY.mas_equalTo(self);
+    }];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

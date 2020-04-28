@@ -11,6 +11,7 @@
 
 #pragma mark  - ------  Base  ------
 #import "BaseView.h"
+#import "BaseViewController.h"
 
 #pragma mark  - ------  Category  ------
 #import "UIView+Extension.h"

@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PlanViewController : UIViewController
+@interface PlanViewController : BaseViewController
 -(void)getPlanList;
 @end
 

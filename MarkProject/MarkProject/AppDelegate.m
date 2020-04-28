@@ -31,8 +31,7 @@
     self.window.rootViewController  = navVC ;
     
     [MDInstance sharedInstance].DeviceID = [MDMethods getUUIDByKeyChain];
-//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    [[UNUserNotificationCenter currentNotificationCenter] removeAllPendingNotificationRequests];
+    [MDInstance sharedInstance].themeColor = TintColor;
     return YES;
 }
 - (void)applicationWillResignActive:(UIApplication *)application {

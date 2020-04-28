@@ -39,8 +39,8 @@
     [self.navigationView setTitle:@"计划"];
     self.view.backgroundColor = rgba(240, 240, 240, 1);
     self.navigationView.backgroundView.image = nil ;
-    self.navigationView.backgroundView.backgroundColor = TintColor;
-    self.navigationView.lineView.backgroundColor = TintColor;
+    self.navigationView.backgroundView.backgroundColor = [MDInstance sharedInstance].themeColor;
+    self.navigationView.lineView.backgroundColor = [MDInstance sharedInstance].themeColor;
     
     
 }
@@ -73,7 +73,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
-    view.backgroundColor = TintColor;
+    view.backgroundColor = [MDInstance sharedInstance].themeColor;
 //    UIBezierPath *fieldPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(5 , 5)];
 //    CAShapeLayer *fieldLayer = [[CAShapeLayer alloc] init];
 //    fieldLayer.frame = view.bounds;

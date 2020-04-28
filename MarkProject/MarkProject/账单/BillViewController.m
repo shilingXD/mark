@@ -9,7 +9,11 @@
 #import "BillViewController.h"
 
 @interface BillViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic, strong) UITableView *tableView;///<<#注释#>
+@property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) UIButton *monthSelectBtn;///<月份选择按钮
+@property (nonatomic, strong) UILabel *incomeLabel;///<月收入
+@property (nonatomic, strong) UILabel *costLabel;///<月支出
 @end
 
 @implementation BillViewController
@@ -24,8 +28,8 @@
     [self.navigationView setTitle:@"账单"];
     self.view.backgroundColor = rgba(240, 240, 240, 1);
     self.navigationView.backgroundView.image = nil ;
-    self.navigationView.backgroundView.backgroundColor = TintColor;
-    self.navigationView.lineView.backgroundColor = TintColor;
+    self.navigationView.backgroundView.backgroundColor = [TintColor colorWithAlphaComponent:0];
+    self.navigationView.lineView.backgroundColor = [UIColor clearColor];
 }
 -(void)setupTableView
 {
@@ -33,14 +37,13 @@
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.rowHeight = 50;
-    _tableView.bounces = NO;
-    _tableView.backgroundColor = rgba(240, 240, 240, 1);
+    _tableView.backgroundColor = GrayWhiteColor;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:_tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(self.view);
-        make.top.mas_equalTo(self.navigationView.mas_bottom);
+        make.top.mas_equalTo(self.view.mas_top);
     }];
     [self setupHeadView];
 }
@@ -48,20 +51,21 @@
 -(void)setupHeadView
 {
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
-    headView.backgroundColor = TintColor;
-    [self.view addSubview:headView];
-    UIBezierPath *path = [UIBezierPath bezierPath];
-    [path moveToPoint:CGPointMake(headView.frame.size.width, 0)];
-    [path addLineToPoint:CGPointMake(0, 0)];
-    [path addLineToPoint:CGPointMake(0, headView.frame.size.height)];
-    [path addQuadCurveToPoint:CGPointMake(headView.frame.size.width, headView.frame.size.height*0.6) controlPoint:CGPointMake(headView.frame.size.width*0.7, headView.frame.size.height)];
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc]init];
-    maskLayer.frame=headView.bounds;
-    maskLayer.path= path.CGPath;
-    headView.layer.mask= maskLayer;
     
+    headView.backgroundColor = [MDInstance sharedInstance].themeColor;
+//    UIBezierPath *path = [UIBezierPath bezierPath];
+//    [path moveToPoint:CGPointMake(headView.frame.size.width, 0)];
+//    [path addLineToPoint:CGPointMake(0, 0)];
+//    [path addLineToPoint:CGPointMake(0, headView.frame.size.height)];
+//    [path addQuadCurveToPoint:CGPointMake(headView.frame.size.width, headView.frame.size.height*0.6) controlPoint:CGPointMake(headView.frame.size.width*0.7, headView.frame.size.height)];
+//    CAShapeLayer *maskLayer = [[CAShapeLayer alloc]init];
+//    maskLayer.frame=headView.bounds;
+//    maskLayer.path= path.CGPath;
+//    headView.layer.mask= maskLayer;
     
-    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -(NavigationBar_Height-44), SCREEN_WIDTH, headView.height+(NavigationBar_Height-44))];
+    imageView.backgroundColor = [UIColor orangeColor];
+    [headView addSubview:imageView];
     self.tableView.tableHeaderView = headView;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -83,6 +87,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 25;
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat rate = scrollView.contentOffset.y/100.0;
+    self.navigationView.backgroundColor = [TintColor colorWithAlphaComponent:rate];
 }
 @end

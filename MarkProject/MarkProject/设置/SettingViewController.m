@@ -8,6 +8,7 @@
 
 #import "SettingViewController.h"
 #import "SettingTableViewCell.h"
+#import "CustomSettingViewController.h"
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,TZImagePickerControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;///<<#注释#>
@@ -20,18 +21,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _ItemsArray = @[@[@"主题",@"主题"],@[@"毒鸡汤",@"毒鸡汤"],@[@"账单",@"账单"],@[@"密码本",@"密码本"],@[@"日记",@"日记"],@[@"备忘录",@"备忘录"],@[@"计划",@"计划"]];
+    _ItemsArray = @[@[@"主题",@"主题"],@[@"云同步",@"云同步"],@[@"毒鸡汤",@"毒鸡汤"],@[@"账单",@"账单"],@[@"密码本",@"密码本"],@[@"日记",@"日记"],@[@"备忘录",@"备忘录"],@[@"计划",@"计划"]];
     [self setNav];
     [self setupTableView];
     
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView.tableHeaderView setBackgroundColor:[MDInstance sharedInstance].themeColor];
+}
 -(void)setNav
 {
     [self.navigationView setTitle:@"设置"];
-    self.view.backgroundColor = TintColor;
     self.navigationView.backgroundView.image = nil ;
-    self.navigationView.backgroundView.backgroundColor = TintColor;
-    self.navigationView.lineView.backgroundColor = TintColor;
+    self.navigationView.backgroundView.backgroundColor = [MDInstance sharedInstance].themeColor;
+    self.navigationView.lineView.backgroundColor = [MDInstance sharedInstance].themeColor;
     
 }
 -(void)setupTableView
@@ -41,7 +46,7 @@
     _tableView.delegate = self;
     _tableView.rowHeight = 50;
     _tableView.bounces = NO;
-    _tableView.backgroundColor = rgba(240, 240, 240, 1);
+    _tableView.backgroundColor = GrayWhiteColor;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_tableView registerNib:[UINib nibWithNibName:@"SettingTableViewCell" bundle:nil] forCellReuseIdentifier:@"SettingTableViewCell"];
     _tableView.showsVerticalScrollIndicator = NO;
@@ -56,8 +61,8 @@
 
 -(void)setupHeadView
 {
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180)];
-    headView.backgroundColor = TintColor;
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
+    headView.backgroundColor = [MDInstance sharedInstance].themeColor;
     [self.view addSubview:headView];
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path moveToPoint:CGPointMake(headView.frame.size.width, 0)];
@@ -71,10 +76,10 @@
     
     UIImageView *headImageView = [[UIImageView alloc] init];
     self.headImageView = headImageView;
-    headImageView.backgroundColor = TintColor;
+    headImageView.backgroundColor = [UIColor grayColor];
     headImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     headImageView.layer.borderWidth = 2;
-    headImageView.image = [MDMethods stringToImage:[MDInstance sharedInstance].UserheadimageBase64];
+    headImageView.image = ([MDInstance sharedInstance].headImage == nil)?[UIImage imageNamed:@"头像"]:[MDInstance sharedInstance].headImage;
     headImageView.layer.masksToBounds = YES;
     headImageView.layer.cornerRadius = 75/2;
     [headImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
@@ -87,12 +92,12 @@
     }];
     
     UILabel *nameLabel = [[UILabel alloc] init];
-    nameLabel.text = @"点击头像登陆";
+    nameLabel.text = @"时零";
     nameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:21];
     nameLabel.textColor = GrayWhiteColor;
     [headView addSubview:nameLabel];
     [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(headImageView.mas_top).offset(2);
+        make.top.mas_equalTo(headImageView.mas_top).offset(10);
         make.left.mas_equalTo(headImageView.mas_right).offset(15);
     }];
     UILabel *emailLabel = [[UILabel alloc] init];
@@ -101,10 +106,25 @@
     emailLabel.textColor = GrayWhiteColor;
     [headView addSubview:emailLabel];
     [emailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(headImageView.mas_bottom).offset(-2);
+        make.bottom.mas_equalTo(headImageView.mas_bottom).offset(-15);
         make.left.mas_equalTo(headImageView.mas_right).offset(15);
     }];
     
+    UIButton *LoginOutBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 20, SCREEN_WIDTH-30, 50)];
+    [LoginOutBtn setImage:[UIImage imageNamed:@"退出登录"] forState:UIControlStateNormal];
+    LoginOutBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    LoginOutBtn.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:13];
+    [LoginOutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [LoginOutBtn addTarget:self action:@selector(LoginOutBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [headView addSubview:LoginOutBtn];
+    [LoginOutBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(80, 50));
+        make.centerY.mas_equalTo(headImageView);
+        make.right.mas_equalTo(headView.mas_right);
+    }];
+    [self.view layoutIfNeeded];
+    LoginOutBtn.imageEdgeInsets = UIEdgeInsetsMake(10, 0, 10, 0);
+    LoginOutBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     self.tableView.tableHeaderView = headView;
 }
@@ -112,13 +132,6 @@
 {
     UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
     footView.backgroundColor = [UIColor clearColor];
-    UIButton *LoginOutBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 50)];
-    [LoginOutBtn setTitle:@"退出登陆" forState:UIControlStateNormal];
-    LoginOutBtn.backgroundColor = [UIColor whiteColor];
-    LoginOutBtn.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:17];
-    [LoginOutBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [LoginOutBtn addTarget:self action:@selector(LoginOutBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [footView addSubview:LoginOutBtn];
     [self.view addSubview:footView];
     self.tableView.tableFooterView = footView;
 }
@@ -131,17 +144,27 @@
     cell.iconImage.image = [[UIImage imageNamed:_ItemsArray[indexPath.row][1]] changeColor:rgba(12, 14, 40, 1)];
     if ([_ItemsArray[indexPath.row][0] isEqualToString:@"毒鸡汤"]) {
         cell.stateSwitch.hidden = NO;
+        [cell.stateSwitch setOn:[MDInstance sharedInstance].isOpenSoul];
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else {
         cell.stateSwitch.hidden = YES;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    cell.SwitchBlock = ^(BOOL isOn) {
+        [MDInstance sharedInstance].isOpenSoul = isOn;
+    };
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _ItemsArray.count;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CustomSettingViewController *vc = [[CustomSettingViewController alloc] init];
+    vc.NavTitle = _ItemsArray[indexPath.row][0];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)LoginOutBtn:(UIButton *)sender
 {
@@ -181,7 +204,7 @@
     imagePickerVc.scaleAspectFillCrop = YES;
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
         self.headImageView.image = photos[0];
-      [MDInstance sharedInstance].UserheadimageBase64 = [MDMethods imageToString:photos[0]];
+      [MDInstance sharedInstance].headImage = photos[0];
 //        NSMutableString *base64 = [NSMutableString string];
 //        NSData *imageData = UIImageJPEGRepresentation(photos[0], 1);
 //        

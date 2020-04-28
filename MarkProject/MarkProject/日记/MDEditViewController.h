@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MDEditViewController : UIViewController
+@interface MDEditViewController : BaseViewController
 @property (nonatomic, copy) NSString *titlestr;///<标题
 @end
 

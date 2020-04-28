@@ -43,7 +43,16 @@
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sWI-Gu-t2a">
                         <rect key="frame" x="220" y="14" width="142" height="91"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzB-Wp-Hgc">
+                                <rect key="frame" x="50" y="35" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99815970659255981" green="0.75376969575881958" blue="0.0055426652543246746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                 </subviews>
             </tableViewCellContentView>
@@ -52,6 +61,7 @@
                 <outlet property="bottomLine" destination="tqP-b9-KdM" id="9Kx-JH-xOH"/>
                 <outlet property="dateLabel" destination="6GR-ZC-WhU" id="UlQ-gg-ZiJ"/>
                 <outlet property="tipimageView" destination="its-q6-gCi" id="yPK-Np-YXK"/>
+                <outlet property="titleLabel" destination="lzB-Wp-Hgc" id="Pl2-G2-pT7"/>
                 <outlet property="titleView" destination="sWI-Gu-t2a" id="uMs-vi-kBF"/>
                 <outlet property="topLine" destination="LVt-Rt-bgR" id="1eU-j6-nx5"/>
             </connections>

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *stateSwitch;
-
+@property (nonatomic, copy) void (^SwitchBlock)(BOOL isOn);///<<#注释#>
 @end
 
 NS_ASSUME_NONNULL_END

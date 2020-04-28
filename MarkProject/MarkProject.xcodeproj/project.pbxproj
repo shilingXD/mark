@@ -107,6 +107,8 @@
 		0491A3AA245043F0003FA693 /* TZImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491A399245043F0003FA693 /* TZImageRequestOperation.m */; };
 		04A83C3A2456D48C00D49338 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A83C382456D48C00D49338 /* SettingTableViewCell.m */; };
 		04A83C3B2456D48C00D49338 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A83C392456D48C00D49338 /* SettingTableViewCell.xib */; };
+		04A83C3E2458108B00D49338 /* CustomSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A83C3D2458108B00D49338 /* CustomSettingViewController.m */; };
+		04A83C412458165400D49338 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A83C402458165400D49338 /* BaseViewController.m */; };
 		04D52654244558A50025CD4B /* NSDate+gyh.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52652244558A50025CD4B /* NSDate+gyh.m */; };
 		04D52657244558FE0025CD4B /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52656244558FE0025CD4B /* NSString+Util.m */; };
 		04D5265D2446E2800025CD4B /* PlanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D5265C2446E2800025CD4B /* PlanTableViewCell.m */; };
@@ -318,6 +320,10 @@
 		04A83C372456D48C00D49338 /* SettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingTableViewCell.h; sourceTree = "<group>"; };
 		04A83C382456D48C00D49338 /* SettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewCell.m; sourceTree = "<group>"; };
 		04A83C392456D48C00D49338 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
+		04A83C3C2458108B00D49338 /* CustomSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSettingViewController.h; sourceTree = "<group>"; };
+		04A83C3D2458108B00D49338 /* CustomSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSettingViewController.m; sourceTree = "<group>"; };
+		04A83C3F2458165400D49338 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		04A83C402458165400D49338 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		04D52652244558A50025CD4B /* NSDate+gyh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+gyh.m"; sourceTree = "<group>"; };
 		04D52653244558A50025CD4B /* NSDate+gyh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+gyh.h"; sourceTree = "<group>"; };
 		04D52655244558FE0025CD4B /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
@@ -615,6 +621,8 @@
 				04A83C362456D46900D49338 /* view */,
 				0464C7BF243EC8390061902F /* SettingViewController.h */,
 				0464C7C0243EC8390061902F /* SettingViewController.m */,
+				04A83C3C2458108B00D49338 /* CustomSettingViewController.h */,
+				04A83C3D2458108B00D49338 /* CustomSettingViewController.m */,
 			);
 			path = "设置";
 			sourceTree = "<group>";
@@ -801,6 +809,8 @@
 			children = (
 				04D52664244710630025CD4B /* BaseView.h */,
 				04D52663244710630025CD4B /* BaseView.m */,
+				04A83C3F2458165400D49338 /* BaseViewController.h */,
+				04A83C402458165400D49338 /* BaseViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1089,6 +1099,7 @@
 				0491A3A0245043F0003FA693 /* UIView+Layout.m in Sources */,
 				046AC14A2394EF0600111DA2 /* MainViewController.m in Sources */,
 				0491A3A1245043F0003FA693 /* TZPhotoPreviewController.m in Sources */,
+				04A83C412458165400D49338 /* BaseViewController.m in Sources */,
 				0491A3A5245043F0003FA693 /* TZPhotoPickerController.m in Sources */,
 				0446832E244DFED70033892A /* PlanSortModel.m in Sources */,
 				04E924AF2394A7D3006683D7 /* MDInstance.m in Sources */,
@@ -1101,6 +1112,7 @@
 				04F638B7242DF333005207B0 /* FIREditPageVC.m in Sources */,
 				0491A3A9245043F0003FA693 /* TZGifPhotoPreviewController.m in Sources */,
 				0478A56824235A9E00C6B5C7 /* UIViewController+EasyNavigationExt.m in Sources */,
+				04A83C3E2458108B00D49338 /* CustomSettingViewController.m in Sources */,
 				04491C22244854A80029530E /* NSString+NCDate.m in Sources */,
 				0478A56924235A9E00C6B5C7 /* EasyNavigationUtils.m in Sources */,
 				04230FB62391020E00031B27 /* main.m in Sources */,

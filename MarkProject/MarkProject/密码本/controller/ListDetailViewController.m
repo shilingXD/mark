@@ -53,8 +53,8 @@
     [self.navigationView setTitle:@""];
     self.view.backgroundColor = rgba(240, 240, 240, 1);
     self.navigationView.backgroundView.image = nil ;
-    self.navigationView.backgroundView.backgroundColor = TintColor;
-    self.navigationView.lineView.backgroundColor = TintColor;
+    self.navigationView.backgroundView.backgroundColor = [MDInstance sharedInstance].themeColor;
+    self.navigationView.lineView.backgroundColor = [MDInstance sharedInstance].themeColor;
     
     UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 44)];
     UILabel *Label = [[UILabel alloc] init];

@@ -25,8 +25,8 @@
     [self.navigationView setTitle:@"便签"];
     self.view.backgroundColor = rgba(240, 240, 240, 1);
     self.navigationView.backgroundView.image = nil ;
-    self.navigationView.backgroundView.backgroundColor = TintColor;
-    self.navigationView.lineView.backgroundColor = TintColor;
+    self.navigationView.backgroundView.backgroundColor = [MDInstance sharedInstance].themeColor;
+    self.navigationView.lineView.backgroundColor = [MDInstance sharedInstance].themeColor;
 }
 -(void)setContentView
 {
@@ -51,6 +51,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TipTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"TipTableViewCell"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = [UIColor clearColor];
+    cell.topLine.hidden = NO;
+    cell.bottomLine.hidden = NO;
+    if (indexPath.row == 0) {
+        cell.topLine.hidden = YES;
+//        if (<#condition#>) {
+//            cell.bottomLine.hidden = YES;
+//        }
+    }else if (indexPath.row == 9){
+        cell.bottomLine.hidden = YES;
+    }
     cell.dateLabel.text = @"2017年4月7号\n23:30";
     return cell;
 }

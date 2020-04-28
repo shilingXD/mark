@@ -38,7 +38,7 @@
 -(void)setbar
 {
     UIView *barView = [[UIView alloc] init];
-    barView.backgroundColor = TintColor;
+    barView.backgroundColor = [MDInstance sharedInstance].themeColor;
     [self.view addSubview:barView];
     [barView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(self.view);

@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DocumentViewController : UIViewController
+@interface DocumentViewController : BaseViewController
 @property (nonatomic, copy) NSString *DocumentTitle;///<文件夹标题
 @end
 
