@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -63,6 +63,8 @@
 		046AC14A2394EF0600111DA2 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046AC1492394EF0600111DA2 /* MainViewController.m */; };
 		046AC1552395124E00111DA2 /* MainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046AC1542395124E00111DA2 /* MainCollectionViewCell.m */; };
 		046AC1582396479B00111DA2 /* NextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046AC1572396479B00111DA2 /* NextViewController.m */; };
+		047263E32462D2AC00E5C1ED /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047263E12462D2AC00E5C1ED /* LoginViewController.m */; };
+		047263E42462D2AC00E5C1ED /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047263E22462D2AC00E5C1ED /* LoginViewController.xib */; };
 		0478A13D245D850F002559DC /* BillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A13B245D850F002559DC /* BillTableViewCell.m */; };
 		0478A13E245D850F002559DC /* BillTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0478A13C245D850F002559DC /* BillTableViewCell.xib */; };
 		0478A4F92422061400C6B5C7 /* UICollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A4F52422061200C6B5C7 /* UICollectionViewLeftAlignedLayout.m */; };
@@ -249,6 +251,20 @@
 		046AC1542395124E00111DA2 /* MainCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainCollectionViewCell.m; sourceTree = "<group>"; };
 		046AC1562396479B00111DA2 /* NextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NextViewController.h; sourceTree = "<group>"; };
 		046AC1572396479B00111DA2 /* NextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NextViewController.m; sourceTree = "<group>"; };
+		047263E02462D2AC00E5C1ED /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		047263E12462D2AC00E5C1ED /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		047263E22462D2AC00E5C1ED /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		0472648F2462FAC600E5C1ED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		047264912462FAD300E5C1ED /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		047264932462FADD00E5C1ED /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		047264952462FAE800E5C1ED /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		047264972462FAF100E5C1ED /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		047264992462FAF900E5C1ED /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		0472649B2462FB0300E5C1ED /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0472649D2462FB1200E5C1ED /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		0472649F2462FB1D00E5C1ED /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		047264A12462FB2B00E5C1ED /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		047264A32462FB3400E5C1ED /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		0478A13A245D850F002559DC /* BillTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BillTableViewCell.h; sourceTree = "<group>"; };
 		0478A13B245D850F002559DC /* BillTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BillTableViewCell.m; sourceTree = "<group>"; };
 		0478A13C245D850F002559DC /* BillTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillTableViewCell.xib; sourceTree = "<group>"; };
@@ -676,6 +692,9 @@
 				0464C7C0243EC8390061902F /* SettingViewController.m */,
 				04A83C3C2458108B00D49338 /* CustomSettingViewController.h */,
 				04A83C3D2458108B00D49338 /* CustomSettingViewController.m */,
+				047263E02462D2AC00E5C1ED /* LoginViewController.h */,
+				047263E12462D2AC00E5C1ED /* LoginViewController.m */,
+				047263E22462D2AC00E5C1ED /* LoginViewController.xib */,
 			);
 			path = "设置";
 			sourceTree = "<group>";
@@ -975,6 +994,17 @@
 		73ACE74CF294E50703FC5A68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				047264A32462FB3400E5C1ED /* Photos.framework */,
+				047264A12462FB2B00E5C1ED /* libc++.tbd */,
+				0472649F2462FB1D00E5C1ED /* libicucore.tbd */,
+				0472649D2462FB1200E5C1ED /* libz.1.2.5.tbd */,
+				0472649B2462FB0300E5C1ED /* SystemConfiguration.framework */,
+				047264992462FAF900E5C1ED /* CoreTelephony.framework */,
+				047264972462FAF100E5C1ED /* CFNetwork.framework */,
+				047264952462FAE800E5C1ED /* MobileCoreServices.framework */,
+				047264932462FADD00E5C1ED /* CoreGraphics.framework */,
+				047264912462FAD300E5C1ED /* Security.framework */,
+				0472648F2462FAC600E5C1ED /* CoreLocation.framework */,
 				0464C8C924401EA80061902F /* MMMarkdown.framework */,
 				0454440623D1B44900808EEC /* libsqlite3.tbd */,
 				E6F41FCEB9C3C4D50F296F00 /* libPods-MarkProject.a */,
@@ -1003,6 +1033,7 @@
 				04230FA02391020B00031B27 /* Frameworks */,
 				04230FA12391020B00031B27 /* Resources */,
 				0464C8CB24401EF60061902F /* ShellScript */,
+				3A5EBD6272DE1C92F9A23DCE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1067,6 +1098,7 @@
 				04F323342447F13F00F16923 /* AddPlanView.xib in Resources */,
 				04468321244DD52D0033892A /* markdown.css in Resources */,
 				04491C3B244864B40029530E /* AddPlanNameView.xib in Resources */,
+				047263E42462D2AC00E5C1ED /* LoginViewController.xib in Resources */,
 				043384122452BC1C00E42271 /* vue.css in Resources */,
 				047C5170244D982700879A54 /* NewfileView.xib in Resources */,
 				04F638B3242DF333005207B0 /* markdown.html in Resources */,
@@ -1105,6 +1137,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/Carthage copy-frameworks\n";
+		};
+		3A5EBD6272DE1C92F9A23DCE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MarkProject/Pods-MarkProject-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MarkProject/Pods-MarkProject-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MarkProject/Pods-MarkProject-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		47376696759AB709FE75C4CD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1199,6 +1248,7 @@
 				043384152452C05F00E42271 /* DocumentViewController.m in Sources */,
 				04D31A3324624AEB00F3428A /* BKCKeyboard.m in Sources */,
 				0478A4F92422061400C6B5C7 /* UICollectionViewLeftAlignedLayout.m in Sources */,
+				047263E32462D2AC00E5C1ED /* LoginViewController.m in Sources */,
 				04F638B7242DF333005207B0 /* FIREditPageVC.m in Sources */,
 				0491A3A9245043F0003FA693 /* TZGifPhotoPreviewController.m in Sources */,
 				0478A56824235A9E00C6B5C7 /* UIViewController+EasyNavigationExt.m in Sources */,
@@ -1392,6 +1442,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/MarkProject/Tools/BmobSDK/BmobFileDemo/BmobFileDemo",
+					"$(PROJECT_DIR)/MarkProject/Tools/BmobSDK/BmobRelationDemo/BmobRelationDemo",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MarkProject/PrefixHeader.pch";
@@ -1417,6 +1469,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/MarkProject/Tools/BmobSDK/BmobFileDemo/BmobFileDemo",
+					"$(PROJECT_DIR)/MarkProject/Tools/BmobSDK/BmobRelationDemo/BmobRelationDemo",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MarkProject/PrefixHeader.pch";

@@ -1,4 +1,5 @@
 PODS:
+  - AAChartKit (4.0.0)
   - AFNetworking (3.2.1):
     - AFNetworking/NSURLSession (= 3.2.1)
     - AFNetworking/Reachability (= 3.2.1)
@@ -29,6 +30,7 @@ PODS:
   - YYText (1.0.7)
 
 DEPENDENCIES:
+  - AAChartKit (from `https://github.com/AAChartModel/AAChartKit.git`)
   - AFNetworking (~> 3.0)
   - FMDB
   - Masonry
@@ -38,7 +40,7 @@ DEPENDENCIES:
   - YYText
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - AFNetworking
     - FMDB
     - Masonry
@@ -47,7 +49,17 @@ SPEC REPOS:
     - YYCategories
     - YYText
 
+EXTERNAL SOURCES:
+  AAChartKit:
+    :git: https://github.com/AAChartModel/AAChartKit.git
+
+CHECKOUT OPTIONS:
+  AAChartKit:
+    :commit: 5166f1f2475726dee54b75daa04d6c0fafca979a
+    :git: https://github.com/AAChartModel/AAChartKit.git
+
 SPEC CHECKSUMS:
+  AAChartKit: a62caf524117fcf19e7c8b4f10acbf58dcb08359
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -56,6 +68,6 @@ SPEC CHECKSUMS:
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 98f27c216f9ba46058520fefca7df592d3e939ba
+PODFILE CHECKSUM: f80cc7cd1c66920458eb45582194e7c5ed4e9aed
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.8.4

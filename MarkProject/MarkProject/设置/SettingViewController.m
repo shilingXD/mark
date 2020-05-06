@@ -9,6 +9,7 @@
 #import "SettingViewController.h"
 #import "SettingTableViewCell.h"
 #import "CustomSettingViewController.h"
+#import "LoginViewController.h"
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,TZImagePickerControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;///<<#注释#>
@@ -170,7 +171,8 @@
 }
 -(void)LoginOutBtn:(UIButton *)sender
 {
-    
+    LoginViewController *vc = [[LoginViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)headClick
 {
