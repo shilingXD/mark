@@ -17,6 +17,9 @@
 #import "UIView+Extension.h"
 #import "UIImage+Util.h"
 #import "NSString+Util.h"
+#import "NSDictionary+Extension.h"
+#import "NSString+Calculation.h"
+#import "NSDate+Extension.h"
 
 #pragma mark  - ------  Tool  ------
 #import "LXCalender.h"
