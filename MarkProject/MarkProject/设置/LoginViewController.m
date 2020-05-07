@@ -72,11 +72,12 @@
 {
     UIView *LeftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 25, 40)];
     UIImageView *imageview = [[UIImageView alloc] initWithImage:image];
+    imageview.contentMode = UIViewContentModeScaleAspectFit;
     [LeftView addSubview:imageview];
     [imageview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(20, 20));
-        make.left.mas_equalTo(LeftView.mas_left).mas_offset(10);
-        make.right.mas_equalTo(LeftView.mas_right).mas_offset(-5);
+        make.size.mas_equalTo(CGSizeMake(35, 35));
+        make.left.mas_equalTo(LeftView.mas_left).mas_offset(2.5);
+        make.right.mas_equalTo(LeftView.mas_right).mas_offset(-2.5);
         make.centerY.mas_equalTo(LeftView);
     }];
     

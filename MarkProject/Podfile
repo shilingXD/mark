@@ -11,7 +11,6 @@ pod 'SDWebImage', '~> 5.0'
 pod 'YYText'
 pod 'YYCategories'
 pod 'SDCycleScrollView','>= 1.80'
-pod 'BmobSDK'
 pod 'AAChartKit', :git => 'https://github.com/AAChartModel/AAChartKit.git'
   # Pods for MarkProject
 

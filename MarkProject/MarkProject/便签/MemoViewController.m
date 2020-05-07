@@ -8,9 +8,17 @@
 
 #import "MemoViewController.h"
 #import "TipTableViewCell.h"
+#import "WMDragView.h"
+#import <FoldingCell/FoldingCell-Swift.h>
+#import <FoldingCell/FoldingCell.h>
 
 @interface MemoViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableview;///<<#注释#>
+
+@property (atomic) float kCloseCellHeight;
+@property (atomic) float kOpenCellHeight;
+@property (atomic) int kRowsCount;
+@property (atomic) NSMutableArray* cellHeights;
 @end
 
 @implementation MemoViewController
@@ -19,6 +27,7 @@
     [super viewDidLoad];
     [self setNav];
     [self setContentView];
+    [self AddButton];
 }
 -(void)setNav
 {
@@ -39,6 +48,31 @@
     _tableview.showsVerticalScrollIndicator = NO;
     [_tableview registerNib:[UINib nibWithNibName:@"TipTableViewCell" bundle:nil] forCellReuseIdentifier:@"TipTableViewCell"];
     [self.view addSubview:_tableview];
+}
+-(void)AddButton
+{
+    WMDragView *dragView = [[WMDragView alloc] init];
+    dragView.backgroundColor = rgba(85, 85, 85, 1);
+    dragView.layer.masksToBounds = YES;
+    dragView.layer.cornerRadius = 25;
+    dragView.clickDragViewBlock = ^(WMDragView *dragView) {
+        
+        
+    };
+    [self.view addSubview:dragView];
+    [dragView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(50, 50));
+        make.right.mas_equalTo(self.view).offset(-25);
+        make.bottom.mas_equalTo(self.view).offset(-25);
+    }];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"增加"]];
+    [dragView addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(dragView);
+    }];
+    
+    
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

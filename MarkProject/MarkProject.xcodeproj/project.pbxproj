@@ -125,6 +125,8 @@
 		04D31A4B2462634500F3428A /* SetBillCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31A492462634500F3428A /* SetBillCollectionViewCell.m */; };
 		04D31A4C2462634500F3428A /* SetBillCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D31A4A2462634500F3428A /* SetBillCollectionViewCell.xib */; };
 		04D31A4F246290E900F3428A /* BillCollectionViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31A4E246290E900F3428A /* BillCollectionViewViewController.m */; };
+		04D31A572463D90A00F3428A /* MemoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31A562463D90A00F3428A /* MemoEditViewController.m */; };
+		04D31AC224640BB600F3428A /* MemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D31AC124640BB600F3428A /* MemoViewController.xib */; };
 		04D52654244558A50025CD4B /* NSDate+gyh.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52652244558A50025CD4B /* NSDate+gyh.m */; };
 		04D52657244558FE0025CD4B /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52656244558FE0025CD4B /* NSString+Util.m */; };
 		04D5265D2446E2800025CD4B /* PlanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D5265C2446E2800025CD4B /* PlanTableViewCell.m */; };
@@ -379,6 +381,9 @@
 		04D31A4A2462634500F3428A /* SetBillCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetBillCollectionViewCell.xib; sourceTree = "<group>"; };
 		04D31A4D246290E900F3428A /* BillCollectionViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BillCollectionViewViewController.h; sourceTree = "<group>"; };
 		04D31A4E246290E900F3428A /* BillCollectionViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BillCollectionViewViewController.m; sourceTree = "<group>"; };
+		04D31A552463D90A00F3428A /* MemoEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoEditViewController.h; sourceTree = "<group>"; };
+		04D31A562463D90A00F3428A /* MemoEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemoEditViewController.m; sourceTree = "<group>"; };
+		04D31AC124640BB600F3428A /* MemoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemoViewController.xib; sourceTree = "<group>"; };
 		04D52652244558A50025CD4B /* NSDate+gyh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+gyh.m"; sourceTree = "<group>"; };
 		04D52653244558A50025CD4B /* NSDate+gyh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+gyh.h"; sourceTree = "<group>"; };
 		04D52655244558FE0025CD4B /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
@@ -492,6 +497,7 @@
 				042ACD632455242F00DE7A19 /* TipTableViewCell.h */,
 				042ACD642455242F00DE7A19 /* TipTableViewCell.m */,
 				042ACD652455242F00DE7A19 /* TipTableViewCell.xib */,
+				04D31AC124640BB600F3428A /* MemoViewController.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -705,6 +711,8 @@
 				042ACD622455240A00DE7A19 /* view */,
 				0464C7C8243ECA0D0061902F /* MemoViewController.h */,
 				0464C7C9243ECA0D0061902F /* MemoViewController.m */,
+				04D31A552463D90A00F3428A /* MemoEditViewController.h */,
+				04D31A562463D90A00F3428A /* MemoEditViewController.m */,
 			);
 			path = "便签";
 			sourceTree = "<group>";
@@ -1055,6 +1063,7 @@
 				TargetAttributes = {
 					04230FA22391020B00031B27 = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -1091,6 +1100,7 @@
 				04A83C3B2456D48C00D49338 /* SettingTableViewCell.xib in Resources */,
 				04D31A4C2462634500F3428A /* SetBillCollectionViewCell.xib in Resources */,
 				0478A13E245D850F002559DC /* BillTableViewCell.xib in Resources */,
+				04D31AC224640BB600F3428A /* MemoViewController.xib in Resources */,
 				04468325244DD67F0033892A /* techo.css in Resources */,
 				04230FB32391020E00031B27 /* LaunchScreen.storyboard in Resources */,
 				04230FB02391020E00031B27 /* Assets.xcassets in Resources */,
@@ -1226,6 +1236,7 @@
 				04F638B6242DF333005207B0 /* HFButton.m in Sources */,
 				0446831E244DCE940033892A /* PreWebViewController.m in Sources */,
 				04D52654244558A50025CD4B /* NSDate+gyh.m in Sources */,
+				04D31A572463D90A00F3428A /* MemoEditViewController.m in Sources */,
 				0464295524445591008F600C /* AddSecretViewController.m in Sources */,
 				043384182452CC7200E42271 /* MoreActionView.m in Sources */,
 				0478A5712423615200C6B5C7 /* UIImage+Util.m in Sources */,
@@ -1436,6 +1447,7 @@
 			baseConfigurationReference = 958297A7EEDFB92B5FA0BD5D /* Pods-MarkProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MarkProject/MarkProject.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7QT63XRD5R;
@@ -1454,6 +1466,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shilingXD.MarkProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MarkProject/便签/MarkProject-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1463,6 +1478,7 @@
 			baseConfigurationReference = 49168B48E25A5FEB4F7A6A6B /* Pods-MarkProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MarkProject/MarkProject.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7QT63XRD5R;
@@ -1481,6 +1497,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shilingXD.MarkProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MarkProject/便签/MarkProject-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

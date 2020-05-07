@@ -1,0 +1,10 @@
+{
+  "commitish" : "5.0.2",
+  "iOS" : [
+    {
+      "name" : "FoldingCell",
+      "hash" : "30312be861e9a517d3cf25e1bfaf70406d07153b13da2bd095ba69875ee7b5e9",
+      "swiftToolchainVersion" : "5.0.1 (swiftlang-1001.0.82.4 clang-1001.0.46.5)"
+    }
+  ]
+}
