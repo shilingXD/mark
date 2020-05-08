@@ -17,13 +17,20 @@
         make.left.mas_equalTo(self.mas_left).offset(15);
         make.right.mas_equalTo(self.mas_right).offset(-15);
     }];
+//    self.MyContentView.frame = CGRectMake(15, 0, SCREEN_WIDTH-30, 60);
+//    UIBezierPath *fieldPath = [UIBezierPath bezierPathWithRoundedRect:self.MyContentView.bounds byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
+//           CAShapeLayer *fieldLayer = [[CAShapeLayer alloc] init];
+//           fieldLayer.frame = self.MyContentView.bounds;
+//           fieldLayer.path = fieldPath.CGPath;
+//           self.layer.mask = fieldLayer;
+    
     self.tipImageView.backgroundColor = [UIColor redColor];
     self.tipImageView.layer.masksToBounds  = YES;
-    self.tipImageView.layer.cornerRadius = 2;
+    self.tipImageView.layer.cornerRadius = 2.5;
     [self.tipImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.MyContentView.mas_left).offset(15);
         make.centerY.mas_equalTo(self);
-        make.size.mas_equalTo(CGSizeMake(4, 4));
+        make.size.mas_equalTo(CGSizeMake(5, 5));
     }];
     [self.detailNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.tipImageView.mas_right).offset(10);

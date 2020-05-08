@@ -103,7 +103,7 @@
     _monthSelectBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Thin" size:15];
     _monthSelectBtn.titleLabel.numberOfLines = 2;
     _monthSelectBtn.titleLabel.textColor = [UIColor whiteColor];
-    [_monthSelectBtn setAttributedTitle:[MDMethods ChangeNSMutabelAttributedString:@"2020年\n4月" WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:50] AndTargetString:@"4"] forState:UIControlStateNormal];
+    [_monthSelectBtn setAttributedTitle:[MDMethods ChangeNSMutabelAttributedString:@"2020年\n5月" WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:50] AndTargetString:@"5"] forState:UIControlStateNormal];
     [_monthSelectBtn addTarget:self action:@selector(selectMonth) forControlEvents:UIControlEventTouchUpInside];
     [headView addSubview:_monthSelectBtn];
     [_monthSelectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -121,7 +121,7 @@
     _incomeLabel.numberOfLines = 2;
     _incomeLabel.font = [UIFont fontWithName:@"PingFangSC-Thin" size:15];
     _incomeLabel.textColor = [UIColor whiteColor];
-    _incomeLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:@"月收入\n200" WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:50] AndTargetString:@"200"];
+    _incomeLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:@"月收入\n2000" WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:50] AndTargetString:@"2000"];
     [headView addSubview:_incomeLabel];
     [_incomeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.monthSelectBtn.mas_right).mas_offset(30);
@@ -131,7 +131,7 @@
     _costLabel.numberOfLines = 2;
     _costLabel.font = [UIFont fontWithName:@"PingFangSC-Thin" size:15];
     _costLabel.textColor = [UIColor whiteColor];
-    _costLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:@"月支出\n200" WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:50] AndTargetString:@"200"];
+    _costLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:@"月支出\n422.1" WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:50] AndTargetString:@"422.1"];
     [headView addSubview:_costLabel];
     [_costLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.incomeLabel.mas_right).mas_offset(20);
@@ -151,7 +151,7 @@
     sectionView.backgroundColor = [UIColor whiteColor];
     [sectionBackView addSubview:sectionView];
     UILabel *datelabel = [[UILabel alloc] init];
-    datelabel.text = @"12月23号";
+    datelabel.text = @"5月7号";
     datelabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:13];
     datelabel.textColor = [UIColor blackColor];
     [sectionView addSubview:datelabel];
@@ -160,7 +160,7 @@
         make.centerY.mas_equalTo(sectionView);
     }];
     UILabel *detailLabel = [[UILabel alloc] init];
-    detailLabel.text = @"收入：200 支出：200";
+    detailLabel.text = @"收入：2000 支出：422.1";
     detailLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:13];
     detailLabel.textColor = [UIColor blackColor];
     [sectionView addSubview:detailLabel];
@@ -175,9 +175,40 @@
     BillTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BillTableViewCell"];
     cell.contentView.backgroundColor = GrayWhiteColor;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.detailNumLabel.text = @"¥ 20.0";
-    cell.detailNameLabel.text = @"三餐";
-    
+    switch (indexPath.row) {
+        case 0:
+            cell.tipImageView.backgroundColor = [UIColor redColor];
+            cell.detailNumLabel.text = @"¥ 15.0";
+            cell.detailNameLabel.text = @"三餐";
+            break;
+            case 1:
+            cell.tipImageView.backgroundColor = [UIColor greenColor];
+            cell.detailNumLabel.text = @"¥ 2000.0";
+            cell.detailNameLabel.text = @"工资";
+            break;
+            case 2:
+            cell.tipImageView.backgroundColor = [UIColor redColor];
+            cell.detailNumLabel.text = @"¥ 70.0";
+            cell.detailNameLabel.text = @"交通";
+            break;
+            case 3:
+            cell.tipImageView.backgroundColor = [UIColor redColor];
+            cell.detailNumLabel.text = @"¥ 299.0";
+            cell.detailNameLabel.text = @"购物";
+            break;
+            case 4:
+            cell.tipImageView.backgroundColor = [UIColor redColor];
+            cell.detailNumLabel.text = @"¥ 23.1";
+            cell.detailNameLabel.text = @"其它";
+            break;
+            
+            
+        default:
+            break;
+    }
+    if (indexPath.row == 4) {
+       
+    }
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -187,7 +218,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return 5;
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {

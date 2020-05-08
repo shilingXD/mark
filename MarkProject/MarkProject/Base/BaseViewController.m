@@ -30,4 +30,9 @@
     self.navigationView.lineView.backgroundColor = [MDInstance sharedInstance].themeColor;
     
 }
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+
+}
 @end

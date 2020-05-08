@@ -35,7 +35,7 @@
 }
 -(void)setupNav
 {
-    [self.navigationView setTitle:@"日记"];
+    [self.navigationView setTitle:@"随笔"];
     self.navigationView.backgroundView.image = nil ;
     self.navigationView.backgroundView.backgroundColor = [MDInstance sharedInstance].themeColor;
     self.navigationView.lineView.backgroundColor = [MDInstance sharedInstance].themeColor;

@@ -126,13 +126,17 @@
 		04D31A4C2462634500F3428A /* SetBillCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D31A4A2462634500F3428A /* SetBillCollectionViewCell.xib */; };
 		04D31A4F246290E900F3428A /* BillCollectionViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31A4E246290E900F3428A /* BillCollectionViewViewController.m */; };
 		04D31A572463D90A00F3428A /* MemoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31A562463D90A00F3428A /* MemoEditViewController.m */; };
-		04D31AC224640BB600F3428A /* MemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D31AC124640BB600F3428A /* MemoViewController.xib */; };
 		04D52654244558A50025CD4B /* NSDate+gyh.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52652244558A50025CD4B /* NSDate+gyh.m */; };
 		04D52657244558FE0025CD4B /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52656244558FE0025CD4B /* NSString+Util.m */; };
 		04D5265D2446E2800025CD4B /* PlanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D5265C2446E2800025CD4B /* PlanTableViewCell.m */; };
 		04D526612447047C0025CD4B /* PlanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D526602447047C0025CD4B /* PlanModel.m */; };
 		04D52665244710630025CD4B /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52663244710630025CD4B /* BaseView.m */; };
 		04D52669244711E90025CD4B /* AddPlanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52668244711E90025CD4B /* AddPlanView.m */; };
+		04DE420F246448DE00A8882D /* UIView+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE4209246448DE00A8882D /* UIView+Snapshot.m */; };
+		04DE4210246448DE00A8882D /* CCRotatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE420B246448DE00A8882D /* CCRotatedView.m */; };
+		04DE4211246448DE00A8882D /* CCFoldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE420C246448DE00A8882D /* CCFoldCell.m */; };
+		04DE42152464494F00A8882D /* DemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE42122464494F00A8882D /* DemoCell.m */; };
+		04DE42162464494F00A8882D /* DemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DE42132464494F00A8882D /* DemoCell.xib */; };
 		04E100482424614800C8081B /* UIView+GKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E100442424614800C8081B /* UIView+GKExtension.m */; };
 		04E100492424614800C8081B /* GKCover.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E100472424614800C8081B /* GKCover.m */; };
 		04E924AF2394A7D3006683D7 /* MDInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E924AE2394A7D3006683D7 /* MDInstance.m */; };
@@ -383,7 +387,6 @@
 		04D31A4E246290E900F3428A /* BillCollectionViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BillCollectionViewViewController.m; sourceTree = "<group>"; };
 		04D31A552463D90A00F3428A /* MemoEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoEditViewController.h; sourceTree = "<group>"; };
 		04D31A562463D90A00F3428A /* MemoEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemoEditViewController.m; sourceTree = "<group>"; };
-		04D31AC124640BB600F3428A /* MemoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemoViewController.xib; sourceTree = "<group>"; };
 		04D52652244558A50025CD4B /* NSDate+gyh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+gyh.m"; sourceTree = "<group>"; };
 		04D52653244558A50025CD4B /* NSDate+gyh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+gyh.h"; sourceTree = "<group>"; };
 		04D52655244558FE0025CD4B /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
@@ -397,6 +400,15 @@
 		04D52666244711030025CD4B /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		04D52667244711E90025CD4B /* AddPlanView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddPlanView.h; sourceTree = "<group>"; };
 		04D52668244711E90025CD4B /* AddPlanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddPlanView.m; sourceTree = "<group>"; };
+		04DE4209246448DE00A8882D /* UIView+Snapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Snapshot.m"; sourceTree = "<group>"; };
+		04DE420A246448DE00A8882D /* CCFoldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFoldCell.h; sourceTree = "<group>"; };
+		04DE420B246448DE00A8882D /* CCRotatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCRotatedView.m; sourceTree = "<group>"; };
+		04DE420C246448DE00A8882D /* CCFoldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFoldCell.m; sourceTree = "<group>"; };
+		04DE420D246448DE00A8882D /* UIView+Snapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Snapshot.h"; sourceTree = "<group>"; };
+		04DE420E246448DE00A8882D /* CCRotatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRotatedView.h; sourceTree = "<group>"; };
+		04DE42122464494F00A8882D /* DemoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoCell.m; sourceTree = "<group>"; };
+		04DE42132464494F00A8882D /* DemoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoCell.xib; sourceTree = "<group>"; };
+		04DE42142464494F00A8882D /* DemoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoCell.h; sourceTree = "<group>"; };
 		04E100422424614800C8081B /* GKCover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCover.h; sourceTree = "<group>"; };
 		04E100442424614800C8081B /* UIView+GKExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GKExtension.m"; sourceTree = "<group>"; };
 		04E100452424614800C8081B /* UIView+GKExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GKExtension.h"; sourceTree = "<group>"; };
@@ -494,10 +506,12 @@
 		042ACD622455240A00DE7A19 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				04DE42142464494F00A8882D /* DemoCell.h */,
+				04DE42122464494F00A8882D /* DemoCell.m */,
+				04DE42132464494F00A8882D /* DemoCell.xib */,
 				042ACD632455242F00DE7A19 /* TipTableViewCell.h */,
 				042ACD642455242F00DE7A19 /* TipTableViewCell.m */,
 				042ACD652455242F00DE7A19 /* TipTableViewCell.xib */,
-				04D31AC124640BB600F3428A /* MemoViewController.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -747,6 +761,7 @@
 		0478A4E12422034300C6B5C7 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				04DE4208246448DE00A8882D /* CCFoldCell */,
 				0491A37B245043F0003FA693 /* TZImagePickerController */,
 				04491C09244854A80029530E /* LXCalendar */,
 				04F638A8242DF333005207B0 /* FIREditPage */,
@@ -920,6 +935,19 @@
 				04A83C402458165400D49338 /* BaseViewController.m */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		04DE4208246448DE00A8882D /* CCFoldCell */ = {
+			isa = PBXGroup;
+			children = (
+				04DE4209246448DE00A8882D /* UIView+Snapshot.m */,
+				04DE420A246448DE00A8882D /* CCFoldCell.h */,
+				04DE420B246448DE00A8882D /* CCRotatedView.m */,
+				04DE420C246448DE00A8882D /* CCFoldCell.m */,
+				04DE420D246448DE00A8882D /* UIView+Snapshot.h */,
+				04DE420E246448DE00A8882D /* CCRotatedView.h */,
+			);
+			path = CCFoldCell;
 			sourceTree = "<group>";
 		};
 		04E100412424614800C8081B /* GKCover */ = {
@@ -1100,7 +1128,6 @@
 				04A83C3B2456D48C00D49338 /* SettingTableViewCell.xib in Resources */,
 				04D31A4C2462634500F3428A /* SetBillCollectionViewCell.xib in Resources */,
 				0478A13E245D850F002559DC /* BillTableViewCell.xib in Resources */,
-				04D31AC224640BB600F3428A /* MemoViewController.xib in Resources */,
 				04468325244DD67F0033892A /* techo.css in Resources */,
 				04230FB32391020E00031B27 /* LaunchScreen.storyboard in Resources */,
 				04230FB02391020E00031B27 /* Assets.xcassets in Resources */,
@@ -1114,6 +1141,7 @@
 				04F638B3242DF333005207B0 /* markdown.html in Resources */,
 				04491C20244854A80029530E /* LXCalenderCell.xib in Resources */,
 				04D31A3424624AEB00F3428A /* BKCKeyboard.xib in Resources */,
+				04DE42162464494F00A8882D /* DemoCell.xib in Resources */,
 				042ACD672455242F00DE7A19 /* TipTableViewCell.xib in Resources */,
 				04491C1E244854A80029530E /* LXCalendarHearder.xib in Resources */,
 				0491A3A2245043F0003FA693 /* TZImagePickerController.bundle in Resources */,
@@ -1218,6 +1246,7 @@
 				0478A52E24233F6800C6B5C7 /* IndexView.m in Sources */,
 				04491C1D244854A80029530E /* LXCalendarWeekView.m in Sources */,
 				0478A56D24235A9E00C6B5C7 /* EasyNavigationButton.m in Sources */,
+				04DE4210246448DE00A8882D /* CCRotatedView.m in Sources */,
 				04491C32244856050029530E /* UIColor+Expanded.m in Sources */,
 				0491A3A4245043F0003FA693 /* TZImageManager.m in Sources */,
 				0464C7C1243EC8390061902F /* SettingViewController.m in Sources */,
@@ -1258,6 +1287,7 @@
 				0464C7C4243EC9340061902F /* PlanViewController.m in Sources */,
 				043384152452C05F00E42271 /* DocumentViewController.m in Sources */,
 				04D31A3324624AEB00F3428A /* BKCKeyboard.m in Sources */,
+				04DE420F246448DE00A8882D /* UIView+Snapshot.m in Sources */,
 				0478A4F92422061400C6B5C7 /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				047263E32462D2AC00E5C1ED /* LoginViewController.m in Sources */,
 				04F638B7242DF333005207B0 /* FIREditPageVC.m in Sources */,
@@ -1280,6 +1310,7 @@
 				044001E2242B2E59000AE57B /* SecretModel.m in Sources */,
 				0491A3A8245043F0003FA693 /* TZLocationManager.m in Sources */,
 				0478A55F24235A9E00C6B5C7 /* EasyNavigationController.m in Sources */,
+				04DE4211246448DE00A8882D /* CCFoldCell.m in Sources */,
 				0491A3AA245043F0003FA693 /* TZImageRequestOperation.m in Sources */,
 				04E100492424614800C8081B /* GKCover.m in Sources */,
 				04D31A3E246254F500F3428A /* NSString+Calculation.m in Sources */,
@@ -1292,6 +1323,7 @@
 				04491C1F244854A80029530E /* LXCalendarHearder.m in Sources */,
 				04491C35244856260029530E /* LxButton.m in Sources */,
 				0491A39E245043F0003FA693 /* TZAssetModel.m in Sources */,
+				04DE42152464494F00A8882D /* DemoCell.m in Sources */,
 				0464C7CA243ECA0D0061902F /* MemoViewController.m in Sources */,
 				04D526612447047C0025CD4B /* PlanModel.m in Sources */,
 				04491C21244854A80029530E /* LXCalendarDayModel.m in Sources */,
