@@ -74,7 +74,7 @@
 }
 -(void)newFile
 {
-    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"MarkProject.sqlite" Success:^{} Fail:^{return ;}];
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{return ;}];
     BOOL result = [db executeUpdateWithFormat:@"insert into MDList (Title,Type,FilePath,StoragePath,CreateTime,UpdateTime,currentTime) values (%@,%@,%@,%@,%@,%@,%@)",self.Inputfield.text,self.Type,self.FilePath,self.Inputfield.text,[MDMethods currentDateStr],[MDMethods currentDateStr],[MDMethods currentTimeStr]];
     
     if (result) {

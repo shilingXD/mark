@@ -56,7 +56,7 @@
     cell.tipImageView.backgroundColor = [UIColor orangeColor];
     cell.tiplabel.text = self.dataArray[indexPath.row];
     if ([self.selectItemTitle isEqualToString:self.dataArray[indexPath.row]]) {
-        cell.tiplabel.textColor = _type == cost?rgba(53, 195, 126, 1):rgba(255, 115, 115, 1);
+        cell.tiplabel.textColor = _type == income?rgba(53, 195, 126, 1):rgba(255, 115, 115, 1);
     } else {
         cell.tiplabel.textColor = [UIColor grayColor];
     }
@@ -65,6 +65,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     self.selectItemTitle = self.dataArray[indexPath.row];
+    self.BillClickBlock(self.selectItemTitle);
     [self.collectionView reloadData];
 }
 @end

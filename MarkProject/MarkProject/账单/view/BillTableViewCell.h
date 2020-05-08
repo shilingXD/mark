@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BillModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *tipImageView;
 @property (weak, nonatomic) IBOutlet UILabel *detailNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailNumLabel;
-
+@property (nonatomic, strong) BillModel *model;///<<#注释#>
 @end
 
 NS_ASSUME_NONNULL_END

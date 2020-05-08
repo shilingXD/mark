@@ -12,8 +12,6 @@
 		04230FB02391020E00031B27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04230FAF2391020E00031B27 /* Assets.xcassets */; };
 		04230FB32391020E00031B27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04230FB12391020E00031B27 /* LaunchScreen.storyboard */; };
 		04230FB62391020E00031B27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04230FB52391020E00031B27 /* main.m */; };
-		042ACD662455242F00DE7A19 /* TipTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042ACD642455242F00DE7A19 /* TipTableViewCell.m */; };
-		042ACD672455242F00DE7A19 /* TipTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042ACD652455242F00DE7A19 /* TipTableViewCell.xib */; };
 		043384112452BC1C00E42271 /* vue-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = 0433840F2452BC1B00E42271 /* vue-dark.css */; };
 		043384122452BC1C00E42271 /* vue.css in Resources */ = {isa = PBXBuildFile; fileRef = 043384102452BC1C00E42271 /* vue.css */; };
 		043384152452C05F00E42271 /* DocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043384142452C05F00E42271 /* DocumentViewController.m */; };
@@ -93,6 +91,7 @@
 		0478A5712423615200C6B5C7 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A56F2423615200C6B5C7 /* UIImage+Util.m */; };
 		047C5170244D982700879A54 /* NewfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047C516F244D982700879A54 /* NewfileView.xib */; };
 		047C5173244D988B00879A54 /* NewfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C5172244D988B00879A54 /* NewfileView.m */; };
+		048A382524655FA200BDED29 /* BillChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048A382424655FA200BDED29 /* BillChartViewController.xib */; };
 		0491A39B245043F0003FA693 /* TZImageCropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491A37E245043F0003FA693 /* TZImageCropManager.m */; };
 		0491A39C245043F0003FA693 /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491A380245043F0003FA693 /* TZAssetCell.m */; };
 		0491A39D245043F0003FA693 /* TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491A381245043F0003FA693 /* TZVideoPlayerController.m */; };
@@ -116,8 +115,6 @@
 		04D31A2F246249D000F3428A /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31A2E246249D000F3428A /* NSDictionary+Extension.m */; };
 		04D31A3324624AEB00F3428A /* BKCKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31A3124624AEB00F3428A /* BKCKeyboard.m */; };
 		04D31A3424624AEB00F3428A /* BKCKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D31A3224624AEB00F3428A /* BKCKeyboard.xib */; };
-		04D31A382462515700F3428A /* BKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31A362462515700F3428A /* BKModel.m */; };
-		04D31A3B246251B500F3428A /* BKCIncomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31A3A246251B500F3428A /* BKCIncomeModel.m */; };
 		04D31A3E246254F500F3428A /* NSString+Calculation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31A3C246254F500F3428A /* NSString+Calculation.m */; };
 		04D31A412462554F00F3428A /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31A3F2462554F00F3428A /* NSDate+Extension.m */; };
 		04D31A4424625C3300F3428A /* BillChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31A4324625C3300F3428A /* BillChartViewController.m */; };
@@ -126,6 +123,9 @@
 		04D31A4C2462634500F3428A /* SetBillCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D31A4A2462634500F3428A /* SetBillCollectionViewCell.xib */; };
 		04D31A4F246290E900F3428A /* BillCollectionViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31A4E246290E900F3428A /* BillCollectionViewViewController.m */; };
 		04D31A572463D90A00F3428A /* MemoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31A562463D90A00F3428A /* MemoEditViewController.m */; };
+		04D31AC62464F28300F3428A /* MemoChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31AC52464F28300F3428A /* MemoChartViewController.m */; };
+		04D31AC92464F99600F3428A /* BillModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31AC82464F99600F3428A /* BillModel.m */; };
+		04D31ACC2464FBD600F3428A /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31ACB2464FBD600F3428A /* BaseModel.m */; };
 		04D52654244558A50025CD4B /* NSDate+gyh.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52652244558A50025CD4B /* NSDate+gyh.m */; };
 		04D52657244558FE0025CD4B /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D52656244558FE0025CD4B /* NSString+Util.m */; };
 		04D5265D2446E2800025CD4B /* PlanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D5265C2446E2800025CD4B /* PlanTableViewCell.m */; };
@@ -166,9 +166,6 @@
 		04230FB42391020E00031B27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04230FB52391020E00031B27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04230FBC2391024600031B27 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		042ACD632455242F00DE7A19 /* TipTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TipTableViewCell.h; sourceTree = "<group>"; };
-		042ACD642455242F00DE7A19 /* TipTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TipTableViewCell.m; sourceTree = "<group>"; };
-		042ACD652455242F00DE7A19 /* TipTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TipTableViewCell.xib; sourceTree = "<group>"; };
 		0433840F2452BC1B00E42271 /* vue-dark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "vue-dark.css"; sourceTree = "<group>"; };
 		043384102452BC1C00E42271 /* vue.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = vue.css; sourceTree = "<group>"; };
 		043384132452C05F00E42271 /* DocumentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentViewController.h; sourceTree = "<group>"; };
@@ -325,6 +322,7 @@
 		047C516F244D982700879A54 /* NewfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewfileView.xib; sourceTree = "<group>"; };
 		047C5171244D988B00879A54 /* NewfileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewfileView.h; sourceTree = "<group>"; };
 		047C5172244D988B00879A54 /* NewfileView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewfileView.m; sourceTree = "<group>"; };
+		048A382424655FA200BDED29 /* BillChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillChartViewController.xib; sourceTree = "<group>"; };
 		0491A37C245043F0003FA693 /* TZPhotoPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewCell.h; sourceTree = "<group>"; };
 		0491A37D245043F0003FA693 /* TZPhotoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPickerController.h; sourceTree = "<group>"; };
 		0491A37E245043F0003FA693 /* TZImageCropManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImageCropManager.m; sourceTree = "<group>"; };
@@ -368,10 +366,6 @@
 		04D31A3024624AEB00F3428A /* BKCKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKCKeyboard.h; sourceTree = "<group>"; };
 		04D31A3124624AEB00F3428A /* BKCKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKCKeyboard.m; sourceTree = "<group>"; };
 		04D31A3224624AEB00F3428A /* BKCKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BKCKeyboard.xib; sourceTree = "<group>"; };
-		04D31A362462515700F3428A /* BKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKModel.m; sourceTree = "<group>"; };
-		04D31A372462515700F3428A /* BKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKModel.h; sourceTree = "<group>"; };
-		04D31A39246251B400F3428A /* BKCIncomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKCIncomeModel.h; sourceTree = "<group>"; };
-		04D31A3A246251B500F3428A /* BKCIncomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKCIncomeModel.m; sourceTree = "<group>"; };
 		04D31A3C246254F500F3428A /* NSString+Calculation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Calculation.m"; sourceTree = "<group>"; };
 		04D31A3D246254F500F3428A /* NSString+Calculation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Calculation.h"; sourceTree = "<group>"; };
 		04D31A3F2462554F00F3428A /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
@@ -387,6 +381,12 @@
 		04D31A4E246290E900F3428A /* BillCollectionViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BillCollectionViewViewController.m; sourceTree = "<group>"; };
 		04D31A552463D90A00F3428A /* MemoEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoEditViewController.h; sourceTree = "<group>"; };
 		04D31A562463D90A00F3428A /* MemoEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemoEditViewController.m; sourceTree = "<group>"; };
+		04D31AC42464F28300F3428A /* MemoChartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoChartViewController.h; sourceTree = "<group>"; };
+		04D31AC52464F28300F3428A /* MemoChartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemoChartViewController.m; sourceTree = "<group>"; };
+		04D31AC72464F99600F3428A /* BillModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BillModel.h; sourceTree = "<group>"; };
+		04D31AC82464F99600F3428A /* BillModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BillModel.m; sourceTree = "<group>"; };
+		04D31ACA2464FBD600F3428A /* BaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
+		04D31ACB2464FBD600F3428A /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		04D52652244558A50025CD4B /* NSDate+gyh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+gyh.m"; sourceTree = "<group>"; };
 		04D52653244558A50025CD4B /* NSDate+gyh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+gyh.h"; sourceTree = "<group>"; };
 		04D52655244558FE0025CD4B /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
@@ -509,9 +509,6 @@
 				04DE42142464494F00A8882D /* DemoCell.h */,
 				04DE42122464494F00A8882D /* DemoCell.m */,
 				04DE42132464494F00A8882D /* DemoCell.xib */,
-				042ACD632455242F00DE7A19 /* TipTableViewCell.h */,
-				042ACD642455242F00DE7A19 /* TipTableViewCell.m */,
-				042ACD652455242F00DE7A19 /* TipTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -579,6 +576,7 @@
 				0464C7C6243EC9AA0061902F /* BillViewController.m */,
 				04D31A4224625C3200F3428A /* BillChartViewController.h */,
 				04D31A4324625C3300F3428A /* BillChartViewController.m */,
+				048A382424655FA200BDED29 /* BillChartViewController.xib */,
 				04D31A4524625C4900F3428A /* SetBillViewController.h */,
 				04D31A4624625C4900F3428A /* SetBillViewController.m */,
 				04D31A4D246290E900F3428A /* BillCollectionViewViewController.h */,
@@ -727,6 +725,8 @@
 				0464C7C9243ECA0D0061902F /* MemoViewController.m */,
 				04D31A552463D90A00F3428A /* MemoEditViewController.h */,
 				04D31A562463D90A00F3428A /* MemoEditViewController.m */,
+				04D31AC42464F28300F3428A /* MemoChartViewController.h */,
+				04D31AC52464F28300F3428A /* MemoChartViewController.m */,
 			);
 			path = "便签";
 			sourceTree = "<group>";
@@ -890,10 +890,8 @@
 		04D31A352462514400F3428A /* model */ = {
 			isa = PBXGroup;
 			children = (
-				04D31A39246251B400F3428A /* BKCIncomeModel.h */,
-				04D31A3A246251B500F3428A /* BKCIncomeModel.m */,
-				04D31A372462515700F3428A /* BKModel.h */,
-				04D31A362462515700F3428A /* BKModel.m */,
+				04D31AC72464F99600F3428A /* BillModel.h */,
+				04D31AC82464F99600F3428A /* BillModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -933,6 +931,8 @@
 				04D52663244710630025CD4B /* BaseView.m */,
 				04A83C3F2458165400D49338 /* BaseViewController.h */,
 				04A83C402458165400D49338 /* BaseViewController.m */,
+				04D31ACA2464FBD600F3428A /* BaseModel.h */,
+				04D31ACB2464FBD600F3428A /* BaseModel.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1137,12 +1137,12 @@
 				04491C3B244864B40029530E /* AddPlanNameView.xib in Resources */,
 				047263E42462D2AC00E5C1ED /* LoginViewController.xib in Resources */,
 				043384122452BC1C00E42271 /* vue.css in Resources */,
+				048A382524655FA200BDED29 /* BillChartViewController.xib in Resources */,
 				047C5170244D982700879A54 /* NewfileView.xib in Resources */,
 				04F638B3242DF333005207B0 /* markdown.html in Resources */,
 				04491C20244854A80029530E /* LXCalenderCell.xib in Resources */,
 				04D31A3424624AEB00F3428A /* BKCKeyboard.xib in Resources */,
 				04DE42162464494F00A8882D /* DemoCell.xib in Resources */,
-				042ACD672455242F00DE7A19 /* TipTableViewCell.xib in Resources */,
 				04491C1E244854A80029530E /* LXCalendarHearder.xib in Resources */,
 				0491A3A2245043F0003FA693 /* TZImagePickerController.bundle in Resources */,
 				0433841A2452CC9200E42271 /* MoreActionView.xib in Resources */,
@@ -1240,6 +1240,7 @@
 				045AA92124343AB000357617 /* MDEditViewController.m in Sources */,
 				046AC1582396479B00111DA2 /* NextViewController.m in Sources */,
 				0478A56624235A9E00C6B5C7 /* UIView+EasyNavigationExt.m in Sources */,
+				04D31AC92464F99600F3428A /* BillModel.m in Sources */,
 				04491C25244854A80029530E /* LXCalendarMonthModel.m in Sources */,
 				0478A52F24233F6800C6B5C7 /* SectionIndicatorView.m in Sources */,
 				045AA91E2432E04100357617 /* SuiXiangCollectionViewCell.m in Sources */,
@@ -1252,12 +1253,11 @@
 				0464C7C1243EC8390061902F /* SettingViewController.m in Sources */,
 				045C8EEC24449CA2007EAB6C /* ListDetailViewController.m in Sources */,
 				0478A56324235A9E00C6B5C7 /* UITableViewController+EasyNavigationExt.m in Sources */,
-				04D31A382462515700F3428A /* BKModel.m in Sources */,
 				047C5173244D988B00879A54 /* NewfileView.m in Sources */,
 				0446832A244DEAAA0033892A /* MDModel.m in Sources */,
 				0491A39B245043F0003FA693 /* TZImageCropManager.m in Sources */,
+				04D31AC62464F28300F3428A /* MemoChartViewController.m in Sources */,
 				04E924B32394AC5E006683D7 /* MDMethods.m in Sources */,
-				04D31A3B246251B500F3428A /* BKCIncomeModel.m in Sources */,
 				04491C2F244855E50029530E /* UILabel+LXLabel.m in Sources */,
 				0478A13D245D850F002559DC /* BillTableViewCell.m in Sources */,
 				04491C392448649E0029530E /* AddPlanNameView.m in Sources */,
@@ -1319,7 +1319,6 @@
 				04D5265D2446E2800025CD4B /* PlanTableViewCell.m in Sources */,
 				0491A39F245043F0003FA693 /* NSBundle+TZImagePicker.m in Sources */,
 				04491C2C2448556F0029530E /* UIView+LX_Frame.m in Sources */,
-				042ACD662455242F00DE7A19 /* TipTableViewCell.m in Sources */,
 				04491C1F244854A80029530E /* LXCalendarHearder.m in Sources */,
 				04491C35244856260029530E /* LxButton.m in Sources */,
 				0491A39E245043F0003FA693 /* TZAssetModel.m in Sources */,
@@ -1336,6 +1335,7 @@
 				04491C292448553C0029530E /* UIView+FTCornerdious.m in Sources */,
 				0464294A244409B8008F600C /* XYString.m in Sources */,
 				045AA91A2432D9F500357617 /* DiaryViewController.m in Sources */,
+				04D31ACC2464FBD600F3428A /* BaseModel.m in Sources */,
 				04F638B5242DF333005207B0 /* GNEditShortcutKeyBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

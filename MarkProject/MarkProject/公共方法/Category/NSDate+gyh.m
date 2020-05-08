@@ -41,7 +41,20 @@
     
     return cmps.day == 1;
 }
-
+/**
+ *  是否为前天
+ */
+-(BOOL)isDayBeforeYesterday
+{
+    
+    NSDate *nowDate = [[NSDate date]dateWithYMD];
+    NSDate *selfDate = [self dateWithYMD];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *cmps = [calendar components:NSCalendarUnitDay fromDate:selfDate toDate:nowDate options:0];
+    
+    return cmps.day == 2;
+}
 -(BOOL)isTomorrow
 {
     

@@ -1088,7 +1088,59 @@
         return @"" ;
     }
 }
-
+//改变账单的时间格式
++(NSString *)changeBillTimeDate:(NSString *)getTime {
+    
+    if(![NSString isEmptyOfString:getTime]){
+        //获取后台穿过来的事件
+        NSDate * dateTime = [MDMethods getNSDateByString:getTime formate:@"yyyy-MM-dd HH:mm:ss"];
+        if(dateTime==nil){
+            dateTime = [MDMethods getNSDateByString:getTime formate:@"yyyy-MM-dd"];
+        }
+        NSString *weekDayStr;
+        switch(dateTime.weekday) {
+            case 1:
+                weekDayStr =@"周日";
+                break;
+            case 2:
+                weekDayStr =@"周一";
+                break;
+            case 3:
+                weekDayStr =@"周二";
+                break;
+            case 4:
+                weekDayStr =@"周三";
+                break;
+            case 5:
+                weekDayStr =@"周四";
+                break;
+            case 6:
+                weekDayStr =@"周五";
+                break;
+            case 7:
+                weekDayStr =@"周六";
+                break;
+            default:
+                weekDayStr =@"";
+                break;
+        }
+        if (dateTime.isThisYear) {
+            if (dateTime.isToday) {
+                return [MDMethods getDateStringByFormateString:@"MM月dd日 今天" date:dateTime];
+            } else if (dateTime.isYesterday) {
+                return [MDMethods getDateStringByFormateString:@"MM月dd日 昨天" date:dateTime];
+            } else if (dateTime.isDayBeforeYesterday) {
+                return [MDMethods getDateStringByFormateString:@"MM月dd日 前天" date:dateTime];
+            } else {
+                return [[MDMethods getDateStringByFormateString:@"MM月dd日 " date:dateTime] stringByAppendingString:weekDayStr];
+            }
+        } else { // 非今年
+            return  [[MDMethods getDateStringByFormateString:@"yyyy年MM月dd日 " date:dateTime] stringByAppendingString:weekDayStr] ;
+        }
+    }else{
+        return @"" ;
+    }
+}
 + (NSString*)getDateStringByFormateString:(NSString*)formateString date:(NSDate*)date{
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

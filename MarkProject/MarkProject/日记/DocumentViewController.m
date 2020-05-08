@@ -111,7 +111,7 @@
 }
 -(void)getMDList
 {
-    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"MarkProject.sqlite" Success:^{} Fail:^{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{
         return ;
     }];
     NSString *sql = [NSString stringWithFormat:@"select  MDID,Title,Type,FilePath,StoragePath,CreateTime,UpdateTime,currentTime FROM MDList Where FilePath == %@",self.DocumentTitle];

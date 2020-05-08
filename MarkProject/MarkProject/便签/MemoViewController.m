@@ -7,7 +7,6 @@
 //
 
 #import "MemoViewController.h"
-#import "TipTableViewCell.h"
 #import "WMDragView.h"
 #import "DemoCell.h"
 
@@ -20,6 +19,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray<NSNumber *> *cellHeights;
+@property (nonatomic, assign) BOOL isEdit;///<是否编辑
 
 @end
 
@@ -37,8 +37,10 @@
     editlabel.text = @"编辑";
     editlabel.font = self.navigationView.titleLabel.font;
     editlabel.textColor = [UIColor whiteColor];
+    WeakBlock(self, weak_self);
     [self.navigationView addRightView:editlabel callback:^(UIView *view) {
-        
+        weak_self.isEdit = !weak_self.isEdit;
+        editlabel.text = weak_self.isEdit?@"完成":@"编辑";
     }];
     [self AddButton];
 }
@@ -156,6 +158,7 @@
     if (![cell isKindOfClass:[DemoCell class]]) return;
     
     if (cell.isAnimating) return;
+        cell.contentTextView.userInteractionEnabled = _isEdit;
     
     NSTimeInterval duration = 0.f;
     

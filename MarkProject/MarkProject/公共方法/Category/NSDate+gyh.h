@@ -19,6 +19,10 @@
  */
 - (BOOL)isYesterday;
 /**
+ *  是否为前天
+ */
+-(BOOL)isDayBeforeYesterday;
+/**
  *  是否为今年
  */
 - (BOOL)isThisYear;

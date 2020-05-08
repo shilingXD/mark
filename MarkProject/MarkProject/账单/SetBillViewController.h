@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SetBillViewController : BaseViewController
-
+@property (nonatomic, copy) void (^SetBillBackBlock)(void);///<<#注释#>
 @end
 
 NS_ASSUME_NONNULL_END

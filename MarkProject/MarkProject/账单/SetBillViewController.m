@@ -9,6 +9,7 @@
 #import "SetBillViewController.h"
 #import "BKCKeyboard.h"
 #import "BillCollectionViewViewController.h"
+#import "BillModel.h"
 #define colorRed rgba(255, 115, 115, 1)
 
 @interface SetBillViewController ()<UIScrollViewDelegate>
@@ -19,6 +20,8 @@
 @property (nonatomic, strong) UILabel *costlabel;///<收入
 @property (nonatomic, strong) UILabel *incomeLabel;///<支出
 @property (nonatomic, strong) UIView  *lineView;
+
+@property (nonatomic, strong) BillModel *model;///<<#注释#>
 @end
 
 @implementation SetBillViewController
@@ -47,6 +50,13 @@
     
     BillCollectionViewViewController *vc = [[BillCollectionViewViewController alloc] init];
     vc.dataArray = _CostArray;
+    WeakBlock(self, weak_self);
+    vc.BillClickBlock = ^(NSString * _Nonnull title) {
+        weak_self.model.name = title;
+        weak_self.model.type = 0;
+        weak_self.scrollView.height = SCREEN_HEIGHT-NavigationBar_Height-(SCREEN_WIDTH / 5 * 4 + TabbarSafeBottomMargin);
+        [weak_self.keyboard show];
+    };
     vc.type = cost;
     [self addChildViewController:vc];
     [self.scrollView addSubview:vc.view];
@@ -54,7 +64,13 @@
     
     BillCollectionViewViewController *vc2 = [[BillCollectionViewViewController alloc] init];
     vc2.dataArray = _IncomeArray;
-    vc.type = income;
+    vc2.BillClickBlock = ^(NSString * _Nonnull title) {
+        weak_self.model.name = title;
+        weak_self.model.type = 1;
+        [weak_self.keyboard show];
+        weak_self.scrollView.height = SCREEN_HEIGHT-NavigationBar_Height-(SCREEN_WIDTH / 5 * 4 + TabbarSafeBottomMargin);
+    };
+    vc2.type = income;
     [self addChildViewController:vc2];
     [self.scrollView addSubview:vc2.view];
     vc2.view.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, self.scrollView.height);
@@ -62,13 +78,16 @@
 }
 -(void)setKeyBoard
 {
-    [self.keyboard show];
+//    [self.keyboard show];
 }
 - (BKCKeyboard *)keyboard {
     if (!_keyboard) {
         _keyboard = [BKCKeyboard init];
+        WeakBlock(self, weak_self);
         [_keyboard setComplete:^(NSString *price, NSString *mark, NSDate *date) {
-//            [self createBookRequest:price mark:mark date:date];
+            weak_self.model.money = [price floatValue];
+            weak_self.model.mark = mark;
+            [weak_self insertData];
         }];
         [self.view addSubview:_keyboard];
     }
@@ -78,7 +97,7 @@
 - (UIScrollView *)scrollView
 {
     if (!_scrollView) {
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, NavigationBar_Height, SCREEN_WIDTH, SCREEN_HEIGHT-(SCREEN_WIDTH / 5 * 4 + TabbarSafeBottomMargin)-NavigationBar_Height)];
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, NavigationBar_Height, SCREEN_WIDTH, SCREEN_HEIGHT-NavigationBar_Height)];
         _scrollView.delegate = self;
         _scrollView.pagingEnabled = YES;
         _scrollView.showsHorizontalScrollIndicator = NO;
@@ -151,12 +170,35 @@
     self.costlabel.textColor = [UIColor whiteColor];
     if (sender >= 1) {
         self.lineView.centerX = self.incomeLabel.centerX;
-        self.lineView.backgroundColor = rgba(255, 115, 115, 1);
-        self.incomeLabel.textColor = rgba(255, 115, 115, 1);
+        self.lineView.backgroundColor = rgba(53, 195, 126, 1);
+        self.incomeLabel.textColor = rgba(53, 195, 126, 1);
     }else if (sender<=0){
         self.lineView.centerX = self.costlabel.centerX;
         self.lineView.backgroundColor = colorRed;
         self.costlabel.textColor = colorRed;
     }
+    [self.keyboard hide];
+    self.scrollView.height = SCREEN_HEIGHT-NavigationBar_Height;
+}
+-(void)insertData
+{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{return ;}];
+    BOOL result = [db executeUpdateWithFormat:@"insert into BillList (type,money,name,currentDateStr,mark,currentDate) values (%d,%@,%@,%@,%@,%@)",self.model.type,[NSString stringWithFormat:@"%0.2f",self.model.money],self.model.name,[[MDMethods currentDateStr] substringWithRange:NSMakeRange(0, 10)],self.model.mark,[MDMethods currentTimeStr]];
+    [db close];
+    if (result) {
+        self.SetBillBackBlock();
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [MDMethods showTextMessage:@"保存失败"];
+    }
+}
+
+
+- (BillModel *)model
+{
+    if (!_model) {
+        _model = [[BillModel alloc] init];
+    }
+    return _model;
 }
 @end

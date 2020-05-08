@@ -352,6 +352,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)imageToString:(UIImage *)image;
 
 + (NSString *)setStringByKeyChainWithString:(NSString *)str;
+
+//改变账单的时间格式
++(NSString *)changeBillTimeDate:(NSString *)getTime;
 @end
 
 NS_ASSUME_NONNULL_END

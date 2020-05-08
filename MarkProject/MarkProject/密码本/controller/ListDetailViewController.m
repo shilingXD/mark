@@ -35,20 +35,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setNav];
+    [self setNavitem];
     [self setupListOne];
     [self setupListTwo];
     [self setupListThree];
     [self setupFooter];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
 }
-- (void)dealloc{
-    //移除键盘通知监听者
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-}
--(void)setNav
+
+-(void)setNavitem
 {
     [self.navigationView setTitle:@""];
     self.view.backgroundColor = rgba(240, 240, 240, 1);
@@ -440,7 +435,7 @@
 
 -(void)updateDB
 {
-    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"MarkProject.sqlite" Success:^{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{
         
     } Fail:^{
         return ;
@@ -493,6 +488,7 @@
 }
 #pragma mark : UIKeyboardWillShowNotification/UIKeyboardWillHideNotification
 - (void)keyboardWillShow:(NSNotification *)notification{
+    [super keyboardWillShow:notification];
     CGRect rect = [self.firstResponderTextF.superview convertRect:self.firstResponderTextF.frame toView:self.view];//获取相对于self.view的位置
     NSDictionary *userInfo = [notification userInfo];
     NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];//获取弹出键盘的fame的value值
@@ -510,6 +506,7 @@
     }
 }
 - (void)keyboardWillHide:(NSNotification *)notification{
+    [super keyboardWillHide:notification];
     NSDictionary *userInfo = [notification userInfo];
     NSNumber * animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];//获取键盘隐藏动画时间值
     NSTimeInterval animationDuration = [animationDurationValue doubleValue];

@@ -260,25 +260,6 @@
 // 时间
 - (void)dateBtnClick:(UIButton *)btn {
     // 时间
-//    if (btn.tag == DATE_TAG) {
-//        @weakify(self)
-//        NSDate *date = [NSDate date];
-//        NSDate *min = [NSDate br_setYear:2000 month:1 day:1];
-//        NSDate *max = [NSDate br_setYear:date.year + 3 month:12 day:31];
-//        [BRDatePickerView showDatePickerWithTitle:@"选择日期" dateType:BRDatePickerModeYMD defaultSelValue:[self.currentDate formatYMD] minDate:min maxDate:max isAutoSelect:false themeColor:nil resultBlock:^(NSString *selectValue) {
-//            @strongify(self)
-//            [self setCurrentDate:({
-//                NSDateFormatter *fora = [[NSDateFormatter alloc] init];
-//                [fora setDateFormat:@"yyyy-MM-dd"];
-//                NSDate *date = [fora dateFromString:selectValue];
-//                date;
-//            })];
-//            selectValue = [self.currentDate isToday] ? @"今天" : selectValue;
-//            [btn setTitle:selectValue forState:UIControlStateNormal];
-//            [btn setTitle:selectValue forState:UIControlStateHighlighted];
-//            [btn.titleLabel setFont:[UIFont systemFontOfSize:AdjustFont(12)]];
-//        }];
-//    }
 }
 // 删除
 - (void)deleteBtnClick:(UIButton *)btn {

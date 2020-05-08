@@ -8,22 +8,17 @@
 
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
-#pragma mark  - ------  头文件  ------
-#import "MDMethods.h"
-#import "MDInstance.h"
-#import <Masonry.h>
-#import "EasyNavigation.h"
-#import "GKCover.h"
-#import <FMDB.h>
 
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #pragma mark  - ------  常量  ------
-/*设备*/
-#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
-#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
-#define StatusBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height)//状态栏
+
+#define FMDBMainName @"MarkProject.sqlite"
+#define FMDBTempName @"temp.sqlite"
+
+#pragma mark  └ ------  设备  ------
+
 // 判断是否为iPhone X 系列  这样写消除了在Xcode10上的警告。
 #define iPhoneX \
 ({BOOL isPhoneX = NO;\
@@ -31,10 +26,17 @@ if (@available(iOS 11.0, *)) {\
 isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
 }\
 (isPhoneX);})
+
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define StatusBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height)//状态栏
 #define NavigationBar_Height (iPhoneX ?  88 : 64)//导航栏
 #define TabbarSafeBottomMargin (iPhoneX ? 34.f : 0.f)
 #define TabBar_Height (iPhoneX ? 83 : 49)
-/*颜色*/
+
+
+
+#pragma mark  └ ------  颜色  ------
 #define UIColorFromHex(s) [UIColor colorWithRed:(((s & 0xFF0000) >> 16 )) / 255.0 green:((( s & 0xFF00 ) >> 8 )) / 255.0 blue:(( s & 0xFF )) / 255.0 alpha:1.0]
 #define rgba(R,G,B,_alpha_) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:_alpha_]
 #define Random(X) arc4random_uniform(X)/255.0
@@ -42,7 +44,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define TintColor rgba(57, 55, 60, 1)
 #define GrayWhiteColor rgba(240, 240, 240, 1)
 
-
+#pragma mark  └ ------  引用  ------
 #define WeakBlock(Ori, NewName) __weak __block __typeof__(Ori) NewName = Ori
 #define Safe(string) string?string:@""
 

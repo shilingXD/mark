@@ -12,6 +12,7 @@
 #pragma mark  - ------  Base  ------
 #import "BaseView.h"
 #import "BaseViewController.h"
+#import "BaseModel.h"
 
 #pragma mark  - ------  Category  ------
 #import "UIView+Extension.h"
@@ -24,4 +25,13 @@
 #pragma mark  - ------  Tool  ------
 #import "LXCalender.h"
 #import "TZImagePickerController.h"
+#import <Masonry.h>
+#import "EasyNavigation.h"
+#import "GKCover.h"
+#import <FMDB.h>
+
+#pragma mark  - ------  instance  ------
+#import "MDMethods.h"
+#import "MDInstance.h"
+
 #endif /* Common_h */

@@ -17,11 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNav];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setNav];
+    self.navigationView.backgroundView.backgroundColor = [MDInstance sharedInstance].themeColor;
+    self.navigationView.lineView.backgroundColor = [MDInstance sharedInstance].themeColor;
 }
 -(void)setNav
 {
@@ -34,5 +37,18 @@
 
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 
+}
+- (void)dealloc{
+    //移除键盘通知监听者
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+#pragma mark : UIKeyboardWillShowNotification/UIKeyboardWillHideNotification
+- (void)keyboardWillShow:(NSNotification *)notification{
+    
+}
+- (void)keyboardWillHide:(NSNotification *)notification{
+    
 }
 @end

@@ -182,7 +182,7 @@
 }
 -(void)getPlanList
 {
-    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"MarkProject.sqlite" Success:^{} Fail:^{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{
         return ;
     }];
     NSString *sql = @"select  PlanID,PlanTitle,PlanDayDate,PlanItemBeginDate,priority,PlanItemEndDate,currentTime FROM PlanList";

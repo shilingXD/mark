@@ -261,17 +261,17 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
 #pragma mark  - ------  FMDB操作  ------
 -(void)openDataBase
 {
-    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"MarkProject.sqlite" Success:^{} Fail:^{return ;}];
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{return ;}];
     NSString *createTableSqlString = @"CREATE TABLE IF NOT EXISTS SecretList (id integer PRIMARY KEY AUTOINCREMENT, Name text NOT NULL, NameURL text, Account text NOT NULL, PassWord text NOT NULL, Note text, CreateTime text NOT NULL, UpdateTime text NOT NULL, CurrentTime integer NOT NULL)";
     [db executeUpdate:createTableSqlString];
     [db close];
 }
 -(void)reloadData
 {
-    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"MarkProject.sqlite" Success:^{} Fail:^{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{
         return ;
     }];
-    NSString *sql = @"select  id,Name,NameURL,Account,PassWord,Note,CreateTime,UpdateTime,currentTime FROM SecretList";
+    NSString *sql = @"select  * FROM SecretList";
     FMResultSet *rs = [db executeQuery:sql];
     [self.dataArray removeAllObjects];
     while ([rs next]) {
@@ -311,7 +311,7 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     [db close];
 }
 - (void)delete:(NSArray *)delStudents {
-    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"MarkProject.sqlite" Success:^{} Fail:^{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{
         return ;
     }];
     NSString *sql = @"delete from SecretList where id = ?";

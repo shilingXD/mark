@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BillCollectionViewViewController : UIViewController
 @property (nonatomic, strong) NSArray *dataArray;///<<#注释#>
 @property (nonatomic, assign) BillType type;///<<#注释#>
+@property (nonatomic, copy) void (^BillClickBlock) (NSString *title);///<返回选择的名称
 @end
 
 NS_ASSUME_NONNULL_END

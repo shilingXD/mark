@@ -11,13 +11,18 @@
 #import "BillTableViewCell.h"
 #import "SetBillViewController.h"
 #import "BillChartViewController.h"
+#import "BillModel.h"
 
 @interface BillViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 
+@property (nonatomic, copy) NSString *selectDate;///<当前选择时间
 @property (nonatomic, strong) UIButton *monthSelectBtn;///<月份选择按钮
 @property (nonatomic, strong) UILabel *incomeLabel;///<月收入
 @property (nonatomic, strong) UILabel *costLabel;///<月支出
+
+@property (nonatomic, strong) NSMutableArray<BillModel *> *dataArray;///<数据数组
+@property (nonatomic, strong) NSMutableArray<BillDayModel *> *dataDayArray;///<<#注释#>
 @end
 
 @implementation BillViewController
@@ -27,6 +32,7 @@
     [self setNav];
     [self setupTableView];
     [self AddButton];
+    [self createTable];
 }
 -(void)setNav
 {
@@ -65,6 +71,7 @@
         make.top.mas_equalTo(self.view.mas_top);
     }];
     [self setupHeadView];
+    [self reloadDataBase];
 }
 -(void)AddButton
 {
@@ -103,7 +110,6 @@
     _monthSelectBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Thin" size:15];
     _monthSelectBtn.titleLabel.numberOfLines = 2;
     _monthSelectBtn.titleLabel.textColor = [UIColor whiteColor];
-    [_monthSelectBtn setAttributedTitle:[MDMethods ChangeNSMutabelAttributedString:@"2020年\n5月" WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:50] AndTargetString:@"5"] forState:UIControlStateNormal];
     [_monthSelectBtn addTarget:self action:@selector(selectMonth) forControlEvents:UIControlEventTouchUpInside];
     [headView addSubview:_monthSelectBtn];
     [_monthSelectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -121,7 +127,6 @@
     _incomeLabel.numberOfLines = 2;
     _incomeLabel.font = [UIFont fontWithName:@"PingFangSC-Thin" size:15];
     _incomeLabel.textColor = [UIColor whiteColor];
-    _incomeLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:@"月收入\n2000" WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:50] AndTargetString:@"2000"];
     [headView addSubview:_incomeLabel];
     [_incomeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.monthSelectBtn.mas_right).mas_offset(30);
@@ -131,7 +136,6 @@
     _costLabel.numberOfLines = 2;
     _costLabel.font = [UIFont fontWithName:@"PingFangSC-Thin" size:15];
     _costLabel.textColor = [UIColor whiteColor];
-    _costLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:@"月支出\n422.1" WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:50] AndTargetString:@"422.1"];
     [headView addSubview:_costLabel];
     [_costLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.incomeLabel.mas_right).mas_offset(20);
@@ -151,7 +155,7 @@
     sectionView.backgroundColor = [UIColor whiteColor];
     [sectionBackView addSubview:sectionView];
     UILabel *datelabel = [[UILabel alloc] init];
-    datelabel.text = @"5月7号";
+    datelabel.text = [MDMethods changeBillTimeDate:self.dataDayArray[section].dataString];
     datelabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:13];
     datelabel.textColor = [UIColor blackColor];
     [sectionView addSubview:datelabel];
@@ -160,7 +164,7 @@
         make.centerY.mas_equalTo(sectionView);
     }];
     UILabel *detailLabel = [[UILabel alloc] init];
-    detailLabel.text = @"收入：2000 支出：422.1";
+    detailLabel.text = [NSString stringWithFormat:@"收入：%@ 支出：%@",[MDMethods changeFloatWithFloat:self.dataDayArray[section].income],[MDMethods changeFloatWithFloat:self.dataDayArray[section].cost]];
     detailLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:13];
     detailLabel.textColor = [UIColor blackColor];
     [sectionView addSubview:detailLabel];
@@ -175,50 +179,17 @@
     BillTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BillTableViewCell"];
     cell.contentView.backgroundColor = GrayWhiteColor;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    switch (indexPath.row) {
-        case 0:
-            cell.tipImageView.backgroundColor = [UIColor redColor];
-            cell.detailNumLabel.text = @"¥ 15.0";
-            cell.detailNameLabel.text = @"三餐";
-            break;
-            case 1:
-            cell.tipImageView.backgroundColor = [UIColor greenColor];
-            cell.detailNumLabel.text = @"¥ 2000.0";
-            cell.detailNameLabel.text = @"工资";
-            break;
-            case 2:
-            cell.tipImageView.backgroundColor = [UIColor redColor];
-            cell.detailNumLabel.text = @"¥ 70.0";
-            cell.detailNameLabel.text = @"交通";
-            break;
-            case 3:
-            cell.tipImageView.backgroundColor = [UIColor redColor];
-            cell.detailNumLabel.text = @"¥ 299.0";
-            cell.detailNameLabel.text = @"购物";
-            break;
-            case 4:
-            cell.tipImageView.backgroundColor = [UIColor redColor];
-            cell.detailNumLabel.text = @"¥ 23.1";
-            cell.detailNameLabel.text = @"其它";
-            break;
-            
-            
-        default:
-            break;
-    }
-    if (indexPath.row == 4) {
-       
-    }
+    cell.model = self.dataDayArray[indexPath.section].dataArray[indexPath.row];
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.dataDayArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.dataDayArray[section].dataArray.count;
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -228,10 +199,93 @@
 -(void)newBill
 {
     SetBillViewController *vc = [[SetBillViewController alloc] init];
+    WeakBlock(self, weak_self);
+    vc.SetBillBackBlock = ^{
+        [weak_self reloadDataBase];
+    };
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)selectMonth
 {
     
 }
+#pragma mark  - ------  FMDB操作  ------
+-(void)createTable
+{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{return ;}];
+    NSString *createTableSqlString = @"CREATE TABLE IF NOT EXISTS BillList"
+    "(BillID integer PRIMARY KEY AUTOINCREMENT,"
+    "type  integer NOT NULL,"
+    "money text    NOT NULL,"
+    "name  text    NOT NULL,"
+    "currentDateStr  text    NOT NULL,"
+    "mark  text,"
+    "currentDate text NOT NULL)";
+    [db executeUpdate:createTableSqlString];
+    [db close];
+}
+-(void)reloadDataBase
+{
+    self.selectDate = [[MDMethods currentDateStr] substringWithRange:NSMakeRange(0, 7)];
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{return ;}];
+    NSString *sql = [NSString stringWithFormat:@"select * FROM BillList where currentDateStr like '%@' order by currentDate desc",[self.selectDate stringByAppendingString:@"%"]];
+    FMResultSet *rs = [db executeQuery:sql];
+    self.dataArray = [NSMutableArray array];
+    self.dataDayArray = [NSMutableArray array];
+    while ([rs next]) {
+        BillModel *model = [[BillModel alloc] init];
+        model.BillID = [rs intForColumn:@"BillID"];
+        model.type = [rs intForColumn:@"type"];
+        model.money = [rs stringForColumn:@"money"].floatValue;
+        model.currentDateStr = [rs stringForColumn:@"currentDateStr"];
+        model.mark = [rs stringForColumn:@"mark"];
+        model.name = [rs stringForColumn:@"name"];
+        model.currentDate = [rs stringForColumn:@"currentDate"];
+        [self.dataArray addObject:model];
+        
+        BillDayModel *dayModel = [[BillDayModel alloc] init];
+        dayModel.dataString = [rs stringForColumn:@"currentDateStr"];
+        [self.dataDayArray addObject:dayModel];
+    }
+
+    NSMutableArray* tempArray = [NSMutableArray array];
+    //去重
+    for (BillDayModel *dayModel in self.dataDayArray) {
+        if (tempArray.count == 0) {
+            [tempArray addObject:dayModel];
+        }else{
+            for (BillDayModel *Model in tempArray) {
+                if (![Model.dataString containsString:dayModel.dataString]) {
+                    [tempArray addObject:dayModel];
+                }
+            }
+        }
+    }
+    self.dataDayArray = tempArray;
+    for (BillDayModel *dayModel in self.dataDayArray) {
+        for (BillModel *model in self.dataArray) {
+            if ([dayModel.dataString containsString:model.currentDateStr]) {
+                if (model.type == 1) {
+                    dayModel.income += model.money;
+                } else {
+                    dayModel.cost += model.money;
+                }
+                [dayModel.dataArray addObject:model];
+            }
+        }
+    }
+    
+    [self.tableView reloadData];
+    NSDate *currentDate = [NSDate date];
+    NSString *month = [NSString stringWithFormat:@"%zd",currentDate.month];
+    NSString *year = [NSString stringWithFormat:@"%zd",currentDate.year];
+    NSString *monthCost = [MDMethods changeFloatWithFloat:[[self.dataDayArray valueForKeyPath:@"@sum.cost"] floatValue]];
+    NSString *monthIncome = [MDMethods changeFloatWithFloat:[[self.dataDayArray valueForKeyPath:@"@sum.income"] floatValue]];
+    
+    
+    _incomeLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:[NSString stringWithFormat:@"月收入\n%@",monthIncome] WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:40] AndTargetString:monthIncome];
+    _costLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:[NSString stringWithFormat:@"月支出\n%@",monthCost] WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:40] AndTargetString:monthCost];
+    [_monthSelectBtn setAttributedTitle:[MDMethods ChangeNSMutabelAttributedString:[NSString stringWithFormat:@"%@年\n%@月",year,month] WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:40] AndTargetString:month] forState:UIControlStateNormal];
+}
+
 @end

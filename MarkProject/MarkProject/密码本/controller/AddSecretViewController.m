@@ -254,13 +254,13 @@
     } else if ([NSString isEmptyOfString:self.Pwdfield.text]) {
         [MDMethods showTextMessage:@"密码不能为空"];
     } else {
-        FMDatabase *db = [MDMethods openOrCreateDBWithDBName:@"MarkProject.sqlite" Success:^{
+        FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{
             
         } Fail:^{
             return ;
         }];
         BOOL result = [db executeUpdateWithFormat:@"insert into SecretList (Name,NameURL,Account,PassWord,Note,CreateTime,UpdateTime,currentTime) values (%@,%@,%@,%@,%@,%@,%@,%@)",self.namefield.text,self.Urlfield.text,self.Accountfield.text,self.Pwdfield.text,self.Notefield.text,[MDMethods currentDateStr],[MDMethods currentDateStr],[MDMethods currentTimeStr]];
-        
+        [db close];
         if (result) {
             NSLog(@"插入成功");
             self.dismissBlock();
