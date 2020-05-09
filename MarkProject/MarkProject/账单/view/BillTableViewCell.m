@@ -53,6 +53,6 @@
     self.tipImageView.backgroundColor = model.type == 1 ? rgba(53, 195, 126, 1) : rgba(255, 115, 115, 1);
     self.detailNumLabel.textColor = model.type == 1 ? rgba(53, 195, 126, 1) : rgba(255, 115, 115, 1);
     self.detailNameLabel.text = model.name;
-    self.detailNumLabel.text = [NSString stringWithFormat:@"¥ %@",[MDMethods changeFloatWithFloat:model.money]];
+    self.detailNumLabel.text = [NSString stringWithFormat:@"¥ %@",model.money];
 }
 @end

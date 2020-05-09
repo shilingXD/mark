@@ -164,7 +164,7 @@
         make.centerY.mas_equalTo(sectionView);
     }];
     UILabel *detailLabel = [[UILabel alloc] init];
-    detailLabel.text = [NSString stringWithFormat:@"收入：%@ 支出：%@",[MDMethods changeFloatWithFloat:self.dataDayArray[section].income],[MDMethods changeFloatWithFloat:self.dataDayArray[section].cost]];
+    detailLabel.text = [NSString stringWithFormat:@"收入：%@ 支出：%@",self.dataDayArray[section].income,self.dataDayArray[section].cost];
     detailLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:13];
     detailLabel.textColor = [UIColor blackColor];
     [sectionView addSubview:detailLabel];
@@ -236,7 +236,7 @@
         BillModel *model = [[BillModel alloc] init];
         model.BillID = [rs intForColumn:@"BillID"];
         model.type = [rs intForColumn:@"type"];
-        model.money = [rs stringForColumn:@"money"].floatValue;
+        model.money = [rs stringForColumn:@"money"];
         model.currentDateStr = [rs stringForColumn:@"currentDateStr"];
         model.mark = [rs stringForColumn:@"mark"];
         model.name = [rs stringForColumn:@"name"];
@@ -247,28 +247,29 @@
         dayModel.dataString = [rs stringForColumn:@"currentDateStr"];
         [self.dataDayArray addObject:dayModel];
     }
-
-    NSMutableArray* tempArray = [NSMutableArray array];
-    //去重
-    for (BillDayModel *dayModel in self.dataDayArray) {
-        if (tempArray.count == 0) {
-            [tempArray addObject:dayModel];
-        }else{
-            for (BillDayModel *Model in tempArray) {
-                if (![Model.dataString containsString:dayModel.dataString]) {
-                    [tempArray addObject:dayModel];
-                }
+  //去重
+    for (int i = 0; i < self.dataDayArray.count; i++) {
+        for (int j = i+1; j < self.dataDayArray.count; j++) {
+            if ([[self.dataDayArray[i] dataString] isEqualToString:[self.dataDayArray[j] dataString]]) {
+                [self.dataDayArray removeObject:self.dataDayArray[j]];
             }
         }
     }
-    self.dataDayArray = tempArray;
+    for (int i = 0; i < self.dataDayArray.count; i++) {
+        for (int j = i+1; j < self.dataDayArray.count; j++) {
+            if ([[self.dataDayArray[i] dataString] isEqualToString:[self.dataDayArray[j] dataString]]) {
+                [self.dataDayArray removeObject:self.dataDayArray[j]];
+            }
+        }
+    }
+    //导入每天的数据
     for (BillDayModel *dayModel in self.dataDayArray) {
         for (BillModel *model in self.dataArray) {
             if ([dayModel.dataString containsString:model.currentDateStr]) {
                 if (model.type == 1) {
-                    dayModel.income += model.money;
+                    dayModel.income = [dayModel.income decimalNumberByAdding:[NSDecimalNumber decimalNumberWithString:model.money]];
                 } else {
-                    dayModel.cost += model.money;
+                    dayModel.cost = [dayModel.cost decimalNumberByAdding:[NSDecimalNumber decimalNumberWithString:model.money]];
                 }
                 [dayModel.dataArray addObject:model];
             }
@@ -279,13 +280,13 @@
     NSDate *currentDate = [NSDate date];
     NSString *month = [NSString stringWithFormat:@"%zd",currentDate.month];
     NSString *year = [NSString stringWithFormat:@"%zd",currentDate.year];
-    NSString *monthCost = [MDMethods changeFloatWithFloat:[[self.dataDayArray valueForKeyPath:@"@sum.cost"] floatValue]];
-    NSString *monthIncome = [MDMethods changeFloatWithFloat:[[self.dataDayArray valueForKeyPath:@"@sum.income"] floatValue]];
+    NSString *monthCost = [NSString stringWithFormat:@"%@",[self.dataDayArray valueForKeyPath:@"@sum.cost"]];
+    NSString *monthIncome = [NSString stringWithFormat:@"%@",[self.dataDayArray valueForKeyPath:@"@sum.income"]];
     
     
-    _incomeLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:[NSString stringWithFormat:@"月收入\n%@",monthIncome] WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:40] AndTargetString:monthIncome];
-    _costLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:[NSString stringWithFormat:@"月支出\n%@",monthCost] WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:40] AndTargetString:monthCost];
-    [_monthSelectBtn setAttributedTitle:[MDMethods ChangeNSMutabelAttributedString:[NSString stringWithFormat:@"%@年\n%@月",year,month] WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:40] AndTargetString:month] forState:UIControlStateNormal];
+    _incomeLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:[NSString stringWithFormat:@"月收入\n%@",monthIncome] WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:30] AndTargetString:monthIncome];
+    _costLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:[NSString stringWithFormat:@"月支出\n%@",monthCost] WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:30] AndTargetString:monthCost];
+    [_monthSelectBtn setAttributedTitle:[MDMethods ChangeNSMutabelAttributedString:[NSString stringWithFormat:@"%@年\n%@月",year,month] WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:30] AndTargetString:month] forState:UIControlStateNormal];
 }
 
 @end

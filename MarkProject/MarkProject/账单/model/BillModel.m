@@ -20,4 +20,18 @@
     }
     return _dataArray;
 }
+- (NSDecimalNumber *)cost
+{
+    if (!_cost) {
+        _cost = [NSDecimalNumber decimalNumberWithString:@"0"];
+    }
+    return _cost;
+}
+- (NSDecimalNumber *)income
+{
+    if (!_income) {
+        _income = [NSDecimalNumber decimalNumberWithString:@"0"];
+    }
+    return _income;
+}
 @end

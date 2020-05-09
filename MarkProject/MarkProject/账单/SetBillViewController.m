@@ -85,7 +85,7 @@
         _keyboard = [BKCKeyboard init];
         WeakBlock(self, weak_self);
         [_keyboard setComplete:^(NSString *price, NSString *mark, NSDate *date) {
-            weak_self.model.money = [price floatValue];
+            weak_self.model.money = price;
             weak_self.model.mark = mark;
             [weak_self insertData];
         }];
