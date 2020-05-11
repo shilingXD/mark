@@ -246,7 +246,7 @@ static CGFloat easynavigation_animation_during = 0.3f ;//导航条的动画时�
     }
     
     [self layoutNavSubViews];
-    EasyLog_N(@"self = %@ backImagev = %@  line = %@",NSStringFromCGRect(self.bounds),NSStringFromCGRect(self.backgroundView.bounds),NSStringFromCGRect(self.lineView.bounds));
+//    EasyLog_N(@"self = %@ backImagev = %@  line = %@",NSStringFromCGRect(self.bounds),NSStringFromCGRect(self.backgroundView.bounds),NSStringFromCGRect(self.lineView.bounds));
 }
 
 

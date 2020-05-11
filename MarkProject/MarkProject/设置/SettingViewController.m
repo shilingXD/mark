@@ -14,6 +14,8 @@
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,TZImagePickerControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;///<<#注释#>
 @property (nonatomic, strong) UIImageView *headImageView;
+@property (nonatomic, strong) UILabel *NameLabel;///<用户名
+@property (nonatomic, strong) UILabel *emailLabel;///<邮箱
 
 @property (nonatomic, strong) NSArray *ItemsArray;
 @end
@@ -22,6 +24,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    [user setBool:NO forKey:IsLoginPath];
+    [MDInstance sharedInstance].isLogin = [user boolForKey:IsLoginPath];
     _ItemsArray = @[@[@"主题",@"主题"],@[@"云同步",@"云同步"],@[@"毒鸡汤",@"毒鸡汤"],@[@"账单",@"账单"],@[@"密码本",@"密码本"],@[@"日记",@"日记"],@[@"备忘录",@"备忘录"],@[@"计划",@"计划"]];
     [self setNav];
     [self setupTableView];
@@ -31,6 +36,15 @@
 {
     [super viewWillAppear:animated];
     [self.tableView.tableHeaderView setBackgroundColor:[MDInstance sharedInstance].themeColor];
+    if ([MDInstance sharedInstance].isLogin) {
+        self.headImageView.image = ([MDInstance sharedInstance].headImage == nil)?[UIImage imageNamed:@"头像"]:[MDInstance sharedInstance].headImage;
+        self.NameLabel.text = [MDInstance sharedInstance].UserName;
+        self.emailLabel.text = [MDInstance sharedInstance].Email;
+    }else{
+        self.headImageView.image = [UIImage imageNamed:@"头像"];
+        self.NameLabel.text = @"未登录";
+        self.emailLabel.text = @"请点击头像登录";
+    }
 }
 -(void)setNav
 {
@@ -94,6 +108,7 @@
     
     UILabel *nameLabel = [[UILabel alloc] init];
     nameLabel.text = @"时零";
+    self.NameLabel = nameLabel;
     nameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:21];
     nameLabel.textColor = GrayWhiteColor;
     [headView addSubview:nameLabel];
@@ -102,6 +117,7 @@
         make.left.mas_equalTo(headImageView.mas_right).offset(15);
     }];
     UILabel *emailLabel = [[UILabel alloc] init];
+    self.emailLabel = emailLabel;
     emailLabel.text = @"邮箱：ling_shi_dong@163.com";
     emailLabel.font = [UIFont fontWithName:@"PingFang SC" size:13];
     emailLabel.textColor = GrayWhiteColor;
@@ -171,12 +187,16 @@
 }
 -(void)LoginOutBtn:(UIButton *)sender
 {
-    LoginViewController *vc = [[LoginViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 -(void)headClick
 {
-    [self openImagePick];
+    if ([MDInstance sharedInstance].isLogin) {
+        [self openImagePick];
+    } else {
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 -(void)openImagePick
 {         
@@ -219,5 +239,5 @@
 //    imagePickerVc.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
-
+#pragma mark  - ------  懒加载  ------
 @end

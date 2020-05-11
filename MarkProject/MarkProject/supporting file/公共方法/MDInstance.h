@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *DeviceID;///<设备ID
 
 /*用户信息相关*/
-@property (nonatomic, copy) NSString *UserID;///<用户ID
+@property (nonatomic, copy) NSString *Email;///<用户邮箱
 @property (nonatomic, copy) NSString *UserName;///<用户名称
 @property (nonatomic, copy) NSString *UserPassWord;///<用户密码
 @property (nonatomic, strong) UIImage *headImage;///<用户头像

@@ -83,4 +83,25 @@
     
     return LeftView;
 }
+- (IBAction)LgoinAction:(id)sender {
+    if (self.accontFiled.text.length == 0) {
+        [MDMethods showTextMessage:@"邮箱不能为空"];
+        return;
+    }
+    if (self.secertFiled.text.length == 0) {
+        [MDMethods showTextMessage:@"密码不能为空"];
+        return;
+    }
+    
+    if ([MDMethods isValidateEmail:self.accontFiled.text]) {
+        [MDInstance sharedInstance].Email = self.accontFiled.text;
+    }else{
+       [MDMethods showTextMessage:@"邮箱格式错误"];
+    }
+    if (self.secertFiled.text.length>=8 && self.secertFiled.text.length<=16) {
+        [MDInstance sharedInstance].UserPassWord = self.secertFiled.text;
+    }else{
+        [MDMethods showTextMessage:@"密码为8-16位"];
+    }
+}
 @end

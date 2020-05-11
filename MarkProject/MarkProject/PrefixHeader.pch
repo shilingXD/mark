@@ -16,6 +16,8 @@
 
 #define FMDBMainName @"MarkProject.sqlite"
 #define FMDBTempName @"temp.sqlite"
+/*用户相关*/
+#define IsLoginPath @"user.islogin"
 
 #pragma mark  └ ------  设备  ------
 

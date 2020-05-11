@@ -929,11 +929,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkProject/&#x8bbe;&#x7f6e;/SettingViewController.m"
-            timestampString = "610451667.2897739"
+            timestampString = "610879775.94166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
             landmarkName = "-openImagePick"
             landmarkType = "7">
          </BreakpointContent>
@@ -946,11 +946,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkProject/&#x8bbe;&#x7f6e;/SettingViewController.m"
-            timestampString = "610451667.290154"
+            timestampString = "610879775.9417599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "-openImagePick"
             landmarkType = "7">
          </BreakpointContent>
@@ -963,11 +963,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkProject/&#x8bbe;&#x7f6e;/SettingViewController.m"
-            timestampString = "610451667.290411"
+            timestampString = "610879775.94183"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
             landmarkName = "-openImagePick"
             landmarkType = "7">
          </BreakpointContent>
@@ -1150,11 +1150,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkProject/&#x8bbe;&#x7f6e;/SettingViewController.m"
-            timestampString = "610451667.291149"
+            timestampString = "610879775.942264"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1230,7 +1230,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkProject/&#x8d26;&#x5355;/BillViewController.m"
-            timestampString = "610688372.3993779"
+            timestampString = "610860385.000807"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "279"
@@ -1262,7 +1262,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkProject/&#x8d26;&#x5355;/BillViewController.m"
-            timestampString = "610688372.400068"
+            timestampString = "610860385.001305"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "272"
@@ -1278,7 +1278,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkProject/&#x8d26;&#x5355;/BillViewController.m"
-            timestampString = "610688372.400468"
+            timestampString = "610860385.001593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "270"
@@ -1294,7 +1294,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkProject/&#x8d26;&#x5355;/BillViewController.m"
-            timestampString = "610688372.400828"
+            timestampString = "610860385.00185"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "287"
@@ -1310,7 +1310,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MarkProject/&#x8d26;&#x5355;/BillViewController.m"
-            timestampString = "610688372.401153"
+            timestampString = "610860385.0021141"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "266"
@@ -1349,6 +1349,22 @@
                   offsetFromSymbolStart = "2898">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarkProject/&#x8bbe;&#x7f6e;/SettingViewController.m"
+            timestampString = "610879775.942706"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "-viewWillAppear:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
