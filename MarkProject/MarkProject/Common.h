@@ -29,6 +29,7 @@
 #import "EasyNavigation.h"
 #import "GKCover.h"
 #import <FMDB.h>
+#import <BmobSDK/Bmob.h>
 
 #pragma mark  - ------  instance  ------
 #import "MDMethods.h"

@@ -283,9 +283,9 @@ static char firstLetterArray[HANZI_COUNT] =
             [resultArray addObject:resultDict];
         }
     }
-    
-    if ([dict[@"#"] count]) {
-        NSMutableArray *array = dict[@"#"];
+    NSMutableArray *array = dict[@"#"];
+    if ([array count]) {
+        
         [array sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             NSString *word1 = obj1;
             NSString *word2 = obj2;

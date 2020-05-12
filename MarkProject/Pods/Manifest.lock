@@ -19,6 +19,7 @@ PODS:
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
   - Masonry (1.1.0)
+  - MBProgressHUD (1.2.0)
   - SDCycleScrollView (1.80):
     - SDWebImage (>= 5.0.0)
   - SDWebImage (5.1.0):
@@ -34,6 +35,7 @@ DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - FMDB
   - Masonry
+  - MBProgressHUD (~> 1.2.0)
   - SDCycleScrollView (>= 1.80)
   - SDWebImage (~> 5.0)
   - YYCategories
@@ -44,6 +46,7 @@ SPEC REPOS:
     - AFNetworking
     - FMDB
     - Masonry
+    - MBProgressHUD
     - SDCycleScrollView
     - SDWebImage
     - YYCategories
@@ -63,11 +66,12 @@ SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   SDCycleScrollView: b3c9a5ed840c771c4938978174c7c9d9feefeb96
   SDWebImage: fb387001955223213dde14bc08c8b73f371f8d8f
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: f80cc7cd1c66920458eb45582194e7c5ed4e9aed
+PODFILE CHECKSUM: 161dd51165b6cf0d65746ad5034bcfb2b0fff0d1
 
 COCOAPODS: 1.8.4

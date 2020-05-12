@@ -108,6 +108,29 @@
 		0491A3A8245043F0003FA693 /* TZLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491A397245043F0003FA693 /* TZLocationManager.m */; };
 		0491A3A9245043F0003FA693 /* TZGifPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491A398245043F0003FA693 /* TZGifPhotoPreviewController.m */; };
 		0491A3AA245043F0003FA693 /* TZImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491A399245043F0003FA693 /* TZImageRequestOperation.m */; };
+		04A678C924699BEC000EE6AE /* deploy-pod.sh in Resources */ = {isa = PBXBuildFile; fileRef = 04A678BC24699BEC000EE6AE /* deploy-pod.sh */; };
+		04A678CA24699BEC000EE6AE /* BmobSDK.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 04A678BD24699BEC000EE6AE /* BmobSDK.podspec */; };
+		04A678CB24699BEC000EE6AE /* install.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A678BF24699BEC000EE6AE /* install.png */; };
+		04A678CC24699BEC000EE6AE /* podfile.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A678C024699BEC000EE6AE /* podfile.png */; };
+		04A678CD24699BEC000EE6AE /* project.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A678C124699BEC000EE6AE /* project.png */; };
+		04A678CE24699BEC000EE6AE /* finish.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A678C224699BEC000EE6AE /* finish.png */; };
+		04A678CF24699BEC000EE6AE /* .swift-version in Resources */ = {isa = PBXBuildFile; fileRef = 04A678C324699BEC000EE6AE /* .swift-version */; };
+		04A678D024699BEC000EE6AE /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 04A678C424699BEC000EE6AE /* LICENSE */; };
+		04A678D124699BEC000EE6AE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 04A678C524699BEC000EE6AE /* README.md */; };
+		04A678D224699BEC000EE6AE /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 04A678C624699BEC000EE6AE /* .gitignore */; };
+		04A678D324699BEC000EE6AE /* Bmob_iOS_SDK更新历史.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04A678C724699BEC000EE6AE /* Bmob_iOS_SDK更新历史.txt */; };
+		04A678D424699BEC000EE6AE /* BmobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A678C824699BEC000EE6AE /* BmobSDK.framework */; };
+		04A678D524699C42000EE6AE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0472648F2462FAC600E5C1ED /* CoreLocation.framework */; };
+		04A678D624699C55000EE6AE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047264912462FAD300E5C1ED /* Security.framework */; };
+		04A678D724699C61000EE6AE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047264932462FADD00E5C1ED /* CoreGraphics.framework */; };
+		04A678D824699C6A000EE6AE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047264952462FAE800E5C1ED /* MobileCoreServices.framework */; };
+		04A678D924699C6F000EE6AE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047264972462FAF100E5C1ED /* CFNetwork.framework */; };
+		04A678DA24699C76000EE6AE /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047264992462FAF900E5C1ED /* CoreTelephony.framework */; };
+		04A678DB24699C82000EE6AE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0472649B2462FB0300E5C1ED /* SystemConfiguration.framework */; };
+		04A678DC24699C8E000EE6AE /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0472649D2462FB1200E5C1ED /* libz.1.2.5.tbd */; };
+		04A678DD24699C99000EE6AE /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0472649F2462FB1D00E5C1ED /* libicucore.tbd */; };
+		04A678DE24699CA7000EE6AE /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 047264A12462FB2B00E5C1ED /* libc++.tbd */; };
+		04A678DF24699CB3000EE6AE /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047264A32462FB3400E5C1ED /* Photos.framework */; };
 		04A83C3A2456D48C00D49338 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A83C382456D48C00D49338 /* SettingTableViewCell.m */; };
 		04A83C3B2456D48C00D49338 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A83C392456D48C00D49338 /* SettingTableViewCell.xib */; };
 		04A83C3E2458108B00D49338 /* CustomSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A83C3D2458108B00D49338 /* CustomSettingViewController.m */; };
@@ -354,6 +377,18 @@
 		0491A398245043F0003FA693 /* TZGifPhotoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZGifPhotoPreviewController.m; sourceTree = "<group>"; };
 		0491A399245043F0003FA693 /* TZImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImageRequestOperation.m; sourceTree = "<group>"; };
 		0491A39A245043F0003FA693 /* TZProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZProgressView.h; sourceTree = "<group>"; };
+		04A678BC24699BEC000EE6AE /* deploy-pod.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "deploy-pod.sh"; sourceTree = "<group>"; };
+		04A678BD24699BEC000EE6AE /* BmobSDK.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BmobSDK.podspec; sourceTree = "<group>"; };
+		04A678BF24699BEC000EE6AE /* install.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = install.png; sourceTree = "<group>"; };
+		04A678C024699BEC000EE6AE /* podfile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = podfile.png; sourceTree = "<group>"; };
+		04A678C124699BEC000EE6AE /* project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = project.png; sourceTree = "<group>"; };
+		04A678C224699BEC000EE6AE /* finish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = finish.png; sourceTree = "<group>"; };
+		04A678C324699BEC000EE6AE /* .swift-version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
+		04A678C424699BEC000EE6AE /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		04A678C524699BEC000EE6AE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		04A678C624699BEC000EE6AE /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		04A678C724699BEC000EE6AE /* Bmob_iOS_SDK更新历史.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Bmob_iOS_SDK更新历史.txt"; sourceTree = "<group>"; };
+		04A678C824699BEC000EE6AE /* BmobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobSDK.framework; sourceTree = "<group>"; };
 		04A83C372456D48C00D49338 /* SettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingTableViewCell.h; sourceTree = "<group>"; };
 		04A83C382456D48C00D49338 /* SettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewCell.m; sourceTree = "<group>"; };
 		04A83C392456D48C00D49338 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
@@ -446,9 +481,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04A678DF24699CB3000EE6AE /* Photos.framework in Frameworks */,
+				04A678DE24699CA7000EE6AE /* libc++.tbd in Frameworks */,
+				04A678DD24699C99000EE6AE /* libicucore.tbd in Frameworks */,
+				04A678DC24699C8E000EE6AE /* libz.1.2.5.tbd in Frameworks */,
+				04A678DB24699C82000EE6AE /* SystemConfiguration.framework in Frameworks */,
+				04A678DA24699C76000EE6AE /* CoreTelephony.framework in Frameworks */,
+				04A678D924699C6F000EE6AE /* CFNetwork.framework in Frameworks */,
+				04A678D824699C6A000EE6AE /* MobileCoreServices.framework in Frameworks */,
+				04A678D724699C61000EE6AE /* CoreGraphics.framework in Frameworks */,
+				04A678D624699C55000EE6AE /* Security.framework in Frameworks */,
+				04A678D524699C42000EE6AE /* CoreLocation.framework in Frameworks */,
 				0454440723D1B44900808EEC /* libsqlite3.tbd in Frameworks */,
 				6E22E597AC3D753637744453 /* libPods-MarkProject.a in Frameworks */,
 				0464C8CA24401EA80061902F /* MMMarkdown.framework in Frameworks */,
+				04A678D424699BEC000EE6AE /* BmobSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,6 +808,7 @@
 		0478A4E12422034300C6B5C7 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				04A678BB24699BEC000EE6AE /* Bmob-iOS-SDK-master */,
 				04DE4208246448DE00A8882D /* CCFoldCell */,
 				0491A37B245043F0003FA693 /* TZImagePickerController */,
 				04491C09244854A80029530E /* LXCalendar */,
@@ -875,6 +923,33 @@
 				0491A39A245043F0003FA693 /* TZProgressView.h */,
 			);
 			path = TZImagePickerController;
+			sourceTree = "<group>";
+		};
+		04A678BB24699BEC000EE6AE /* Bmob-iOS-SDK-master */ = {
+			isa = PBXGroup;
+			children = (
+				04A678BC24699BEC000EE6AE /* deploy-pod.sh */,
+				04A678BD24699BEC000EE6AE /* BmobSDK.podspec */,
+				04A678BE24699BEC000EE6AE /* Resourse */,
+				04A678C324699BEC000EE6AE /* .swift-version */,
+				04A678C424699BEC000EE6AE /* LICENSE */,
+				04A678C524699BEC000EE6AE /* README.md */,
+				04A678C624699BEC000EE6AE /* .gitignore */,
+				04A678C724699BEC000EE6AE /* Bmob_iOS_SDK更新历史.txt */,
+				04A678C824699BEC000EE6AE /* BmobSDK.framework */,
+			);
+			path = "Bmob-iOS-SDK-master";
+			sourceTree = "<group>";
+		};
+		04A678BE24699BEC000EE6AE /* Resourse */ = {
+			isa = PBXGroup;
+			children = (
+				04A678BF24699BEC000EE6AE /* install.png */,
+				04A678C024699BEC000EE6AE /* podfile.png */,
+				04A678C124699BEC000EE6AE /* project.png */,
+				04A678C224699BEC000EE6AE /* finish.png */,
+			);
+			path = Resourse;
 			sourceTree = "<group>";
 		};
 		04A83C362456D46900D49338 /* view */ = {
@@ -1127,15 +1202,18 @@
 				04F638B2242DF333005207B0 /* Roboto-Regular.ttf in Resources */,
 				04A83C3B2456D48C00D49338 /* SettingTableViewCell.xib in Resources */,
 				04D31A4C2462634500F3428A /* SetBillCollectionViewCell.xib in Resources */,
+				04A678CF24699BEC000EE6AE /* .swift-version in Resources */,
 				0478A13E245D850F002559DC /* BillTableViewCell.xib in Resources */,
 				04468325244DD67F0033892A /* techo.css in Resources */,
 				04230FB32391020E00031B27 /* LaunchScreen.storyboard in Resources */,
+				04A678D024699BEC000EE6AE /* LICENSE in Resources */,
 				04230FB02391020E00031B27 /* Assets.xcassets in Resources */,
 				04F638B0242DF333005207B0 /* Roboto-Light.ttf in Resources */,
 				04F323342447F13F00F16923 /* AddPlanView.xib in Resources */,
 				04468321244DD52D0033892A /* markdown.css in Resources */,
 				04491C3B244864B40029530E /* AddPlanNameView.xib in Resources */,
 				047263E42462D2AC00E5C1ED /* LoginViewController.xib in Resources */,
+				04A678CD24699BEC000EE6AE /* project.png in Resources */,
 				043384122452BC1C00E42271 /* vue.css in Resources */,
 				048A382524655FA200BDED29 /* BillChartViewController.xib in Resources */,
 				047C5170244D982700879A54 /* NewfileView.xib in Resources */,
@@ -1144,13 +1222,21 @@
 				04D31A3424624AEB00F3428A /* BKCKeyboard.xib in Resources */,
 				04DE42162464494F00A8882D /* DemoCell.xib in Resources */,
 				04491C1E244854A80029530E /* LXCalendarHearder.xib in Resources */,
+				04A678CE24699BEC000EE6AE /* finish.png in Resources */,
+				04A678CB24699BEC000EE6AE /* install.png in Resources */,
 				0491A3A2245043F0003FA693 /* TZImagePickerController.bundle in Resources */,
 				0433841A2452CC9200E42271 /* MoreActionView.xib in Resources */,
 				04230FAE2391020B00031B27 /* Main.storyboard in Resources */,
 				04F638B4242DF333005207B0 /* marked.min.js in Resources */,
+				04A678CC24699BEC000EE6AE /* podfile.png in Resources */,
+				04A678C924699BEC000EE6AE /* deploy-pod.sh in Resources */,
+				04A678D124699BEC000EE6AE /* README.md in Resources */,
+				04A678D324699BEC000EE6AE /* Bmob_iOS_SDK更新历史.txt in Resources */,
+				04A678CA24699BEC000EE6AE /* BmobSDK.podspec in Resources */,
 				04468327244DD7B10033892A /* han.css in Resources */,
 				04F638B8242DF333005207B0 /* sample1.md in Resources */,
 				043384112452BC1C00E42271 /* vue-dark.css in Resources */,
+				04A678D224699BEC000EE6AE /* .gitignore in Resources */,
 				0478A56C24235A9E00C6B5C7 /* EasyNavButton.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1488,6 +1574,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/MarkProject/Tools/BmobSDK/BmobFileDemo/BmobFileDemo",
 					"$(PROJECT_DIR)/MarkProject/Tools/BmobSDK/BmobRelationDemo/BmobRelationDemo",
+					"$(PROJECT_DIR)/MarkProject/Tools/Bmob-iOS-SDK-master",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MarkProject/PrefixHeader.pch";
@@ -1519,6 +1606,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/MarkProject/Tools/BmobSDK/BmobFileDemo/BmobFileDemo",
 					"$(PROJECT_DIR)/MarkProject/Tools/BmobSDK/BmobRelationDemo/BmobRelationDemo",
+					"$(PROJECT_DIR)/MarkProject/Tools/Bmob-iOS-SDK-master",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MarkProject/PrefixHeader.pch";
