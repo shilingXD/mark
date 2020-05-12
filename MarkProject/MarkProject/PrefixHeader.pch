@@ -17,9 +17,15 @@
 #define FMDBMainName @"MarkProject.sqlite"
 #define FMDBTempName @"temp.sqlite"
 /*用户相关*/
+#define UserPreferencesPlist @"user_preferences.plist"
+
 #define IsLoginPath @"user.islogin"
+#define ThemeColorPath @"user.themeColor"
 
 #pragma mark  └ ------  设备  ------
+ 
+#define DocumentsDirectoryPath NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject
+#define LibraryDirectoryPath NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject
 
 // 判断是否为iPhone X 系列  这样写消除了在Xcode10上的警告。
 #define iPhoneX \

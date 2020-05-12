@@ -28,21 +28,10 @@
     options.btnTitleType = FBackBtnTitleType_Default;
     
     EasyNavigationController *navVC = [[EasyNavigationController alloc]initWithRootViewController:[MainViewController new]];
-    self.window.rootViewController  = navVC ;
-    
+    self.window.rootViewController = navVC ;
     [MDInstance sharedInstance].DeviceID = [MDMethods getUUIDByKeyChain];
-    [MDInstance sharedInstance].themeColor = TintColor;
-    
-    /*bomb云*/
-    [Bmob registerWithAppKey:@"82ca2e259fd2d0cf3412e1b0796b8dd4"];
-    //往GameScore表添加一条playerName为小明，分数为78的数据
-    BmobObject *gameScore = [BmobObject objectWithClassName:@"UserList"];
-    [gameScore setObject:@"ling_shi" forKey:@"user_email"];
-    [gameScore setObject:@"dsfdf" forKey:@"user_password"];
-    [gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        //进行操作
-        NSLog(@"%@",error.description);
-    }];
+    [self setTheme];
+    [self getUserInfo];
     return YES;
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -53,7 +42,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    // If your application supports background execution, this method is called inƒstead of applicationWillTerminate: when the user quits.
 }
 
 
@@ -71,6 +60,55 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
+-(void)setTheme
+{
+    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+    [MDInstance sharedInstance].isLogin = [userdefaults boolForKey:IsLoginPath];
+    if ([MDInstance sharedInstance].isLogin) {
+        NSString *filePath = [DocumentsDirectoryPath stringByAppendingPathComponent:UserPreferencesPlist];
+        //判断用户偏好plist是否存在
+        if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+            <#statements#>
+        } else {
+            <#statements#>
+        }
+        [MDInstance sharedInstance].themeColor = [userdefaults objectForKey:ThemeColorPath];
+    } else {
+        [MDInstance sharedInstance].themeColor = TintColor;
+    }
+    
+    
+    
+    
+    
+}
+#pragma mark  - ------  bomb云  ------
+-(void)getUserInfo
+{
+    [Bmob registerWithAppKey:@"82ca2e259fd2d0cf3412e1b0796b8dd4"];
+    //往GameScore表添加一条playerName为小明，分数为78的数据
+    BmobObject *gameScore = [BmobObject objectWithClassName:@"UserList"];
+    [gameScore setObject:@"ling_shi" forKey:@"user_email"];
+    [gameScore setObject:@"dsfdf" forKey:@"user_password"];
+    [gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        //进行操作
+        NSLog(@"%@",error.description);
+    }];
+    NSLog(@"%@",DocumentsDirectoryPath);
+    //    NSData *data = [NSData dataWithContentsOfFile:<#(nonnull NSString *)#>];
+    
+//    //获取沙盒目录
+//      NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+//      NSString *plistPath1 = [paths objectAtIndex:0];
+//
+//      //得到完整的文件名
+//      NSString *filename=[plistPath1 stringByAppendingPathComponent:@"my.plist"];
+//      NSDictionary * dic = @{@"my":@"haha"};
+//      [dic  writeToFile:filename atomically:YES];
+//
+//      //取数据
+//      NSDictionary * getDic = [NSDictionary dictionaryWithContentsOfFile:filename];
+//      NSLog(@"%@",getDic);
+}
 
 @end

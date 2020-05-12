@@ -29,8 +29,7 @@
 {
     [super viewWillDisappear:animated];
     NSData *data = [self.editView.text dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    NSString *filePath = [documentPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.md", self.titlestr]];
+    NSString *filePath = [DocumentsDirectoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.md", self.titlestr]];
     //写入文件
     [data writeToFile:filePath atomically:YES];
     NSLog(@"md成功保存，地址%@", filePath);
