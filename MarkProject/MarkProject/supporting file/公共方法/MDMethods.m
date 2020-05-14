@@ -1200,4 +1200,32 @@
     return image64;
     
 }
+/**
+ *  清除所有的存储本地的数据
+ */
++ (void)clearAllUserDefaultsData
+{
+    
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+    
+    
+}
++(void)showAlertWithTitle:(NSString *)title SureTitle:(NSString *)sureTitle SureBlock:(void(^)(void))sureBlock CancelTitle:(NSString *)cancelTitle CancelBlock:(void(^)(void))cancelBlock
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:title preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:cancelTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        cancelBlock();
+    }];
+    //    action1
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:sureTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        sureBlock();
+    }];
+    [alert addAction:action1];
+    [alert addAction:action2];
+    [[MDMethods getCurrentViewController] presentViewController:alert animated:YES completion:^{
+        
+    }];
+}
+
 @end

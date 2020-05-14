@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isOpenSoul;///<是否开启毒鸡汤
 
 +(MDInstance *)sharedInstance;
+
++(void)setNSUserDefaults;
 @end
 
 NS_ASSUME_NONNULL_END

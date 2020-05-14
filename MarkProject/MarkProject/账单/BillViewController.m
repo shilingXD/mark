@@ -12,6 +12,7 @@
 #import "SetBillViewController.h"
 #import "BillChartViewController.h"
 #import "BillModel.h"
+#import "BillDetailView.h"
 
 @interface BillViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -23,6 +24,7 @@
 
 @property (nonatomic, strong) NSMutableArray<BillModel *> *dataArray;///<数据数组
 @property (nonatomic, strong) NSMutableArray<BillDayModel *> *dataDayArray;///<<#注释#>
+@property (nonatomic, copy) NSDate *Date;///<选择的日期
 @end
 
 @implementation BillViewController
@@ -41,7 +43,7 @@
     self.navigationView.backgroundView.image = nil ;
     self.navigationView.backgroundView.backgroundColor = [[MDInstance sharedInstance].themeColor colorWithAlphaComponent:0];
     self.navigationView.lineView.backgroundColor = [UIColor clearColor];
-    
+    self.Date = [NSDate date];
     UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
     UIImageView *imageview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"统计"]];
     imageview.size = CGSizeMake(22, 22);
@@ -80,7 +82,7 @@
     dragView.layer.masksToBounds = YES;
     dragView.layer.cornerRadius = 25;
     dragView.clickDragViewBlock = ^(WMDragView *dragView) {
-        [self newBill];
+        [self newBillWithModel:nil];
     };
     [self.view addSubview:dragView];
     [dragView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -103,7 +105,7 @@
     
     headView.backgroundColor = [MDInstance sharedInstance].themeColor;
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -(NavigationBar_Height-44), SCREEN_WIDTH, headView.height+(NavigationBar_Height-44))];
-    imageView.backgroundColor = [MDInstance sharedInstance].themeColor;
+    imageView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"背景"]];
     [headView addSubview:imageView];
     
     _monthSelectBtn = [[UIButton alloc] init];
@@ -143,6 +145,7 @@
     }];
     self.tableView.tableHeaderView = headView;
 }
+#pragma mark  - ------  代理  ------
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *sectionBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
@@ -180,33 +183,76 @@
     cell.contentView.backgroundColor = GrayWhiteColor;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.model = self.dataDayArray[indexPath.section].dataArray[indexPath.row];
+    cell.MyContentView.frame = CGRectMake(15, 0, SCREEN_WIDTH-30, 60);
+    if (self.dataDayArray[indexPath.section].dataArray.count-1 == indexPath.row) {
+       UIBezierPath *maskBezierPath = [UIBezierPath bezierPathWithRoundedRect:cell.MyContentView.bounds byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
+        CAShapeLayer *maskShapeLayer = [[CAShapeLayer alloc]init];
+        maskShapeLayer.frame = cell.MyContentView.bounds;
+        maskShapeLayer.path = maskBezierPath.CGPath;
+        cell.MyContentView.layer.mask = maskShapeLayer;
+    }
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.dataDayArray.count;
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.dataDayArray[section].dataArray.count;
+}
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+ 
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    WeakBlock(self, weak_self);
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        NSLog(@"点击了删除");
+        [MDMethods showAlertWithTitle:@"确定删除这条记录？" SureTitle:@"确定" SureBlock:^{
+            [weak_self deleteRow:weak_self.dataDayArray[indexPath.section].dataArray[indexPath.row]];
+        } CancelTitle:@"取消" CancelBlock:^{
+            
+        }];
+        
+    }];
+    UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"编辑" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        NSLog(@"点击了编辑");
+        [weak_self newBillWithModel:weak_self.dataDayArray[indexPath.section].dataArray[indexPath.row]];
+    }];
+    editAction.backgroundColor = rgba(53, 195, 126, 1);
+    return @[deleteAction, editAction];
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat rate = scrollView.contentOffset.y/100.0;
     self.navigationView.backgroundColor = [[MDInstance sharedInstance].themeColor colorWithAlphaComponent:rate];
 }
--(void)newBill
+#pragma mark  - ------  响应事件  ------
+-(void)newBillWithModel:(BillModel *)model
 {
     SetBillViewController *vc = [[SetBillViewController alloc] init];
     WeakBlock(self, weak_self);
     vc.SetBillBackBlock = ^{
         [weak_self reloadDataBase];
     };
+    vc.model = model;
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)selectMonth
 {
+    WeakBlock(self, weak_self);
+    CXDatePickerView *datepicker = [[CXDatePickerView alloc] initWithDateStyle:CXDateYearMonth completeBlock:^(NSDate *selectDate) {
+        weak_self.Date = selectDate;
+        [weak_self reloadDataBase];
+    }];
+    datepicker.datePickerFont = [UIFont fontWithName:@"PingFangSC-Light" size:17];
+    datepicker.dateLabelColor = TintColor;//年-月-日-时-分 颜色
+    datepicker.datePickerColor = TintColor;//滚轮日期颜色
+    datepicker.doneButtonColor = TintColor;//确定按钮的颜色
+    datepicker.cancelButtonColor = datepicker.doneButtonColor;
+    [datepicker show];
     
 }
 #pragma mark  - ------  FMDB操作  ------
@@ -214,19 +260,19 @@
 {
     FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{return ;}];
     NSString *createTableSqlString = @"CREATE TABLE IF NOT EXISTS BillList"
-    "(BillID integer PRIMARY KEY AUTOINCREMENT,"
-    "type  integer NOT NULL,"
-    "money text    NOT NULL,"
-    "name  text    NOT NULL,"
-    "currentDateStr  text    NOT NULL,"
-    "mark  text,"
-    "currentDate text NOT NULL)";
+    "(BillID        integer     PRIMARY KEY AUTOINCREMENT,"
+    "type           integer     NOT NULL,"
+    "money          text        NOT NULL,"
+    "name           text        NOT NULL,"
+    "currentDateStr text        NOT NULL,"
+    "mark           text                ,"
+    "currentDate    text        NOT NULL)";
     [db executeUpdate:createTableSqlString];
     [db close];
 }
 -(void)reloadDataBase
 {
-    self.selectDate = [[MDMethods currentDateStr] substringWithRange:NSMakeRange(0, 7)];
+    self.selectDate = [self.Date cx_stringWithFormat:@"yyyy-MM"];;
     FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{return ;}];
     NSString *sql = [NSString stringWithFormat:@"select * FROM BillList where currentDateStr like '%@' order by currentDate desc",[self.selectDate stringByAppendingString:@"%"]];
     FMResultSet *rs = [db executeQuery:sql];
@@ -277,16 +323,28 @@
     }
     
     [self.tableView reloadData];
-    NSDate *currentDate = [NSDate date];
-    NSString *month = [NSString stringWithFormat:@"%zd",currentDate.month];
-    NSString *year = [NSString stringWithFormat:@"%zd",currentDate.year];
+    NSString *month = [NSString stringWithFormat:@"%zd",self.Date.month];
+    NSString *year = [NSString stringWithFormat:@"%zd",self.Date.year];
     NSString *monthCost = [NSString stringWithFormat:@"%@",[self.dataDayArray valueForKeyPath:@"@sum.cost"]];
     NSString *monthIncome = [NSString stringWithFormat:@"%@",[self.dataDayArray valueForKeyPath:@"@sum.income"]];
     
     
-    _incomeLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:[NSString stringWithFormat:@"月收入\n%@",monthIncome] WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:30] AndTargetString:monthIncome];
-    _costLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:[NSString stringWithFormat:@"月支出\n%@",monthCost] WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:30] AndTargetString:monthCost];
+    _incomeLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:[NSString stringWithFormat:@"收入\n%@",monthIncome] WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:30] AndTargetString:monthIncome];
+    _costLabel.attributedText = [MDMethods ChangeNSMutabelAttributedString:[NSString stringWithFormat:@"支出\n%@",monthCost] WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:30] AndTargetString:monthCost];
     [_monthSelectBtn setAttributedTitle:[MDMethods ChangeNSMutabelAttributedString:[NSString stringWithFormat:@"%@年\n%@月",year,month] WithTargetValue:[UIFont fontWithName:@"PingFangSC-Thin" size:30] AndTargetString:month] forState:UIControlStateNormal];
 }
-
+- (void)deleteRow:(BillModel *)delobject {
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{
+        return ;
+    }];
+    NSString *sql = @"delete from BillList where BillID = ?";
+    BillModel *model = delobject;
+    BOOL result = [db executeUpdate:sql, @(model.BillID)];
+    if (!result) {
+        [MDMethods showTextMessage:@"删除失败"];
+        return;
+    }
+    [db close];
+    [self reloadDataBase];
+}
 @end

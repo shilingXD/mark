@@ -355,6 +355,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //改变账单的时间格式
 +(NSString *)changeBillTimeDate:(NSString *)getTime;
-@end
++ (void)clearAllUserDefaultsData;
 
+#pragma mark  - ------  Alert弹窗  ------
++(void)showAlertWithTitle:(NSString *)title SureTitle:(NSString *)sureTitle SureBlock:(void(^)(void))sureBlock CancelTitle:(NSString *)cancelTitle CancelBlock:(void(^)(void))cancelBlock;
+@end
 NS_ASSUME_NONNULL_END

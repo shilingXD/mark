@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray *dataArray;///<<#注释#>
 @property (nonatomic, assign) BillType type;///<<#注释#>
 @property (nonatomic, copy) void (^BillClickBlock) (NSString *title);///<返回选择的名称
+@property (nonatomic, copy) NSString *selectItemTitle;///<选择的类别
 @end
 
 NS_ASSUME_NONNULL_END

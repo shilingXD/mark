@@ -10,7 +10,6 @@
 #import "UICollectionViewLeftAlignedLayout.h"
 #import "SuiXiangCollectionViewCell.h"
 #import "WMDragView.h"
-#import "NextViewController.h"
 #import "FIREditPageVC.h"
 #import "NewfileView.h"
 #import "MDModel.h"

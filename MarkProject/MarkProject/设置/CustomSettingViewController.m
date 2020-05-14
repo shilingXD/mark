@@ -12,6 +12,7 @@
 @interface CustomSettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *ItemsArray;
+@property (nonatomic, strong) NSDictionary *dic;
 @end
 
 @implementation CustomSettingViewController
@@ -23,11 +24,15 @@
 }
 -(void)setArray
 {
-    if ([_NavTitle isEqualToString:@"主题"]) {
-        _ItemsArray = @[@[@"默认黑",TintColor],@[@"中国红",rgba(210, 55, 59, 1)],@[@"基佬紫",rgba(108, 22, 199, 1)],@[@"清新蓝",rgba(2, 145, 212, 1)],@[@"原谅绿",rgba(1, 189, 122, 1)]];
-    } else {
-        
-    }
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"preferences" ofType:@"plist"];
+    _dic = [[NSDictionary dictionary] initWithContentsOfFile:path];
+    _ItemsArray = [_dic objectForKey:_NavTitle];
+    
+//    for (NSArray *array in _ItemsArray) {
+//        UIColor *color = array[1];
+//        NSLog(@"%@-%@",array[0],color.hexString);
+//    }
+    
 }
 -(void)setNav
 {
@@ -58,7 +63,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = rgba(240, 240, 240, 1);
     cell.titleLabel.text = [NSString stringWithFormat:@"   %@",_ItemsArray[indexPath.row][0]];
-    cell.iconImage.image = [UIImage imageWithColor:_ItemsArray[indexPath.row][1]];
+    cell.iconImage.image = [UIImage imageWithColor:[UIColor colorWithHexString:_ItemsArray[indexPath.row][1]]];
     cell.iconImage.layer.cornerRadius = 10;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.stateSwitch.hidden = YES;
@@ -76,8 +81,9 @@
 }
 -(void)setThemeWithIndexPath:(NSIndexPath *)indexPath
 {
-    [MDInstance sharedInstance].themeColor = _ItemsArray[indexPath.row][1];
+    [MDInstance sharedInstance].themeColor =[UIColor colorWithHexString:_ItemsArray[indexPath.row][1]];
     self.navigationView.backgroundView.backgroundColor = [MDInstance sharedInstance].themeColor;
     self.navigationView.lineView.backgroundColor = [MDInstance sharedInstance].themeColor;
+    [MDInstance setNSUserDefaults];
 }
 @end

@@ -20,18 +20,15 @@
 @property (nonatomic, strong) UILabel *costlabel;///<收入
 @property (nonatomic, strong) UILabel *incomeLabel;///<支出
 @property (nonatomic, strong) UIView  *lineView;
-
-@property (nonatomic, strong) BillModel *model;///<<#注释#>
+@property (nonatomic, strong) BillCollectionViewViewController *vc;
+@property (nonatomic, strong) BillCollectionViewViewController *vc2;
+@property (nonatomic, assign) BOOL isBillEdit;///<是否是编辑模式
 @end
 
 @implementation SetBillViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = GrayWhiteColor;
-    [self setKeyBoard];
-    [self setData];
-    
     self.costlabel.hidden = NO;
     self.incomeLabel.hidden = NO;
     [self.view layoutIfNeeded];
@@ -43,12 +40,37 @@
     [self.navigationView setTitle:@""];
     
 }
+- (void)setModel:(BillModel *)model
+{
+    self.view.backgroundColor = GrayWhiteColor;
+    [self setKeyBoard];
+    [self setData];
+    
+    if (!model) {
+        _isBillEdit = NO;
+        _model = [[BillModel alloc] init];
+    }else{
+        _isBillEdit = YES;
+        _model = model;
+        [self.keyboard show];
+        self.keyboard.moneyLab.text = model.money;
+        self.keyboard.money = [NSMutableString stringWithString:model.money];
+        self.keyboard.markField.text = model.mark;
+        if (model.type == 0) {
+            self.vc.selectItemTitle = model.name;
+        } else {
+            self.vc2.selectItemTitle = model.name;
+        }
+    }
+    
+}
 -(void)setData
 {
     _CostArray = @[@"三餐",@"服饰",@"捐赠",@"交通",@"其它",@"旅游",@"酒水",@"加油",@"娱乐",@"房租",@"兴趣爱好",@"购物",@"美妆",@"医疗",@"数码产品",@"教育"];
     _IncomeArray = @[@"工资",@"奖金",@"股票基金",@"其它"];
     
     BillCollectionViewViewController *vc = [[BillCollectionViewViewController alloc] init];
+    self.vc = vc;
     vc.dataArray = _CostArray;
     WeakBlock(self, weak_self);
     vc.BillClickBlock = ^(NSString * _Nonnull title) {
@@ -63,6 +85,7 @@
     vc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.scrollView.height);
     
     BillCollectionViewViewController *vc2 = [[BillCollectionViewViewController alloc] init];
+    self.vc2 = vc2;
     vc2.dataArray = _IncomeArray;
     vc2.BillClickBlock = ^(NSString * _Nonnull title) {
         weak_self.model.name = title;
@@ -183,7 +206,12 @@
 -(void)insertData
 {
     FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{return ;}];
-    BOOL result = [db executeUpdateWithFormat:@"insert into BillList (type,money,name,currentDateStr,mark,currentDate) values (%d,%@,%@,%@,%@,%@)",self.model.type,[NSString stringWithFormat:@"%0.2f",self.model.money],self.model.name,[[MDMethods currentDateStr] substringWithRange:NSMakeRange(0, 10)],self.model.mark,[MDMethods currentTimeStr]];
+    BOOL result ;
+    if (_isBillEdit) {
+        result = [db executeUpdateWithFormat:@"update BillList set type = %d,money = %@,name = %@,mark = %@ where BillID = %d",self.model.type,[NSString stringWithFormat:@"%@",self.model.money],self.model.name,self.model.mark,self.model.BillID];
+    } else {
+        result = [db executeUpdateWithFormat:@"insert into BillList (type,money,name,currentDateStr,mark,currentDate) values (%d,%@,%@,%@,%@,%@)",self.model.type,[NSString stringWithFormat:@"%@",self.model.money],self.model.name,[[MDMethods currentDateStr] substringWithRange:NSMakeRange(0, 10)],self.model.mark,[MDMethods currentTimeStr]];
+    }
     [db close];
     if (result) {
         self.SetBillBackBlock();
@@ -193,12 +221,4 @@
     }
 }
 
-
-- (BillModel *)model
-{
-    if (!_model) {
-        _model = [[BillModel alloc] init];
-    }
-    return _model;
-}
 @end

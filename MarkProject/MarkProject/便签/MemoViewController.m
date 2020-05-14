@@ -8,10 +8,10 @@
 
 #import "MemoViewController.h"
 #import "WMDragView.h"
-#import "DemoCell.h"
+#import "MemoCell.h"
 
-#define kCloseCellHeight    100.f
-#define kOpenCellHeight     300.f
+#define kCloseCellHeight    110.f
+#define kOpenCellHeight     310.f
 #define kRowsCount          5
 
 @interface MemoViewController () < UITableViewDelegate, UITableViewDataSource >
@@ -19,7 +19,8 @@
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray<NSNumber *> *cellHeights;
-@property (nonatomic, assign) BOOL isEdit;///<是否编辑
+
+@property (nonatomic, assign) NSInteger selectRow;///<<#注释#>
 
 @end
 
@@ -33,15 +34,6 @@
     [self createCellHeightsArray];
 //    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
     self.tableView.backgroundColor = GrayWhiteColor;
-    UILabel *editlabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 44)];
-    editlabel.text = @"编辑";
-    editlabel.font = self.navigationView.titleLabel.font;
-    editlabel.textColor = [UIColor whiteColor];
-    WeakBlock(self, weak_self);
-    [self.navigationView addRightView:editlabel callback:^(UIView *view) {
-        weak_self.isEdit = !weak_self.isEdit;
-        editlabel.text = weak_self.isEdit?@"完成":@"编辑";
-    }];
     [self AddButton];
 }
 -(void)AddButton
@@ -87,9 +79,9 @@
     return kRowsCount;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(DemoCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView willDisplayCell:(MemoCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (![cell isKindOfClass:[DemoCell class]]) return;
+    if (![cell isKindOfClass:[MemoCell class]]) return;
     
     cell.backgroundColor = [UIColor clearColor];
     
@@ -106,7 +98,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DemoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DemoCell" forIndexPath:indexPath];
+    MemoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MemoCell" forIndexPath:indexPath];
+    WeakBlock(self, weak_self);
+    cell.callSelectRowBlock = ^(NSInteger row) {
+        weak_self.selectRow = row;
+    };
     switch (indexPath.row) {
         case 0:
             cell.DataLabel.text = @"2020年4月23号";
@@ -153,12 +149,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DemoCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    MemoCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    if (![cell isKindOfClass:[DemoCell class]]) return;
+    if (![cell isKindOfClass:[MemoCell class]]) return;
     
     if (cell.isAnimating) return;
-        cell.contentTextView.userInteractionEnabled = _isEdit;
     
     NSTimeInterval duration = 0.f;
     
@@ -192,7 +187,9 @@
         _tableView.estimatedRowHeight = 0;
         _tableView.showsVerticalScrollIndicator = NO;
         [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        [_tableView registerNib:[UINib nibWithNibName:@"DemoCell" bundle:nil] forCellReuseIdentifier:@"DemoCell"];
+        [_tableView registerNib:[UINib nibWithNibName:@"MemoCell" bundle:nil] forCellReuseIdentifier:@"MemoCell"];
+//        _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
+//        _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
     }
     return _tableView;
 }
@@ -203,5 +200,32 @@
         _cellHeights = [NSMutableArray array];
     }
     return _cellHeights;
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue];
+
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_selectRow inSection:0];
+
+    CGRect rectInTable = [_tableView rectForRowAtIndexPath:indexPath];
+
+    CGRect rectInSelfview = [_tableView convertRect:rectInTable toView:self.view];
+
+    CGFloat cellBottomY = rectInSelfview.origin.y + rectInSelfview.size.height;
+
+    if (cellBottomY > keyboardFrame.origin.y ) { //键盘是否会挡住点击cell的判断
+
+        CGFloat delta = _tableView.frame.origin.y - (cellBottomY - keyboardFrame.origin.y);
+        delta = delta<_tableView.y-keyboardFrame.size.height?_tableView.y-keyboardFrame.size.height:delta;
+
+        _tableView.frame =CGRectMake(0, delta,SCREEN_WIDTH,_tableView.frame.size.height);
+
+    }
+    
+}
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    _tableView.frame =CGRectMake(0, NavigationBar_Height,SCREEN_WIDTH,_tableView.frame.size.height);
 }
 @end

@@ -10,7 +10,6 @@
  */
 #import "MainViewController.h"
 #import "MainCollectionViewCell.h"
-#import "NextViewController.h"
 #import "SecretListViewController.h"
 #import "DiaryViewController.h"
 #import "SDCycleScrollView.h"
@@ -52,8 +51,8 @@
     [self.navigationView setTitle:@"主页"];
     
     self.navigationView.backgroundView.image = nil ;
-    self.navigationView.backgroundView.backgroundColor = [MDInstance sharedInstance].themeColor;
-    self.navigationView.lineView.backgroundColor = [MDInstance sharedInstance].themeColor;
+    self.navigationView.backgroundView.backgroundColor = [UIColor clearColor];
+    self.navigationView.lineView.backgroundColor = [UIColor clearColor];
 }
 
 #pragma mark  - ------  头部-Banner  ------

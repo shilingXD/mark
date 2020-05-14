@@ -62,17 +62,15 @@
 }
 -(void)setTheme
 {
-    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
-    [MDInstance sharedInstance].isLogin = [userdefaults boolForKey:IsLoginPath];
     if ([MDInstance sharedInstance].isLogin) {
         NSString *filePath = [DocumentsDirectoryPath stringByAppendingPathComponent:UserPreferencesPlist];
         //判断用户偏好plist是否存在
         if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-            <#statements#>
+            
         } else {
-            <#statements#>
+            
         }
-        [MDInstance sharedInstance].themeColor = [userdefaults objectForKey:ThemeColorPath];
+        
     } else {
         [MDInstance sharedInstance].themeColor = TintColor;
     }
@@ -87,13 +85,7 @@
 {
     [Bmob registerWithAppKey:@"82ca2e259fd2d0cf3412e1b0796b8dd4"];
     //往GameScore表添加一条playerName为小明，分数为78的数据
-    BmobObject *gameScore = [BmobObject objectWithClassName:@"UserList"];
-    [gameScore setObject:@"ling_shi" forKey:@"user_email"];
-    [gameScore setObject:@"dsfdf" forKey:@"user_password"];
-    [gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        //进行操作
-        NSLog(@"%@",error.description);
-    }];
+ 
     NSLog(@"%@",DocumentsDirectoryPath);
     //    NSData *data = [NSData dataWithContentsOfFile:<#(nonnull NSString *)#>];
     

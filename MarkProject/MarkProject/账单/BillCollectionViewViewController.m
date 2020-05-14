@@ -11,7 +11,7 @@
 
 @interface BillCollectionViewViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, copy) NSString *selectItemTitle;///<选择的类别
+
 @end
 
 @implementation BillCollectionViewViewController

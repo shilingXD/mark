@@ -19,8 +19,6 @@
 /*用户相关*/
 #define UserPreferencesPlist @"user_preferences.plist"
 
-#define IsLoginPath @"user.islogin"
-#define ThemeColorPath @"user.themeColor"
 
 #pragma mark  └ ------  设备  ------
  

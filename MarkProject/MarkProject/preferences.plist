@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>计划</key>
+	<string></string>
+	<key>备忘录</key>
+	<string></string>
+	<key>日记</key>
+	<string></string>
+	<key>密码本</key>
+	<string></string>
+	<key>主题</key>
+	<array>
+		<array>
+			<string>默认黑</string>
+			<string>39373c</string>
+		</array>
+		<array>
+			<string>中国红</string>
+			<string>d2373b</string>
+		</array>
+		<array>
+			<string>基佬紫</string>
+			<string>6c16c7</string>
+		</array>
+		<array>
+			<string>清新蓝</string>
+			<string>0291d4</string>
+		</array>
+		<array>
+			<string>原谅绿</string>
+			<string>01bd7a</string>
+		</array>
+	</array>
+	<key>云同步</key>
+	<string></string>
+	<key>账单</key>
+	<string></string>
+</dict>
+</plist>

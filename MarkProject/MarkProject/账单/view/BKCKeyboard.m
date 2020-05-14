@@ -4,7 +4,7 @@
  */
 
 #import "BKCKeyboard.h"
-
+#define countcoordinatesX(A) [UIScreen mainScreen].bounds.size.width * (A / 375.f)
 #define DATE_TAG 13         // 日期
 #define PLUS_TAG 17         // 加
 #define LESS_TAG 21         // 减
@@ -18,17 +18,7 @@
 #pragma mark - 声明
 @interface BKCKeyboard()<UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *nameLab;
-@property (weak, nonatomic) IBOutlet UITextField *markField;
-@property (weak, nonatomic) IBOutlet UILabel *moneyLab;
-@property (weak, nonatomic) IBOutlet UIView *textContent;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textConstraintH;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *keyConstraintB;
-
-@property (nonatomic, strong) NSDate *currentDate;
-@property (nonatomic, assign) BOOL isLess;          // 减
-@property (nonatomic, assign) BOOL animation;       // 动画中
 
 @end
 
@@ -499,7 +489,7 @@
 #pragma mark - 通知
 - (void)showKeyboard:(NSNotification *)not {
     NSTimeInterval time = [not.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
-    CGFloat keyHeight = [not.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height;
+    CGFloat keyHeight = [not.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
     
     [UIView animateWithDuration:time delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
 //        [self.textContent setTop:(self.height - keyHeight) - countcoordinatesX(60)];

@@ -16,6 +16,7 @@
 @property (nonatomic, strong) UIImageView *headImageView;
 @property (nonatomic, strong) UILabel *NameLabel;///<用户名
 @property (nonatomic, strong) UILabel *emailLabel;///<邮箱
+@property (nonatomic, strong) UIButton *LoginOutBtn;///<退出button
 
 @property (nonatomic, strong) NSArray *ItemsArray;
 @end
@@ -24,12 +25,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    [user setBool:NO forKey:IsLoginPath];
-    [MDInstance sharedInstance].isLogin = [user boolForKey:IsLoginPath];
     _ItemsArray = @[@[@"主题",@"主题"],@[@"云同步",@"云同步"],@[@"毒鸡汤",@"毒鸡汤"],@[@"账单",@"账单"],@[@"密码本",@"密码本"],@[@"日记",@"日记"],@[@"备忘录",@"备忘录"],@[@"计划",@"计划"]];
     [self setNav];
     [self setupTableView];
+    
     
 }
 - (void)viewWillAppear:(BOOL)animated
@@ -40,10 +39,12 @@
         self.headImageView.image = ([MDInstance sharedInstance].headImage == nil)?[UIImage imageNamed:@"头像"]:[MDInstance sharedInstance].headImage;
         self.NameLabel.text = [MDInstance sharedInstance].UserName;
         self.emailLabel.text = [MDInstance sharedInstance].Email;
+        self.LoginOutBtn.hidden = NO;
     }else{
         self.headImageView.image = [UIImage imageNamed:@"头像"];
         self.NameLabel.text = @"未登录";
         self.emailLabel.text = @"请点击头像登录";
+        self.LoginOutBtn.hidden = YES;
     }
 }
 -(void)setNav
@@ -187,7 +188,9 @@
 }
 -(void)LoginOutBtn:(UIButton *)sender
 {
-    
+    [MDMethods clearAllUserDefaultsData];
+    [MDInstance sharedInstance].isLogin = NO;
+    [self viewWillAppear:YES];
 }
 -(void)headClick
 {
@@ -226,17 +229,12 @@
     NSInteger top = (self.view.height - widthHeight) / 2;
     imagePickerVc.cropRect = CGRectMake(left, top, widthHeight, widthHeight);
     imagePickerVc.scaleAspectFillCrop = YES;
+    imagePickerVc.needCircleCrop = YES;
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
         self.headImageView.image = photos[0];
-      [MDInstance sharedInstance].headImage = photos[0];
-//        NSMutableString *base64 = [NSMutableString string];
-//        NSData *imageData = UIImageJPEGRepresentation(photos[0], 1);
-//        
-//        [base64 appendString:[imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]] ;
-        
-//        [self ReplyImageWithbase64:base64] ;
+        [MDInstance sharedInstance].headImage = photos[0];
+        [MDInstance setNSUserDefaults];
     }];
-//    imagePickerVc.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
 #pragma mark  - ------  懒加载  ------
