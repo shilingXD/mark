@@ -9,10 +9,10 @@
 #import "MemoViewController.h"
 #import "WMDragView.h"
 #import "MemoCell.h"
+#import "MemoModel.h"
 
 #define kCloseCellHeight    110.f
 #define kOpenCellHeight     310.f
-#define kRowsCount          5
 
 @interface MemoViewController () < UITableViewDelegate, UITableViewDataSource >
 
@@ -21,6 +21,8 @@
 @property (nonatomic, strong) NSMutableArray<NSNumber *> *cellHeights;
 
 @property (nonatomic, assign) NSInteger selectRow;///<<#注释#>
+
+@property (nonatomic, strong) NSMutableArray<MemoModel *> *dataArray;
 
 @end
 
@@ -68,7 +70,7 @@
 }
 - (void)createCellHeightsArray
 {
-    for (int i = 0; i < kRowsCount; i ++) {
+    for (int i = 0; i < self.dataArray.count; i ++) {
         [self.cellHeights addObject:@(kCloseCellHeight)];
     }
 }
@@ -76,7 +78,7 @@
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return kRowsCount;
+    return self.dataArray.count;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(MemoCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -176,7 +178,23 @@
     } completion:nil];
     
 }
-
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 1;
+}
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    WeakBlock(self, weak_self);
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        NSLog(@"点击了删除");
+        [MDMethods showAlertWithTitle:@"确定删除这条记录？" SureTitle:@"确定" SureBlock:^{
+            [BaseModel deleteWithTableName:@"MemoList" deleteID:weak_self.dataArray[indexPath.row].ID];
+        } CancelTitle:@"取消" CancelBlock:^{
+            
+        }];
+        
+    }];
+    return @[deleteAction];
+}
 #pragma mark - Getter && Setter
 - (UITableView *)tableView
 {
@@ -188,8 +206,6 @@
         _tableView.showsVerticalScrollIndicator = NO;
         [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         [_tableView registerNib:[UINib nibWithNibName:@"MemoCell" bundle:nil] forCellReuseIdentifier:@"MemoCell"];
-//        _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
-//        _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
     }
     return _tableView;
 }
@@ -202,6 +218,7 @@
     return _cellHeights;
 }
 
+#pragma mark  - ------  键盘  ------
 - (void)keyboardWillShow:(NSNotification *)notification
 {
     CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue];
@@ -227,5 +244,31 @@
 - (void)keyboardWillHide:(NSNotification *)notification
 {
     _tableView.frame =CGRectMake(0, NavigationBar_Height,SCREEN_WIDTH,_tableView.frame.size.height);
+}
+#pragma mark  - ------  数据库  ------
+-(void)reloadDataBase
+{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{return;}];
+    FMResultSet *rs = [db executeQuery:@"select * from MemoList order by createdAt desc"];
+    self.dataArray = [NSMutableArray array];
+    while ([rs next]) {
+        MemoModel *model = [[MemoModel alloc] init];
+        model.ID = [rs intForColumn:@"ID"];
+        model.memoTitle = [rs stringForColumn:@"memoTitle"];
+        model.memoContent = [rs stringForColumn:@"memoContent"];
+        model.memoColorHex = [rs stringForColumn:@"memoColorHex"];
+        model.createdAt = [rs intForColumn:@"createdAt"];
+        model.updatedAt = [rs intForColumn:@"updatedAt"];
+        [self.dataArray addObject:model];
+    }
+    [self.tableView reloadData];
+}
+-(void)updateDataBase
+{
+    
+}
+-(void)insertDataBase
+{
+    
 }
 @end

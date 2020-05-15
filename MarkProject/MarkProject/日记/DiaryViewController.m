@@ -213,9 +213,8 @@
     FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{
         return ;
     }];
-    NSString *createTableSqlString = @"CREATE TABLE IF NOT EXISTS MDList (MDID integer PRIMARY KEY AUTOINCREMENT, Title text NOT NULL, Type text NOT NULL, FilePath text, StoragePath text, CreateTime text NOT NULL, UpdateTime text NOT NULL, CurrentTime integer NOT NULL)";
-    [db executeUpdate:createTableSqlString];
-    NSString *sql = @"select  MDID,Title,Type,FilePath,StoragePath,CreateTime,UpdateTime,currentTime FROM MDList Where FilePath == ''";
+   
+    NSString *sql = @"select * FROM MDList Where FilePath == ''";
     FMResultSet *rs = [db executeQuery:sql];
     _dataArray = [NSMutableArray array];
     while ([rs next]) {

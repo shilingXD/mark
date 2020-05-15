@@ -341,7 +341,7 @@
 -(void)setupFooter
 {
     UILabel *createTimelabel = [[UILabel alloc] init];
-    createTimelabel.text = [NSString stringWithFormat:@"创建日期  %@",[MDMethods changeTimeDate:self.model.CreateTime]];
+    createTimelabel.text = [NSString stringWithFormat:@"创建日期  %@",[MDMethods changeTimeDate:[MDMethods getDateStringWithTimeStr:[NSString stringWithFormat:@"%zd",self.model.createdAt]]]];
     createTimelabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 12];
     createTimelabel.textColor = rgba(130, 136, 156, 1);
     [self.view addSubview:createTimelabel];
@@ -351,7 +351,7 @@
     }];
     
     UILabel *updateTimelabel = [[UILabel alloc] init];
-    updateTimelabel.text = [NSString stringWithFormat:@"修改日期  %@",[MDMethods changeTimeDate:self.model.UpdateTime]];
+    updateTimelabel.text = [NSString stringWithFormat:@"修改日期  %@",[MDMethods changeTimeDate:[MDMethods getDateStringWithTimeStr:[NSString stringWithFormat:@"%zd",self.model.updatedAt]]]];
     updateTimelabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 12];
     updateTimelabel.textColor = rgba(130, 136, 156, 1);
     [self.view addSubview:updateTimelabel];
@@ -440,7 +440,7 @@
     } Fail:^{
         return ;
     }];
-    BOOL result2 = [db executeUpdateWithFormat:@"update SecretList set Name = %@,NameURL = %@,Account = %@,PassWord = %@,Note = %@,UpdateTime = %@,currentTime = %@ where id = %d",self.namefield.text,self.Urlfield.text,self.Accountfield.text,self.Pwdfield.text,self.Notefield.text,[MDMethods currentDateStr],[MDMethods currentTimeStr],self.model.secretID];
+    BOOL result2 = [db executeUpdate:@"update SecretList set Name = ?,NameURL = ?,Account = ?,PassWord = ?,Note = ?,updatedAt = ? where ID = ?",self.namefield.text,self.Urlfield.text,self.Accountfield.text,self.Pwdfield.text,self.Notefield.text,@([[MDMethods currentDateStr] integerValue]),@(self.model.ID)];
     if (result2) {
         NSLog(@"修改成功");
         self.dismissBlock();

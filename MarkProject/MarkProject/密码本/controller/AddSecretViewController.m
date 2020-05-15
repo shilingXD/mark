@@ -259,7 +259,7 @@
         } Fail:^{
             return ;
         }];
-        BOOL result = [db executeUpdateWithFormat:@"insert into SecretList (Name,NameURL,Account,PassWord,Note,CreateTime,UpdateTime,currentTime) values (%@,%@,%@,%@,%@,%@,%@,%@)",self.namefield.text,self.Urlfield.text,self.Accountfield.text,self.Pwdfield.text,self.Notefield.text,[MDMethods currentDateStr],[MDMethods currentDateStr],[MDMethods currentTimeStr]];
+        BOOL result = [db executeUpdate:@"insert into SecretList (Name,NameURL,Account,PassWord,Note,createdAt,updatedAt) values (?,?,?,?,?,?,?)",self.namefield.text,self.Urlfield.text,self.Accountfield.text,self.Pwdfield.text,self.Notefield.text,@([[MDMethods currentTimeStr] integerValue]),@([[MDMethods currentTimeStr] integerValue])];
         [db close];
         if (result) {
             NSLog(@"插入成功");

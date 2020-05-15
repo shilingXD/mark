@@ -185,7 +185,7 @@
     FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{
         return ;
     }];
-    NSString *sql = @"select  PlanID,PlanTitle,PlanDayDate,PlanItemBeginDate,priority,PlanItemEndDate,currentTime FROM PlanList";
+    NSString *sql = @"select * FROM PlanList";
     FMResultSet *rs = [db executeQuery:sql];
     _dataArray = [NSMutableArray array];
     _sortArray = [NSMutableArray array];

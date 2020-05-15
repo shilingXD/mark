@@ -38,6 +38,7 @@
     [self setupContentView];
     [self setupBanner];
     [self soulView];
+    [BaseModel createTableIfNoExit];
 }
 - (void)viewWillAppear:(BOOL)animated
 {

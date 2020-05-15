@@ -38,7 +38,6 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
 @implementation SecretListViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self openDataBase];
     [self createBar];
     //添加视图
     [self.view addSubview:self.TableView];
@@ -259,13 +258,6 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     // Dispose of any resources that can be recreated.
 }
 #pragma mark  - ------  FMDB操作  ------
--(void)openDataBase
-{
-    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{return ;}];
-    NSString *createTableSqlString = @"CREATE TABLE IF NOT EXISTS SecretList (id integer PRIMARY KEY AUTOINCREMENT, Name text NOT NULL, NameURL text, Account text NOT NULL, PassWord text NOT NULL, Note text, CreateTime text NOT NULL, UpdateTime text NOT NULL, CurrentTime integer NOT NULL)";
-    [db executeUpdate:createTableSqlString];
-    [db close];
-}
 -(void)reloadData
 {
     FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{
@@ -276,15 +268,14 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     [self.dataArray removeAllObjects];
     while ([rs next]) {
         SecretModel *model = [[SecretModel alloc] init];
-        model.secretID = [rs intForColumn:@"id"];
+        model.ID = [rs intForColumn:@"ID"];
         model.Name = [rs stringForColumn:@"Name"];
         model.NameURL = [rs stringForColumn:@"NameURL"];
         model.Account = [rs stringForColumn:@"Account"];
         model.PassWord = [rs stringForColumn:@"PassWord"];
         model.Note = [rs stringForColumn:@"Note"];
-        model.CreateTime = [rs stringForColumn:@"CreateTime"];
-        model.UpdateTime = [rs stringForColumn:@"UpdateTime"];
-        model.currentTime = [rs stringForColumn:@"currentTime"];
+        model.createdAt = [rs intForColumn:@"createdAt"];
+        model.updatedAt = [rs intForColumn:@"updatedAt"];
         [self.dataArray addObject:model];
     }
     [self.SectionArray removeAllObjects];
@@ -311,17 +302,8 @@ static NSString *TableViewSearchHeaderViewIdentifier = @"TableViewSearchHeaderVi
     [db close];
 }
 - (void)delete:(NSArray *)delStudents {
-    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{
-        return ;
-    }];
-    NSString *sql = @"delete from SecretList where id = ?";
     SecretModel *model = delStudents[0];
-    BOOL result = [db executeUpdate:sql, @(model.secretID)];
-    if (!result) {
-        [MDMethods showTextMessage:@"删除失败"];
-        return;
-    }
-    [db close];
+    [BaseModel deleteWithTableName:@"SecretList" deleteID:model.ID];
     [self reloadData];
 }
 

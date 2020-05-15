@@ -34,7 +34,6 @@
     [self setNav];
     [self setupTableView];
     [self AddButton];
-    [self createTable];
 }
 -(void)setNav
 {
@@ -256,20 +255,6 @@
     
 }
 #pragma mark  - ------  FMDB操作  ------
--(void)createTable
-{
-    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{return ;}];
-    NSString *createTableSqlString = @"CREATE TABLE IF NOT EXISTS BillList"
-    "(BillID        integer     PRIMARY KEY AUTOINCREMENT,"
-    "type           integer     NOT NULL,"
-    "money          text        NOT NULL,"
-    "name           text        NOT NULL,"
-    "currentDateStr text        NOT NULL,"
-    "mark           text                ,"
-    "currentDate    text        NOT NULL)";
-    [db executeUpdate:createTableSqlString];
-    [db close];
-}
 -(void)reloadDataBase
 {
     self.selectDate = [self.Date cx_stringWithFormat:@"yyyy-MM"];;

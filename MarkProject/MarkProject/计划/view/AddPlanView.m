@@ -101,8 +101,6 @@
 - (IBAction)sureClick:(id)sender {
     
     FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{return;}];
-    NSString *createTableSqlString = @"CREATE TABLE IF NOT EXISTS PlanList (PlanID integer PRIMARY KEY AUTOINCREMENT, PlanTitle text NOT NULL, PlanDayDate text NOT NULL, priority integer NOT NULL, PlanItemBeginDate integer NOT NULL, PlanItemEndDate integer NOT NULL, CurrentTime integer NOT NULL)";
-    [db executeUpdate:createTableSqlString];
     
     BOOL result = [db executeUpdateWithFormat:@"insert into PlanList (PlanTitle,PlanDayDate,priority,PlanItemBeginDate,PlanItemEndDate,currentTime) values (%@,%@,%d,%d,%d,%@)",self.model.PlanTitle,self.model.PlanDayDate,self.model.priority,self.model.PlanItemBeginDate,self.model.PlanItemEndDate,[MDMethods currentTimeStr]];
     

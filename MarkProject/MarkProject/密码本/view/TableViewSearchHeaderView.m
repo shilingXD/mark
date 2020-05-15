@@ -19,6 +19,7 @@
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         [self.contentView addSubview:self.searchTextField];
+        self.searchTextField.hidden = YES;
     }
     return self;
 }
