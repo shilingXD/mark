@@ -9,7 +9,7 @@
 #import "User.h"
 
 @implementation User
-+(MDInstance *)sharedInstance{
++(User *)sharedInstance{
     static User *_sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

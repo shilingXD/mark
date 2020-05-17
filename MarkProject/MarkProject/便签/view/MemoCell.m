@@ -94,4 +94,21 @@
         self.callSelectRowBlock([self.closeNumberLabel.text integerValue]-1);
     }
 }
+- (void)setModel:(MemoModel *)model
+{
+    _model = model;
+    NSString *dateStr = [MDMethods getDateStringWithTimeStr:[NSString stringWithFormat:@"%zd",model.createdAt]];
+    self.DataLabel.text = [MDMethods changeBillTimeDate:dateStr];
+    NSDate *date = [MDMethods NSStringToDate:dateStr];
+    self.timeLabel.text = (date.hour<=12)?[NSString stringWithFormat:@"%02zd:%02zd AM",date.hour,date.minute]:[NSString stringWithFormat:@"%02zd:%02zd PM",date.hour-12,date.minute];
+    self.titleLabel.text = model.memoTitle;
+    self.detailLabel.text = [NSString stringWithFormat:@"字数统计:%zd字",model.memoContent.length];
+    
+    self.openTitlelabel.text = model.memoTitle;
+    self.contentTextView.text = model.memoContent;
+    
+    self.leftView.backgroundColor = [UIColor hexStringToColor:model.memoColorHex];
+    self.openTitlelabel.backgroundColor = [UIColor hexStringToColor:model.memoColorHex];
+    
+}
 @end

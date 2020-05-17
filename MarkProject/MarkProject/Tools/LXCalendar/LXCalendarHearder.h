@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^leftClickBlock) ();
+typedef void (^leftClickBlock) (void);
 
-typedef void (^rightClickBlock) ();
+typedef void (^rightClickBlock) (void);
 
 @interface LXCalendarHearder : UIView
 

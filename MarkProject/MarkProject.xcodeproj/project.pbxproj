@@ -119,7 +119,6 @@
 		04A678D524699C42000EE6AE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0472648F2462FAC600E5C1ED /* CoreLocation.framework */; };
 		04A678D624699C55000EE6AE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047264912462FAD300E5C1ED /* Security.framework */; };
 		04A678D724699C61000EE6AE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047264932462FADD00E5C1ED /* CoreGraphics.framework */; };
-		04A678D824699C6A000EE6AE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047264952462FAE800E5C1ED /* MobileCoreServices.framework */; };
 		04A678D924699C6F000EE6AE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047264972462FAF100E5C1ED /* CFNetwork.framework */; };
 		04A678DA24699C76000EE6AE /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047264992462FAF900E5C1ED /* CoreTelephony.framework */; };
 		04A678DB24699C82000EE6AE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0472649B2462FB0300E5C1ED /* SystemConfiguration.framework */; };
@@ -131,6 +130,7 @@
 		04A83C3B2456D48C00D49338 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A83C392456D48C00D49338 /* SettingTableViewCell.xib */; };
 		04A83C3E2458108B00D49338 /* CustomSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A83C3D2458108B00D49338 /* CustomSettingViewController.m */; };
 		04A83C412458165400D49338 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A83C402458165400D49338 /* BaseViewController.m */; };
+		04BDB67C24703C72001F310D /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BDB67B24703C72001F310D /* CoreServices.framework */; };
 		04D31A2F246249D000F3428A /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31A2E246249D000F3428A /* NSDictionary+Extension.m */; };
 		04D31A3324624AEB00F3428A /* BKCKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D31A3124624AEB00F3428A /* BKCKeyboard.m */; };
 		04D31A3424624AEB00F3428A /* BKCKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D31A3224624AEB00F3428A /* BKCKeyboard.xib */; };
@@ -394,6 +394,7 @@
 		04A83C3D2458108B00D49338 /* CustomSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSettingViewController.m; sourceTree = "<group>"; };
 		04A83C3F2458165400D49338 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		04A83C402458165400D49338 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		04BDB67B24703C72001F310D /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		04D31A2D246249D000F3428A /* NSDictionary+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extension.h"; sourceTree = "<group>"; };
 		04D31A2E246249D000F3428A /* NSDictionary+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extension.m"; sourceTree = "<group>"; };
 		04D31A3024624AEB00F3428A /* BKCKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKCKeyboard.h; sourceTree = "<group>"; };
@@ -484,7 +485,6 @@
 				04A678DB24699C82000EE6AE /* SystemConfiguration.framework in Frameworks */,
 				04A678DA24699C76000EE6AE /* CoreTelephony.framework in Frameworks */,
 				04A678D924699C6F000EE6AE /* CFNetwork.framework in Frameworks */,
-				04A678D824699C6A000EE6AE /* MobileCoreServices.framework in Frameworks */,
 				04A678D724699C61000EE6AE /* CoreGraphics.framework in Frameworks */,
 				04A678D624699C55000EE6AE /* Security.framework in Frameworks */,
 				04A678D524699C42000EE6AE /* CoreLocation.framework in Frameworks */,
@@ -492,6 +492,7 @@
 				6E22E597AC3D753637744453 /* libPods-MarkProject.a in Frameworks */,
 				0464C8CA24401EA80061902F /* MMMarkdown.framework in Frameworks */,
 				04A678D424699BEC000EE6AE /* BmobSDK.framework in Frameworks */,
+				04BDB67C24703C72001F310D /* CoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1110,6 +1111,7 @@
 		73ACE74CF294E50703FC5A68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04BDB67B24703C72001F310D /* CoreServices.framework */,
 				047264A32462FB3400E5C1ED /* Photos.framework */,
 				047264A12462FB2B00E5C1ED /* libc++.tbd */,
 				0472649F2462FB1D00E5C1ED /* libicucore.tbd */,
@@ -1566,6 +1568,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
 				CODE_SIGN_ENTITLEMENTS = MarkProject/MarkProject.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7QT63XRD5R;
@@ -1598,6 +1601,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
 				CODE_SIGN_ENTITLEMENTS = MarkProject/MarkProject.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7QT63XRD5R;

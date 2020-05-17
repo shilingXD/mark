@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CCFoldCell.h"
+#import "MemoModel.h"
 
 @interface MemoCell : CCFoldCell<UITextViewDelegate>
 
@@ -24,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (nonatomic, copy) void (^callSelectRowBlock) (NSInteger row);
+@property (nonatomic, strong) MemoModel *model;
 
 - (void)setNumber:(NSInteger)number;
 

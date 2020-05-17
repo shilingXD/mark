@@ -24,7 +24,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="465" height="670"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IIy-HG-Axu" userLabel="Foreground" customClass="CCRotatedView">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IIy-HG-Axu" userLabel="Foreground" customClass="CCRotatedView">
                         <rect key="frame" x="20" y="7" width="425" height="101"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2B-aT-mpu" userLabel="LeftView">
@@ -36,7 +36,7 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="0.80086043070000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TODAY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x13-qt-mud">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TODAY" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x13-qt-mud">
                                         <rect key="frame" x="18" y="44" width="33" height="12"/>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="10"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
@@ -85,12 +85,12 @@
                             <constraint firstItem="5cQ-tP-fsw" firstAttribute="top" secondItem="IIy-HG-Axu" secondAttribute="top" constant="52" id="069-m5-ep4"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="5eX-2z-bCq"/>
                             <constraint firstItem="FNF-lu-A9N" firstAttribute="leading" secondItem="IIy-HG-Axu" secondAttribute="leading" constant="124" id="FzN-vw-L7j"/>
-                            <constraint firstAttribute="bottom" secondItem="I2B-aT-mpu" secondAttribute="bottom" id="JRe-O1-cRm"/>
+                            <constraint firstAttribute="bottom" secondItem="I2B-aT-mpu" secondAttribute="bottom" constant="1" id="JRe-O1-cRm"/>
                             <constraint firstAttribute="trailing" secondItem="jOj-0N-MG8" secondAttribute="trailing" constant="10" id="WVw-Lz-cRk"/>
                             <constraint firstItem="5cQ-tP-fsw" firstAttribute="leading" secondItem="IIy-HG-Axu" secondAttribute="leading" constant="120" id="aRf-3k-Mxp"/>
                             <constraint firstItem="jOj-0N-MG8" firstAttribute="leading" secondItem="IIy-HG-Axu" secondAttribute="leading" constant="124" id="ebB-CU-eOF"/>
                             <constraint firstItem="I2B-aT-mpu" firstAttribute="top" secondItem="IIy-HG-Axu" secondAttribute="top" id="g9G-Lv-5cl"/>
-                            <constraint firstAttribute="height" constant="100" id="l6t-gp-DSV"/>
+                            <constraint firstAttribute="height" constant="101" id="l6t-gp-DSV"/>
                             <constraint firstItem="I2B-aT-mpu" firstAttribute="leading" secondItem="IIy-HG-Axu" secondAttribute="leading" id="lgP-ZH-JMQ"/>
                             <constraint firstItem="jOj-0N-MG8" firstAttribute="top" secondItem="IIy-HG-Axu" secondAttribute="top" constant="57" id="pb8-w9-S98"/>
                             <constraint firstItem="FNF-lu-A9N" firstAttribute="top" secondItem="IIy-HG-Axu" secondAttribute="top" constant="28" id="r9Q-LC-EjH"/>

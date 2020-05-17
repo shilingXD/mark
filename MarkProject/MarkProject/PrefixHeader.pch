@@ -54,7 +54,6 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define WeakBlock(Ori, NewName) __weak __block __typeof__(Ori) NewName = Ori
 #define Safe(string) string?string:@""
 
-
 #import "Common.h"
 #endif /* PrefixHeader_pch */
 

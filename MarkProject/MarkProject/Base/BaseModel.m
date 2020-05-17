@@ -72,7 +72,7 @@
         return ;
     }];
     NSString *sql = [NSString stringWithFormat:@"delete from %@ where ID = ?",str];
-    BOOL result = [db executeUpdate:sql, deleteID];
+    BOOL result = [db executeUpdate:sql, [NSNumber numberWithInteger:deleteID]];
     if (!result) {
         [MDMethods showTextMessage:@"删除失败"];
     }
