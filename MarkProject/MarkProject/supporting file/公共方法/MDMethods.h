@@ -359,5 +359,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark  - ------  Alert弹窗  ------
 +(void)showAlertWithTitle:(NSString *)title SureTitle:(NSString *)sureTitle SureBlock:(void(^)(void))sureBlock CancelTitle:(NSString *)cancelTitle CancelBlock:(void(^)(void))cancelBlock;
+
++ (void)cancelLocalNotificaitonsWtihIdentifier:(NSString *)identifier;
++ (void)cancelAllLocalNotificaitons;
++ (void)postLocalNotificationWithTitle:(NSString *)title
+   SubTitle:(NSString *)subTitle
+       Body:(NSString *)body
+   UserInfo:(NSDictionary *)userInfo
+    Repeats:(BOOL)repeats
+       Date:(NSDate *)date
+ Identifier:(NSString *)identifier;
 @end
 NS_ASSUME_NONNULL_END

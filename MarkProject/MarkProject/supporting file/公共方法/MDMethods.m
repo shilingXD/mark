@@ -12,6 +12,7 @@
 #import <AdSupport/AdSupport.h>
 #import "NSDate+gyh.h"
 #import "NSString+Util.h"
+#import <UserNotifications/UserNotifications.h>
 
 @implementation MDMethods
 //+(CommonMethods *)sharedInstance{
@@ -1228,5 +1229,146 @@
         
     }];
 }
+#pragma mark  - ------  通知相关  ------
+/// 取消指定通知
+/// @param identifier 通知标识符
++ (void)cancelLocalNotificaitonsWtihIdentifier:(NSString *)identifier
+{
+    
+    if (@available(iOS 10.0, *)) {
+        [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[identifier]];
+    }else{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        // 取消一个特定的通知
+        NSArray *notificaitons = [[UIApplication sharedApplication] scheduledLocalNotifications]; // 获取当前所有的本地通知
+        if (!notificaitons || notificaitons.count <= 0) { return; }
+        for (UILocalNotification *notify in notificaitons) {
+            if ([[notify.userInfo objectForKey:@"id"] isEqualToString:identifier]) {
+                [[UIApplication sharedApplication] cancelLocalNotification:notify];
+            }
+        }
+    }
+#pragma clang diagnostic pop
+}
 
+/// 取消所有通知
++ (void)cancelAllLocalNotificaitons
+{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    if (@available(iOS 10.0, *)) {
+        [[UNUserNotificationCenter currentNotificationCenter] removeAllDeliveredNotifications];
+    } else {
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    }
+#pragma clang diagnostic pop
+}
+/// 发送本地通知
+/// @param title 标题
+/// @param subTitle 副标题
+/// @param body 内容
+/// @param userInfo 通知携带的字典
+/// @param repeats 是否重复
+/// @param date 通知发送的时间
+/// @param identifier 通知标识符
++ (void)postLocalNotificationWithTitle:(NSString *)title
+                              SubTitle:(NSString *)subTitle
+                                  Body:(NSString *)body
+                              UserInfo:(NSDictionary *)userInfo
+                               Repeats:(BOOL)repeats
+                                  Date:(NSDate *)date
+                            Identifier:(NSString *)identifier
+{
+//    static int i = 0;
+//    NSString *title = @"title - 测试本地通知";
+//    NSString *subTitle = @"";
+//    NSString *body = @"点击进入";
+//    NSInteger badge = 1;
+//    NSInteger timeInteval = 10;
+//    NSDictionary *userInfo = @{@"id":@"LOCAL_NOTIFY_SCHEDULE_ID"};
+    
+    if (@available(iOS 10.0, *)) {
+        // 1.创建通知内容
+        UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+        content.sound = [UNNotificationSound defaultSound];
+        content.title = title;
+        content.subtitle = subTitle;
+        content.body = body;
+        content.badge = @([content.badge intValue] + 1);
+
+        content.userInfo = userInfo;
+        
+        //图片附件 最大10M
+//        [self addNotificationAttachmentContent:content attachmentName:@"image.jpeg" options:nil withCompletion:^(NSError *error, UNNotificationAttachment *notificationAtt) {
+//            content.attachments = @[notificationAtt];
+//        }];
+        
+//        //视频文件 取第一秒截图为缩略图、最大50M
+//        [self addNotificationAttachmentContent:content attachmentName:@"video01.mp4" options:@{@"UNNotificationAttachmentOptionsThumbnailTimeKey":@1} withCompletion:^(NSError *error, UNNotificationAttachment *notificationAtt) {
+//            content.attachments = @[notificationAtt];
+//        }];
+        //同样支持音频附件。最大5M
+        
+        // 2.设置声音
+//        UNNotificationSound *sound = [UNNotificationSound soundNamed:@"sound01.wav"];// [UNNotificationSound defaultSound];
+        content.sound = [UNNotificationSound defaultSound];
+
+        // 3.触发模式
+        UNNotificationTrigger *trigger;
+        NSDateComponents *components = [[NSDateComponents alloc] init];
+        
+        if (repeats) {
+            components.hour = date.hour;
+            components.minute = date.minute;
+            components.second = date.second;
+        } else {
+            components.hour = date.hour;
+            components.minute = date.minute;
+            components.year = date.year;
+            components.second = date.second;
+        }
+        trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:repeats];
+        // 4.设置UNNotificationRequest 相同的Identifier会被处理为同一个通知。
+        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:identifier content:content trigger:trigger];
+
+        //5.把通知加到UNUserNotificationCenter, 到指定触发点会被触发
+        [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        }];
+
+    } else {
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        
+        // 1.设置触发时间（如果要立即触发，无需设置）
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+        if (repeats) {
+            
+            localNotification.repeatInterval =  NSCalendarUnitDay;
+        }
+        
+        // 2.设置通知标题
+        localNotification.alertBody = title;
+        
+        // 3.设置通知动作按钮的标题
+//        localNotification.alertAction = @"Action Title";
+        
+        //
+//        localNotification.alertLaunchImage = @"image";
+        
+        // 4.设置提醒的声音
+//        localNotification.soundName = @"sound01.wav";// UILocalNotificationDefaultSoundName;
+        localNotification.soundName = UILocalNotificationDefaultSoundName;
+        // 5.设置通知的 传递的userInfo
+        localNotification.userInfo = userInfo;
+        localNotification.applicationIconBadgeNumber += 1;
+        // 6.在规定的日期触发通知
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        // 6.立即触发一个通知
+        //[[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
+        #pragma clang diagnostic pop
+    }
+}
 @end

@@ -10,7 +10,7 @@
 #import "MainViewController.h"
 #import <UserNotifications/UserNotifications.h>
 
-@interface AppDelegate ()
+@interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
 @end
 
@@ -32,6 +32,8 @@
     [MDInstance sharedInstance].DeviceID = [MDMethods getUUIDByKeyChain];
     [self setTheme];
     [self getUserInfo];
+    //注册消息推送
+    [self p_registerForUserNotificationHandler:application];
     return YES;
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -60,6 +62,68 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void)p_registerForUserNotificationHandler:(UIApplication *)application{
+    if (@available(iOS 10.0,*)) {
+        //iOS10特有
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        // 必须写代理，不然无法监听通知的接收与点击
+        center.delegate = self;
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            if (granted) {
+                // 点击允许
+                NSLog(@"requestAuthorization成功");
+                [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+                    NSLog(@"getNotificationSettings :: %@", settings);
+                }];
+            } else {
+                // 点击不允许
+                NSLog(@"requestAuthorization失败");
+            }
+        }];
+    }else{
+        //iOS8 - iOS10
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+[application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge categories:nil]];
+        #pragma clang diagnostic pop
+        
+    }
+}
+#pragma mark - ios 8 - 10 收到通知。
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(nonnull UILocalNotification *)notification{
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {// app位于前台通知
+        NSLog(@"前台本地通知，didReceiveLocalNotification");
+    }else{
+        NSLog(@"后台本地通知，didReceiveLocalNotification");
+    }
+}
+#pragma mark - ios >= 10 收到通知。
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(nonnull UNNotification *)notification withCompletionHandler:(nonnull void (^)(UNNotificationPresentationOptions))completionHandler __IOS_AVAILABLE(10.0) {
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if (userInfo) {
+        NSLog(@"app位于前台通知(willPresentNotification:):%@", userInfo);
+    }
+    //前台显示通知消息 仅支持10以后。
+    completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
+    //    completionHandler(UNNotificationPresentationOptionNone);
+    
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)(void))completionHandler __IOS_AVAILABLE(10.0) {
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if (userInfo) {
+        NSLog(@"app位于后台通知 点击通知触发 (didReceiveNotificationResponse:):%@,", userInfo);
+        if ([userInfo[@"id"] isEqualToString:@"LOCAL_NOTIFY_SCHEDULE_ID"]) {
+            NSLog(@"收到了指定通知 做出特定处理");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"acceptLocalNotification" object:nil];
+        }
+        //如果设置了badge值 需要清除。
+    }
+    
+    completionHandler();
+}
+
 -(void)setTheme
 {
     if ([MDInstance sharedInstance].isLogin) {
@@ -85,22 +149,22 @@
 {
     [Bmob registerWithAppKey:@"82ca2e259fd2d0cf3412e1b0796b8dd4"];
     //往GameScore表添加一条playerName为小明，分数为78的数据
- 
+    
     NSLog(@"%@",DocumentsDirectoryPath);
     //    NSData *data = [NSData dataWithContentsOfFile:<#(nonnull NSString *)#>];
     
-//    //获取沙盒目录
-//      NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-//      NSString *plistPath1 = [paths objectAtIndex:0];
-//
-//      //得到完整的文件名
-//      NSString *filename=[plistPath1 stringByAppendingPathComponent:@"my.plist"];
-//      NSDictionary * dic = @{@"my":@"haha"};
-//      [dic  writeToFile:filename atomically:YES];
-//
-//      //取数据
-//      NSDictionary * getDic = [NSDictionary dictionaryWithContentsOfFile:filename];
-//      NSLog(@"%@",getDic);
+    //    //获取沙盒目录
+    //      NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    //      NSString *plistPath1 = [paths objectAtIndex:0];
+    //
+    //      //得到完整的文件名
+    //      NSString *filename=[plistPath1 stringByAppendingPathComponent:@"my.plist"];
+    //      NSDictionary * dic = @{@"my":@"haha"};
+    //      [dic  writeToFile:filename atomically:YES];
+    //
+    //      //取数据
+    //      NSDictionary * getDic = [NSDictionary dictionaryWithContentsOfFile:filename];
+    //      NSLog(@"%@",getDic);
 }
 
 @end
