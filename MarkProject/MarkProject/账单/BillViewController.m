@@ -104,7 +104,7 @@
     
     headView.backgroundColor = [MDInstance sharedInstance].themeColor;
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -(NavigationBar_Height-44), SCREEN_WIDTH, headView.height+(NavigationBar_Height-44))];
-    imageView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"背景"]];
+    imageView.backgroundColor = [MDInstance sharedInstance].themeColor;
     [headView addSubview:imageView];
     
     _monthSelectBtn = [[UIButton alloc] init];

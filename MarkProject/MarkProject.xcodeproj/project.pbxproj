@@ -98,7 +98,6 @@
 		0478A5712423615200C6B5C7 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A56F2423615200C6B5C7 /* UIImage+Util.m */; };
 		047C5170244D982700879A54 /* NewfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047C516F244D982700879A54 /* NewfileView.xib */; };
 		047C5173244D988B00879A54 /* NewfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C5172244D988B00879A54 /* NewfileView.m */; };
-		048A382524655FA200BDED29 /* BillChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048A382424655FA200BDED29 /* BillChartViewController.xib */; };
 		0491A39B245043F0003FA693 /* TZImageCropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491A37E245043F0003FA693 /* TZImageCropManager.m */; };
 		0491A39C245043F0003FA693 /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491A380245043F0003FA693 /* TZAssetCell.m */; };
 		0491A39D245043F0003FA693 /* TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491A381245043F0003FA693 /* TZVideoPlayerController.m */; };
@@ -354,7 +353,6 @@
 		047C516F244D982700879A54 /* NewfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewfileView.xib; sourceTree = "<group>"; };
 		047C5171244D988B00879A54 /* NewfileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewfileView.h; sourceTree = "<group>"; };
 		047C5172244D988B00879A54 /* NewfileView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewfileView.m; sourceTree = "<group>"; };
-		048A382424655FA200BDED29 /* BillChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillChartViewController.xib; sourceTree = "<group>"; };
 		0491A37C245043F0003FA693 /* TZPhotoPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewCell.h; sourceTree = "<group>"; };
 		0491A37D245043F0003FA693 /* TZPhotoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPickerController.h; sourceTree = "<group>"; };
 		0491A37E245043F0003FA693 /* TZImageCropManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImageCropManager.m; sourceTree = "<group>"; };
@@ -634,7 +632,6 @@
 				0464C7C6243EC9AA0061902F /* BillViewController.m */,
 				04D31A4224625C3200F3428A /* BillChartViewController.h */,
 				04D31A4324625C3300F3428A /* BillChartViewController.m */,
-				048A382424655FA200BDED29 /* BillChartViewController.xib */,
 				04D31A4524625C4900F3428A /* SetBillViewController.h */,
 				04D31A4624625C4900F3428A /* SetBillViewController.m */,
 				04D31A4D246290E900F3428A /* BillCollectionViewViewController.h */,
@@ -1220,7 +1217,6 @@
 				04491C3B244864B40029530E /* AddPlanNameView.xib in Resources */,
 				047263E42462D2AC00E5C1ED /* LoginViewController.xib in Resources */,
 				043384122452BC1C00E42271 /* vue.css in Resources */,
-				048A382524655FA200BDED29 /* BillChartViewController.xib in Resources */,
 				047C5170244D982700879A54 /* NewfileView.xib in Resources */,
 				04F638B3242DF333005207B0 /* markdown.html in Resources */,
 				04491C20244854A80029530E /* LXCalenderCell.xib in Resources */,
@@ -1570,6 +1566,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CODE_SIGN_ENTITLEMENTS = MarkProject/MarkProject.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7QT63XRD5R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1588,6 +1585,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shilingXD.MarkProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MarkProject/便签/MarkProject-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1603,6 +1601,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CODE_SIGN_ENTITLEMENTS = MarkProject/MarkProject.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7QT63XRD5R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1621,6 +1620,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shilingXD.MarkProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MarkProject/便签/MarkProject-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -18,6 +18,7 @@
 #define FMDBTempName @"temp.sqlite"
 /*用户相关*/
 #define UserPreferencesPlist @"user_preferences.plist"
+#define BillAsset @"user_Asset"
 
 
 #pragma mark  └ ------  设备  ------

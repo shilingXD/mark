@@ -1214,6 +1214,7 @@
 +(void)showAlertWithTitle:(NSString *)title SureTitle:(NSString *)sureTitle SureBlock:(void(^)(void))sureBlock CancelTitle:(NSString *)cancelTitle CancelBlock:(void(^)(void))cancelBlock
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:title preferredStyle:UIAlertControllerStyleAlert];
+    
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:cancelTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         cancelBlock();
     }];
