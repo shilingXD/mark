@@ -127,6 +127,13 @@
                                     <action selector="editAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ZCb-qr-3DS"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="关闭" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Gr3-ml-O0J" userLabel="W 85th St, New York, 10024">
+                                <rect key="frame" x="15" y="8" width="83" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -155,6 +162,7 @@
             <connections>
                 <outlet property="DataLabel" destination="x13-qt-mud" id="wfc-DD-GhL"/>
                 <outlet property="closeNumberLabel" destination="6ER-uO-Uzc" id="gce-Fk-R4v"/>
+                <outlet property="completeLabel" destination="Gr3-ml-O0J" id="HcO-Zj-ORq"/>
                 <outlet property="containerView" destination="z6S-DZ-oVD" id="GLj-Vs-wz4"/>
                 <outlet property="containerViewTop" destination="WNR-ry-zEk" id="Gru-UR-Kpa"/>
                 <outlet property="contentTextView" destination="1Pz-SV-YXn" id="BCN-Fn-DB8"/>

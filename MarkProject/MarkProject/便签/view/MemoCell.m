@@ -44,8 +44,12 @@
         make.left.right.top.mas_equalTo(self.openView);
         make.height.mas_equalTo(40);
     }];
-    [self .editButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.editButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.top.mas_equalTo(self.openView);
+        make.size.mas_equalTo(CGSizeMake(60, 40));
+    }];
+    [self.completeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.mas_equalTo(self.openView);
         make.size.mas_equalTo(CGSizeMake(60, 40));
     }];
     self.contentTextView.delegate = self;
@@ -55,7 +59,18 @@
         make.top.mas_equalTo(self.openTitlelabel.mas_bottom).offset(10);
         make.bottom.mas_equalTo(self.openView.mas_bottom);
     }];
-    self.contentTextView.userInteractionEnabled = NO;
+    self.contentTextView.editable = NO;
+    UILabel *placeHolderLabel = [[UILabel alloc] init];
+    placeHolderLabel.text = @"请输入内容....";
+    placeHolderLabel.numberOfLines = 0;
+    placeHolderLabel.textColor = [UIColor lightGrayColor];
+    [placeHolderLabel sizeToFit];
+    [self.contentTextView addSubview:placeHolderLabel];
+
+    // same font
+    placeHolderLabel.font = self.contentTextView.font;
+
+    [self.contentTextView setValue:placeHolderLabel forKey:@"_placeholderLabel"];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -80,12 +95,13 @@
     if (self.callSelectRowBlock) {
         self.callSelectRowBlock([self.closeNumberLabel.text integerValue]-1);
     }
-    self.contentTextView.userInteractionEnabled = !self.contentTextView.userInteractionEnabled;
+    self.contentTextView.editable = !self.contentTextView.editable;
     [sender setTitle:self.contentTextView.userInteractionEnabled?@"完成":@"编辑" forState:UIControlStateNormal];
-    if (self.contentTextView.userInteractionEnabled) {
+    if (self.contentTextView.editable) {
         [self.contentTextView becomeFirstResponder];
     }else{
         [self.contentTextView resignFirstResponder];
+        [self updateDataBase];
     }
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView
@@ -109,6 +125,24 @@
     
     self.leftView.backgroundColor = [UIColor hexStringToColor:model.memoColorHex];
     self.openTitlelabel.backgroundColor = [UIColor hexStringToColor:model.memoColorHex];
+    
+}
+-(void)updateDataBase
+{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{
+    } Fail:^{
+        return;
+    }];
+    NSString *titleString = self.contentTextView.text.length == 0?@"新建便签":self.contentTextView.text.length>=8?[self.contentTextView.text substringWithRange:NSMakeRange(0, 8)]:self.contentTextView.text;
+    BOOL result = [db executeUpdateWithFormat:@"update MemoList set memoTitle = %@,memoContent = %@,memoColorHex = %@,updatedAt = %@ where ID = %@",titleString,self.contentTextView.text,@"5D4A99",@([[MDMethods currentTimeStr]  integerValue]),@(self.model.ID)];
+    if (result) {
+        if (self.callUpdateBlock) {
+            self.callUpdateBlock();
+        }
+    } else {
+        
+    }
+    [db close];
     
 }
 @end

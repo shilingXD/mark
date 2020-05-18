@@ -24,7 +24,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *openTitlelabel;
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
+@property (weak, nonatomic) IBOutlet UILabel *completeLabel;
 @property (nonatomic, copy) void (^callSelectRowBlock) (NSInteger row);
+@property (nonatomic, copy) void (^callUpdateBlock) (void);
 @property (nonatomic, strong) MemoModel *model;
 
 - (void)setNumber:(NSInteger)number;

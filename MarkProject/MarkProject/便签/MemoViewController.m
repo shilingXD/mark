@@ -11,8 +11,8 @@
 #import "MemoCell.h"
 #import "MemoModel.h"
 
-#define kCloseCellHeight    110.f
-#define kOpenCellHeight     310.f
+#define kCloseCellHeight    115.f
+#define kOpenCellHeight     315.f
 
 @interface MemoViewController () < UITableViewDelegate, UITableViewDataSource >
 
@@ -33,9 +33,9 @@
     [self.view addSubview:self.tableView];
     
     
-//    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
+    //    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
     self.tableView.backgroundColor = GrayWhiteColor;
-    [self reloadDataBase];
+    [self reloadDataBaseOrderBy:0];
     [self AddButton];
 }
 -(void)AddButton
@@ -73,8 +73,9 @@
     image.image = [UIImage imageNamed:@"排序"];
     image.center = rightView.center;
     [rightView addSubview:image];
+    WeakBlock(self, weak_self);
     [self.navigationView addRightView:rightView callback:^(UIView *view) {
-        
+        [weak_self selectOrder];
     }];
     
 }
@@ -84,7 +85,33 @@
         [self.cellHeights addObject:@(kCloseCellHeight)];
     }
 }
-
+-(void)selectOrder
+{
+    WeakBlock(self, weak_self);
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"排序方式" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [alert addAction:action1];
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"创建时间正序" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weak_self reloadDataBaseOrderBy:0];
+    }];
+    [alert addAction:action2];
+    UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"创建时间倒序" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weak_self reloadDataBaseOrderBy:1];
+    }];
+    [alert addAction:action3];
+    UIAlertAction *action4 = [UIAlertAction actionWithTitle:@"修改时间正序" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weak_self reloadDataBaseOrderBy:2];
+    }];
+    [alert addAction:action4];
+    UIAlertAction *action5 = [UIAlertAction actionWithTitle:@"修改时间倒序" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weak_self reloadDataBaseOrderBy:3];
+    }];
+    [alert addAction:action5];
+    [[MDMethods getCurrentViewController] presentViewController:alert animated:YES completion:^{
+        
+    }];
+}
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -114,6 +141,9 @@
     WeakBlock(self, weak_self);
     cell.callSelectRowBlock = ^(NSInteger row) {
         weak_self.selectRow = row;
+    };
+    cell.callUpdateBlock = ^{
+        [weak_self reloadDataBaseOrderBy:0];
     };
     cell.model = self.dataArray[indexPath.row];
     return cell;
@@ -163,7 +193,7 @@
         NSLog(@"点击了删除");
         [MDMethods showAlertWithTitle:@"确定删除这条记录？" SureTitle:@"确定" SureBlock:^{
             [BaseModel deleteWithTableName:@"MemoList" deleteID:weak_self.dataArray[indexPath.row].ID];
-            [weak_self reloadDataBase];
+            [weak_self reloadDataBaseOrderBy:0];
         } CancelTitle:@"取消" CancelBlock:^{
             
         }];
@@ -198,22 +228,22 @@
 - (void)keyboardWillShow:(NSNotification *)notification
 {
     CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue];
-
+    
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_selectRow inSection:0];
-
+    
     CGRect rectInTable = [_tableView rectForRowAtIndexPath:indexPath];
-
+    
     CGRect rectInSelfview = [_tableView convertRect:rectInTable toView:self.view];
-
+    
     CGFloat cellBottomY = rectInSelfview.origin.y + rectInSelfview.size.height;
-
+    
     if (cellBottomY > keyboardFrame.origin.y ) { //键盘是否会挡住点击cell的判断
-
+        
         CGFloat delta = _tableView.frame.origin.y - (cellBottomY - keyboardFrame.origin.y);
         delta = delta<_tableView.y-keyboardFrame.size.height?_tableView.y-keyboardFrame.size.height:delta;
-
+        
         _tableView.frame =CGRectMake(0, delta,SCREEN_WIDTH,_tableView.frame.size.height);
-
+        
     }
     
 }
@@ -222,14 +252,32 @@
     _tableView.frame =CGRectMake(0, NavigationBar_Height,SCREEN_WIDTH,_tableView.frame.size.height);
 }
 #pragma mark  - ------  数据库  ------
--(void)reloadDataBase
+-(void)reloadDataBaseOrderBy:(int)type
 {
     FMDatabase *_db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{return;}];
-   [_db open];
+    [_db open];
     if (![_db isOpen]) {
         return;
     }
-    FMResultSet *rs = [_db executeQuery:@"select * from MemoList order by createdAt desc"];
+    NSString *sql;
+    switch (type) {
+        case 0://创建时间正序
+            sql = @"select * from MemoList order by createdAt asc";
+            break;
+        case 1://创建时间倒序
+            sql = @"select * from MemoList order by createdAt desc";
+            break;
+        case 2://修改时间正序
+            sql = @"select * from MemoList order by updatedAt asc";
+            break;
+        case 3://修改时间倒序
+            sql = @"select * from MemoList order by updatedAt desc";
+            break;
+            
+        default:
+            break;
+    }
+    FMResultSet *rs = [_db executeQuery:sql];
     self.dataArray = [NSMutableArray array];
     while ([rs next]) {
         MemoModel *model = [[MemoModel alloc] init];
@@ -245,10 +293,6 @@
     [self createCellHeightsArray];
     [self.tableView reloadData];
 }
--(void)updateDataBase
-{
-    
-}
 -(void)insertDataBase
 {
     FMDatabase *_db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{return;}];
@@ -262,7 +306,7 @@
     }else{
         
     }
-    [self reloadDataBase];
+    [self reloadDataBaseOrderBy:0];
 }
 
 - (void)handleTransaction:(UIButton *)sender {
@@ -282,7 +326,7 @@
     NSDate *begin = [NSDate date];
     BOOL rollBack = NO;
     @try {
-       //2.在事务中执行任务
+        //2.在事务中执行任务
         for (int i = 0; i< 500; i++) {
             NSString *name = [NSString stringWithFormat:@"text_%d",i];
             NSInteger age = i;
