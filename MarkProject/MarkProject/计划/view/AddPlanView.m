@@ -92,7 +92,7 @@
         make.size.mas_equalTo(CGSizeMake(self.width-20, 55));
     }];
     
-
+    
     
 }
 - (IBAction)cancelClick:(id)sender {
@@ -113,6 +113,14 @@
         return;
     }
     [db close];
+    ///生成本地通知 提醒于计划开始前一小时 计划开始结束
+    
+    NSDate *date = [NSDate dateWithString:[NSString stringWithFormat:@"%@ %@",_model.PlanDayDate,[self dealWithTotalTime:self.curMinMinutes]] format:@"yyyy-MM-dd HH:mm"];
+    NSDate *dateBeforeOneHour = [date dateByAddingHours:-1];
+    [MDMethods postLocalNotificationWithTitle:@"计划" SubTitle:@"" Body:[NSString stringWithFormat:@"您的计划“%@”将于一小时后开始！",_model.PlanTitle] UserInfo:@{@"id":@"PlanBeforeOneHour"} Repeats:NO Date:dateBeforeOneHour Identifier:[NSString stringWithFormat:@"beforePlanID-%d",self.model.PlanID]];
+    
+    [MDMethods postLocalNotificationWithTitle:@"计划" SubTitle:@"" Body:[NSString stringWithFormat:@"您的计划“%@”已开始！",_model.PlanTitle] UserInfo:@{@"id":@"PlanBeforeOneHour"} Repeats:NO Date:date Identifier:[NSString stringWithFormat:@"planID-%d",self.model.PlanID]];
+    
     [GKCover hideCover];
 }
 #pragma mark - action
@@ -169,10 +177,10 @@
     if (!_doubleSliderView) {
         _doubleSliderView = [[DoubleSliderView alloc] initWithFrame:CGRectMake(0, 0, self.width - 20, 35 + 20)];
         _doubleSliderView.needAnimation = true;
-                CGFloat offset = self.maxMinutes - self.minMinutes;
-                if (offset > 1.0) {
-                    _doubleSliderView.minInterval = 1.0/(offset);
-                }
+        CGFloat offset = self.maxMinutes - self.minMinutes;
+        if (offset > 1.0) {
+            _doubleSliderView.minInterval = 1.0/(offset);
+        }
         __weak typeof(self) weakSelf = self;
         _doubleSliderView.sliderBtnLocationChangeBlock = ^(BOOL isLeft, BOOL finish) {
             [weakSelf sliderValueChangeActionIsLeft:isLeft finish:finish];

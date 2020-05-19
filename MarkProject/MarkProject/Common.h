@@ -34,7 +34,7 @@
 #import "CXDatePickerView.h"
 #import <MBProgressHUD.h>
 #import <YYCategories.h>
-
+#import <SDWebImage.h>
 #pragma mark  - ------  instance  ------
 #import "MDMethods.h"
 #import "MDInstance.h"

@@ -204,37 +204,35 @@
 
 -(void)functionTap:(UITapGestureRecognizer *)tap
 {
-    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:5];
-    [MDMethods postLocalNotificationWithTitle:@"微笔记" SubTitle:@"" Body:@"时候入切我" UserInfo:@{@"id":@"dsdsd"} Repeats:NO Date:date Identifier:@"dsdsd"];
-//    BillViewController *vc1 = [[BillViewController alloc] init];
-//    SecretListViewController *vc2 = [[SecretListViewController alloc] init];
-//    DiaryViewController *vc3 = [[DiaryViewController alloc] init];
-//    MemoViewController *vc4 = [[MemoViewController alloc] init];
-//    PlanViewController *vc5 = [[PlanViewController alloc] init];
-//    SettingViewController *vc6 = [[SettingViewController alloc] init];
-//    switch (tap.view.tag) {
-//        case 1001://账单
-//            [self.navigationController pushViewController:vc1 animated:YES];
-//            break;
-//        case 1002://密码本
-//            [self.navigationController pushViewController:vc2 animated:YES];
-//            break;
-//        case 1003://日记
-//            [self.navigationController pushViewController:vc3 animated:YES];
-//            break;
-//        case 1004://备忘录
-//            [self.navigationController pushViewController:vc4 animated:YES];
-//            break;
-//        case 1005://计划
-//            [self.navigationController pushViewController:vc5 animated:YES];
-//            break;
-//        case 1006://设置
-//            [self.navigationController pushViewController:vc6 animated:YES];
-//            break;
-//
-//        default:
-//            break;
-//    }
+    BillViewController *vc1 = [[BillViewController alloc] init];
+    SecretListViewController *vc2 = [[SecretListViewController alloc] init];
+    DiaryViewController *vc3 = [[DiaryViewController alloc] init];
+    MemoViewController *vc4 = [[MemoViewController alloc] init];
+    PlanViewController *vc5 = [[PlanViewController alloc] init];
+    SettingViewController *vc6 = [[SettingViewController alloc] init];
+    switch (tap.view.tag) {
+        case 1001://账单
+            [self.navigationController pushViewController:vc1 animated:YES];
+            break;
+        case 1002://密码本
+            [self.navigationController pushViewController:vc2 animated:YES];
+            break;
+        case 1003://日记
+            [self.navigationController pushViewController:vc3 animated:YES];
+            break;
+        case 1004://备忘录
+            [self.navigationController pushViewController:vc4 animated:YES];
+            break;
+        case 1005://计划
+            [self.navigationController pushViewController:vc5 animated:YES];
+            break;
+        case 1006://设置
+            [self.navigationController pushViewController:vc6 animated:YES];
+            break;
+
+        default:
+            break;
+    }
 }
 #pragma mark  - ------  公共方法  ------
 // 读取本地JSON文件

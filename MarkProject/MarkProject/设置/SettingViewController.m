@@ -36,7 +36,17 @@
     [super viewWillAppear:animated];
     [self.tableView.tableHeaderView setBackgroundColor:[MDInstance sharedInstance].themeColor];
     if ([MDInstance sharedInstance].isLogin) {
-        self.headImageView.image = ([MDInstance sharedInstance].headImage == nil)?[UIImage imageNamed:@"头像"]:[MDInstance sharedInstance].headImage;
+        if ([MDInstance sharedInstance].headImage) {
+            self.headImageView.image = [MDInstance sharedInstance].headImage;
+        } else {
+            [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[MDInstance sharedInstance].headImageURL] placeholderImage:[UIImage imageNamed:@"头像"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if (image){
+                    [MDInstance sharedInstance].headImage = image;
+                   }else{
+                       //something went wrong
+                   }
+            }];
+        }
         self.NameLabel.text = [MDInstance sharedInstance].UserName;
         self.emailLabel.text = [MDInstance sharedInstance].Email;
         self.LoginOutBtn.hidden = NO;
@@ -95,7 +105,6 @@
     headImageView.backgroundColor = [UIColor grayColor];
     headImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     headImageView.layer.borderWidth = 2;
-    headImageView.image = ([MDInstance sharedInstance].headImage == nil)?[UIImage imageNamed:@"头像"]:[MDInstance sharedInstance].headImage;
     headImageView.layer.masksToBounds = YES;
     headImageView.layer.cornerRadius = 75/2;
     [headImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)]];
@@ -191,6 +200,8 @@
     [MDMethods clearAllUserDefaultsData];
     [MDInstance sharedInstance].isLogin = NO;
     [self viewWillAppear:YES];
+    [MDInstance sharedInstance].themeColor = TintColor;
+    [MDMethods clearAllUserDefaultsData];
 }
 -(void)headClick
 {
@@ -232,10 +243,37 @@
     imagePickerVc.needCircleCrop = YES;
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
         self.headImageView.image = photos[0];
-        [MDInstance sharedInstance].headImage = photos[0];
+        if (![[MDInstance sharedInstance].headImage isEqual:photos[0]]) {
+            [MDInstance sharedInstance].headImage = photos[0];
+            [self upLoadHeadImage];
+        }
+        
         [MDInstance setNSUserDefaults];
     }];
     [self presentViewController:imagePickerVc animated:YES completion:nil];
+}
+-(void)upLoadHeadImage
+{
+    BmobObject *user = [BmobObject objectWithoutDataWithClassName:@"UserList" objectId:[MDInstance sharedInstance].objectID];
+//    [user setObject:[MDMethods imageToString:] forKey:@"user_image"];
+    [user updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        NSLog(@"%@",@(isSuccessful));
+    }];
+    NSData *data = UIImagePNGRepresentation([MDInstance sharedInstance].headImage);
+    BmobObject *obj = [BmobObject objectWithoutDataWithClassName:@"UserList" objectId:[MDInstance sharedInstance].objectID];
+    BmobFile *file = [[BmobFile alloc]initWithFileName:[NSString stringWithFormat:@"user%@_head_image.png",obj.objectId] withFileData:data];
+    
+    [file saveInBackground:^(BOOL isSuccessful, NSError *error) {
+    //如果文件保存成功，则把文件添加到filetype列
+    if (isSuccessful) {
+    //上传文件的URL地址
+    [obj setObject:file.url  forKey:@"user_head_image"];
+    //此处相当于新建一条记录,         //关联至已有的记录请使用 [obj updateInBackground];
+    [obj updateInBackground];
+    }else{
+    //进行处理
+    }
+    }];
 }
 #pragma mark  - ------  懒加载  ------
 @end

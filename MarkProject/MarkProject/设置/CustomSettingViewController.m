@@ -85,5 +85,11 @@
     self.navigationView.backgroundView.backgroundColor = [MDInstance sharedInstance].themeColor;
     self.navigationView.lineView.backgroundColor = [MDInstance sharedInstance].themeColor;
     [MDInstance setNSUserDefaults];
+    
+    
+    
+//    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:<#(nonnull NSString *)#>]
+    
+    
 }
 @end

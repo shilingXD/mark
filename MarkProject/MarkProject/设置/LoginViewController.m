@@ -108,7 +108,6 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
     //查找表
     BmobQuery *bquery = [BmobQuery queryWithClassName:@"UserList"];
-    //查找表里面id为0c6db13c的数据
     WeakBlock(self, weak_self);
     [bquery queryInBackgroundWithBQL:[NSString stringWithFormat:@"select * from UserList where user_email = '%@'",self.accontFiled.text] block:^(BQLQueryResult *result, NSError *error) {
         if (error){
@@ -122,6 +121,8 @@
                 NSString *pwd = [object objectForKey:@"user_password"];
                 if ([pwd isEqualToString:self.secertFiled.text]) {
                     [MDInstance sharedInstance].UserName = [object objectForKey:@"user_name"];
+                    [MDInstance sharedInstance].objectID = object.objectId;
+                    [MDInstance sharedInstance].headImageURL = [[object objectForKey:@"user_head_image"] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
                     [self showSussecessWithMsg:@"登录成功！"];
                     [hud hideAnimated:YES];
                 } else {

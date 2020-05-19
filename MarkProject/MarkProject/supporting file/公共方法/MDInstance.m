@@ -24,10 +24,19 @@
     [user setBool:instance.isLogin forKey:@"user_isLogin"];
     [user setObject:instance.Email forKey:@"user_email"];
     [user setObject:instance.DeviceID forKey:@"user_DeviceID"];
+    [user setObject:instance.headImageURL forKey:@"user_headImageURL"];
     [user setObject:instance.UserName forKey:@"user_UserName"];
+    [user setObject:instance.objectID forKey:@"user_objectID"];
     NSData *data = UIImageJPEGRepresentation(instance.headImage, 1);
     [user setObject:data forKey:@"user_headImage"];
     [user setObject:instance.themeColor.hexString forKey:@"user_themeColor"];
+}
+- (NSString *)headImageURL
+{
+    if (!_headImageURL) {
+        _headImageURL = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_headImageURL"];
+    }
+    return _headImageURL;
 }
 - (NSString *)Email
 {
@@ -35,6 +44,13 @@
         _Email = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_email"];
     }
     return _Email;
+}
+- (NSString *)objectID
+{
+    if (!_objectID) {
+        _objectID = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_objectID"];
+    }
+    return _objectID;
 }
 - (BOOL)isLogin
 {

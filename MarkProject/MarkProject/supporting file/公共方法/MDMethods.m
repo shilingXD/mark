@@ -1151,30 +1151,18 @@
 }
 
 #pragma mark  - ------  Toast相关  ------
-+ (void)showTextMessage:(NSString *)message
++ (void)showTextMessage:(NSString *)msg
 {
-    UIView *messageView = [[UIView alloc] init];
-    messageView.backgroundColor = [UIColor clearColor];
-    messageView.gk_size = CGSizeMake(SCREEN_WIDTH,NavigationBar_Height + 30);
-    CGFloat width1=[message boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-30, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Regular" size:15]} context:nil].size.width;
-    UILabel *msglabel = [[UILabel alloc] init];
-    msglabel.text = message;
-    msglabel.textAlignment = NSTextAlignmentCenter;
-    msglabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
-    msglabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
-    msglabel.layer.cornerRadius = 3;
-    msglabel.layer.masksToBounds = YES;
-    msglabel.textColor = [UIColor whiteColor];
-    
-    [messageView addSubview:msglabel];
-    [msglabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(messageView.mas_bottom);
-        make.centerX.mas_equalTo(messageView);
-        make.height.mas_equalTo(30);
-        make.width.mas_equalTo(width1 + 20);
-    }];
-    [GKCover coverFrom:[UIApplication sharedApplication].keyWindow contentView:messageView style:GKCoverStyleTransparent showStyle:GKCoverShowStyleTop showAnimStyle:GKCoverShowAnimStyleTop hideAnimStyle:GKCoverHideAnimStyleTop notClick:YES];
-    [GKCover hideCoverAfterDelay:1];
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication] keyWindow] animated:YES];
+
+    // Set the custom view mode to show any view.
+    hud.mode = MBProgressHUDModeText;
+    // Looks a bit nicer if we make it square.
+    hud.square = NO;
+    // Optional label text.
+    hud.label.text = msg;
+    [hud hideAnimated:YES afterDelay:1];
 }
 // 64base字符串转图片
 
@@ -1194,7 +1182,7 @@
 
 + (NSString *)imageToString:(UIImage *)image {
     
-    NSData *imagedata = UIImagePNGRepresentation(image);
+    NSData *imagedata = UIImageJPEGRepresentation(image,0.5);
     
     NSString *image64 = [imagedata base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     
