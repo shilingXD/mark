@@ -10,7 +10,6 @@
 #import "UICollectionViewLeftAlignedLayout.h"
 #import "SuiXiangCollectionViewCell.h"
 #import "WMDragView.h"
-#import "FIREditPageVC.h"
 #import "NewfileView.h"
 #import "MDModel.h"
 #import "MDEditViewController.h"
@@ -34,10 +33,9 @@
 }
 -(void)setupNav
 {
+    [super setNav];
     [self.navigationView setTitle:@"随笔"];
-    self.navigationView.backgroundView.image = nil ;
-    self.navigationView.backgroundView.backgroundColor = [MDInstance sharedInstance].themeColor;
-    self.navigationView.lineView.backgroundColor = [MDInstance sharedInstance].themeColor;
+   
 }
 -(void)setupView
 {

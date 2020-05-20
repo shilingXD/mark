@@ -98,6 +98,8 @@
 		0478A5712423615200C6B5C7 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478A56F2423615200C6B5C7 /* UIImage+Util.m */; };
 		047C5170244D982700879A54 /* NewfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047C516F244D982700879A54 /* NewfileView.xib */; };
 		047C5173244D988B00879A54 /* NewfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C5172244D988B00879A54 /* NewfileView.m */; };
+		0490DC9B247514A70098588F /* HFButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0490DC97247514A70098588F /* HFButton.m */; };
+		0490DC9C247514A70098588F /* GNEditShortcutKeyBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0490DC9A247514A70098588F /* GNEditShortcutKeyBar.m */; };
 		0491A39B245043F0003FA693 /* TZImageCropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491A37E245043F0003FA693 /* TZImageCropManager.m */; };
 		0491A39C245043F0003FA693 /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491A380245043F0003FA693 /* TZAssetCell.m */; };
 		0491A39D245043F0003FA693 /* TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491A381245043F0003FA693 /* TZVideoPlayerController.m */; };
@@ -161,15 +163,6 @@
 		04F323342447F13F00F16923 /* AddPlanView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F323332447F13F00F16923 /* AddPlanView.xib */; };
 		04F32339244830A500F16923 /* DoubleSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F32337244830A400F16923 /* DoubleSliderView.m */; };
 		04F3233A244830A500F16923 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F32338244830A400F16923 /* UIView+Extension.m */; };
-		04F638B0242DF333005207B0 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F638A2242DF333005207B0 /* Roboto-Light.ttf */; };
-		04F638B1242DF333005207B0 /* PreWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F638A3242DF333005207B0 /* PreWebVC.m */; };
-		04F638B2242DF333005207B0 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F638A4242DF333005207B0 /* Roboto-Regular.ttf */; };
-		04F638B3242DF333005207B0 /* markdown.html in Resources */ = {isa = PBXBuildFile; fileRef = 04F638A5242DF333005207B0 /* markdown.html */; };
-		04F638B4242DF333005207B0 /* marked.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 04F638A6242DF333005207B0 /* marked.min.js */; };
-		04F638B5242DF333005207B0 /* GNEditShortcutKeyBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F638AA242DF333005207B0 /* GNEditShortcutKeyBar.m */; };
-		04F638B6242DF333005207B0 /* HFButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F638AB242DF333005207B0 /* HFButton.m */; };
-		04F638B7242DF333005207B0 /* FIREditPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F638AD242DF333005207B0 /* FIREditPageVC.m */; };
-		04F638B8242DF333005207B0 /* sample1.md in Resources */ = {isa = PBXBuildFile; fileRef = 04F638AE242DF333005207B0 /* sample1.md */; };
 		6E22E597AC3D753637744453 /* libPods-MarkProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6F41FCEB9C3C4D50F296F00 /* libPods-MarkProject.a */; };
 /* End PBXBuildFile section */
 
@@ -353,6 +346,10 @@
 		047C516F244D982700879A54 /* NewfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewfileView.xib; sourceTree = "<group>"; };
 		047C5171244D988B00879A54 /* NewfileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewfileView.h; sourceTree = "<group>"; };
 		047C5172244D988B00879A54 /* NewfileView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewfileView.m; sourceTree = "<group>"; };
+		0490DC97247514A70098588F /* HFButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFButton.m; sourceTree = "<group>"; };
+		0490DC98247514A70098588F /* GNEditShortcutKeyBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNEditShortcutKeyBar.h; sourceTree = "<group>"; };
+		0490DC99247514A70098588F /* HFButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFButton.h; sourceTree = "<group>"; };
+		0490DC9A247514A70098588F /* GNEditShortcutKeyBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNEditShortcutKeyBar.m; sourceTree = "<group>"; };
 		0491A37C245043F0003FA693 /* TZPhotoPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewCell.h; sourceTree = "<group>"; };
 		0491A37D245043F0003FA693 /* TZPhotoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPickerController.h; sourceTree = "<group>"; };
 		0491A37E245043F0003FA693 /* TZImageCropManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImageCropManager.m; sourceTree = "<group>"; };
@@ -453,19 +450,6 @@
 		04F32336244830A400F16923 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Extension.h"; path = "../../计划/view/UIView+Extension.h"; sourceTree = "<group>"; };
 		04F32337244830A400F16923 /* DoubleSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleSliderView.m; sourceTree = "<group>"; };
 		04F32338244830A400F16923 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Extension.m"; path = "../../计划/view/UIView+Extension.m"; sourceTree = "<group>"; };
-		04F638A2242DF333005207B0 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
-		04F638A3242DF333005207B0 /* PreWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreWebVC.m; sourceTree = "<group>"; };
-		04F638A4242DF333005207B0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
-		04F638A5242DF333005207B0 /* markdown.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = markdown.html; sourceTree = "<group>"; };
-		04F638A6242DF333005207B0 /* marked.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = marked.min.js; sourceTree = "<group>"; };
-		04F638A7242DF333005207B0 /* PreWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreWebVC.h; sourceTree = "<group>"; };
-		04F638A9242DF333005207B0 /* FIREditPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIREditPageVC.h; sourceTree = "<group>"; };
-		04F638AA242DF333005207B0 /* GNEditShortcutKeyBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNEditShortcutKeyBar.m; sourceTree = "<group>"; };
-		04F638AB242DF333005207B0 /* HFButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFButton.m; sourceTree = "<group>"; };
-		04F638AC242DF333005207B0 /* GNEditShortcutKeyBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNEditShortcutKeyBar.h; sourceTree = "<group>"; };
-		04F638AD242DF333005207B0 /* FIREditPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIREditPageVC.m; sourceTree = "<group>"; };
-		04F638AE242DF333005207B0 /* sample1.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sample1.md; sourceTree = "<group>"; };
-		04F638AF242DF333005207B0 /* HFButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFButton.h; sourceTree = "<group>"; };
 		49168B48E25A5FEB4F7A6A6B /* Pods-MarkProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarkProject.release.xcconfig"; path = "Target Support Files/Pods-MarkProject/Pods-MarkProject.release.xcconfig"; sourceTree = "<group>"; };
 		958297A7EEDFB92B5FA0BD5D /* Pods-MarkProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarkProject.debug.xcconfig"; path = "Target Support Files/Pods-MarkProject/Pods-MarkProject.debug.xcconfig"; sourceTree = "<group>"; };
 		E6F41FCEB9C3C4D50F296F00 /* libPods-MarkProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MarkProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -736,6 +720,10 @@
 		045AA91B2432E02500357617 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				0490DC98247514A70098588F /* GNEditShortcutKeyBar.h */,
+				0490DC9A247514A70098588F /* GNEditShortcutKeyBar.m */,
+				0490DC99247514A70098588F /* HFButton.h */,
+				0490DC97247514A70098588F /* HFButton.m */,
 				045AA91C2432E04100357617 /* SuiXiangCollectionViewCell.h */,
 				045AA91D2432E04100357617 /* SuiXiangCollectionViewCell.m */,
 				047C516F244D982700879A54 /* NewfileView.xib */,
@@ -832,8 +820,6 @@
 				04DE4208246448DE00A8882D /* CCFoldCell */,
 				0491A37B245043F0003FA693 /* TZImagePickerController */,
 				04491C09244854A80029530E /* LXCalendar */,
-				04F638A8242DF333005207B0 /* FIREditPage */,
-				04F638A1242DF333005207B0 /* FIRPreWebview */,
 				044001E3242B49AB000AE57B /* WMDragView */,
 				04E100412424614800C8081B /* GKCover */,
 				0478A53924235A9E00C6B5C7 /* EasyNavigation */,
@@ -1078,33 +1064,6 @@
 			path = "supporting file";
 			sourceTree = "<group>";
 		};
-		04F638A1242DF333005207B0 /* FIRPreWebview */ = {
-			isa = PBXGroup;
-			children = (
-				04F638A2242DF333005207B0 /* Roboto-Light.ttf */,
-				04F638A3242DF333005207B0 /* PreWebVC.m */,
-				04F638A4242DF333005207B0 /* Roboto-Regular.ttf */,
-				04F638A5242DF333005207B0 /* markdown.html */,
-				04F638A6242DF333005207B0 /* marked.min.js */,
-				04F638A7242DF333005207B0 /* PreWebVC.h */,
-			);
-			path = FIRPreWebview;
-			sourceTree = "<group>";
-		};
-		04F638A8242DF333005207B0 /* FIREditPage */ = {
-			isa = PBXGroup;
-			children = (
-				04F638A9242DF333005207B0 /* FIREditPageVC.h */,
-				04F638AD242DF333005207B0 /* FIREditPageVC.m */,
-				04F638AA242DF333005207B0 /* GNEditShortcutKeyBar.m */,
-				04F638AC242DF333005207B0 /* GNEditShortcutKeyBar.h */,
-				04F638AF242DF333005207B0 /* HFButton.h */,
-				04F638AB242DF333005207B0 /* HFButton.m */,
-				04F638AE242DF333005207B0 /* sample1.md */,
-			);
-			path = FIREditPage;
-			sourceTree = "<group>";
-		};
 		73ACE74CF294E50703FC5A68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1203,7 +1162,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0464C7B9243D7B3E0061902F /* soul.json in Resources */,
-				04F638B2242DF333005207B0 /* Roboto-Regular.ttf in Resources */,
 				04A83C3B2456D48C00D49338 /* SettingTableViewCell.xib in Resources */,
 				04D31A4C2462634500F3428A /* SetBillCollectionViewCell.xib in Resources */,
 				0478A13E245D850F002559DC /* BillTableViewCell.xib in Resources */,
@@ -1211,14 +1169,12 @@
 				04230FB32391020E00031B27 /* LaunchScreen.storyboard in Resources */,
 				0461242A246D490700C371B6 /* preferences.plist in Resources */,
 				04230FB02391020E00031B27 /* Assets.xcassets in Resources */,
-				04F638B0242DF333005207B0 /* Roboto-Light.ttf in Resources */,
 				04F323342447F13F00F16923 /* AddPlanView.xib in Resources */,
 				04468321244DD52D0033892A /* markdown.css in Resources */,
 				04491C3B244864B40029530E /* AddPlanNameView.xib in Resources */,
 				047263E42462D2AC00E5C1ED /* LoginViewController.xib in Resources */,
 				043384122452BC1C00E42271 /* vue.css in Resources */,
 				047C5170244D982700879A54 /* NewfileView.xib in Resources */,
-				04F638B3242DF333005207B0 /* markdown.html in Resources */,
 				04491C20244854A80029530E /* LXCalenderCell.xib in Resources */,
 				04D31A3424624AEB00F3428A /* BKCKeyboard.xib in Resources */,
 				04DE42162464494F00A8882D /* MemoCell.xib in Resources */,
@@ -1227,9 +1183,7 @@
 				0433841A2452CC9200E42271 /* MoreActionView.xib in Resources */,
 				04230FAE2391020B00031B27 /* Main.storyboard in Resources */,
 				04472785246B973D00817FC6 /* BillDetailView.xib in Resources */,
-				04F638B4242DF333005207B0 /* marked.min.js in Resources */,
 				04468327244DD7B10033892A /* han.css in Resources */,
-				04F638B8242DF333005207B0 /* sample1.md in Resources */,
 				043384112452BC1C00E42271 /* vue-dark.css in Resources */,
 				0478A56C24235A9E00C6B5C7 /* EasyNavButton.bundle in Resources */,
 			);
@@ -1314,10 +1268,10 @@
 				0478A52924233F3900C6B5C7 /* NSString+PinYin.m in Sources */,
 				044001E6242B49AB000AE57B /* WMDragView.m in Sources */,
 				04F32339244830A500F16923 /* DoubleSliderView.m in Sources */,
-				04F638B1242DF333005207B0 /* PreWebVC.m in Sources */,
 				0478A56E24235A9E00C6B5C7 /* EasyNavigationView+Scroll.m in Sources */,
 				04D52669244711E90025CD4B /* AddPlanView.m in Sources */,
 				045AA92124343AB000357617 /* MDEditViewController.m in Sources */,
+				0490DC9B247514A70098588F /* HFButton.m in Sources */,
 				0478A56624235A9E00C6B5C7 /* UIView+EasyNavigationExt.m in Sources */,
 				04D31AC92464F99600F3428A /* BillModel.m in Sources */,
 				04491C25244854A80029530E /* LXCalendarMonthModel.m in Sources */,
@@ -1342,7 +1296,6 @@
 				0478A13D245D850F002559DC /* BillTableViewCell.m in Sources */,
 				04491C392448649E0029530E /* AddPlanNameView.m in Sources */,
 				04689ECC23CC4B9100D2A786 /* SecretListTableViewCell.m in Sources */,
-				04F638B6242DF333005207B0 /* HFButton.m in Sources */,
 				0446831E244DCE940033892A /* PreWebViewController.m in Sources */,
 				04D52654244558A50025CD4B /* NSDate+gyh.m in Sources */,
 				04D31A572463D90A00F3428A /* MemoEditViewController.m in Sources */,
@@ -1371,7 +1324,6 @@
 				04DE420F246448DE00A8882D /* UIView+Snapshot.m in Sources */,
 				0478A4F92422061400C6B5C7 /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				047263E32462D2AC00E5C1ED /* LoginViewController.m in Sources */,
-				04F638B7242DF333005207B0 /* FIREditPageVC.m in Sources */,
 				0491A3A9245043F0003FA693 /* TZGifPhotoPreviewController.m in Sources */,
 				0478A56824235A9E00C6B5C7 /* UIViewController+EasyNavigationExt.m in Sources */,
 				04D31A4724625C4900F3428A /* SetBillViewController.m in Sources */,
@@ -1381,6 +1333,7 @@
 				04230FB62391020E00031B27 /* main.m in Sources */,
 				0491A3A6245043F0003FA693 /* TZPhotoPreviewCell.m in Sources */,
 				04472788246BF23300817FC6 /* User.m in Sources */,
+				0490DC9C247514A70098588F /* GNEditShortcutKeyBar.m in Sources */,
 				0464294E24440C23008F600C /* KeyChainStore.m in Sources */,
 				0478A55E24235A9E00C6B5C7 /* EasyNavigationView+Add.m in Sources */,
 				0491A3A3245043F0003FA693 /* TZProgressView.m in Sources */,
@@ -1420,7 +1373,6 @@
 				0464294A244409B8008F600C /* XYString.m in Sources */,
 				045AA91A2432D9F500357617 /* DiaryViewController.m in Sources */,
 				04D31ACC2464FBD600F3428A /* BaseModel.m in Sources */,
-				04F638B5242DF333005207B0 /* GNEditShortcutKeyBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

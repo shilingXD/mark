@@ -21,6 +21,7 @@
 @property (nonatomic, assign) BOOL isShowPreview;//预览
 @property (nonatomic, strong) PreWebViewController *previewVC;
 @property (nonatomic, strong) UILabel *switchLabel;
+@property (nonatomic, copy) NSString *cssString;///<css风格
 @end
 
 @implementation MDEditViewController
@@ -37,24 +38,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setNav];
-    [self.view addSubview:self.editView];
-    [self.editView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.mas_top).offset(NavigationBar_Height);
-        make.left.right.bottom.mas_equalTo(self.view);
-    }];
-    [self.view addSubview:self.self.previewVC.view];
-    [self.previewVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(NavigationBar_Height);
-        make.left.right.bottom.equalTo(self.view);
-    }];
-    self.previewVC.view.hidden = YES;
-    self.isShowPreview = NO;
-    self.shortcutKeyView.hidden = YES;
-    [self.view addSubview:self.shortcutKeyView];
-    [self addAnimationShow];
-    [self Switch];
-    [self.editView becomeFirstResponder];
 }
 - (void)addAnimationShow
 {
@@ -66,16 +49,42 @@
 - (void)dealloc
 {
     _editView.delegate = nil;
-//    [_previewVC.view removeFromSuperview];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 -(void)setNav
 {
+    [super setNav];
     [self.navigationView setTitle:self.titlestr];
-    self.navigationView.backgroundView.image = nil ;
-    self.navigationView.backgroundView.backgroundColor = [MDInstance sharedInstance].themeColor;
-    self.navigationView.lineView.backgroundColor = [MDInstance sharedInstance].themeColor;
     
+    UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    image.contentMode = UIViewContentModeScaleAspectFit;
+    image.image = [UIImage imageNamed:@"markdown主题"];
+    image.center = rightView.center;
+    [rightView addSubview:image];
+    WeakBlock(self, weak_self);
+    [self.navigationView addRightView:rightView callback:^(UIView *view) {
+        [weak_self changeStyle];
+    }];
+    
+    [self.view addSubview:self.editView];
+    [self.editView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.navigationView.mas_bottom);
+        make.left.right.bottom.mas_equalTo(self.view);
+    }];
+    [self addChildViewController:self.previewVC];
+    [self.view addSubview:self.previewVC.view];
+    [self.previewVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+         make.top.equalTo(self.navigationView.mas_bottom);
+        make.left.right.bottom.equalTo(self.view);
+    }];
+    self.previewVC.view.hidden = YES;
+    self.isShowPreview = NO;
+    self.shortcutKeyView.hidden = YES;
+    [self.view addSubview:self.shortcutKeyView];
+    [self addAnimationShow];
+    [self Switch];
+    [self.editView becomeFirstResponder];
 }
 #pragma mark  - ------  事件响应  ------
 -(void)Switch
@@ -113,11 +122,48 @@
     self.isShowPreview = self.isShowPreview ? NO : YES;
     self.switchLabel.text = self.isShowPreview ? @"编辑":@"预览";
     if (self.isShowPreview) {
-        [self.previewVC refreshMarkdown:self.editView.text];
+        [self.previewVC refreshMarkdown:self.editView.text WithCss:self.cssString];
         [self.editView resignFirstResponder];
     } else {
-        [self.editView becomeFirstResponder];
+//        [self.editView becomeFirstResponder];
     }
+}
+-(void)changeStyle
+{
+    WeakBlock(self, weak_self);
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+      UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+      }];
+      [alert addAction:action1];
+      UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"techo主题" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+          weak_self.cssString = @"techo";
+          [weak_self.previewVC refreshMarkdown:weak_self.editView.text WithCss:weak_self.cssString];
+      }];
+      [alert addAction:action2];
+      UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"han主题" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+          weak_self.cssString = @"han";
+          [weak_self.previewVC refreshMarkdown:weak_self.editView.text WithCss:weak_self.cssString];
+          
+      }];
+      [alert addAction:action3];
+      UIAlertAction *action4 = [UIAlertAction actionWithTitle:@"原生主题" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+          weak_self.cssString = @"markdown";
+          [weak_self.previewVC refreshMarkdown:weak_self.editView.text WithCss:weak_self.cssString];
+      }];
+      [alert addAction:action4];
+      UIAlertAction *action5 = [UIAlertAction actionWithTitle:@"vue主题" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+          weak_self.cssString = @"vue";
+          [weak_self.previewVC refreshMarkdown:weak_self.editView.text WithCss:weak_self.cssString];
+      }];
+      [alert addAction:action5];
+    UIAlertAction *action6 = [UIAlertAction actionWithTitle:@"vue黑暗主题" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        weak_self.cssString = @"vue-dark";
+        [weak_self.previewVC refreshMarkdown:weak_self.editView.text WithCss:weak_self.cssString];
+    }];
+    [alert addAction:action6];
+      [[MDMethods getCurrentViewController] presentViewController:alert animated:YES completion:^{
+          
+      }];
 }
 #pragma mark  - ------  懒加载  ------
 - (YYTextView *)editView
@@ -138,17 +184,17 @@
         if (kiOS7Later) {
             textView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
         }
-//        textView.backgroundColor = [UIColor colorWithWhite:0.134 alpha:1.000];
         textView.backgroundColor = GrayWhiteColor;
 //        textView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
 //        textView.scrollIndicatorInsets = textView.contentInset;
-        //        textView.selectedRange = NSMakeRange(text.length, 0);
+        
         [self.view addSubview:textView];
         self.editView = textView;
         NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
         NSString *filePath = [documentPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.md", self.titlestr]];
         NSString *markdown = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
         self.editView.text = markdown;
+        textView.selectedRange = NSMakeRange(textView.text.length, 0);
     }
     return _editView;
 }

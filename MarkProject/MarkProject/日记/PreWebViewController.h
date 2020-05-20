@@ -10,8 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PreWebViewController : BaseViewController
-- (void)refreshMarkdown:(NSString *)markdown;
+@interface PreWebViewController : UIViewController
+- (void)refreshMarkdown:(NSString *)markdown WithCss:(NSString *)cssString;
 @end
 
 NS_ASSUME_NONNULL_END
