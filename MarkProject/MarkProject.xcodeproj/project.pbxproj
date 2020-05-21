@@ -16,7 +16,6 @@
 		043384122452BC1C00E42271 /* vue.css in Resources */ = {isa = PBXBuildFile; fileRef = 043384102452BC1C00E42271 /* vue.css */; };
 		043384152452C05F00E42271 /* DocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043384142452C05F00E42271 /* DocumentViewController.m */; };
 		043384182452CC7200E42271 /* MoreActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043384172452CC7200E42271 /* MoreActionView.m */; };
-		0433841A2452CC9200E42271 /* MoreActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043384192452CC9200E42271 /* MoreActionView.xib */; };
 		044001E2242B2E59000AE57B /* SecretModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 044001E1242B2E59000AE57B /* SecretModel.m */; };
 		044001E6242B49AB000AE57B /* WMDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 044001E4242B49AB000AE57B /* WMDragView.m */; };
 		0446831E244DCE940033892A /* PreWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0446831D244DCE940033892A /* PreWebViewController.m */; };
@@ -182,7 +181,6 @@
 		043384142452C05F00E42271 /* DocumentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DocumentViewController.m; sourceTree = "<group>"; };
 		043384162452CC7200E42271 /* MoreActionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoreActionView.h; sourceTree = "<group>"; };
 		043384172452CC7200E42271 /* MoreActionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoreActionView.m; sourceTree = "<group>"; };
-		043384192452CC9200E42271 /* MoreActionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreActionView.xib; sourceTree = "<group>"; };
 		044001E0242B2E59000AE57B /* SecretModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SecretModel.h; path = "MarkProject/密码本/model/SecretModel.h"; sourceTree = SOURCE_ROOT; };
 		044001E1242B2E59000AE57B /* SecretModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SecretModel.m; path = "MarkProject/密码本/model/SecretModel.m"; sourceTree = SOURCE_ROOT; };
 		044001E4242B49AB000AE57B /* WMDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDragView.m; sourceTree = "<group>"; };
@@ -513,7 +511,7 @@
 				0464C7BE243EC1D70061902F /* 计划 */,
 				0464C7BD243EC1C60061902F /* 便签 */,
 				0464C7BC243EC1B30061902F /* 设置 */,
-				044A7DC2242CA4F700C9D9F7 /* 日记 */,
+				044A7DC2242CA4F700C9D9F7 /* 随笔 */,
 				044A7DC1242CA4E800C9D9F7 /* 账单 */,
 				0459757E23BA134700221DF3 /* 密码本 */,
 				0459758223BA156200221DF3 /* 主页 */,
@@ -624,7 +622,7 @@
 			path = "账单";
 			sourceTree = "<group>";
 		};
-		044A7DC2242CA4F700C9D9F7 /* 日记 */ = {
+		044A7DC2242CA4F700C9D9F7 /* 随笔 */ = {
 			isa = PBXGroup;
 			children = (
 				0446832B244DEAAF0033892A /* model */,
@@ -638,7 +636,7 @@
 				043384132452C05F00E42271 /* DocumentViewController.h */,
 				043384142452C05F00E42271 /* DocumentViewController.m */,
 			);
-			path = "日记";
+			path = "随笔";
 			sourceTree = "<group>";
 		};
 		0454440B23D43F8600808EEC /* Category */ = {
@@ -731,7 +729,6 @@
 				047C5172244D988B00879A54 /* NewfileView.m */,
 				043384162452CC7200E42271 /* MoreActionView.h */,
 				043384172452CC7200E42271 /* MoreActionView.m */,
-				043384192452CC9200E42271 /* MoreActionView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1180,7 +1177,6 @@
 				04DE42162464494F00A8882D /* MemoCell.xib in Resources */,
 				04491C1E244854A80029530E /* LXCalendarHearder.xib in Resources */,
 				0491A3A2245043F0003FA693 /* TZImagePickerController.bundle in Resources */,
-				0433841A2452CC9200E42271 /* MoreActionView.xib in Resources */,
 				04230FAE2391020B00031B27 /* Main.storyboard in Resources */,
 				04472785246B973D00817FC6 /* BillDetailView.xib in Resources */,
 				04468327244DD7B10033892A /* han.css in Resources */,

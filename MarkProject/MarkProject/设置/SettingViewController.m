@@ -189,10 +189,17 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row != 2) {
-        CustomSettingViewController *vc = [[CustomSettingViewController alloc] init];
-        vc.NavTitle = _ItemsArray[indexPath.row][0];
-        [self.navigationController pushViewController:vc animated:YES];
+    CustomSettingViewController *vc = [[CustomSettingViewController alloc] init];
+   
+    
+    switch (indexPath.row) {
+        case 0:
+             vc.NavTitle = _ItemsArray[indexPath.row][0];
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+            
+        default:
+            break;
     }
 }
 -(void)LoginOutBtn:(UIButton *)sender

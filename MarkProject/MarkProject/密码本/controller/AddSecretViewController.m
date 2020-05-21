@@ -276,6 +276,9 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
+    if (textField != self.namefield) {
+        return;
+    }
     self.IconLabel.text = textField.text.length >= 2?[textField.text substringToIndex:2]:textField.text;
 }
 #pragma mark  - ------  fieldDelegate  ------

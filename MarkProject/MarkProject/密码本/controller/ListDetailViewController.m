@@ -170,6 +170,10 @@
         make.height.mas_equalTo(30);
         make.bottom.mas_equalTo(self.AccountView.mas_bottom).offset(-10);
     }];
+    [[self copyButtonWithTag:1] mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(BackView.mas_right).offset(-8);
+        make.centerY.mas_equalTo(self.Accountfield);
+       }];
     UIView *line = [[UIView alloc] init];
     line.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
     [self.view addSubview:line];
@@ -216,7 +220,10 @@
         make.height.mas_equalTo(30);
         make.bottom.mas_equalTo(self.PwdView.mas_bottom).offset(-10);
     }];
-    
+    [[self copyButtonWithTag:2] mas_makeConstraints:^(MASConstraintMaker *make) {
+     make.right.mas_equalTo(BackView.mas_right).offset(-8);
+     make.centerY.mas_equalTo(self.Pwdfield);
+    }];
     UIView *lineview = [[UIView alloc] init];
     lineview.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
     [self.view addSubview:lineview];
@@ -275,6 +282,10 @@
         make.top.mas_equalTo(tiplabel1.mas_bottom);
         make.height.mas_equalTo(30);
         make.bottom.mas_equalTo(self.UrlView.mas_bottom).offset(-10);
+    }];
+    [[self copyButtonWithTag:3] mas_makeConstraints:^(MASConstraintMaker *make) {
+     make.right.mas_equalTo(BackView.mas_right).offset(-8);
+     make.centerY.mas_equalTo(self.Urlfield);
     }];
     UIView *line = [[UIView alloc] init];
     line.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
@@ -515,6 +526,33 @@
         [UIView animateWithDuration:animationDuration animations:^{
             weakSelf.view.frame = CGRectMake(weakSelf.view.frame.origin.x, 0, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
         }];
+    }
+}
+-(UIButton *)copyButtonWithTag:(NSInteger)tag
+{
+    UIButton *copyBtn = [[UIButton alloc] init];
+    copyBtn.tag = tag;
+    [copyBtn setTitle:@"复制" forState:UIControlStateNormal];
+    copyBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:14];
+    [copyBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [copyBtn addTarget:self action:@selector(CopyBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:copyBtn];
+    
+    return copyBtn;
+}
+
+-(void)CopyBtn:(UIButton *)sender
+{
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    if (sender.tag == 1) {
+        [MDMethods showTextMessage:@"帐户名已复制到剪切板"];
+        pasteboard.string = self.Accountfield.text;
+    }else if (sender.tag == 2){
+        [MDMethods showTextMessage:@"密码已复制到剪切板"];
+        pasteboard.string = self.Pwdfield.text;
+    }else if (sender.tag == 3){
+        [MDMethods showTextMessage:@"网址已复制到剪切板"];
+        pasteboard.string = self.Urlfield.text;
     }
 }
 @end
