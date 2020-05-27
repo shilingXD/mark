@@ -17,7 +17,7 @@
 @property (nonatomic, strong) UILabel *NameLabel;///<用户名
 @property (nonatomic, strong) UILabel *emailLabel;///<邮箱
 @property (nonatomic, strong) UIButton *LoginOutBtn;///<退出button
-
+@property (nonatomic, strong) UILabel *upLoadLabel;///<云同步事件
 @property (nonatomic, strong) NSArray *ItemsArray;
 @end
 
@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _ItemsArray = @[@[@"主题",@"主题"],@[@"云同步",@"云同步"],@[@"毒鸡汤",@"毒鸡汤"],@[@"账单",@"账单"],@[@"密码本",@"密码本"],@[@"日记",@"日记"],@[@"备忘录",@"备忘录"],@[@"计划",@"计划"]];
+    _ItemsArray = @[@[@"主题",@"主题"],@[@"云同步",@"云同步"],@[@"毒鸡汤",@"毒鸡汤"],@[@"账单",@"账单"],@[@"密码本",@"密码本"],@[@"随笔",@"随笔"],@[@"便签",@"便签"],@[@"计划",@"计划"]];
     [self setNav];
     [self setupTableView];
     
@@ -177,6 +177,14 @@
         cell.stateSwitch.hidden = YES;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    if ([_ItemsArray[indexPath.row][1] isEqualToString:@"云同步"]) {
+        [cell addSubview:self.upLoadLabel];
+        [self.upLoadLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(cell.mas_right).offset(-20);
+            make.centerY.mas_equalTo(cell);
+        }];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     cell.SwitchBlock = ^(BOOL isOn) {
         [MDInstance sharedInstance].isOpenSoul = isOn;
     };
@@ -197,7 +205,9 @@
              vc.NavTitle = _ItemsArray[indexPath.row][0];
             [self.navigationController pushViewController:vc animated:YES];
             break;
-            
+            case 1:
+            [self upLoadData];
+            break;
         default:
             break;
     }
@@ -283,4 +293,61 @@
     }];
 }
 #pragma mark  - ------  懒加载  ------
+- (UILabel *)upLoadLabel
+{
+    if (!_upLoadLabel) {
+        _upLoadLabel = [[UILabel alloc] init];
+        NSInteger time = [[NSUserDefaults standardUserDefaults] integerForKey:@"upLoadTime"];
+        _upLoadLabel.text = time?[@"上次同步时间:" stringByAppendingString:[MDMethods changeTimeDate:[MDMethods getDateStringWithTimeStr:[NSString stringWithFormat:@"%zd",time]]]]:@"尚未同步";
+        _upLoadLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:14];
+        _upLoadLabel.textColor = [UIColor grayColor];
+    }
+    return _upLoadLabel;
+}
+#pragma mark  - ------  事件响应  ------
+-(void)upLoadData
+{
+    self.upLoadLabel.text = @"正在同步...";
+    BmobObject *user = [BmobObject objectWithoutDataWithClassName:@"UserList" objectId:[MDInstance sharedInstance].objectID];
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"UserList"];
+    WeakBlock(self, weak_self);
+    [bquery getObjectInBackgroundWithId:user.objectId block:^(BmobObject *object,NSError *error){
+        if ([[NSString stringWithFormat:@"%@",[object objectForKey:@"user_data_updated"]] integerValue]>[[NSUserDefaults standardUserDefaults] integerForKey:@"upLoadTime"]) {
+                NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[object objectForKey:@"user_data"]]];
+        //        //写入文件
+                [data writeToFile:[DocumentsDirectoryPath stringByAppendingPathComponent:FMDBMainName] atomically:YES];
+                [[NSUserDefaults standardUserDefaults] setInteger:[[MDMethods currentTimeStr] integerValue]  forKey:@"upLoadTime"];
+            } else {
+                
+                NSData *data = [NSData dataWithContentsOfFile:[DocumentsDirectoryPath stringByAppendingPathComponent:FMDBMainName]];
+                BmobObject *obj = [BmobObject objectWithoutDataWithClassName:@"UserList" objectId:[MDInstance sharedInstance].objectID];
+                BmobFile *file = [[BmobFile alloc]initWithFileName:@"MarkProject.sqlite" withFileData:data];
+                
+                [file saveInBackground:^(BOOL isSuccessful, NSError *error) {
+                    //如果文件保存成功，则把文件添加到filetype列
+                    if (isSuccessful) {
+                        [[NSUserDefaults standardUserDefaults] setInteger:[[MDMethods currentTimeStr] integerValue]  forKey:@"upLoadTime"];
+                        //上传文件的URL地址
+                        [obj setObject:file.url  forKey:@"user_data"];
+                        //此处相当于新建一条记录,         //关联至已有的记录请使用 [obj updateInBackground];
+                        [obj updateInBackground];
+                    }else{
+                        //进行处理
+                    }
+                }];
+            }
+    NSInteger time = [[NSUserDefaults standardUserDefaults] integerForKey:@"upLoadTime"];
+        weak_self.upLoadLabel.text = [@"上次同步时间:" stringByAppendingString:[MDMethods changeTimeDate:[MDMethods getDateStringWithTimeStr:[NSString stringWithFormat:@"%zd",time]]]];
+    [user setObject:@([[MDMethods currentTimeStr] integerValue]) forKey:@"user_data_updated"];
+    //    [user setObject:[MDMethods imageToString:] forKey:@"user_image"];
+    [user updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        NSLog(@"%@",@(isSuccessful));
+    }];
+    
+    }];
+//    WeakBlock(self, weak_self);
+    
+    
+}
+
 @end

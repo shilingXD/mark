@@ -257,8 +257,8 @@ All source code is licensed under the [MIT License](https://raw.github.com/SDWeb
 <p align="center" >
     <img src="https://raw.githubusercontent.com/SDWebImage/SDWebImage/master/Docs/Diagrams/SDWebImageClassDiagram.png" title="SDWebImage overall class diagram">
 </p>
-
 #### Top Level API Diagram
+
 <p align="center" >
     <img src="https://raw.githubusercontent.com/SDWebImage/SDWebImage/master/Docs/Diagrams/SDWebImageTopLevelClassDiagram.png" title="SDWebImage top level API diagram">
 </p>

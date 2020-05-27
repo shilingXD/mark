@@ -999,12 +999,12 @@
 		04DE4208246448DE00A8882D /* CCFoldCell */ = {
 			isa = PBXGroup;
 			children = (
-				04DE4209246448DE00A8882D /* UIView+Snapshot.m */,
 				04DE420A246448DE00A8882D /* CCFoldCell.h */,
-				04DE420B246448DE00A8882D /* CCRotatedView.m */,
 				04DE420C246448DE00A8882D /* CCFoldCell.m */,
-				04DE420D246448DE00A8882D /* UIView+Snapshot.h */,
 				04DE420E246448DE00A8882D /* CCRotatedView.h */,
+				04DE420B246448DE00A8882D /* CCRotatedView.m */,
+				04DE420D246448DE00A8882D /* UIView+Snapshot.h */,
+				04DE4209246448DE00A8882D /* UIView+Snapshot.m */,
 			);
 			path = CCFoldCell;
 			sourceTree = "<group>";

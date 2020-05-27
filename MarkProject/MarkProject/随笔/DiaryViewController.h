@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DiaryViewController : BaseViewController
-
+-(void)getMDList;
 @end
 
 NS_ASSUME_NONNULL_END

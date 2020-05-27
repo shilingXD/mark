@@ -131,9 +131,6 @@
             }
         }
     }];
-    [bquery getObjectInBackgroundWithId:@"0c6db13c" block:^(BmobObject *object,NSError *error){
-        
-    }];
     
     
 }

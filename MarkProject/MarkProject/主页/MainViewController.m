@@ -36,7 +36,7 @@
     _array = @[@"账单",@"备忘录",@"计划",@"随想",@"密码本",@"设置"];//收藏夹（网页链接、微信文章等--支持本地打开和跳转浏览器）
     [self setNav];
     [self setupContentView];
-    [self setupBanner];
+//    [self setupBanner];
     [self soulView];
     [BaseModel createTableIfNoExit];
 }
@@ -108,10 +108,10 @@
      注册 登录 个人管理 备忘录 账单 密码本 计划 日记（markdown）
      */
     
-    UIView *view1 = [self setViewWtihTitle:@"账单" SubTitle:@"当日支出:100 当日收入:200" Tag:1001 BackColor:rgba(82, 154, 248, 1) Type:1];
+    UIView *view1 = [self setViewWtihTitle:@"账单" SubTitle:@"" Tag:1001 BackColor:rgba(82, 154, 248, 1) Type:1];
     UIView *view2 = [self setViewWtihTitle:@"密码本" SubTitle:@"" Tag:1002 BackColor:rgba(117, 121, 143, 1) Type:2];
     UIView *view3 = [self setViewWtihTitle:@"随笔" SubTitle:@"" Tag:1003 BackColor:rgba(95, 147, 132, 1) Type:2];
-    UIView *view4 = [self setViewWtihTitle:@"便签" SubTitle:@"明天8:00上班" Tag:1004 BackColor:rgba(68, 107, 255, 1) Type:1];
+    UIView *view4 = [self setViewWtihTitle:@"便签" SubTitle:@"" Tag:1004 BackColor:rgba(68, 107, 255, 1) Type:1];
     UIView *view5 = [self setViewWtihTitle:@"计划" SubTitle:@"" Tag:1005 BackColor:rgba(211, 163, 105, 1) Type:1];
     UIView *view6 = [self setViewWtihTitle:@"设置" SubTitle:@"" Tag:1006 BackColor:rgba(44, 44, 46, 1) Type:2];
     [view1 mas_makeConstraints:^(MASConstraintMaker *make) {

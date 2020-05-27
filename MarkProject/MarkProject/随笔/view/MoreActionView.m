@@ -7,7 +7,7 @@
 //
 
 #import "MoreActionView.h"
-
+#import "DiaryViewController.h"
 @implementation MoreActionView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -56,12 +56,12 @@
             [self setPopUpView];
             break;
         case 1:
-            
+            [self moveFile];
             break;
         case 2:
-            
+             [self deleteRow];
             break;
-            
+           
         default:
             break;
     }
@@ -93,7 +93,6 @@
     //创建两个textFiled输入框
     [addAlertVC addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"请输入新名称";
-        textField.keyboardType = UIKeyboardTypeNumberPad;
         textField.tag = 120;
     }];
     
@@ -104,17 +103,57 @@
     
     
     //创建 确认按钮(事件) 并添加到弹窗界面
-    
+    WeakBlock(self, weak_self);
     UIAlertAction *confirmAction =[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         UITextField *field = [addAlertVC.view viewWithTag:120];
-        //        CGFloat money = [[NSUserDefaults standardUserDefaults] floatForKey:BillAsset];
-        //        money = money + [field.text floatValue];
-        //        [[NSUserDefaults standardUserDefaults] setFloat:money forKey:BillAsset];
-        
+        [self reNameWithStr:field.text];
     }];
     [addAlertVC addAction:confirmAction];
     
     
     [[MDMethods getCurrentViewController] presentViewController:addAlertVC animated:YES completion:nil];
+}
+-(void)deleteRow
+{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{
+        return ;
+    }];
+    NSString *sql = @"delete from MDList where MDID = ?";
+    BOOL result = [db executeUpdate:sql, @(self.model.MDID)];
+    if (!result) {
+        [MDMethods showTextMessage:@"删除失败"];
+        return;
+    }
+    [db close];
+    
+    [(DiaryViewController *)[MDMethods getCurrentViewController] getMDList];
+    [GKCover hasCover];
+}
+-(void)moveFile
+{
+    
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{
+           return ;
+       }];
+    BOOL result = [db executeUpdateWithFormat:@"update MDList set FilePath = '国家' where MDID = %d",self.model.MDID];
+       if (!result) {
+           [MDMethods showTextMessage:@"移动失败"];
+           return;
+       }
+       [db close];
+    [(DiaryViewController *)[MDMethods getCurrentViewController] getMDList];
+}
+-(void)reNameWithStr:(NSString *)str
+{
+    FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{
+           return ;
+       }];
+    BOOL result = [db executeUpdateWithFormat:@"update MDList set Title = %@ where MDID = %d",str,self.model.MDID];
+       if (!result) {
+           [MDMethods showTextMessage:@"重命名失败"];
+           return;
+       }
+       [db close];
+    [(DiaryViewController *)[MDMethods getCurrentViewController] getMDList];
 }
 @end

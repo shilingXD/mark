@@ -72,6 +72,7 @@
 -(void)moreBtnClick:(UIButton *)sender
 {
     MoreActionView *view = [[MoreActionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
+    view.model = self.model;
     view.gk_size = CGSizeMake(SCREEN_WIDTH, 200);
     [GKCover coverFrom:[UIApplication sharedApplication].keyWindow contentView:view style:GKCoverStyleTranslucent showStyle:GKCoverShowStyleBottom showAnimStyle:GKCoverShowAnimStyleBottom hideAnimStyle:GKCoverHideAnimStyleBottom notClick:NO];
 }

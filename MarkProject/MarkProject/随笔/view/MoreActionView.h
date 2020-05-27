@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MDModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MoreActionView : BaseView<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;///<<#注释#>
 @property (nonatomic, strong) NSArray *dataArray;///<<#注释#>
+@property (nonatomic, strong) MDModel *model;///<<#注释#>
 @end
 
 NS_ASSUME_NONNULL_END

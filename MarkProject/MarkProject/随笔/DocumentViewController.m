@@ -11,6 +11,8 @@
 #import "SuiXiangCollectionViewCell.h"
 #import "MDModel.h"
 #import "MDEditViewController.h"
+#import "WMDragView.h"
+#import "NewfileView.h"
 
 @interface DocumentViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;///<<#注释#>
@@ -27,6 +29,7 @@
     [self setupNav];
     [self setupView];
     [self getMDList];
+    [self AddButton];
 }
 
 -(void)setupNav
@@ -114,7 +117,7 @@
     FMDatabase *db = [MDMethods openOrCreateDBWithDBName:FMDBMainName Success:^{} Fail:^{
         return ;
     }];
-    NSString *sql = [NSString stringWithFormat:@"select  MDID,Title,Type,FilePath,StoragePath,CreateTime,UpdateTime,currentTime FROM MDList Where FilePath == %@",self.DocumentTitle];
+    NSString *sql = [NSString stringWithFormat:@"select  MDID,Title,Type,FilePath,StoragePath,CreateTime,UpdateTime,currentTime FROM MDList Where FilePath == '%@'",self.DocumentTitle];
     FMResultSet *rs = [db executeQuery:sql];
     _dataArray = [NSMutableArray array];
     while ([rs next]) {
@@ -143,5 +146,74 @@
         }];
     }
     return _emptyView;
+}
+-(void)AddButton
+{
+    WMDragView *dragView = [[WMDragView alloc] init];
+    dragView.backgroundColor = rgba(85, 85, 85, 1);
+    dragView.layer.masksToBounds = YES;
+    dragView.layer.cornerRadius = 25;
+    dragView.clickDragViewBlock = ^(WMDragView *dragView) {
+        [self popSelectedView];
+    };
+    [self.view addSubview:dragView];
+    [dragView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(50, 50));
+        make.right.mas_equalTo(self.view).offset(-25);
+        make.bottom.mas_equalTo(self.view).offset(-25);
+    }];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"增加"]];
+    [dragView addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(dragView);
+    }];
+    
+    
+}
+-(void)popSelectedView
+{
+    UIView *popView = [[UIView alloc] init];
+    popView.backgroundColor = [UIColor whiteColor];
+    UIButton *createFileBtn = [[UIButton alloc] init];
+    createFileBtn.tag = 100;
+    [createFileBtn  setImage:[[UIImage imageNamed:@"文件"] changeColor:TintColor] forState:UIControlStateNormal];
+    [createFileBtn addTarget:self action:@selector(createClick:) forControlEvents:UIControlEventTouchUpInside];
+    [popView addSubview:createFileBtn];
+    [createFileBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(popView);
+        make.size.mas_equalTo(CGSizeMake(70, 70));
+    }];
+    UILabel *label1 = [[UILabel alloc] init];
+    label1.text = @"新建文件";
+    label1.textColor =TintColor;
+    label1.font =[UIFont systemFontOfSize:12];
+    [popView addSubview:label1];
+    [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(createFileBtn);
+        make.top.mas_equalTo(createFileBtn.mas_bottom).mas_offset(5);
+    }];
+    popView.gk_size = CGSizeMake(SCREEN_WIDTH, 200);
+    [GKCover coverFrom:self.view contentView:popView style:GKCoverStyleTranslucent showStyle:GKCoverShowStyleBottom showAnimStyle:GKCoverShowAnimStyleBottom hideAnimStyle:GKCoverHideAnimStyleBottom notClick:NO showBlock:^{
+        
+    } hideBlock:^{
+        
+    }];
+}
+-(void)createClick:(UIButton *)btn
+{
+    [GKCover hide];
+    NewfileView *view = [NewfileView init];
+    if (btn.tag == 100) {
+        view.TitleLbal.text = @"新建文件";
+        view.Type = @"1";
+        
+    }
+    view.FilePath = self.DocumentTitle;
+    WeakBlock(self, weak_self);
+    view.reloadBlock = ^{
+        [weak_self getMDList];
+    };
+    [GKCover coverFrom:self.view contentView:view style:GKCoverStyleTranslucent showStyle:GKCoverShowStyleCenter showAnimStyle:GKCoverShowAnimStyleCenter hideAnimStyle:GKCoverHideAnimStyleCenter notClick:NO];
 }
 @end
