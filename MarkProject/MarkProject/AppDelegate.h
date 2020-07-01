@@ -15,7 +15,7 @@
 
 @end
 
-
+//说明书功能： 通过网页url 或拍摄图片保存说明书
 /*
  family:'PingFang SC'
  font:'PingFangSC-Medium'
