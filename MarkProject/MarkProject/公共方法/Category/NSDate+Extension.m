@@ -23,6 +23,7 @@
 }
 
 - (NSUInteger)hour {
+    NSLog(@"测试数据%@", [NSDate hour:self]);
     return [NSDate hour:self];
 }
 
